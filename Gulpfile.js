@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var del = require('del');
 var gulp = require('gulp');
 var jscs = require('gulp-jscs');
+var tcache = require('gulp-angular-templatecache');
 var jshint = require('gulp-jshint');
 var path = require('path');
 var smaps = require('gulp-sourcemaps');
@@ -15,8 +16,8 @@ gulp.task('clean', function(cb) {
     del('build', cb);
 });
 
-gulp.task('compile', function() {
-    return gulp.src(['src/**'])
+gulp.task('compile', ['templates'], function() {
+    return gulp.src(['src/**', 'build/templates.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jscs())
@@ -28,10 +29,18 @@ gulp.task('compile', function() {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('merge', function() {
+gulp.task('templates', function() {
+    return gulp.src('templates/**/*.html')
+        .pipe(tcache())
+        .pipe(gulp.dest('build'));
+});
+
+gulp.task('migration', function() {
     return gulp.src(['public/**'])
         .pipe(gulp.dest('build'));
 });
+
+gulp.task('merge', ['migration', 'templates']);
 
 gulp.task('revise', ['compile', 'merge'], function() {
     var rev = new Rev({
