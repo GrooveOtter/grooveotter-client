@@ -1,0 +1,19 @@
+{
+  "name": "grooveotter-client",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "test": "gulp test"
+  },
+  "dependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-jscs": "^1.4.0",
+    "gulp-jshint": "^1.10.0",
+    "gulp-rev-all": "^0.8.13",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-uglify": "^1.1.0",
+    "gulp-wrap": "^0.11.0"
+  }
+}
