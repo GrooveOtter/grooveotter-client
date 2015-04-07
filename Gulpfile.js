@@ -30,7 +30,7 @@ gulp.task('compile', ['templates'], function() {
 });
 
 gulp.task('templates', function() {
-    return gulp.src('templates/**/*.html')
+    return gulp.src('templates/*.html')
         .pipe(tcache())
         .pipe(gulp.dest('build'));
 });
