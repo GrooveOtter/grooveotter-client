@@ -1,1 +1,4 @@
-<button ng-click="vm.sayHi()">Say Hi</button>
+<span>{{vm.clock.elapsedTime | date: 'mm:ss'}}</span>
+<button ng-click="vm.clock.start()">Start</button>
+<button ng-click="vm.clock.stop()">Stop</button>
+<button ng-click="vm.clock.reset()">Reset</button>

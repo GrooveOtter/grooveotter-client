@@ -1,15 +1,9 @@
-/* global alert */
-
 angular.module('gotr')
     .controller('DemoController', DemoController);
 
-DemoController.$inject = ['$location'];
-function DemoController($location) {
+DemoController.$inject = ['clock'];
+function DemoController(clock) {
     var vm = this;
 
-    vm.sayHi = sayHi;
-
-    function sayHi() {
-        alert('Hi');
-    }
+    vm.clock = clock;
 }
