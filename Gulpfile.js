@@ -16,13 +16,17 @@ gulp.task('clean', function(cb) {
     del('build', cb);
 });
 
+gulp.task('watch', ['default'], function() {
+    gulp.watch(['src/**', 'templates/**', 'public/**'], ['default']);
+});
+
 gulp.task('compile', ['templates'], function() {
     return gulp.src(['app.js', 'src/**', 'build/templates.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jscs())
         .pipe(smaps.init())
-        .pipe(wrap('(function() { <%= contents %> })();'))
+        .pipe(wrap('(function() { "use strict"; <%= contents %> })();'))
         .pipe(concat('build.js'))
         .pipe(uglify())
         .pipe(smaps.write())
