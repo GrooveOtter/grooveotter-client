@@ -27,10 +27,10 @@ gulp.task('compile', ['templates'], function() {
         .pipe(jscs())
         .pipe(smaps.init())
         .pipe(wrap('(function() { "use strict"; <%= contents %> })();'))
-        .pipe(concat('build.js'))
+        .pipe(concat('bundle.js'))
         .pipe(uglify())
         .pipe(smaps.write())
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('build/inter'));
 });
 
 gulp.task('templates', function() {
@@ -41,12 +41,12 @@ gulp.task('templates', function() {
 
 gulp.task('migration', function() {
     return gulp.src(['public/**'])
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('build/inter'));
 });
 
 gulp.task('merge', ['migration', 'templates']);
 
-gulp.task('revise', ['compile', 'merge'], function() {
+gulp.task('final', ['compile', 'merge'], function() {
     var rev = new Rev({
         transformFilename: function(file, hash) {
             return hash + path.extname(file.path);
@@ -55,9 +55,7 @@ gulp.task('revise', ['compile', 'merge'], function() {
         dontRenameFile: [/^\/favicon.ico$/g, /^\/index.html/g]
     });
 
-    return gulp.src(['build/**'])
+    return gulp.src(['build/inter/*'])
         .pipe(rev.revision())
-        .pipe(gulp.dest('build'))
-        .pipe(rev.versionFile())
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('build/final'));
 });
