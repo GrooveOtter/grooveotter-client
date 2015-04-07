@@ -7,8 +7,9 @@ function DemoController($scope, clock) {
 
     vm.clock = clock;
     vm.duration = 0;
-    vm.inputSeconds = 0;
+    vm.choice = 10;
     vm.started = false;
+    vm.selecting = false;
     vm.go = go;
     vm.isFinished = isFinished;
     vm.reset = reset;
@@ -21,8 +22,8 @@ function DemoController($scope, clock) {
     });
 
     function go() {
-        if (vm.inputSeconds > 0) {
-            vm.duration = 1000 * vm.inputSeconds;
+        if (vm.choice > 0) {
+            vm.duration = 1000 * vm.choice;
             clock.reset();
             clock.start();
             vm.started = true;
