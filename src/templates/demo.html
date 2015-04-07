@@ -1,36 +1,37 @@
-<button
-    ng-show="vm.clock.isRunning"
-    ng-click="vm.clock.stop()">
-    Stop
-</button>
+<div ng-if="!vm.selecting">
+    <button
+        ng-show="vm.clock.isRunning"
+        ng-click="vm.clock.stop()">
+        Stop
+    </button>
 
-<button
-    ng-hide="vm.clock.isRunning || !vm.started || vm.isFinished()"
-    ng-click="vm.clock.start()">
-    Resume
-</button>
+    <button
+        ng-hide="vm.clock.isRunning || !vm.started || vm.isFinished()"
+        ng-click="vm.clock.start()">
+        Resume
+    </button>
 
-<button
-    ng-hide="vm.started && !vm.isFinished()"
-    ng-disabled="vm.started"
-    ng-click="vm.go()">
-    Start
-</button>
+    <button
+        ng-hide="vm.started && !vm.isFinished()"
+        ng-disabled="vm.started"
+        ng-click="vm.go()">
+        Start
+    </button>
 
-<button
-    ng-disabled="!vm.started"
-    ng-click="vm.reset()">
-    Reset
-</button>
+    <button
+        ng-disabled="!vm.started"
+        ng-click="vm.reset()">
+        Reset
+    </button>
 
-<gotr-knob
-    ng-if="!vm.selecting"
-    ng-dblclick="vm.reset(); vm.selecting = true"
-    value="vm.clock.elapsedTime"
-    label="vm.started ? vm.timeLeft() : vm.choice * 1000 | date: 'mm:ss'"
-    max="vm.started ? vm.duration : 1"
-    width="200">
-</gotr-knob>
+    <gotr-knob
+        ng-dblclick="vm.reset(); vm.selecting = true"
+        value="vm.clock.elapsedTime"
+        label="vm.started ? vm.timeLeft() : vm.choice * 1000 | date: 'mm:ss'"
+        max="vm.started ? vm.duration : 1"
+        width="200">
+    </gotr-knob>
+</div>
 
 <gotr-time-box
     ng-if="vm.selecting"
