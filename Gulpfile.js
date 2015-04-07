@@ -1,12 +1,14 @@
 var Rev = require('gulp-rev-all');
 var concat = require('gulp-concat');
 var del = require('del');
+var filter = require('gulp-filter');
 var gulp = require('gulp');
+var htmlmin = require('gulp-htmlmin');
 var jscs = require('gulp-jscs');
-var tcache = require('gulp-angular-templatecache');
 var jshint = require('gulp-jshint');
 var path = require('path');
 var smaps = require('gulp-sourcemaps');
+var tcache = require('gulp-angular-templatecache');
 var uglify = require('gulp-uglify');
 var wrap = require('gulp-wrap');
 
@@ -35,6 +37,7 @@ gulp.task('compile', ['templates'], function() {
 
 gulp.task('templates', function() {
     return gulp.src('src/templates/*.html')
+        .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(tcache({module: 'gotr'}))
         .pipe(gulp.dest('build'));
 });
@@ -47,6 +50,8 @@ gulp.task('migration', function() {
 gulp.task('merge', ['migration', 'templates']);
 
 gulp.task('final', ['compile', 'merge'], function() {
+    var onlyHtml = filter(['*.html']);
+
     var rev = new Rev({
         transformFilename: function(file, hash) {
             return hash + path.extname(file.path);
@@ -56,6 +61,9 @@ gulp.task('final', ['compile', 'merge'], function() {
     });
 
     return gulp.src(['build/inter/*'])
+        .pipe(onlyHtml)
+            .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(onlyHtml.restore())
         .pipe(rev.revision())
         .pipe(gulp.dest('build/final'));
 });

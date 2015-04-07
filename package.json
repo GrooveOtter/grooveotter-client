@@ -11,6 +11,8 @@
     "gulp": "^3.8.11",
     "gulp-angular-templatecache": "^1.6.0",
     "gulp-concat": "^2.5.2",
+    "gulp-filter": "^2.0.2",
+    "gulp-htmlmin": "^1.1.1",
     "gulp-jscs": "^1.4.0",
     "gulp-jshint": "^1.10.0",
     "gulp-rev-all": "^0.8.13",
