@@ -8,11 +8,21 @@ function TimeBox() {
         replace: true,
         templateUrl: 'time-box.html',
         scope: {
-            choose: '&onChoice'
+            onChoice: '&'
         },
         controllerAs: 'vm',
+        controller: TimeBoxController,
         bindToController: true
     };
 
     return directive;
+}
+
+TimeBoxController.$inject = [];
+function TimeBoxController() {
+    var vm = this;
+
+    vm.choose = function(choice) {
+        vm.onChoice({choice: choice});
+    };
 }
