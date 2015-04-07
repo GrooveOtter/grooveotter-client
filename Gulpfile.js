@@ -12,7 +12,7 @@ var tcache = require('gulp-angular-templatecache');
 var uglify = require('gulp-uglify');
 var wrap = require('gulp-wrap');
 
-gulp.task('default', ['compile', 'merge']);
+gulp.task('default', ['final']);
 
 gulp.task('clean', function(cb) {
     del('build', cb);
