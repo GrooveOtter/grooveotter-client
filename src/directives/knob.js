@@ -102,6 +102,7 @@ function KnobController() {
         width: vm.width + 'px',
         height: vm.width + 'px',
         position: 'relative',
+        WebkitUserSelect: 'none',
         userSelect: 'none'
     };
 }
