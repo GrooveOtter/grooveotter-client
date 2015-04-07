@@ -1,4 +1,4 @@
-/* global console */
+/* global alert */
 
 angular.module('gotr')
     .controller('DemoController', DemoController);
@@ -9,6 +9,6 @@ function DemoController() {
     this.sayHi = sayHi;
 
     function sayHi() {
-        console.log('Hi');
+        alert('Hi');
     }
 }
