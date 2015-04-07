@@ -42,6 +42,6 @@ function Clock($interval) {
     }
 
     function isRunning() {
-        return timeoutId === null;
+        return timeoutId != null;
     }
 }
