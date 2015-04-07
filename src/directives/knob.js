@@ -43,6 +43,8 @@ function Knob() {
             var bgLineWidth = center * vm.bgThickness;
             var fgLineWidth = center * vm.fgThickness;
 
+            value = Math.min(max, Math.max(min, value));
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             var angle = (value - min) * arc / (max - min);
