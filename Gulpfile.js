@@ -54,7 +54,7 @@ gulp.task('final', ['compile', 'merge'], function() {
 
     var rev = new Rev({
         transformFilename: function(file, hash) {
-            return hash + path.extname(file.path);
+            return 'assets/' + hash + path.extname(file.path);
         },
 
         dontRenameFile: [/^\/favicon.ico$/g, /^\/index.html/g]
