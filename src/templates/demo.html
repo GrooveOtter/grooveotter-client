@@ -11,13 +11,14 @@
 </button>
 
 <button
-    ng-hide="vm.started"
+    ng-hide="vm.started && !vm.isFinished()"
+    ng-disabled="vm.started"
     ng-click="vm.go()">
     Start
 </button>
 
 <button
-    ng-show="vm.started"
+    ng-disabled="!vm.started"
     ng-click="vm.reset()">
     Reset
 </button>
