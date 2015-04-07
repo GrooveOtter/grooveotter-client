@@ -42,7 +42,6 @@ function Knob() {
             var center = vm.width / 2;
             var bgLineWidth = center * vm.bgThickness;
             var fgLineWidth = center * vm.fgThickness;
-            var isMax = max === value;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -62,7 +61,11 @@ function Knob() {
             ctx.beginPath();
             ctx.strokeStyle = vm.fgColor;
             ctx.lineWidth = fgLineWidth;
-            ctx.arc(center, center, radius, start, start + angle, !isMax);
+            if (value === 0) {
+                ctx.arc(center, center, radius, end, start, true);
+            } else {
+                ctx.arc(center, center, radius, start, start + angle, true);
+            }
             ctx.stroke();
         }
     }
