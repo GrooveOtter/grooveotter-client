@@ -2,8 +2,8 @@ Setup
 -----
 
 ```bash
-npm i -G node-static
+npm install --global node-static
 npm install
-gulp
+npm run build
 static build
 ```
