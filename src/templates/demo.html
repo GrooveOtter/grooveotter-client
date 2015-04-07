@@ -3,14 +3,16 @@
     <input
         type="number"
         autofocus
+        autoselect
         autocomplete="off"
         name="seconds"
+        onfocus="this.select()"
         ng-model="vm.inputSeconds">
 </form>
 
 <gotr-knob
     value="vm.clock.elapsedTime"
-    label="vm.duration - vm.clock.elapsedTime + 1000 | date: 'mm:ss'"
-    max="vm.duration"
+    label="vm.started ? vm.timeLeft() : vm.inputSeconds * 1000 | date: 'mm:ss'"
+    max="vm.started ? vm.duration : 1"
     width="200">
 </gotr-knob>
