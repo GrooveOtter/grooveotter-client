@@ -1,4 +1,4 @@
-/* global require */
+/* global require, console, process */
 
 var Rev = require('gulp-rev-all');
 var concat = require('gulp-concat');
@@ -22,6 +22,9 @@ gulp.task('clean', function(cb) {
 
 gulp.task('watch', ['default'], function() {
     gulp.watch(['src/**', 'public/**'], ['default']);
+    process.on('uncaughtException', function(err) {
+        console.error(err);
+    });
 });
 
 gulp.task('compile', ['templates'], function() {
