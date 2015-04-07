@@ -10,7 +10,7 @@ function Clock($interval) {
         tick: tick,
         stop: stop,
         reset: reset,
-        isRunning: isRunning
+        isRunning: false
     };
 
     var timeoutId = null;
@@ -18,6 +18,7 @@ function Clock($interval) {
     return clock;
 
     function start() {
+        clock.isRunning = true;
         clock.lastTick = Date.now();
 
         timeoutId = $interval(tick, 10);
@@ -34,14 +35,11 @@ function Clock($interval) {
     function stop() {
         $interval.cancel(timeoutId);
         timeoutId = null;
+        clock.isRunning = false;
     }
 
     function reset() {
         stop();
         clock.elapsedTime = 0;
-    }
-
-    function isRunning() {
-        return timeoutId != null;
     }
 }
