@@ -40,6 +40,6 @@ function DemoController($scope, clock) {
     }
 
     function timeLeft() {
-        return vm.duration - vm.clock.elapsedTime + 1000;
+        return vm.duration - vm.clock.elapsedTime + 999;
     }
 }
