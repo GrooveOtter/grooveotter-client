@@ -9,6 +9,7 @@ var htmlmin = require('gulp-htmlmin');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var path = require('path');
+var sass = require('gulp-sass');
 var smaps = require('gulp-sourcemaps');
 var tcache = require('gulp-angular-templatecache');
 var uglify = require('gulp-uglify');
@@ -44,6 +45,14 @@ gulp.task('vet', function() {
         .pipe(jscs());
 });
 
+gulp.task('styles', function() {
+    return gulp.src(['src/stylesheets/main.scss'])
+        .pipe(smaps.init())
+            .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(smaps.write())
+        .pipe(gulp.dest('build/inter'));
+});
+
 gulp.task('templates', function() {
     return gulp.src('src/templates/*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
@@ -58,7 +67,7 @@ gulp.task('migration', function() {
 
 gulp.task('merge', ['migration', 'templates']);
 
-gulp.task('final', ['vet', 'compile', 'merge'], function() {
+gulp.task('final', ['vet', 'styles', 'compile', 'merge'], function() {
     var onlyHtml = filter(['*.html']);
 
     var rev = new Rev({
