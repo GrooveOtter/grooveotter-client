@@ -1,3 +1,5 @@
+/* global require */
+
 var Rev = require('gulp-rev-all');
 var concat = require('gulp-concat');
 var del = require('del');
@@ -22,17 +24,21 @@ gulp.task('watch', ['default'], function() {
     gulp.watch(['src/**', 'public/**'], ['default']);
 });
 
-gulp.task('compile', ['templates'], function() {
+gulp.task('compile', ['vet', 'templates'], function() {
     return gulp.src(['app.js', 'src/**/*.js', 'build/templates.js'])
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
-        .pipe(jscs())
         .pipe(smaps.init())
         .pipe(wrap('(function() { "use strict"; <%= contents %> })();'))
         .pipe(concat('bundle.js'))
         .pipe(uglify())
         .pipe(smaps.write())
         .pipe(gulp.dest('build/inter'));
+});
+
+gulp.task('vet', function() {
+    return gulp.src(['*.js', 'src/**/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
+        .pipe(jscs());
 });
 
 gulp.task('templates', function() {
