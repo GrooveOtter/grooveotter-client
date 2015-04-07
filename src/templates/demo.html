@@ -23,8 +23,15 @@
 </button>
 
 <gotr-knob
+    ng-if="!vm.selecting"
+    ng-dblclick="vm.reset(); vm.selecting = true"
     value="vm.clock.elapsedTime"
     label="vm.started ? vm.timeLeft() : vm.choice * 1000 | date: 'mm:ss'"
     max="vm.started ? vm.duration : 1"
     width="200">
 </gotr-knob>
+
+<gotr-time-box
+    ng-if="vm.selecting"
+    on-choice="vm.choice = choice; vm.selecting = false">
+</gotr-time-box>
