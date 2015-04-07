@@ -91,7 +91,7 @@ function KnobController() {
         verticalAlign: 'middle',
         border: '0px',
         background: 'none',
-        font: '300 34px Muli',
+        font: 'bold 34px Arial',
         textAlign: 'center',
         color: '#4d4e5e',
         padding: '0px',
