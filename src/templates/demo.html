@@ -1,31 +1,31 @@
 <div class="large-8 columns">
     <button
-        class="secondary button"
+        class="secondary button radius"
         ng-show="vm.clock.isRunning"
         ng-click="vm.clock.stop()">
-        Stop
+        Pause task
     </button>
 
     <button
-        class="secondary button"
+        class="secondary button radius"
         ng-hide="vm.clock.isRunning || !vm.started || vm.isFinished()"
         ng-click="vm.clock.start()">
-        Resume
+        Resume task
     </button>
 
     <button
-        class="secondary button"
+        class="secondary button radius"
         ng-hide="vm.started && !vm.isFinished()"
         ng-disabled="vm.started"
         ng-click="vm.go()">
-        Start
+        Start task
     </button>
 
     <button
-        class="primary button"
+        class="primary button radius"
         ng-disabled="!vm.started"
         ng-click="vm.reset()">
-        Reset
+        Reset timer
     </button>
 </div>
 
