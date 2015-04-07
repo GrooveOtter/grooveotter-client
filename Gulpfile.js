@@ -17,11 +17,11 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('watch', ['default'], function() {
-    gulp.watch(['src/**', 'templates/**', 'public/**'], ['default']);
+    gulp.watch(['src/**', 'public/**'], ['default']);
 });
 
 gulp.task('compile', ['templates'], function() {
-    return gulp.src(['app.js', 'src/**', 'build/templates.js'])
+    return gulp.src(['app.js', 'src/**/*.js', 'build/templates.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jscs())
@@ -34,7 +34,7 @@ gulp.task('compile', ['templates'], function() {
 });
 
 gulp.task('templates', function() {
-    return gulp.src('templates/*.html')
+    return gulp.src('src/templates/*.html')
         .pipe(tcache({module: 'gotr'}))
         .pipe(gulp.dest('build'));
 });
