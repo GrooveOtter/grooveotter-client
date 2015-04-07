@@ -24,7 +24,7 @@ gulp.task('watch', ['default'], function() {
     gulp.watch(['src/**', 'public/**'], ['default']);
 });
 
-gulp.task('compile', ['vet', 'templates'], function() {
+gulp.task('compile', ['templates'], function() {
     return gulp.src(['app.js', 'src/**/*.js', 'build/templates.js'])
         .pipe(smaps.init())
         .pipe(wrap('(function() { "use strict"; <%= contents %> })();'))
@@ -55,7 +55,7 @@ gulp.task('migration', function() {
 
 gulp.task('merge', ['migration', 'templates']);
 
-gulp.task('final', ['compile', 'merge'], function() {
+gulp.task('final', ['vet', 'compile', 'merge'], function() {
     var onlyHtml = filter(['*.html']);
 
     var rev = new Rev({
