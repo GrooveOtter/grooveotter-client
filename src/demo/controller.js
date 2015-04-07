@@ -3,10 +3,11 @@
 angular.module('gotr')
     .controller('DemoController', DemoController);
 
-function DemoController() {
+DemoController.$inject = ['$location'];
+function DemoController($location) {
     var vm = this;
 
-    this.sayHi = sayHi;
+    vm.sayHi = sayHi;
 
     function sayHi() {
         alert('Hi');
