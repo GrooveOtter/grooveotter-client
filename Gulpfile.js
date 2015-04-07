@@ -17,7 +17,7 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('compile', ['templates'], function() {
-    return gulp.src(['src/**', 'build/templates.js'])
+    return gulp.src(['app.js', 'src/**', 'build/templates.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jscs())
@@ -31,7 +31,7 @@ gulp.task('compile', ['templates'], function() {
 
 gulp.task('templates', function() {
     return gulp.src('templates/*.html')
-        .pipe(tcache())
+        .pipe(tcache({module: 'gotr'}))
         .pipe(gulp.dest('build'));
 });
 
