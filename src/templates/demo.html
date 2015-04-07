@@ -1,4 +1,4 @@
-<form ng-submit="vm.start()">
+<form ng-submit="vm.go()">
     <label for="seconds">Seconds</label>
     <input
         type="number"
@@ -9,6 +9,30 @@
         onfocus="this.select()"
         ng-model="vm.inputSeconds">
 </form>
+
+<button
+    ng-show="vm.clock.isRunning"
+    ng-click="vm.clock.stop()">
+    Stop
+</button>
+
+<button
+    ng-hide="vm.clock.isRunning || !vm.started || vm.isFinished()"
+    ng-click="vm.clock.start()">
+    Resume
+</button>
+
+<button
+    ng-hide="vm.started"
+    ng-click="vm.go()">
+    Start
+</button>
+
+<button
+    ng-show="vm.started"
+    ng-click="vm.reset()">
+    Reset
+</button>
 
 <gotr-knob
     value="vm.clock.elapsedTime"

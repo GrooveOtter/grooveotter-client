@@ -5,24 +5,37 @@ DemoController.$inject = ['$scope', 'clock'];
 function DemoController($scope, clock) {
     var vm = this;
 
-    vm.inputSeconds = 0;
-    vm.duration = -1000;
     vm.clock = clock;
-    vm.start = start;
+    vm.duration = 0;
+    vm.inputSeconds = 0;
     vm.started = false;
+    vm.go = go;
+    vm.isFinished = isFinished;
+    vm.reset = reset;
     vm.timeLeft = timeLeft;
 
     $scope.$watch('vm.clock.elapsedTime', function(time) {
-        if (time >= vm.duration) {
+        if (isFinished()) {
             clock.stop();
         }
     });
 
-    function start() {
-        vm.duration = 1000 * vm.inputSeconds;
+    function go() {
+        if (vm.inputSeconds > 0) {
+            vm.duration = 1000 * vm.inputSeconds;
+            clock.reset();
+            clock.start();
+            vm.started = true;
+        }
+    }
+
+    function isFinished() {
+        return clock.elapsedTime >= vm.duration;
+    }
+
+    function reset() {
         clock.reset();
-        clock.start();
-        vm.started = true;
+        vm.started = false;
     }
 
     function timeLeft() {
