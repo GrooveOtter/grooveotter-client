@@ -1,24 +1,16 @@
-<button
-    ng-hide="vm.clock.isRunning()"
-    ng-click="vm.clock.start()">
-    {{ vm.clock.elapsedTime === 0 ? 'Start' : 'Resume' }}
-</button>
-
-<button
-    ng-show="vm.clock.isRunning()"
-    ng-click="vm.clock.stop()">
-    Stop
-</button>
-
-<button
-    ng-hide="vm.clock.isRunning()"
-    ng-click="vm.clock.reset()">
-    Reset
-</button>
+<form ng-submit="vm.start()">
+    <label for="seconds">Seconds</label>
+    <input
+        type="number"
+        autofocus
+        autocomplete="off"
+        name="seconds"
+        ng-model="vm.inputSeconds">
+</form>
 
 <gotr-knob
     value="vm.clock.elapsedTime"
-    label="vm.clock.elapsedTime | date: 'mm:ss'"
-    max="10 * 1000"
+    label="vm.duration - vm.clock.elapsedTime + 1000 | date: 'mm:ss'"
+    max="vm.duration"
     width="200">
 </gotr-knob>
