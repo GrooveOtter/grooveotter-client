@@ -1,7 +1,7 @@
 angular.module('gotr')
     .config(Router);
 
-Router.$inject = ['$routeProvier', '$locationProvider'];
+Router.$inject = ['$routeProvider', '$locationProvider'];
 function Router($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
@@ -9,5 +9,8 @@ function Router($routeProvider, $locationProvider) {
             controller: 'DemoController as vm'
         });
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
 }
