@@ -1,4 +1,18 @@
 <span>{{vm.clock.elapsedTime | date: 'mm:ss'}}</span>
-<button ng-click="vm.clock.start()">Start</button>
-<button ng-click="vm.clock.stop()">Stop</button>
-<button ng-click="vm.clock.reset()">Reset</button>
+<button
+    ng-hide="vm.clock.isRunning()"
+    ng-click="vm.clock.start()">
+    {{ vm.clock.elapsedTime === 0 ? 'Start' : 'Resume' }}
+</button>
+
+<button
+    ng-show="vm.clock.isRunning()"
+    ng-click="vm.clock.stop()">
+    Stop
+</button>
+
+<button
+    ng-hide="vm.clock.isRunning()"
+    ng-click="vm.clock.reset()">
+    Reset
+</button>
