@@ -97,4 +97,11 @@ function KnobController() {
         padding: '0px',
         WebkitAppearance: 'none'
     };
+
+    vm.divStyle = {
+        width: vm.width + 'px',
+        height: vm.width + 'px',
+        position: 'relative',
+        userSelect: 'none'
+    };
 }
