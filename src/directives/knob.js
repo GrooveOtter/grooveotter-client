@@ -15,79 +15,76 @@ function Knob() {
         },
         controller: KnobController,
         controllerAs: 'vm',
-        link: link,
         bindToController: true
     };
 
     return directive;
-
-    function link(scope, element, _, vm) {
-        var canvas = angular.element(element[0]).find('canvas')[0];
-        var ctx = canvas.getContext('2d');
-
-        // There might be some shorthand to make this shorter
-        draw(vm.value, vm.max);
-
-        scope.$watch('vm.value', function(value) {
-            draw(value, vm.max);
-        });
-
-        scope.$watch('vm.max', function(max) {
-            draw(vm.value, max);
-        });
-
-        function draw(value, max) {
-            var min = 0;
-            var arc = 2 * Math.PI;
-            var center = vm.width / 2;
-            var bgLineWidth = center * vm.bgThickness;
-            var fgLineWidth = center * vm.fgThickness;
-
-            value = Math.min(max, Math.max(min, value));
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            var angle = (value - min) * arc / (max - min);
-
-            var radius = center - bgLineWidth / 2;
-
-            var start = 1.5 * Math.PI;
-            var end = 1.5 * Math.PI + arc;
-
-            ctx.beginPath();
-            ctx.strokeStyle = vm.bgColor;
-            ctx.lineWidth = bgLineWidth;
-            ctx.arc(center, center, radius, end, start, true);
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.strokeStyle = vm.fgColor;
-            ctx.lineWidth = fgLineWidth;
-            if (value === 0) {
-                ctx.arc(center, center, radius, end, start, true);
-            } else {
-                ctx.arc(center, center, radius, start, start + angle, true);
-            }
-            ctx.stroke();
-        }
-    }
 }
 
 KnobController.$inject = [];
 function KnobController() {
     var vm = this;
 
-    var width = vm.width;
-    vm.fgThickness = 0.03;
-    vm.bgThickness = 0.24;
+    vm.fgLineWidth = vm.width / 2 * 0.03;
+    vm.bgLineWidth = vm.width / 2 * 0.24;
     vm.fgColor = '#77A78D';
     vm.bgColor = '#EDEDED';
+    vm.describeBg = describeBg;
+    vm.describeFg = describeFg;
+    vm.calcDivStyle = calcDivStyle;
+    vm.calcInputStyle = calcInputStyle;
 
-    vm.inputStyle = {
+    var center = vm.width / 2;
+    var radius = center - vm.bgLineWidth;
+
+    function describeBg() {
+        return arc(0, 0);
+    }
+
+    function describeFg() {
+        return arc(0, vm.value / vm.max  * 360);
+    }
+
+    function polarToCartesian(degrees) {
+        var radians = degrees * Math.PI / 180;
+
+        return {
+            x: center + radius * Math.cos(radians),
+            y: center + radius * Math.sin(radians)
+        };
+    }
+
+    function arc(start, end) {
+        var begin = polarToCartesian(start - 90);
+        var final = polarToCartesian(end + 0.0001 - 90);
+
+        var large = end - start <= 180 ? 1 : 0;
+
+        return [
+            'M', begin.x, begin.y,
+            'A', radius, radius, 0, large, 0, final.x, final.y
+        ].join(' ');
+    }
+}
+
+function calcDivStyle(width) {
+    return {
+        width: width + 'px',
+        height: width + 'px',
+        position: 'relative',
+        WebkitUserSelect: 'none',
+        userSelect: 'none'
+    };
+}
+
+function calcInputStyle(width) {
+    var bgThickness = 0.24;
+
+    return {
         position: 'absolute',
-        top: ((width / 2) - (width / 8)) + 'px',
-        left: (width / 2) * vm.bgThickness + 'px',
-        width: width - (width * vm.bgThickness) + 'px',
+        top: ((width / 2) - (width / 12)) + 'px',
+        left: (width / 2) * bgThickness + 'px',
+        width: width - (width * bgThickness) + 'px',
         verticalAlign: 'middle',
         border: '0px',
         background: 'none',
@@ -96,13 +93,5 @@ function KnobController() {
         color: '#4d4e5e',
         padding: '0px',
         WebkitAppearance: 'none'
-    };
-
-    vm.divStyle = {
-        width: vm.width + 'px',
-        height: vm.width + 'px',
-        position: 'relative',
-        WebkitUserSelect: 'none',
-        userSelect: 'none'
     };
 }

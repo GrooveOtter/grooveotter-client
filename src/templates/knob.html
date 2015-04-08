@@ -1,11 +1,23 @@
-<div ng-style="vm.divStyle">
+<div ng-style="vm.calcDivStyle(vm.width)">
     <input
-        ng-style="vm.inputStyle"
+        ng-style="vm.calcInputStyle(vm.width)"
         ng-value="vm.label">
 
-    <canvas
-        width="{{vm.width}}"
-        height="{{vm.width}}"
+    <svg version="1.1"
+        ng-attr-width="{{vm.width}}"
+        ng-attr-height="{{vm.width}}"
         style="display: inline-block; position: relative">
+
+        <path
+            fill="none"
+            ng-attr-stroke="{{vm.bgColor}}"
+            ng-attr-stroke-width="{{vm.bgLineWidth}}"
+            ng-attr-d="{{vm.describeBg()}}" />
+
+        <path
+            fill="none"
+            ng-attr-stroke="{{vm.fgColor}}"
+            ng-attr-stroke-width="{{vm.fgLineWidth}}"
+            ng-attr-d="{{vm.describeFg()}}" />
     </canvas>
 </div>
