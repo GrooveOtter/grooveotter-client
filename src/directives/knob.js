@@ -73,7 +73,8 @@ function calcDivStyle(width) {
         height: width + 'px',
         position: 'relative',
         WebkitUserSelect: 'none',
-        userSelect: 'none'
+        userSelect: 'none',
+        margin: '0 auto'
     };
 }
 
