@@ -35,7 +35,7 @@ function KnobController() {
     vm.calcInputStyle = calcInputStyle;
 
     var center = vm.width / 2;
-    var radius = center - vm.bgLineWidth;
+    var radius = center - vm.bgLineWidth / 2;
 
     function describeBg() {
         return arc(0, 0);
