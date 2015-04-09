@@ -1,4 +1,4 @@
-/* global require, console, process */
+/* global require, console, process, __dirname */
 
 var Rev = require('gulp-rev-all');
 var concat = require('gulp-concat');
@@ -8,6 +8,7 @@ var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
+var karma = require('karma').server;
 var path = require('path');
 var sass = require('gulp-sass');
 var smaps = require('gulp-sourcemaps');
@@ -83,5 +84,14 @@ gulp.task('final', ['vet', 'styles', 'compile', 'merge'], function() {
             .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(onlyHtml.restore())
         .pipe(rev.revision())
-        .pipe(gulp.dest('build/final'));
+        .pipe(gulp.dest('build/final'))
+        .pipe(rev.manifestFile())
+        .pipe(gulp.dest('build'));
+});
+
+gulp.task('test', ['final'], function(done) {
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    });
 });
