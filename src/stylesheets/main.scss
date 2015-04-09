@@ -18,3 +18,20 @@
     box-shadow: none;
     border-bottom: 1px solid #ccc;
 }
+
+.time-box {
+    max-width: 200px;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.time-box input {
+    border: 0;
+    box-shadow: none;
+}
+
+.time-box button {
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
