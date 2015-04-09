@@ -1,6 +1,20 @@
 @import "settings";
 @import "foundation";
 
-body {
+.hero {
+    padding: 50px 0;
     background: #f6f5f5;
+    min-height: 200px;
+    left: 0;
+    right: 0;
+    position: relative;
+}
+
+.task-form input {
+    border: 0;
+    background: inherit;
+    font-size: 2em;
+    height: 2em;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
 }
