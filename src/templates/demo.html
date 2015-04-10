@@ -6,21 +6,21 @@
             </form>
 
             <button
-                class="secondary button radius"
+                class="secondary button large radius"
                 ng-show="vm.clock.isRunning"
                 ng-click="vm.clock.stop()">
                 Pause task
             </button>
 
             <button
-                class="secondary button radius"
+                class="secondary button large radius"
                 ng-hide="vm.clock.isRunning || !vm.started || vm.isFinished()"
                 ng-click="vm.clock.start()">
                 Resume task
             </button>
 
             <button
-                class="secondary button radius"
+                class="secondary button large radius"
                 ng-hide="vm.started && !vm.isFinished()"
                 ng-disabled="vm.started"
                 ng-click="vm.go()">
@@ -28,7 +28,7 @@
             </button>
 
             <button
-                class="primary button radius"
+                class="primary button large radius"
                 ng-disabled="!vm.started"
                 ng-click="vm.reset()">
                 Reset timer

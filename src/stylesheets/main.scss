@@ -1,6 +1,23 @@
 @import "settings";
 @import "foundation";
 
+.button {
+    box-sizing: border-box;
+    min-width: 120px;
+}
+
+.button .tiny {
+    min-width: 70px;
+}
+
+.button .small {
+    min-width: 110px;
+}
+
+.button .large {
+    min-width: 195px;
+}
+
 .hero {
     padding: 50px 0;
     background: #f6f5f5;
