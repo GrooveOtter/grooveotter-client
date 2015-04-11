@@ -3,5 +3,5 @@ angular.module('gotr')
 
 Tracker.$inject = ['Timer'];
 function Tracker(Timer) {
-    return new Timer();
+    return new Timer(500);
 }

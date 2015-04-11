@@ -3,7 +3,9 @@ angular.module('gotr')
 
 TimerClass.$inject = ['$interval'];
 function TimerClass($interval) {
-    function Timer() {
+    function Timer(speed) {
+        this.speed = speed;
+
         this.elapsedTime = 0;
         this.lastTick = 0;
         this.timeoutId = null;
@@ -23,7 +25,7 @@ function TimerClass($interval) {
         this.isRunning = true;
         this.lastTick = Date.now();
 
-        this.timeoutId = $interval(tick.bind(this), 10);
+        this.timeoutId = $interval(tick.bind(this), this.speed);
     }
 
     function tick() {

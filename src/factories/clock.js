@@ -3,5 +3,5 @@ angular.module('gotr')
 
 Clock.$inject = ['Timer'];
 function Clock(Timer) {
-    return new Timer();
+    return new Timer(10);
 }
