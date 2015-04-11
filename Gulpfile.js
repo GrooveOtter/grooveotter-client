@@ -11,12 +11,22 @@ var jshint = require('gulp-jshint');
 var karma = require('karma').server;
 var path = require('path');
 var sass = require('gulp-sass');
+var shell = require('gulp-shell');
 var smaps = require('gulp-sourcemaps');
 var tcache = require('gulp-angular-templatecache');
 var uglify = require('gulp-uglify');
 var wrap = require('gulp-wrap');
 
 gulp.task('default', ['final']);
+
+gulp.task('docs', shell.task([[
+   'node_modules/jsdoc/jsdoc.js',
+   '-c node_modules/angular-jsdoc/conf.json',
+   '-t node_modules/angular-jsdoc/template',
+   '-d build/docs',
+   './README.md',
+   '-r src'
+].join(' ')]));
 
 gulp.task('clean', function(cb) {
     del('build', cb);
