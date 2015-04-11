@@ -13,6 +13,14 @@ function Run($route, $rootScope, tracker) {
         localStorage.setItem('time', time + tracker.elapsedTime);
     });
 
+    angular.element(window).on('focus', function() {
+        tracker.start();
+    });
+
+    angular.element(window).on('blur', function() {
+        tracker.stop();
+    });
+
     $rootScope.$on('$routeChangeSuccess', function() {
         $rootScope.title = $route.current.title;
     });
