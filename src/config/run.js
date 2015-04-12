@@ -7,7 +7,7 @@ function Run($route, $rootScope, tracker) {
     tracker.start();
 
     angular.element(window).on('unload', function() {
-        var time = +localStorage.getItem('item') || 0;
+        var time = +localStorage.getItem('time') || 0;
 
         tracker.stop();
         localStorage.setItem('time', time + tracker.elapsedTime);
