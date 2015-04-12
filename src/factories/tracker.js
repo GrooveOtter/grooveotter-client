@@ -1,3 +1,11 @@
+/**
+ * A shared singleton timer used for
+ * tracking time the user spent on the
+ * page.
+ *
+ * @ngdoc factory
+ * @name tracker
+ */
 angular.module('gotr')
     .factory('tracker', Tracker);
 
