@@ -1,16 +1,16 @@
 angular.module('gotr')
     .run(Run);
 
-Run.$inject = ['$route', '$rootScope', 'tracker'];
-function Run($route, $rootScope, tracker) {
+Run.$inject = ['$route', '$rootScope', 'tracker', 'trackerStore'];
+function Run($route, $rootScope, tracker, trackerStore) {
     $rootScope.title = 'GrooveOtter';
     tracker.start();
 
     angular.element(window).on('unload', function() {
-        var time = +localStorage.getItem('time') || 0;
+        var time = +trackerStore.get();
 
         tracker.stop();
-        localStorage.setItem('time', time + tracker.elapsedTime);
+        trackerStore.store(time + tracker.elapsedTime);
     });
 
     angular.element(window).on('focus', function() {
