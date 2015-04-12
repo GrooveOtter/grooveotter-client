@@ -1,13 +1,13 @@
-/**
- * @ngdoc factory
- * @name Timer
- */
 angular.module('gotr')
     .factory('Timer', TimerClass);
 
 TimerClass.$inject = ['$interval'];
 function TimerClass($interval) {
-    /** @this Timer */
+    /**
+     * The class for tracking with precise time.
+     * @class
+     * @param {Number} speed
+     */
     function Timer(speed) {
         /** The rate at which the timer updates in miliseconds */
         this.speed = speed;
@@ -25,19 +25,35 @@ function TimerClass($interval) {
         this.isRunning = false;
     }
 
-    Timer.prototype = {
+    Timer.prototype = /** @lends Timer.prototype */ {
+        /**
+         * Starts the tick loop at given tick rate.
+         * @method
+         */
         start: start,
+
+        /**
+         * Calculates and adjusts elapsed time since last tick.
+         * Intended for use internally.
+         * @method
+         */
         tick: tick,
+
+        /**
+         * Stops the tick loop.
+         * @method
+         */
         stop: stop,
+
+        /**
+         * Stops the tick loop and sets the elapsed time to 0.
+         * @method
+         */
         reset: reset
     };
 
     return Timer;
 
-    /**
-     * Starts the tick loop at given tick rate.
-     * @memberof Timer.prototype
-     */
     function start() {
         this.isRunning = true;
         this.lastTick = Date.now();
@@ -45,11 +61,6 @@ function TimerClass($interval) {
         this.timeoutId = $interval(tick.bind(this), this.speed);
     }
 
-    /**
-     * Calculates and adjusts elapsed time since last tick.
-     * Intended for use internally.
-     * @memberof Timer.prototype
-     */
     function tick() {
         var now = Date.now();
         var then = this.lastTick;
@@ -58,20 +69,12 @@ function TimerClass($interval) {
         this.lastTick = now;
     }
 
-    /**
-     * Stops the tick loop.
-     * @memberof Timer.prototype
-     */
     function stop() {
         $interval.cancel(this.timeoutId);
         this.timeoutId = null;
         this.isRunning = false;
     }
 
-    /**
-     * Stops the tick loop and sets the elapsed time to 0.
-     * @memberof Timer.prototype
-     */
     function reset() {
         this.stop();
         this.elapsedTime = 0;
