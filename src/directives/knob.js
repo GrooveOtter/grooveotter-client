@@ -27,7 +27,7 @@ function KnobController() {
 
     vm.fgLineWidth = vm.width / 2 * 0.03;
     vm.bgLineWidth = vm.width / 2 * 0.24;
-    vm.fgColor = '#90a8b0';
+    vm.fgColor = '#74aa8b';
     vm.bgColor = '#ededed';
     vm.describeBg = describeBg;
     vm.describeFg = describeFg;
