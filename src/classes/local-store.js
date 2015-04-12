@@ -47,7 +47,7 @@ function LocalStoreClass() {
         if (result == null) {
             return this.defaultValue;
         } else {
-            return this.result;
+            return result;
         }
     }
 }
