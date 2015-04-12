@@ -3,26 +3,26 @@ events {
 }
 
 http {
-    include            mime.types;
-    default_type       application/octet-stream;
-    sendfile           on;
-    keepalive_timeout  65;
-    gzip on;
+    include           mime.types;
+    default_type      application/octet-stream;
+    sendfile          on;
+    keepalive_timeout 65;
+    gzip              on;
+    daemon            off;
 
     server {
-        listen      80;
+    listen      <%= ENV['PORT'] %>;
         server_name localhost;
 
         location / {
-            root    /var/www;
+            root <%= "#{Dir.pwd}/build/final" %>;
             index   index.html index.htm;
-            expires @24h;
         }
 
         location ~ ^/assets/([^.]+)\.(js|css)$ {
             gzip_static on; # there's also a .gz of the asset
             expires max;
-            root /var/www;
+            root <%= "#{Dir.pwd}/build/final" %>;
         }
     }
 }
