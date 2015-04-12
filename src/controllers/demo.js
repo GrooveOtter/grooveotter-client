@@ -1,15 +1,33 @@
+/**
+ * @ngdoc controller
+ * @name DemoController
+ */
 angular.module('gotr')
     .controller('DemoController', DemoController);
 
-DemoController.$inject = ['$scope', 'clock'];
-function DemoController($scope, clock) {
+DemoController.$inject = ['$scope', 'clock', 'sessionStore'];
+function DemoController($scope, clock, sessionStore) {
+    /**
+     * @namespace
+     * @alias DemoController
+     */
     var vm = this;
 
+    /** An alias to the clock factory */
     vm.clock = clock;
+
+    /** The total time for the current session in miliseconds */
     vm.duration = 0;
+
+    /** The choice for duration in seconds */
     vm.choice = 10;
+
+    /** Indicates whether the user has initiated the session */
     vm.started = false;
+
+    /** Indicates whether the user is choosing a duration */
     vm.selecting = false;
+
     vm.go = go;
     vm.isFinished = isFinished;
     vm.reset = reset;
@@ -18,9 +36,13 @@ function DemoController($scope, clock) {
     $scope.$watch('vm.clock.elapsedTime', function(time) {
         if (isFinished()) {
             clock.stop();
+
+            var total = +sessionStore.get();
+            sessionStore.store(total + clock.elapsedTime);
         }
     });
 
+    /** Initiates the session */
     function go() {
         if (vm.choice > 0) {
             vm.duration = 1000 * vm.choice;
@@ -30,15 +52,26 @@ function DemoController($scope, clock) {
         }
     }
 
+    /**
+     * Indicates if the session has completed
+     * @returns {Boolean}
+     */
     function isFinished() {
         return clock.elapsedTime >= vm.duration;
     }
 
+    /**
+     * Resets the session
+     */
     function reset() {
         clock.reset();
         vm.started = false;
     }
 
+    /**
+     * Returns the time remaining for the session in miliseconds
+     * @returns {Number}
+     */
     function timeLeft() {
         return vm.duration - vm.clock.elapsedTime + 999;
     }
