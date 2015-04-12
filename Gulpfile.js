@@ -33,7 +33,7 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('watch', ['default'], function() {
-    gulp.watch(['src/**', 'public/**'], ['default']);
+    gulp.watch(['src/**', 'public/**'], ['default', 'docs']);
     process.on('uncaughtException', function(err) {
         console.error(err);
     });
