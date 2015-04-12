@@ -1,8 +1,8 @@
 angular.module('gotr')
     .run(Run);
 
-Run.$inject = ['$route', '$rootScope', 'tracker', 'trackerStore'];
-function Run($route, $rootScope, tracker, trackerStore) {
+Run.$inject = ['$route', '$rootScope', 'tracker', 'trackerStore', 'debounce'];
+function Run($route, $rootScope, tracker, trackerStore, debounce) {
     $rootScope.title = 'GrooveOtter';
     tracker.start();
 
@@ -20,6 +20,11 @@ function Run($route, $rootScope, tracker, trackerStore) {
     angular.element(window).on('blur', function() {
         tracker.stop();
     });
+
+    angular.element(window).on('mousemove mousedown', debounce(function() {
+        tracker.stop();
+        tracker.elapsedTime -= 3 * 60 * 1000;
+    }, 3 * 60 * 1000));
 
     $rootScope.$on('$routeChangeSuccess', function() {
         $rootScope.title = $route.current.title;
