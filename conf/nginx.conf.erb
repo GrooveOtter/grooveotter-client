@@ -1,5 +1,3 @@
-daemon           off;
-worker_processes <%= ENV['WEB_CONCURRENCY'] %>;
 events {
     worker_connections  1024;
 }
@@ -10,6 +8,7 @@ http {
     sendfile          on;
     keepalive_timeout 65;
     gzip              on;
+    daemon            off;
 
     server {
     listen      <%= ENV['PORT'] %>;
@@ -21,7 +20,7 @@ http {
         }
 
         location ~ ^/assets/([^.]+)\.(js|css)$ {
-            # gzip_static on;
+            gzip_static on; # there's also a .gz of the asset
             expires max;
             root <%= "#{Dir.pwd}/build/final" %>;
         }
