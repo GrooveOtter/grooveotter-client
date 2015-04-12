@@ -5,8 +5,8 @@
 angular.module('gotr')
     .controller('DemoController', DemoController);
 
-DemoController.$inject = ['$scope', 'clock'];
-function DemoController($scope, clock) {
+DemoController.$inject = ['$scope', 'clock', 'sessionStore'];
+function DemoController($scope, clock, sessionStore) {
     /**
      * @namespace
      * @alias DemoController
@@ -36,6 +36,9 @@ function DemoController($scope, clock) {
     $scope.$watch('vm.clock.elapsedTime', function(time) {
         if (isFinished()) {
             clock.stop();
+
+            var total = +sessionStore.get();
+            sessionStore.store(total + clock.elapsedTime);
         }
     });
 
