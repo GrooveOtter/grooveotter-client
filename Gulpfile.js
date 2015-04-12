@@ -8,7 +8,6 @@ var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
-var karma = require('karma').server;
 var path = require('path');
 var sass = require('gulp-sass');
 var shell = require('gulp-shell');
@@ -111,6 +110,8 @@ gulp.task('final', ['vet', 'styles', 'compile', 'merge'], function() {
 });
 
 gulp.task('test', ['final'], function(done) {
+    var karma = require('karma').server;
+
     karma.start({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true
