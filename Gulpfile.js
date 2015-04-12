@@ -18,6 +18,8 @@ var wrap = require('gulp-wrap');
 
 gulp.task('default', ['final']);
 
+gulp.task('wiredep', function() {});
+
 gulp.task('clean', function(cb) {
     del('build', cb);
 });
@@ -49,7 +51,10 @@ gulp.task('vet', function() {
 gulp.task('styles', function() {
     return gulp.src(['src/stylesheets/main.scss'])
         .pipe(smaps.init())
-            .pipe(sass({outputStyle: 'compressed'}))
+            .pipe(sass({
+                outputStyle: 'compressed',
+                includePaths: ['build/components/foundation/scss']
+            }))
         .pipe(smaps.write())
         .pipe(gulp.dest('build/inter'));
 });
@@ -62,7 +67,13 @@ gulp.task('templates', function() {
 });
 
 gulp.task('migration', function() {
-    return gulp.src(['public/**'])
+    var sources = [
+        'public/**',
+        'build/components/angular/angular.min.js',
+        'build/components/angular-route/angular-route.min.js'
+    ];
+
+    return gulp.src(sources)
         .pipe(gulp.dest('build/inter'));
 });
 

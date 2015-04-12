@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "setup": "bower install",
     "build": "gulp",
     "test": "gulp test"
   },
   "dependencies": {
+    "bower": "^1.4.1",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
     "gulp-angular-templatecache": "^1.6.0",
