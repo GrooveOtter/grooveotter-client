@@ -7,11 +7,11 @@
 }
 
 .button.tiny {
-    min-width: 70px;
+    min-width: 20px;
 }
 
 .button.small {
-    min-width: 110px;
+    min-width: 70px;
 }
 
 .button.large {
@@ -48,8 +48,9 @@
     box-shadow: none;
 }
 
-.time-box button {
-    padding: 11px;
+.time-box button.tiny {
+    max-width: 43px;
+    padding-left: 0.9rem;
+    text-align: center;
     border: 1px solid #ccc;
-    border-radius: 3px;
 }
