@@ -19,7 +19,7 @@ http {
         }
 
         location ~ ^/assets/([^.]+)\.(js|css)$ {
-            gzip_static on; # there's also a .gz of the asset
+            # gzip_static on;
             expires max;
             root <%= "#{Dir.pwd}/build/final" %>;
         }
