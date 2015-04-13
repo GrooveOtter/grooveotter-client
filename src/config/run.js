@@ -27,6 +27,6 @@ function Run($route, $rootScope, tracker, trackerStore, debounce) {
     }, 3 * 60 * 1000));
 
     $rootScope.$on('$routeChangeSuccess', function() {
-        $rootScope.title = $route.current.title;
+        $rootScope.title = $route.current.title || $rootScope.title;
     });
 }
