@@ -1,10 +1,3 @@
-/**
- * A singleton store for tracker data
- * (total time the user has spent on the site).
- *
- * @ngdoc factory
- * @name tracker
- */
 angular.module('gotr')
     .factory('tracker', Tracker);
 
@@ -15,52 +8,50 @@ function Tracker(LocalStore, Timer, debounce) {
     var timeoutPeriod = 3 * 60 * 1000; // 3 minutes
 
     /**
-     * @lends tracker
+     * @namespace
+     * @global
      */
     var tracker = {
-        /**
-         * Starts the internal timer.
-         * @method
-         */
         start: start,
-
-        /**
-         * Stops the internal timer.
-         * @method
-         */
         stop: stop,
-
-        /**
-         * Registers that an action occured.
-         * Used for AFK-detection.
-         * @method
-         */
         action: debounce(action, timeoutPeriod),
-
-        /**
-         * Persists the current timer data to
-         * the internal local store and stops
-         * the timer.
-         * @method
-         */
         persist: persist
     };
 
     return tracker;
 
+    /**
+     * Starts the internal timer.
+     * @memberof tracker
+     */
     function start() {
         timer.start();
     }
 
+    /**
+     * Stops the internal timer.
+     * @memberof tracker
+     */
     function stop() {
         timer.stop();
     }
 
+    /**
+     * Registers that an action occured.
+     * Used for AFK-detection.
+     * @memberof tracker
+     */
     function action() {
         stop();
         timer.elapsedTime -= timeoutPeriod;
     }
 
+    /**
+     * Persists the current timer data to
+     * the internal local store and stops
+     * the timer.
+     * @memberof tracker
+     */
     function persist() {
         var time = store.get();
 

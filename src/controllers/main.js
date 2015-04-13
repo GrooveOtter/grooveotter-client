@@ -1,7 +1,3 @@
-/**
- * @ngdoc controller
- * @name MainController
- */
 angular.module('gotr')
     .controller('MainController', MainController);
 
@@ -42,7 +38,10 @@ function MainController($scope, clock, sessionStore) {
         }
     });
 
-    /** Initiates the session */
+    /**
+     * Initiates the session
+     * @memberof MainController
+     */
     function go() {
         if (vm.choice > 0) {
             vm.duration = 60 * 1000 * vm.choice;
@@ -55,6 +54,7 @@ function MainController($scope, clock, sessionStore) {
     /**
      * Indicates if the session has completed
      * @returns {Boolean}
+     * @memberof MainController
      */
     function isFinished() {
         return clock.elapsedTime >= vm.duration;
@@ -62,6 +62,7 @@ function MainController($scope, clock, sessionStore) {
 
     /**
      * Resets the session
+     * @memberof MainController
      */
     function reset() {
         clock.reset();
@@ -71,6 +72,7 @@ function MainController($scope, clock, sessionStore) {
     /**
      * Returns the time remaining for the session in miliseconds
      * @returns {Number}
+     * @memberof MainController
      */
     function timeLeft() {
         return vm.duration - vm.clock.elapsedTime + 999;

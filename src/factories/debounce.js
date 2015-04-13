@@ -1,10 +1,3 @@
-/**
- * A debounce function
- *
- * @ngdoc factory
- * @name debounce
- */
-
 angular.module('gotr')
     .factory('debounce', Debounce);
 
@@ -25,7 +18,7 @@ function Debounce($timeout, $q) {
      * @param {Function} fn - The function to debounce
      * @param {Number} delay - The number of miliseconds to delay
      * @param {Boolean} [immediate] - if the debounce should be immediate
-     * @memberof debounce
+     * @global
      */
     function debounce(fn, delay, immediate) {
         var timeout;
