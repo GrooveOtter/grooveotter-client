@@ -42,7 +42,14 @@ gulp.task('watch', ['default'], function() {
 });
 
 gulp.task('compile', ['templates'], function() {
-    return gulp.src(['src/**/*.js', 'build/templates.js'])
+    var sources = [
+        'src/**/*.js',
+        'build/templates.js',
+        'build/components/foundation/js/foundation/foundation.js',
+        'build/components/foundation/js/foundation/foundation.topbar.js'
+    ];
+
+    return gulp.src(sources)
         .pipe(smaps.init())
         .pipe(wrap('(function() { "use strict"; <%= contents %> })();'))
         .pipe(concat('bundle.js'))
@@ -80,7 +87,8 @@ gulp.task('migration', function() {
     var sources = [
         'public/**',
         'build/components/angular/angular.min.js',
-        'build/components/angular-route/angular-route.min.js'
+        'build/components/angular-route/angular-route.min.js',
+        'build/components/jquery/dist/jquery.min.js'
     ];
 
     return gulp.src(sources)
