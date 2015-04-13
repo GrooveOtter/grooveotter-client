@@ -21,9 +21,6 @@ function TimerClass($interval) {
 
         /** The timeout identifier returned by `$interval` */
         this.timeoutId = null;
-
-        /** Indicator for whether the timer is active or not */
-        this.isRunning = false;
     }
 
     Timer.prototype = {};
@@ -39,7 +36,6 @@ function TimerClass($interval) {
      * @memberof Timer.prototype
      */
     function start() {
-        this.isRunning = true;
         this.lastTick = Date.now();
 
         this.timeoutId = $interval(tick.bind(this), this.speed);
@@ -65,7 +61,6 @@ function TimerClass($interval) {
     function stop() {
         $interval.cancel(this.timeoutId);
         this.timeoutId = null;
-        this.isRunning = false;
     }
 
     /**
@@ -75,5 +70,13 @@ function TimerClass($interval) {
     function reset() {
         this.stop();
         this.elapsedTime = 0;
+    }
+
+    /**
+     * Indicates whether the timer is active
+     * @memberof Timer.prototype
+     */
+    function isRunning() {
+        return this.timeoutId != null;
     }
 }
