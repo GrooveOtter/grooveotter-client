@@ -1,3 +1,4 @@
+daemon           off;
 worker_processes <%= ENV['WEB_CONCURRENCY'] %>;
 events {
     worker_connections  1024;
