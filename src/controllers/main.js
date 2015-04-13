@@ -19,7 +19,7 @@ function MainController($scope, clock, sessionStore) {
     /** The total time for the current session in miliseconds */
     vm.duration = 0;
 
-    /** The choice for duration in seconds */
+    /** The choice for duration in minutes */
     vm.choice = 10;
 
     /** Indicates whether the user has initiated the session */
@@ -45,7 +45,7 @@ function MainController($scope, clock, sessionStore) {
     /** Initiates the session */
     function go() {
         if (vm.choice > 0) {
-            vm.duration = 1000 * vm.choice;
+            vm.duration = 60 * 1000 * vm.choice;
             clock.reset();
             clock.start();
             vm.started = true;
