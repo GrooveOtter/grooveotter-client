@@ -19,8 +19,9 @@ function LocalStoreClass() {
 
     LocalStore.prototype = /** @lends LocalStore.prototype */ {
         /**
-         * Stores the given value in local storage using
-         * the given field name.
+         * Serializes the given value to JSON and stores
+         * that in the local storage using the given
+         * field name.
          * @param {*} value
          * @method
          */
@@ -28,8 +29,9 @@ function LocalStoreClass() {
 
         /**
          * Retrieves the value from local storage with
-         * the given field name. If it is missing, it
-         * will return the default value.
+         * the given field name and parses it from JSON.
+         * If it is missing, it will return the default
+         * value.
          * @method
          */
         get: get
@@ -38,7 +40,9 @@ function LocalStoreClass() {
     return LocalStore;
 
     function store(value) {
-        localStorage.setItem(this.fieldName, value);
+        var json = JSON.stringify(value);
+
+        localStorage.setItem(this.fieldName, json);
     }
 
     function get() {
@@ -47,7 +51,7 @@ function LocalStoreClass() {
         if (result == null) {
             return this.defaultValue;
         } else {
-            return result;
+            return JSON.parse(result);
         }
     }
 }
