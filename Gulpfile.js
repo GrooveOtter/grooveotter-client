@@ -42,7 +42,7 @@ gulp.task('watch', ['default'], function() {
 });
 
 gulp.task('compile', ['templates'], function() {
-    return gulp.src(['app.js', 'src/**/*.js', 'build/templates.js'])
+    return gulp.src(['src/**/*.js', 'build/templates.js'])
         .pipe(smaps.init())
         .pipe(wrap('(function() { "use strict"; <%= contents %> })();'))
         .pipe(concat('bundle.js'))
