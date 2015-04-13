@@ -21,6 +21,7 @@ function LocalStoreClass() {
     LocalStore.prototype = {};
     LocalStore.prototype.store = store;
     LocalStore.prototype.get = get;
+    LocalStore.prototype.add = add;
 
     return LocalStore;
 
@@ -52,5 +53,15 @@ function LocalStoreClass() {
         } else {
             return JSON.parse(result);
         }
+    }
+
+    /**
+     * Adds the given amount to the store assuming
+     * it is a number.
+     * @param {number} amount
+     */
+    function add(amount) {
+        var current = this.get();
+        this.store(current + amount);
     }
 }
