@@ -38,7 +38,7 @@ function TimerClass($interval) {
     function start() {
         this.lastTick = Date.now();
 
-        this.timeoutId = $interval(tick.bind(this), this.speed);
+        this.timeoutId = $interval(this.tick.bind(this), this.speed);
     }
 
     /**
