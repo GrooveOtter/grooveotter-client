@@ -1,80 +1,45 @@
 angular.module('gotr')
     .controller('MainController', MainController);
 
-MainController.$inject = ['$scope', 'clock', 'sessionStore'];
-function MainController($scope, clock, sessionStore) {
+MainController.$inject = ['Session'];
+function MainController(Session) {
     /**
      * @namespace
      * @alias MainController
      */
     var vm = this;
 
-    /** An alias to the clock factory */
-    vm.clock = clock;
+    /** The current session */
+    vm.session = null;
 
-    /** The total time for the current session in miliseconds */
-    vm.duration = 0;
+    /** The choice of time limit in minutes */
+    vm.choice = 15;
 
-    /** The choice for duration in minutes */
-    vm.choice = 10;
-
-    /** Indicates whether the user has initiated the session */
-    vm.started = false;
-
-    /** Indicates whether the user is choosing a duration */
+    /** Indicates if the user is selecting a time */
     vm.selecting = false;
 
-    vm.go = go;
-    vm.isFinished = isFinished;
-    vm.reset = reset;
-    vm.timeLeft = timeLeft;
-
-    $scope.$watch('vm.clock.elapsedTime', function(time) {
-        if (isFinished()) {
-            clock.stop();
-
-            var total = +sessionStore.get();
-            sessionStore.store(total + clock.elapsedTime);
-        }
-    });
+    vm.start = start;
+    vm.isStarted = isStarted;
+    vm.complete = complete;
 
     /**
-     * Initiates the session
-     * @memberof MainController
+     * Creates the session and starts it
      */
-    function go() {
-        if (vm.choice > 0) {
-            vm.duration = 60 * 1000 * vm.choice;
-            clock.reset();
-            clock.start();
-            vm.started = true;
-        }
+    function start() {
+        vm.session = new Session(vm.taskName, vm.choice * 60 * 1000);
+        vm.session.start();
     }
 
     /**
-     * Indicates if the session has completed
-     * @returns {Boolean}
+     * Indicates whether the user has initiated the session
      * @memberof MainController
      */
-    function isFinished() {
-        return clock.elapsedTime >= vm.duration;
+    function isStarted() {
+        return vm.session != null;
     }
 
-    /**
-     * Resets the session
-     * @memberof MainController
-     */
-    function reset() {
-        clock.reset();
-        vm.started = false;
-    }
-
-    /**
-     * Returns the time remaining for the session in miliseconds
-     * @returns {Number}
-     * @memberof MainController
-     */
-    function timeLeft() {
-        return vm.duration - vm.clock.elapsedTime + 999;
+    function complete() {
+        vm.session.complete();
+        vm.session = null;
     }
 }
