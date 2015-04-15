@@ -28,6 +28,7 @@ function TimerClass($interval) {
     Timer.prototype.tick = tick;
     Timer.prototype.stop = stop;
     Timer.prototype.reset = reset;
+    Timer.prototype.isRunning = isRunning;
 
     return Timer;
 
