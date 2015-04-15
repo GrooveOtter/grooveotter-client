@@ -6,61 +6,47 @@ function TimerClass($interval) {
     /**
      * The class for tracking with precise time.
      * @class
+     * @global
      * @param {Number} speed
      */
-    function Timer(speed) {
+    function Timer(speed, initial) {
         /** The rate at which the timer updates in miliseconds */
         this.speed = speed;
 
         /** The total tracked time in miliseconds */
-        this.elapsedTime = 0;
+        this.elapsedTime = initial || 0;
 
         /** The timestamp of the last tick call */
         this.lastTick = 0;
 
         /** The timeout identifier returned by `$interval` */
         this.timeoutId = null;
-
-        /** Indicator for whether the timer is active or not */
-        this.isRunning = false;
     }
 
-    Timer.prototype = /** @lends Timer.prototype */ {
-        /**
-         * Starts the tick loop at given tick rate.
-         * @method
-         */
-        start: start,
-
-        /**
-         * Calculates and adjusts elapsed time since last tick.
-         * Intended for use internally.
-         * @method
-         */
-        tick: tick,
-
-        /**
-         * Stops the tick loop.
-         * @method
-         */
-        stop: stop,
-
-        /**
-         * Stops the tick loop and sets the elapsed time to 0.
-         * @method
-         */
-        reset: reset
-    };
+    Timer.prototype = {};
+    Timer.prototype.start = start;
+    Timer.prototype.tick = tick;
+    Timer.prototype.stop = stop;
+    Timer.prototype.reset = reset;
+    Timer.prototype.isRunning = isRunning;
 
     return Timer;
 
+    /**
+     * Starts the tick loop at given tick rate.
+     * @memberof Timer.prototype
+     */
     function start() {
-        this.isRunning = true;
         this.lastTick = Date.now();
 
-        this.timeoutId = $interval(tick.bind(this), this.speed);
+        this.timeoutId = $interval(this.tick.bind(this), this.speed);
     }
 
+    /**
+     * Calculates and adjusts elapsed time since last tick.
+     * Intended for use internally.
+     * @memberof Timer.prototype
+     */
     function tick() {
         var now = Date.now();
         var then = this.lastTick;
@@ -69,14 +55,29 @@ function TimerClass($interval) {
         this.lastTick = now;
     }
 
+    /**
+     * Stops the tick loop.
+     * @alias Timer.prototype.stop
+     */
     function stop() {
         $interval.cancel(this.timeoutId);
         this.timeoutId = null;
-        this.isRunning = false;
     }
 
+    /**
+     * Stops the tick loop and sets the elapsed time to 0.
+     * @memberof Timer.prototype
+     */
     function reset() {
         this.stop();
         this.elapsedTime = 0;
+    }
+
+    /**
+     * Indicates whether the timer is active
+     * @memberof Timer.prototype
+     */
+    function isRunning() {
+        return this.timeoutId != null;
     }
 }

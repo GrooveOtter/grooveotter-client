@@ -1,0 +1,27 @@
+<div class="anltcs-graph">
+    <h3>{{vm.word().count}}</h3>
+    <p>{{vm.word().word}} in Groove</p>
+
+    <svg version="1.1">
+        <line
+            x1="0"
+            y1="10"
+            y2="10"
+            x2="142"
+            stroke-width="10"
+            stroke="#5e809e">
+        </line>
+
+        <line
+            x1="0"
+            y1="10"
+            y2="10"
+            ng-attr-x2="{{vm.calcX()}}"
+            stroke-width="10"
+            stroke="#74aa8b">
+        </line>
+    </svg>
+
+    <p>{{ vm.minutesWorking() }} working</p>
+    <p>{{ vm.minutesTotal() - vm.minutesWorking() }} organizing</p>
+</div>

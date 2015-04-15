@@ -5,9 +5,8 @@ Router.$inject = ['$routeProvider', '$locationProvider'];
 function Router($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'demo.html',
-            controller: 'DemoController as vm',
-            title: 'Demo'
+            templateUrl: 'main.html',
+            controller: 'MainController as vm'
         });
 
     $locationProvider.html5Mode(true);

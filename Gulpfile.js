@@ -22,8 +22,6 @@ gulp.task('wiredep', function() {});
 
 gulp.task('docs', shell.task([[
    'node_modules/jsdoc/jsdoc.js',
-   '-c node_modules/angular-jsdoc/conf.json',
-   '-t node_modules/angular-jsdoc/template',
    '-d build/docs',
    './README.md',
    '-r src'
