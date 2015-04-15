@@ -3,8 +3,8 @@ angular.module('gotr')
 
 Tracker.$inject = ['LocalStore', 'Timer', 'debounce'];
 function Tracker(LocalStore, Timer, debounce) {
-    var timer = new Timer(2000);
     var store = new LocalStore('total-time', 0);
+    var timer = new Timer(2000, store.get());
     var timeoutPeriod = 3 * 60 * 1000; // 3 minutes
 
     var _tick = timer.tick;
@@ -57,10 +57,7 @@ function Tracker(LocalStore, Timer, debounce) {
      * @memberof tracker
      */
     function persist() {
-        var time = store.get();
-
-        stop();
-        store.store(time + timer.elapsedTime);
+        store.store(timer.elapsedTime);
     }
 
     function tick() {
