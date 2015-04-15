@@ -9,12 +9,12 @@ function TimerClass($interval) {
      * @global
      * @param {Number} speed
      */
-    function Timer(speed) {
+    function Timer(speed, initial) {
         /** The rate at which the timer updates in miliseconds */
         this.speed = speed;
 
         /** The total tracked time in miliseconds */
-        this.elapsedTime = 0;
+        this.elapsedTime = initial || 0;
 
         /** The timestamp of the last tick call */
         this.lastTick = 0;
