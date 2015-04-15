@@ -23,7 +23,7 @@ function AnltcsGraphController(tracker, sessionStore) {
     vm.width = 140;
 
     vm.word = word;
-    vm.percentage = percentage;
+    vm.calcX = calcX;
 
     function word() {
         var minute = 60 * 1000;
@@ -45,7 +45,7 @@ function AnltcsGraphController(tracker, sessionStore) {
         }
     }
 
-    function percentage() {
-        return sessionStore.get() / tracker.get();
+    function calcX() {
+        return Math.floor(sessionStore.get() / tracker.get() * 142);
     }
 }

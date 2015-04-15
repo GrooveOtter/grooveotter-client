@@ -1,11 +1,24 @@
 <div class="anltcs-graph">
-    <h1>{{vm.word().count}}</h1>
+    <h3>{{vm.word().count}}</h3>
     <p>{{vm.word().word}} in Groove</p>
 
     <svg version="1.1">
         <line
-            ng-attr-x2="{{ vm.percentage() * 142 }}"
-            stroke-width="100"
+            x1="0"
+            y1="10"
+            y2="10"
+            x2="142"
+            stroke-width="20"
+            stroke="#5e809e">
+        </line>
+
+        <line
+            x1="0"
+            y1="10"
+            y2="10"
+            ng-attr-x2="{{vm.calcX()}}"
+            stroke-width="20"
             stroke="#74aa8b">
+        </line>
     </svg>
 </div>
