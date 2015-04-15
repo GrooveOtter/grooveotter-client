@@ -19,7 +19,8 @@ function Tracker(LocalStore, Timer, debounce) {
         start: start,
         stop: stop,
         action: debounce(action, timeoutPeriod),
-        persist: persist
+        persist: persist,
+        get: get
     };
 
     return tracker;
@@ -60,6 +61,16 @@ function Tracker(LocalStore, Timer, debounce) {
      */
     function persist() {
         store.store(timer.elapsedTime);
+    }
+
+    /**
+     * Returns the current tracker time
+     * from the store.
+     * @return {Number}
+     * @memberof tracker
+     */
+    function get() {
+        return store.get();
     }
 
     function tick() {
