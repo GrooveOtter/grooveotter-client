@@ -46,8 +46,10 @@ function Tracker(LocalStore, Timer, debounce) {
      * @memberof tracker
      */
     function action() {
-        stop();
-        timer.elapsedTime -= timeoutPeriod;
+        if (timer.isRunning()) {
+            timer.elapsedTime -= timeoutPeriod;
+            stop();
+        }
     }
 
     /**
