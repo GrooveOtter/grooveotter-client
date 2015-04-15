@@ -11,6 +11,8 @@ function Tracker(LocalStore, Timer, debounce) {
 
     timer.tick = tick;
 
+    var trigger = debounce(idle, timeoutPeriod);
+
     /**
      * @namespace
      * @global
@@ -18,7 +20,7 @@ function Tracker(LocalStore, Timer, debounce) {
     var tracker = {
         start: start,
         stop: stop,
-        action: debounce(action, timeoutPeriod),
+        action: action,
         persist: persist,
         get: get
     };
@@ -47,6 +49,14 @@ function Tracker(LocalStore, Timer, debounce) {
      * @memberof tracker
      */
     function action() {
+        if (timer.isRunning()) {
+            trigger();
+        } else {
+            start();
+        }
+    }
+
+    function idle() {
         if (timer.isRunning()) {
             timer.elapsedTime -= timeoutPeriod;
             stop();

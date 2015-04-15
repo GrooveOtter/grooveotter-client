@@ -8,9 +8,8 @@ function Run($route, $rootScope, tracker) {
 
     angular.element(window)
         .on('unload', tracker.persist)
-        .on('focus', tracker.start)
         .on('blur', tracker.stop)
-        .on('mousemove mousedown', tracker.action);
+        .on('mousemove mousedown focus', tracker.action);
 
     $rootScope.$on('$routeChangeSuccess', function() {
         $rootScope.title = $route.current.title || $rootScope.title;
