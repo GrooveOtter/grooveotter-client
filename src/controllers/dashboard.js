@@ -1,11 +1,11 @@
 angular.module('gotr')
-    .controller('MainController', MainController);
+    .controller('DashboardController', DashboardController);
 
-MainController.$inject = ['Session'];
-function MainController(Session) {
+DashboardController.$inject = ['Session'];
+function DashboardController(Session) {
     /**
      * @namespace
-     * @alias MainController
+     * @alias DashboardController
      */
     var vm = this;
 
@@ -32,7 +32,7 @@ function MainController(Session) {
 
     /**
      * Indicates whether the user has initiated the session
-     * @memberof MainController
+     * @memberof DashboardController
      */
     function isStarted() {
         return vm.session != null;
