@@ -1,0 +1,77 @@
+<div class="hero">
+    <div class="row">
+        <div class="large-8 columns">
+            <form class="task-form" ng-submit="vm.start()">
+                <input
+                    type="text"
+                    placeholder="What are you working on?"
+                    ng-model="vm.taskName"
+                />
+            </form>
+
+            <button
+                class="secondary button large radius"
+                ng-hide="vm.isStarted()"
+                ng-click="vm.start()"
+                ng-disabled="!vm.taskName.trim()">
+                Start task
+            </button>
+
+            <button
+                class="secondary button large radius"
+                ng-show="vm.isStarted()"
+                ng-click="vm.complete()"
+                ng-disabled="!vm.taskName.trim()">
+                Complete task
+            </button>
+
+            <button
+                class="primary button large radius"
+                ng-hide="vm.isStarted()"
+                ng-disabled="!vm.taskName.trim()">
+                Add to list for later
+            </button>
+
+            <button
+                class="primary button large radius"
+                ng-show="vm.isStarted()"
+                ng-click="vm.session.stop(); vm.session = null"
+                ng-disabled="!vm.taskName.trim()">
+                Reset timer
+            </button>
+        </div>
+
+        <div class="large-4 columns">
+            <div ng-if="vm.isStarted()">
+                <gotr-knob
+                    value="vm.session.elapsedTime"
+                    label="vm.session.timeRemaining() + 999 | date: 'mm:ss'"
+                    max="vm.session.limit"
+                    width="200">
+                </gotr-knob>
+            </div>
+
+            <div
+                ng-if="!vm.isStarted()"
+                ng-dblclick="vm.selecting = !vm.selecting">
+                <div ng-if="!vm.selecting">
+                    <gotr-knob
+                        value="0"
+                        max="1"
+                        label="vm.choice * 60 * 1000 | date: 'mm:ss'"
+                        width="200">
+                    </gotr-knob>
+                </div>
+
+                <div
+                    ng-if="vm.selecting"
+                    ng-dblclick="$event.preventDefault()">
+                    <gotr-time-box
+                        choice="vm.choice"
+                        on-done="vm.selecting = false">
+                    </gotr-timebox>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
