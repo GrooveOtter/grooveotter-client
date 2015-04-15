@@ -1,8 +1,8 @@
 angular.module('gotr')
     .factory('Session', SessionClass);
 
-SessionClass.$inject = ['Timer', 'sessionStore'];
-function SessionClass(Timer, sessionStore) {
+SessionClass.$inject = ['Timer', 'sessionStore', 'tracker'];
+function SessionClass(Timer, sessionStore, tracker) {
     /**
      * A timer for task sessions.
      * @class
@@ -26,6 +26,7 @@ function SessionClass(Timer, sessionStore) {
     Session.prototype.isFinished = isFinished;
     Session.prototype.timeRemaining = timeRemaining;
     Session.prototype.tick = tick;
+    Session.prototype.start = start;
     Session.prototype.complete = complete;
 
     return Session;
@@ -58,6 +59,16 @@ function SessionClass(Timer, sessionStore) {
         if (this.isFinished()) {
             this.complete();
         }
+    }
+
+    /**
+     * @memberof Session.prototype
+     * @override
+     */
+    function start() {
+        Timer.prototype.start.call(this);
+
+        tracker.inSession = true;
     }
 
     function complete() {

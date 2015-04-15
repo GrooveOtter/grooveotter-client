@@ -18,6 +18,12 @@ function Tracker(LocalStore, Timer, debounce) {
      * @global
      */
     var tracker = {
+        /**
+         * A flag to indicate if the app is
+         * in a session, which disables all
+         * behavior.
+         */
+        inSession: false,
         start: start,
         stop: stop,
         action: action,
@@ -40,7 +46,9 @@ function Tracker(LocalStore, Timer, debounce) {
      * @memberof tracker
      */
     function stop() {
-        timer.stop();
+        if (!tracker.inSession) {
+            timer.stop();
+        }
     }
 
     /**
@@ -57,7 +65,7 @@ function Tracker(LocalStore, Timer, debounce) {
     }
 
     function idle() {
-        if (timer.isRunning()) {
+        if (timer.isRunning() && !tracker.inSession) {
             timer.elapsedTime -= timeoutPeriod;
             stop();
         }
