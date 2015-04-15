@@ -20,15 +20,25 @@ AnltcsGraphController.$inject = ['tracker', 'sessionStore'];
 function AnltcsGraphController(tracker, sessionStore) {
     var vm = this;
 
+    var minute = 60 * 1000;
+    var hour = 60 * minute;
+
     vm.width = 140;
 
     vm.word = word;
     vm.calcX = calcX;
+    vm.minutesTotal = minutesTotal;
+    vm.minutesWorking = minutesWorking;
+
+    function minutesTotal() {
+        return Math.floor(tracker.get() / minute);
+    }
+
+    function minutesWorking() {
+        return Math.floor(sessionStore.get() / minute);
+    }
 
     function word() {
-        var minute = 60 * 1000;
-        var hour = 60 * minute;
-
         var time = tracker.get();
 
         if (time >= hour) {
@@ -45,6 +55,7 @@ function AnltcsGraphController(tracker, sessionStore) {
         }
     }
 
+    // TODO: clean this up
     function calcX() {
         return Math.floor(sessionStore.get() / tracker.get() * 142);
     }
