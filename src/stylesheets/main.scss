@@ -1,6 +1,10 @@
 @import "settings";
 @import "foundation";
 
+html {
+    background: #fafafa;
+}
+
 .button {
     box-sizing: border-box;
     min-width: 120px;
@@ -52,5 +56,21 @@
         padding-left: 0.9rem;
         text-align: center;
         border: 1px solid #ccc;
+    }
+}
+
+.anltcs-graph {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    max-width: 140px;
+    max-width: 180px;
+    padding: 40px 18px;
+    margin: 0 auto;
+    text-align: center;
+
+    & svg {
+        background: $primary-color;
+        width: 100%;
+        height: 7px;
     }
 }
