@@ -6,6 +6,7 @@ function Tracker(LocalStore, Timer, debounce) {
     var store = new LocalStore('total-time', 0);
     var timer = new Timer(2000, store.get());
     var timeoutPeriod = 3 * 60 * 1000; // 3 minutes
+    var lastAction = 0;
 
     var _tick = timer.tick;
 
@@ -58,6 +59,7 @@ function Tracker(LocalStore, Timer, debounce) {
      */
     function action() {
         if (timer.isRunning()) {
+            lastAction = Date.now();
             trigger();
         } else {
             start();
@@ -65,8 +67,12 @@ function Tracker(LocalStore, Timer, debounce) {
     }
 
     function idle() {
-        if (timer.isRunning() && !tracker.inSession) {
-            timer.elapsedTime -= timeoutPeriod;
+        if (tracker.inSession) {
+            trigger();
+        } else if (timer.isRunning()) {
+            // ignore the time since we started idling
+            // i.e. the last action
+            timer.elapsedTime -= Date.now() - lastAction;
             stop();
         }
     }
