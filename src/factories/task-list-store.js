@@ -7,7 +7,7 @@ function TaskListStore(LocalStore, $q) {
 
     var taskListStore = {
         get: get,
-        persist: persist
+        insert: insert
     };
 
     return taskListStore;
@@ -18,10 +18,11 @@ function TaskListStore(LocalStore, $q) {
         });
     }
 
-    function persist(data) {
-        return $q(function(resolve) {
-            store.store(data);
-            resolve();
+    function insert(task) {
+        return get().then(function(taskList) {
+            taskList.push(task);
+            store.store(taskList);
+            return task;
         });
     }
 }
