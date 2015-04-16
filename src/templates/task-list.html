@@ -1,0 +1,8 @@
+<div class="task-list">
+    <ul>
+        <li ng-repeat="task in vm.taskList">
+            <input type="checkbox" ng-checked="{{task.completed}}">
+            <span ng-bind="task.title"></span>
+        </li>
+    </ul>
+</div>
