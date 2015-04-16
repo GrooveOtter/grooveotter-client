@@ -4,7 +4,7 @@ angular.module('gotr')
 AnltcsGraph.$inject = [];
 function AnltcsGraph() {
     var directive = {
-        restrit: 'EA',
+        restrict: 'EA',
         replace: true,
         templateUrl: 'anltcs-graph.html',
         scope: {},

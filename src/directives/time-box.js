@@ -4,7 +4,7 @@ angular.module('gotr')
 TimeBox.$inject = [];
 function TimeBox() {
     var directive = {
-        restrit: 'EA',
+        restrict: 'EA',
         replace: true,
         templateUrl: 'time-box.html',
         scope: {

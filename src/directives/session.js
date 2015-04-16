@@ -4,7 +4,7 @@ angular.module('gotr')
 SessionDirective.$inject = [];
 function SessionDirective() {
     var directive = {
-        restrit: 'EA',
+        restrict: 'EA',
         replace: true,
         templateUrl: 'session.html',
         scope: {},

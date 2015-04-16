@@ -4,7 +4,7 @@ angular.module('gotr')
 Knob.$inject = [];
 function Knob() {
     var directive = {
-        restrit: 'EA',
+        restrict: 'EA',
         replace: true,
         templateUrl: 'knob.html',
         scope: {
