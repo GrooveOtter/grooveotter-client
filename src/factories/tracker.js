@@ -68,7 +68,7 @@ function Tracker(LocalStore, Timer, debounce) {
 
     function idle() {
         if (tracker.inSession) {
-            trigger();
+            action();
         } else if (timer.isRunning()) {
             // ignore the time since we started idling
             // i.e. the last action
