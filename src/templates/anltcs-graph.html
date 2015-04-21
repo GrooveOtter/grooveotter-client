@@ -22,6 +22,15 @@
         </line>
     </svg>
 
-    <p>{{ vm.minutesWorking() }} working</p>
-    <p>{{ vm.minutesTotal() - vm.minutesWorking() }} organizing</p>
+    <div class="minutes">
+        <p>
+            <span class="green-dot"></span>
+            {{ vm.minutesWorking() }} working
+        </p>
+
+        <p>
+            <span class="blue-dot"></span>
+            {{ vm.minutesTotal() - vm.minutesWorking() }} organizing
+        </p>
+    </div>
 </div>

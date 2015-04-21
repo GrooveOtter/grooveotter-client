@@ -72,6 +72,21 @@
 
     & p {
         color: #989cad;
+        margin-bottom: 10px;
+    }
+
+    & .minutes {
+        text-align: left;
+
+        & span {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            display: inline-block;
+
+            &.blue-dot { background: $primary-color; }
+            &.green-dot { background: $secondary-color; }
+        }
     }
 }
 
@@ -82,7 +97,7 @@
 
         & li {
             height: 55px;
-            padding: 10px;
+            padding: 10px 30px;
             border: 1px solid transparent;
             border-radius: 3px;
 
