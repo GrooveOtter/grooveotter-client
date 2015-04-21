@@ -18,6 +18,26 @@
     }
 }
 
+.tabs {
+    border-bottom: 1px solid #ccc;
+}
+
+.tab-title {
+    padding: 0 20px;
+
+    &.active a {
+        border-bottom: 4px solid $primary-color;
+    }
+
+    & a {
+        padding: 1rem 0 !important;
+
+        &:hover {
+            color: $body-font-color;
+        }
+    }
+}
+
 .hero {
     padding: 50px 0;
     background: #f6f5f5;
@@ -109,8 +129,17 @@
                 margin: 0;
             }
 
-            & .hover-buttons {
+            & .left {
+                min-height: 34px;
+                padding: 5px;
+            }
+
+            & .right {
                 display: none;
+
+                & * + * {
+                    padding-left: 20px;
+                }
             }
 
             & .button {
@@ -123,7 +152,7 @@
                 border-color: #f6f5f5;
                 background: #fff;
 
-                & .hover-buttons {
+                & .right {
                     display: inline-block;
                 }
             }

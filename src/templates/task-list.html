@@ -1,9 +1,12 @@
 <div class="task-list">
     <ul>
         <li ng-repeat="task in vm.uncompleted() track by task.id">
-            <input type="checkbox" ng-model="task.completed">
-            <span ng-bind="task.title"></span>
-            <div class="hover-buttons right">
+            <div class="left">
+                <input type="checkbox" ng-model="task.completed">
+                <span ng-bind="task.title"></span>
+            </div>
+
+            <div class="right">
                 <button class="button secondary tiny radius">Start</button>
                 <span>{{ task.limit / (60 * 1000) }} mins</span>
                 <a>&times;</a>

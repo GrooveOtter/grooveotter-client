@@ -43,7 +43,8 @@ gulp.task('compile', ['templates'], function() {
         'src/**/*.js',
         'build/templates.js',
         'build/components/foundation/js/foundation/foundation.js',
-        'build/components/foundation/js/foundation/foundation.topbar.js'
+        'build/components/foundation/js/foundation/foundation.topbar.js',
+        'build/components/foundation/js/foundation/foundation.tab.js'
     ];
 
     return gulp.src(sources)

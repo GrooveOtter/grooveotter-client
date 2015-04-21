@@ -1,12 +1,19 @@
 @import "foundation/functions";
 
 $body-bg: #fdfdfd;
+$body-font-color: #4c4f5d;
 
 $font-family-sans-serif: "proxima-nova", sans-serif;
 
 $primary-color: #5e809e;
 $secondary-color: #74aa8b;
 $info-color: #f6f5f5;
+
+$tabs-navigation-bg-color: $body-bg;
+$tabs-navigation-hover-bg-color: $body-bg;
+$tabs-navigation-active-bg-color: $tabs-navigation-bg-color;
+$tabs-navigation-active-font-color: $body-font-color;
+$tabs-navigation-font-color: #989cad;
 
 $button-font-lrg: rem-calc(16);
 
