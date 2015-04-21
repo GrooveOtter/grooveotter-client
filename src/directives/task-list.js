@@ -24,6 +24,7 @@ function TaskListController() {
 
     vm.completed = completed;
     vm.uncompleted = uncompleted;
+    vm.remove = remove;
 
     function completed() {
         return vm.taskList.filter(function(task) {
@@ -35,5 +36,15 @@ function TaskListController() {
         return vm.taskList.filter(function(task) {
             return !task.completed;
         });
+    }
+
+    function remove(task) {
+        var index = vm.taskList.indexOf(task);
+
+        if (index === -1) {
+            return;
+        }
+
+        vm.taskList.splice(index, 1);
     }
 }

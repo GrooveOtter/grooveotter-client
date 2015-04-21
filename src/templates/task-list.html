@@ -9,7 +9,7 @@
             <div class="right">
                 <button class="button secondary tiny radius">Start</button>
                 <span>{{ task.limit / (60 * 1000) }} mins</span>
-                <a>&times;</a>
+                <a ng-click="vm.remove(task)">&times;</a>
             </div>
         </li>
     </ul>
@@ -23,7 +23,7 @@
                 <div class="hover-buttons right">
                     <button class="button tiny radius">Completed</button>
                     <span>{{ task.limit / (60 * 1000) }} mins</span>
-                    <a>&times;</a>
+                    <a ng-click="vm.remove(task)">&times;</a>
                 </div>
             </li>
         </ul>
