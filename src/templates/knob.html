@@ -10,6 +10,12 @@
 
         <path
             fill="none"
+            ng-attr-stroke-width="{{vm.bgLineWidth}}"
+            stroke="rgba(0, 0, 0, 0.1)"
+            ng-attr-d="{{vm.describeShadow()}}" />
+
+        <path
+            fill="none"
             ng-attr-stroke="{{vm.bgColor}}"
             ng-attr-stroke-width="{{vm.bgLineWidth}}"
             ng-attr-d="{{vm.describeBg()}}" />
@@ -19,5 +25,5 @@
             ng-attr-stroke="{{vm.fgColor}}"
             ng-attr-stroke-width="{{vm.fgLineWidth}}"
             ng-attr-d="{{vm.describeFg()}}" />
-    </canvas>
+    </svg>
 </div>
