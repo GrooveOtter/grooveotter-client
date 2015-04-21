@@ -6,7 +6,7 @@
     min-width: 120px;
 
     &.tiny {
-        min-width: 110px
+        min-width: 20px
     }
 
     &.small {
@@ -31,7 +31,7 @@
     border: 0;
     background: inherit;
     font-size: 2em;
-    font-weight: 300;
+    font-weight: lighter;
     height: 2em;
     box-shadow: none;
     border-bottom: 1px solid #ccc;
@@ -91,6 +91,7 @@
             }
 
             & .button {
+                min-width: 110px;
                 margin: 0;
             }
 
