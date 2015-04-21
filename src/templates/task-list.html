@@ -1,8 +1,28 @@
 <div class="task-list">
     <ul>
-        <li ng-repeat="task in vm.taskList">
-            <input type="checkbox" ng-checked="{{task.completed}}">
+        <li ng-repeat="task in vm.uncompleted() track by task.id">
+            <input type="checkbox" ng-model="task.completed">
             <span ng-bind="task.title"></span>
+            <div class="hover-buttons right">
+                <button class="button secondary tiny radius">Start</button>
+                <span>{{ task.limit / (60 * 1000) }} mins</span>
+                <a>&times;</a>
+            </div>
         </li>
     </ul>
+
+    <div ng-if="vm.completed().length !== 0">
+        <span>Completed</span>
+        <ul>
+            <li ng-repeat="task in vm.completed() track by task.id">
+                <input type="checkbox" ng-model="task.completed">
+                <span ng-bind="task.title"></span>
+                <div class="hover-buttons right">
+                    <button class="button tiny radius">Completed</button>
+                    <span>{{ task.limit / (60 * 1000) }} mins</span>
+                    <a>&times;</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

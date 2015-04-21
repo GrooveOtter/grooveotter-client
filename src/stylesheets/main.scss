@@ -6,7 +6,7 @@
     min-width: 120px;
 
     &.tiny {
-        min-width: 20px;
+        min-width: 110px
     }
 
     &.small {
@@ -48,6 +48,7 @@
     }
 
     & button.tiny {
+        outline: 0;
         max-width: 43px;
         padding-left: 0.9rem;
         text-align: center;
@@ -67,5 +68,41 @@
     & svg {
         width: 100%;
         height: 20px;
+    }
+}
+
+.task-list {
+    & ul {
+        list-style: none;
+        margin-left: 10px;
+
+        & li {
+            height: 55px;
+            padding: 10px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+
+            & input[type="checkbox"] {
+                margin: 0;
+            }
+
+            & .hover-buttons {
+                display: none;
+            }
+
+            & .button {
+                margin: 0;
+            }
+
+            &:hover {
+                box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+                border-color: #f6f5f5;
+                background: #fff;
+
+                & .hover-buttons {
+                    display: inline-block;
+                }
+            }
+        }
     }
 }

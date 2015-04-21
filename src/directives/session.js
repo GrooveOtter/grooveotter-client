@@ -7,7 +7,9 @@ function SessionDirective() {
         restrict: 'EA',
         replace: true,
         templateUrl: 'session.html',
-        scope: {},
+        scope: {
+            taskList: '='
+        },
         controller: SessionController,
         controllerAs: 'vm',
         bindToController: true
@@ -16,8 +18,8 @@ function SessionDirective() {
     return directive;
 }
 
-SessionController.$inject = ['Session'];
-function SessionController(Session) {
+SessionController.$inject = ['Session', 'Task'];
+function SessionController(Session, Task) {
     /**
      * @namespace
      * @alias SessionController
@@ -42,7 +44,8 @@ function SessionController(Session) {
      * @memberof SessionController
      */
     function start() {
-        vm.session = new Session(vm.taskName, vm.choice * 60 * 1000);
+        var task = createTask();
+        vm.session = new Session(task);
         vm.session.start();
     }
 
@@ -61,5 +64,20 @@ function SessionController(Session) {
     function complete() {
         vm.session.complete();
         vm.session = null;
+    }
+
+    /**
+     * Create a task from the current input values
+     * @memberof SessionController
+     */
+    function createTask() {
+        var task = new Task(vm.taskName, vm.choice * 60 * 1000);
+
+        addTask(task);
+        return task;
+    }
+
+    function addTask(task) {
+        vm.taskList.push(task);
     }
 }

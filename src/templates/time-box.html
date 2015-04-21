@@ -1,6 +1,10 @@
 <div class="time-box">
     <form ng-submit="vm.done()">
-        <input type="number" ng-model="vm.choice">
+        <input
+            min="0"
+            max="720"
+            type="number"
+            ng-model="vm.choice">
     </form>
 
     <button

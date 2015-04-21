@@ -19,4 +19,21 @@ function TaskListDirective() {
 }
 
 TaskListController.$inject = [];
-function TaskListController() {}
+function TaskListController() {
+    var vm = this;
+
+    vm.completed = completed;
+    vm.uncompleted = uncompleted;
+
+    function completed() {
+        return vm.taskList.filter(function(task) {
+            return task.completed;
+        });
+    }
+
+    function uncompleted() {
+        return vm.taskList.filter(function(task) {
+            return !task.completed;
+        });
+    }
+}

@@ -1,9 +1,13 @@
 angular.module('gotr')
     .controller('DashboardController', DashboardController);
 
-DashboardController.$inject = ['taskList'];
-function DashboardController(taskList) {
+DashboardController.$inject = ['$scope', 'taskList', 'taskListStore'];
+function DashboardController($scope, taskList, taskListStore) {
     var vm = this;
 
-    this.taskList = taskList;
+    vm.taskList = taskList;
+
+    $scope.$watchCollection('vm.taskList', function() {
+        taskListStore.persist(taskList);
+    });
 }

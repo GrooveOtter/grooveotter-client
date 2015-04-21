@@ -8,15 +8,11 @@ function SessionClass(Timer, sessionStore, tracker) {
      * @class
      * @extends Timer
      * @global
-     * @param {String} name
-     * @param {Number} limit
+     * @param {Task} task
      */
-    function Session(name, limit) {
-        /** The name of the task */
-        this.name = name;
-
-        /** The time limit in miliseconds of the task */
-        this.limit = limit;
+    function Session(task) {
+        /** The associated task for this session */
+        this.task = task;
 
         Timer.call(this, 10);
     }
@@ -33,11 +29,11 @@ function SessionClass(Timer, sessionStore, tracker) {
 
     /**
      * Indicates whether the session has passed
-     * the given time limit.
+     * the time limit from the given tisk.
      * @memberof Session.prototype
      */
     function isFinished() {
-        return this.elapsedTime >= this.limit;
+        return this.elapsedTime >= this.task.limit;
     }
 
     /**
@@ -46,7 +42,7 @@ function SessionClass(Timer, sessionStore, tracker) {
      * @memberof Session.prototype
      */
     function timeRemaining() {
-        return this.limit - this.elapsedTime;
+        return this.task.limit - this.elapsedTime;
     }
 
     /**
@@ -55,10 +51,6 @@ function SessionClass(Timer, sessionStore, tracker) {
      */
     function tick() {
         Timer.prototype.tick.call(this);
-
-        if (this.isFinished()) {
-            this.complete();
-        }
     }
 
     /**
@@ -73,6 +65,7 @@ function SessionClass(Timer, sessionStore, tracker) {
 
     function complete() {
         this.stop();
+        this.task.complete();
         sessionStore.add(this.elapsedTime);
         // TODO: alert the user
         // TODO: mark session model as completed
