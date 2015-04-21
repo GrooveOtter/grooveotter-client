@@ -57,6 +57,6 @@ function AnltcsGraphController(tracker, sessionStore) {
 
     // TODO: clean this up
     function calcX() {
-        return Math.floor(sessionStore.get() / tracker.get() * 142);
+        return Math.floor(sessionStore.get() / tracker.get() * 129);
     }
 }
