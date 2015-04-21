@@ -57,6 +57,12 @@ function AnltcsGraphController(tracker, sessionStore) {
 
     // TODO: clean this up
     function calcX() {
-        return Math.floor(sessionStore.get() / tracker.get() * 129);
+        var result = Math.floor(sessionStore.get() / tracker.get() * 118);
+
+        if (isNaN(result)) {
+            return 11;
+        } else {
+            return 11 + result;
+        }
     }
 }
