@@ -8,10 +8,6 @@ function Tracker(LocalStore, Timer, debounce) {
     var timeoutPeriod = 3 * 60 * 1000; // 3 minutes
     var lastAction = 0;
 
-    var _tick = timer.tick;
-
-    timer.tick = tick;
-
     var trigger = debounce(idle, timeoutPeriod);
 
     /**
@@ -93,10 +89,5 @@ function Tracker(LocalStore, Timer, debounce) {
      */
     function get() {
         return store.get();
-    }
-
-    function tick() {
-        persist();
-        _tick.call(timer);
     }
 }

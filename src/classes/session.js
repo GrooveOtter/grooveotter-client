@@ -67,7 +67,7 @@ function SessionClass(Timer, sessionStore, tracker) {
         this.stop();
         this.task.complete();
         sessionStore.add(this.elapsedTime);
+        tracker.persist();
         // TODO: alert the user
-        // TODO: mark session model as completed
     }
 }
