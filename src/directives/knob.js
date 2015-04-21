@@ -89,7 +89,7 @@ function calcInputStyle(width) {
         verticalAlign: 'middle',
         border: '0px',
         background: 'none',
-        font: 'bold 34px Arial',
+        font: 'normal 36px proxima-nova',
         textAlign: 'center',
         color: '#4d4e5e',
         padding: '0px',
