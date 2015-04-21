@@ -69,6 +69,10 @@
         width: 100%;
         height: 20px;
     }
+
+    & p {
+        color: #989cad;
+    }
 }
 
 .task-list {
@@ -106,4 +110,8 @@
             }
         }
     }
+}
+
+.bottom-half {
+    margin-top: 40px;
 }
