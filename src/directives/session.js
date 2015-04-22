@@ -18,8 +18,8 @@ function SessionDirective() {
     return directive;
 }
 
-SessionController.$inject = ['Session', 'Task'];
-function SessionController(Session, Task) {
+SessionController.$inject = ['Session', 'Task', '$element'];
+function SessionController(Session, Task, $element) {
     /**
      * @namespace
      * @alias SessionController
@@ -38,17 +38,15 @@ function SessionController(Session, Task) {
     vm.start = start;
     vm.isStarted = isStarted;
     vm.complete = complete;
+    vm.createTask = createTask;
+    vm.reset = reset;
 
     /**
      * Creates the session and starts it
      * @memberof SessionController
      */
     function start($event) {
-        if ($event != null) {
-            $event.srcElement[0].blur();
-        }
-
-        var task = createTask();
+        var task = createTask($event);
         vm.session = new Session(task);
         vm.session.start();
     }
@@ -67,7 +65,7 @@ function SessionController(Session, Task) {
      */
     function complete() {
         vm.session.complete();
-        vm.session = null;
+        reset();
     }
 
     /**
@@ -76,6 +74,7 @@ function SessionController(Session, Task) {
      */
     function createTask() {
         var task = new Task(vm.taskName, vm.choice * 60 * 1000);
+        $element.find('input')[0].blur();
 
         addTask(task);
         return task;
@@ -83,5 +82,11 @@ function SessionController(Session, Task) {
 
     function addTask(task) {
         vm.taskList.push(task);
+    }
+
+    function reset() {
+        vm.taskName = '';
+        vm.choice = 15;
+        vm.session = null;
     }
 }

@@ -25,6 +25,7 @@ function TaskListController() {
     vm.completed = completed;
     vm.uncompleted = uncompleted;
     vm.remove = remove;
+    vm.isComplete = isComplete;
 
     function completed() {
         return vm.taskList.filter(function(task) {
@@ -46,5 +47,9 @@ function TaskListController() {
         }
 
         vm.taskList.splice(index, 1);
+    }
+
+    function isComplete(task) {
+        return task.completed;
     }
 }

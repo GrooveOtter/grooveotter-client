@@ -1,6 +1,6 @@
 <div class="task-list">
     <ul>
-        <li ng-repeat="task in vm.uncompleted() track by task.id">
+        <li ng-repeat="task in vm.taskList | filter:!vm.isComplete track by task.id">
             <div class="left">
                 <input type="checkbox" ng-model="task.completed">
                 <span ng-bind="task.title"></span>
@@ -17,7 +17,7 @@
     <div ng-if="vm.completed().length !== 0">
         <span>Completed</span>
         <ul>
-            <li ng-repeat="task in vm.completed() track by task.id">
+            <li ng-repeat="task in vm.taskList | filter:vm.isComplete track by task.id">
                 <input type="checkbox" ng-model="task.completed">
                 <span ng-bind="task.title"></span>
                 <div class="hover-buttons right">

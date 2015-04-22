@@ -1,8 +1,9 @@
 <div class="hero">
     <div class="row">
         <div class="large-8 columns">
-            <form class="task-form" ng-submit="vm.start($event)">
+            <form class="task-form" ng-submit="vm.start()">
                 <input
+                    id="task-name-input"
                     type="text"
                     placeholder="What are you working on?"
                     ng-model="vm.taskName"
@@ -27,7 +28,7 @@
 
             <button
                 class="primary button large radius"
-                ng-click="vm.addTask()"
+                ng-click="vm.createTask(); vm.reset()"
                 ng-hide="vm.isStarted()"
                 ng-disabled="!vm.taskName.trim()">
                 Add to list for later
@@ -36,7 +37,7 @@
             <button
                 class="primary button large radius"
                 ng-show="vm.isStarted()"
-                ng-click="vm.session.stop(); vm.session = null"
+                ng-click="vm.session.elapsedTime = 0"
                 ng-disabled="!vm.taskName.trim()">
                 Reset timer
             </button>

@@ -14,6 +14,8 @@ function SessionClass(Timer, sessionStore, tracker) {
         /** The associated task for this session */
         this.task = task;
 
+        this.started = null;
+
         Timer.call(this, 10);
     }
 
@@ -59,6 +61,7 @@ function SessionClass(Timer, sessionStore, tracker) {
      */
     function start() {
         Timer.prototype.start.call(this);
+        this.started = Date.now();
 
         tracker.inSession = true;
     }
@@ -66,7 +69,11 @@ function SessionClass(Timer, sessionStore, tracker) {
     function complete() {
         this.stop();
         this.task.complete();
-        sessionStore.add(this.elapsedTime);
+
+        if (this.started != null) {
+            sessionStore.add(Date.now() - this.started);
+        }
+
         tracker.persist();
         // TODO: alert the user
     }
