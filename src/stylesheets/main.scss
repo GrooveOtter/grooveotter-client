@@ -19,7 +19,7 @@
 }
 
 .tab-title {
-    padding: 0 20px;
+    padding: 0 40px 0 0;
 
     &.active a {
         border-bottom: 4px solid $primary-color;
@@ -55,7 +55,6 @@
 }
 
 .time-box {
-    z-index: 1;
     width: 200px;
     height: 200px;
     padding: 30px;
