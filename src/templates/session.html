@@ -54,9 +54,10 @@
             </div>
 
             <div
-                ng-if="!vm.isStarted()"
-                ng-dblclick="vm.selecting = !vm.selecting">
-                <div ng-if="!vm.selecting">
+                ng-if="!vm.isStarted()">
+                <div
+                    ng-if="!vm.selecting"
+                    ng-dblclick="vm.startSelecting()">
                     <gotr-knob
                         value="0"
                         max="1"
@@ -66,11 +67,10 @@
                 </div>
 
                 <div
-                    ng-if="vm.selecting"
-                    ng-dblclick="$event.preventDefault()">
+                    ng-if="vm.selecting">
                     <gotr-time-box
                         choice="vm.choice"
-                        on-done="vm.selecting = false">
+                        on-done="vm.stopSelecting()">
                     </gotr-timebox>
                 </div>
             </div>

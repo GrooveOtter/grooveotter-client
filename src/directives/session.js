@@ -18,8 +18,8 @@ function SessionDirective() {
     return directive;
 }
 
-SessionController.$inject = ['Session', 'Task', '$element'];
-function SessionController(Session, Task, $element) {
+SessionController.$inject = ['Session', 'Task', '$element', '$document'];
+function SessionController(Session, Task, $element, $document) {
     /**
      * @namespace
      * @alias SessionController
@@ -40,6 +40,8 @@ function SessionController(Session, Task, $element) {
     vm.complete = complete;
     vm.createTask = createTask;
     vm.reset = reset;
+    vm.startSelecting = startSelecting;
+    vm.stopSelecting = stopSelecting;
 
     /**
      * Creates the session and starts it
@@ -88,5 +90,15 @@ function SessionController(Session, Task, $element) {
         vm.taskName = '';
         vm.choice = 15;
         vm.session = null;
+    }
+
+    function startSelecting() {
+        vm.selecting = true;
+        $document.on('click', stopSelecting);
+    }
+
+    function stopSelecting(e) {
+        vm.selecting = false;
+        $document.off('click', stopSelecting);
     }
 }

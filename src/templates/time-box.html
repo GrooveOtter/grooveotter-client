@@ -1,8 +1,8 @@
-<div class="time-box">
+<div class="time-box" ng-click="$event.stopPropagation()">
     <form ng-submit="vm.done()">
         <input
             min="0"
-            max="59"
+            max="60"
             type="number"
             ng-model="vm.choice">
     </form>
