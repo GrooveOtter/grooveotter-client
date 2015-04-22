@@ -1,6 +1,12 @@
 @import "settings";
 @import "foundation";
 
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}
+}
 
 .button {
     box-sizing: border-box;
@@ -44,14 +50,32 @@
     position: relative;
 }
 
-.task-form input {
-    border: 0;
-    background: inherit;
-    font-size: 2em;
-    font-weight: lighter;
-    height: 2em;
-    box-shadow: none;
-    border-bottom: 1px solid #ccc;
+.task-form {
+    & input {
+        border: 0;
+        background: inherit;
+        font-size: 2em;
+        font-weight: lighter;
+        height: 2em;
+        box-shadow: none;
+        border-bottom: 1px solid #ccc;
+
+        @include placeholder {
+            opacity: 1;
+            color: $body-font-color;
+        }
+
+        &:focus {
+            border: 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+            background: #fff;
+
+            @include placeholder {
+                opacity: 0;
+            }
+        }
+    }
 }
 
 .time-box {
