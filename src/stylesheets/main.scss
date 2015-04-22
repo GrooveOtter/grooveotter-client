@@ -1,6 +1,12 @@
 @import "settings";
 @import "foundation";
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 @mixin placeholder {
     &::-webkit-input-placeholder {@content}
     &:-moz-placeholder           {@content}
