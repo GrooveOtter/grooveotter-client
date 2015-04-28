@@ -66,10 +66,7 @@ function Tracker(LocalStore, Timer, debounce) {
     function idle() {
         if (!tracker.inSession && timer.isRunning()) {
             var now = Date.now();
-            lastAction = lastAction || now;
-            // ignore the time since we started idling
-            // i.e. the last action
-            timer.elapsedTime -= Date.now() - lastAction;
+            timer.elapsedTime -= now - (lastAction || now);
             stop();
         }
     }
