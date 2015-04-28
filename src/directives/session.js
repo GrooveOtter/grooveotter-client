@@ -47,8 +47,8 @@ function SessionController(Session, Task, $element, $document) {
      * Creates the session and starts it
      * @memberof SessionController
      */
-    function start($event) {
-        var task = createTask($event);
+    function start() {
+        var task = createTask();
         vm.session = new Session(task);
         vm.session.start();
     }
