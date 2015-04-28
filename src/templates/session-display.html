@@ -6,47 +6,43 @@
                     id="task-name-input"
                     type="text"
                     placeholder="What are you working on?"
-                    ng-model="vm.taskName"
+                    ng-model="vm.session.task.title"
                 />
             </form>
 
             <button
                 class="secondary button large radius"
-                ng-hide="vm.isStarted()"
-                ng-click="vm.start()"
-                ng-disabled="!vm.taskName.trim()">
+                ng-hide="vm.session.started"
+                ng-click="vm.start()">
                 Start task
             </button>
 
             <button
                 class="secondary button large radius"
-                ng-show="vm.isStarted()"
-                ng-click="vm.complete()"
-                ng-disabled="!vm.taskName.trim()">
+                ng-show="vm.session.started"
+                ng-click="vm.session.complete()">
                 Complete task
             </button>
 
             <button
                 class="primary button large radius"
-                ng-click="vm.createTask(); vm.reset()"
-                ng-hide="vm.isStarted()"
-                ng-disabled="!vm.taskName.trim()">
-                Add to list for later
+                ng-click="vm.archive(); vm.session.clear()"
+                ng-hide="vm.session.started">
+                {{ vm.session.task.isNew ? 'Add to list for later' : 'Create Task' }}
             </button>
 
             <button
                 class="primary button large radius"
-                ng-show="vm.isStarted()"
-                ng-click="vm.session.elapsedTime = 0"
-                ng-disabled="!vm.taskName.trim()">
+                ng-show="vm.session.started"
+                ng-click="vm.session.reset()">
                 Reset timer
             </button>
         </div>
 
         <div class="right-part columns">
-            <div ng-if="vm.isStarted()">
+            <div ng-if="vm.session.started">
                 <gotr-knob
-                    value="vm.session.elapsedTime"
+                    value="vm.session.elapsedTime()"
                     label="vm.session.timeRemaining() + 999 | date: 'mm:ss'"
                     max="vm.session.task.limit"
                     width="200">
@@ -54,14 +50,14 @@
             </div>
 
             <div
-                ng-if="!vm.isStarted()">
+                ng-if="!vm.session.started">
                 <div
                     ng-if="!vm.selecting"
                     ng-dblclick="vm.startSelecting()">
                     <gotr-knob
                         value="0"
                         max="1"
-                        label="vm.choice * 60 * 1000 | date: 'mm:ss'"
+                        label="vm.session.task.limit | date: 'mm:ss'"
                         width="200">
                     </gotr-knob>
                 </div>
@@ -69,7 +65,7 @@
                 <div
                     ng-if="vm.selecting">
                     <gotr-time-box
-                        choice="vm.choice"
+                        choice="vm.session.task.limit"
                         on-done="vm.stopSelecting()">
                     </gotr-timebox>
                 </div>

@@ -4,24 +4,25 @@
             min="0"
             max="60"
             type="number"
-            ng-model="vm.choice">
+            ng-change="vm.choice = vm.input * 60 * 1000"
+            ng-model="vm.input">
     </form>
 
     <button
         class="button info small radius"
-        ng-click="vm.choice = 15">
+        ng-click="vm.choice = 15 * 60 * 1000">
         15
     </button>
 
     <button
         class="button info small radius"
-        ng-click="vm.choice = 30">
+        ng-click="vm.choice = 30 * 60 * 1000">
         30
     </button>
 
     <button
         class="button info small radius"
-        ng-click="vm.choice = 45">
+        ng-click="vm.choice = 45 * 60 * 1000">
         45
     </button>
 </div>

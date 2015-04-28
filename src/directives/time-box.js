@@ -20,4 +20,8 @@ function TimeBox() {
 }
 
 TimeBoxController.$inject = [];
-function TimeBoxController() {}
+function TimeBoxController() {
+    var vm = this;
+
+    vm.input = vm.choice / (60 * 1000);
+}

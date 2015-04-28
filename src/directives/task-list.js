@@ -18,25 +18,23 @@ function TaskListDirective() {
     return directive;
 }
 
-TaskListController.$inject = [];
-function TaskListController() {
+TaskListController.$inject = ['userSession'];
+function TaskListController(userSession) {
     var vm = this;
 
-    vm.completed = completed;
-    vm.uncompleted = uncompleted;
+    vm.session = userSession;
+
+    vm.start = start;
     vm.remove = remove;
     vm.isComplete = isComplete;
+    vm.isCurrent = isCurrent;
 
-    function completed() {
-        return vm.taskList.filter(function(task) {
-            return task.completed;
-        });
-    }
-
-    function uncompleted() {
-        return vm.taskList.filter(function(task) {
-            return !task.completed;
-        });
+    function start(task) {
+        if (!vm.isCurrent(task)) {
+            vm.session.reset();
+            vm.session.task = task;
+            vm.session.start();
+        }
     }
 
     function remove(task) {
@@ -47,9 +45,17 @@ function TaskListController() {
         }
 
         vm.taskList.splice(index, 1);
+
+        if (isCurrent(task)) {
+            userSession.clear();
+        }
     }
 
     function isComplete(task) {
         return task.completed;
+    }
+
+    function isCurrent(task) {
+        return userSession.task.id === task.id;
     }
 }

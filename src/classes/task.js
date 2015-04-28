@@ -9,8 +9,9 @@ function TaskClass() {
      * @global
      * @param {String} title
      * @param {Number} limit
+     * @param {Boolean} [isNew]
      */
-    function Task(title, limit) {
+    function Task(title, limit, isNew) {
         /** A unique identifier to prevent Angular from throwing a fit */
         this.id = generateKey();
 
@@ -22,6 +23,9 @@ function TaskClass() {
 
         /** Indicates if the task has been completed */
         this.completed = false;
+
+        /** Indicates if the task is an unpersisted model */
+        this.isNew = isNew || false;
     }
 
     Task.prototype = {};

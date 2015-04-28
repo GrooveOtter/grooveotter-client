@@ -180,6 +180,21 @@ svg:hover .pencil {
             border: 1px solid transparent;
             border-radius: 3px;
 
+            & input[type="text"], & input[type="number"] {
+                background: inherit;
+                border: 0;
+                box-shadow: none;
+                display: inline;
+                font-size: inherit;
+                margin: 0;
+                padding: 0;
+                width: 20px;
+            }
+
+            & input[type="text"] {
+                width: 120px;
+            }
+
             & input[type="checkbox"] {
                 margin: 0;
             }

@@ -15,7 +15,11 @@ function Router($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 }
 
-TaskList.$inject = ['taskListStore'];
-function TaskList(taskListStore) {
-    return taskListStore.get();
+TaskList.$inject = ['taskListStore', 'Task'];
+function TaskList(taskListStore, Task) {
+    return taskListStore.get().then(function(ts) {
+        return ts.map(function(task) {
+            return new Task(task.title, task.limit);
+        });
+    });
 }

@@ -3,12 +3,26 @@
         <li ng-repeat="task in vm.taskList | filter:!vm.isComplete track by task.id">
             <div class="left">
                 <input type="checkbox" ng-model="task.completed">
-                <span ng-bind="task.title"></span>
+                <input type="text" ng-model="task.title" />
             </div>
 
             <div class="right">
-                <button class="button secondary tiny radius">Start</button>
-                <span>{{ task.limit / (60 * 1000) }} mins</span>
+                <button
+                    class="button tiny radius"
+                    ng-class="{secondary: !vm.isCurrent(task)}"
+                    ng-click="vm.start(task)">
+                    {{ vm.isCurrent(task) ? 'In Progress' : 'Start' }}
+                </button>
+
+                <span>
+                    <input
+                        type="number"
+                        ng-init="mins = task.limit / (60 * 1000)"
+                        ng-model="mins"
+                        ng-change="task.limit = mins * 60 * 1000">
+                    mins
+                </span>
+
                 <a ng-click="vm.remove(task)">&times;</a>
             </div>
         </li>
