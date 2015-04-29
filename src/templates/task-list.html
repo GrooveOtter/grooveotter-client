@@ -3,7 +3,7 @@
         <li ng-repeat="task in vm.taskList | filter:!vm.isComplete track by task.id">
             <div class="left">
                 <input type="checkbox" ng-model="task.completed">
-                <input type="text" ng-model="task.title" />
+                <input type="text" ng-disabled="vm.isCurrent(task)" ng-model="task.title" />
             </div>
 
             <div class="right">
@@ -19,6 +19,7 @@
                         type="number"
                         ng-init="mins = task.limit / (60 * 1000)"
                         ng-model="mins"
+                        ng-disabled="vm.isCurrent(task)"
                         ng-change="task.limit = mins * 60 * 1000">
                     mins
                 </span>
