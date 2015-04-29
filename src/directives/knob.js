@@ -47,7 +47,7 @@ function KnobController() {
     }
 
     function describeFg() {
-        return arc(0, vm.value / vm.max  * 360, false);
+        return arc(0, bound(vm.value / vm.max  * 360), false);
     }
 
     function polarToCartesian(degrees) {
@@ -69,6 +69,10 @@ function KnobController() {
             'M', begin.x, begin.y + !shadow,
             'A', radius, radius, 0, large, 0, final.x, final.y + !shadow
         ].join(' ');
+    }
+
+    function bound(x) {
+        return Math.min(360, Math.max(0, x));
     }
 }
 

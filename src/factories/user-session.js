@@ -20,7 +20,8 @@ function UserSession(Task, sessionStore, $interval) {
         reset: reset,
         clear: clear,
         elapsedTime: elapsedTime,
-        timeRemaining: timeRemaining
+        timeRemaining: timeRemaining,
+        isFinished: isFinished
     };
 
     return userSession;
@@ -51,10 +52,18 @@ function UserSession(Task, sessionStore, $interval) {
     }
 
     function elapsedTime() {
-        return Date.now() - userSession.started;
+        if (userSession.started == null) {
+            return 0;
+        } else {
+            return Date.now() - userSession.started;
+        }
     }
 
     function timeRemaining() {
-        return userSession.task.limit - elapsedTime();
+        return Math.max(0, userSession.task.limit - elapsedTime());
+    }
+
+    function isFinished() {
+        return timeRemaining() <= 0;
     }
 }

@@ -4,9 +4,16 @@
             <form class="task-form" ng-submit="vm.start()">
                 <input
                     id="task-name-input"
+                    ng-hide="vm.session.isFinished()"
                     type="text"
                     placeholder="What are you working on?"
                     ng-model="vm.session.task.title"
+                />
+
+                <input
+                    ng-show="vm.session.isFinished()"
+                    type="text"
+                    value="Are you finished?"
                 />
             </form>
 
