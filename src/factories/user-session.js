@@ -18,7 +18,6 @@ function UserSession(Task, sessionStore, $interval) {
         start: start,
         complete: complete,
         reset: reset,
-        clear: clear,
         elapsedTime: elapsedTime,
         timeRemaining: timeRemaining,
         isFinished: isFinished
@@ -39,15 +38,11 @@ function UserSession(Task, sessionStore, $interval) {
             sessionStore.add(Date.now() - userSession.started);
         }
 
-        clear();
+        reset();
     }
 
     function reset() {
         userSession.started = null;
-    }
-
-    function clear() {
-        reset();
         userSession.task = new Task('', 15 * 60 * 1000, true);
     }
 

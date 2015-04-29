@@ -47,7 +47,7 @@ function TaskListController(userSession) {
         vm.taskList.splice(index, 1);
 
         if (isCurrent(task)) {
-            userSession.clear();
+            userSession.reset();
         }
     }
 
