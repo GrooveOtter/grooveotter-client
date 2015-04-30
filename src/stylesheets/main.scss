@@ -7,10 +7,6 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-input {
-    height: 1rem !important;
-}
-
 @mixin placeholder {
     &::-webkit-input-placeholder {@content}
     &:-moz-placeholder           {@content}
@@ -193,6 +189,7 @@ svg:hover .pencil {
                 margin: 0;
                 padding: 0;
                 width: 20px;
+                height: 1rem;
             }
 
             & input[type="text"] {
