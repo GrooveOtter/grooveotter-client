@@ -2,7 +2,7 @@
     <ul>
         <li ng-repeat="task in vm.taskList | filter: vm.isUncompleted track by task.id">
             <div class="left">
-                <input type="checkbox" ng-model="task.completed">
+                <input class="gotr-checkmark" type="checkbox" ng-model="task.completed">
                 <input type="text" ng-disabled="vm.isCurrent(task)" ng-model="task.title" />
             </div>
 

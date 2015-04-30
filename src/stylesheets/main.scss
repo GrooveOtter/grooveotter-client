@@ -7,6 +7,10 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+input {
+    height: 1rem !important;
+}
+
 @mixin placeholder {
     &::-webkit-input-placeholder {@content}
     &:-moz-placeholder           {@content}
@@ -192,15 +196,17 @@ svg:hover .pencil {
             }
 
             & input[type="text"] {
-                width: 120px;
+                width: 300px;
+                padding-left: 15px;
+                float: right;
             }
 
             & input[type="checkbox"] {
+                padding: 12px;
                 margin: 0;
             }
 
             & .left {
-                min-height: 34px;
                 padding: 5px;
             }
 
@@ -229,6 +235,10 @@ svg:hover .pencil {
 
             &.ng-leave {
                 transition: 0.5s linear all;
+
+                & .gotr-checkmark {
+                    transition: 0.5s linear all;
+                }
             }
 
             &.ng-leave.ng-leave-active {
@@ -241,4 +251,15 @@ svg:hover .pencil {
 
 .bottom-half {
     margin-top: 40px;
+}
+
+.gotr-checkmark {
+    appearance: none;
+    -webkit-appearance: none;
+    background: url(/unchecked.svg) no-repeat 0 0;
+    outline: 0;
+}
+
+.gotr-checkmark:checked, .gotr-checkmark:hover {
+    background: url(/checked.svg) no-repeat 0 0;
 }
