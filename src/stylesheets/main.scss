@@ -230,12 +230,8 @@ svg:hover .pencil {
                 }
             }
 
-            &.ng-leave {
-                transition: 0.5s linear all;
-
-                & .gotr-checkmark {
-                    transition: 0.5s linear all;
-                }
+            &.ng-leave, &.ng-leave.gotr-checkmark {
+                transition: 1s 0.1s ease all;
             }
 
             &.ng-leave.ng-leave-active {
@@ -259,4 +255,8 @@ svg:hover .pencil {
 
 .gotr-checkmark:checked, .gotr-checkmark:hover {
     background: url(/checked.svg) no-repeat 0 0;
+}
+
+.gotr-checkmark:hover {
+    cursor: pointer;
 }
