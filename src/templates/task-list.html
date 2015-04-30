@@ -1,6 +1,6 @@
 <div class="task-list">
     <ul>
-        <li ng-repeat="task in vm.taskList | filter:!vm.isComplete track by task.id">
+        <li ng-repeat="task in vm.taskList | filter: vm.isUncompleted track by task.id">
             <div class="left">
                 <input type="checkbox" ng-model="task.completed">
                 <input type="text" ng-disabled="vm.isCurrent(task)" ng-model="task.title" />
@@ -28,19 +28,4 @@
             </div>
         </li>
     </ul>
-
-    <div ng-if="vm.completed().length !== 0">
-        <span>Completed</span>
-        <ul>
-            <li ng-repeat="task in vm.taskList | filter:vm.isComplete track by task.id">
-                <input type="checkbox" ng-model="task.completed">
-                <span ng-bind="task.title"></span>
-                <div class="hover-buttons right">
-                    <button class="button tiny radius">Completed</button>
-                    <span>{{ task.limit / (60 * 1000) }} mins</span>
-                    <a ng-click="vm.remove(task)">&times;</a>
-                </div>
-            </li>
-        </ul>
-    </div>
 </div>

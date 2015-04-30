@@ -226,6 +226,15 @@ svg:hover .pencil {
                     display: inline-block;
                 }
             }
+
+            &.ng-leave {
+                transition: 0.5s linear all;
+            }
+
+            &.ng-leave.ng-leave-active {
+                opacity: 0;
+                transform: translateX(100%);
+            }
         }
     }
 }

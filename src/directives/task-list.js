@@ -26,7 +26,7 @@ function TaskListController(userSession) {
 
     vm.start = start;
     vm.remove = remove;
-    vm.isComplete = isComplete;
+    vm.isUncompleted = isUncompleted;
     vm.isCurrent = isCurrent;
 
     function start(task) {
@@ -51,8 +51,8 @@ function TaskListController(userSession) {
         }
     }
 
-    function isComplete(task) {
-        return task.completed;
+    function isUncompleted(task) {
+        return !task.completed;
     }
 
     function isCurrent(task) {

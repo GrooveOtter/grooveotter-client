@@ -86,6 +86,7 @@ gulp.task('migration', function() {
         'public/**',
         'build/components/angular/angular.min.js',
         'build/components/angular-route/angular-route.min.js',
+        'build/components/angular-animate/angular-animate.min.js',
         'build/components/jquery/dist/jquery.min.js'
     ];
 

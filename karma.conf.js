@@ -8,6 +8,7 @@ module.exports = function(config) {
         files: [
             'build/final/' + manifest['angular.min.js'],
             'build/final/' + manifest['angular-route.min.js'],
+            'build/final/' + manifest['angular-animate.min.js'],
             'build/final/' + manifest['jquery.min.js'],
             'build/final/' + manifest['bundle.js'],
             'spec/**/*.js'

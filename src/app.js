@@ -1,1 +1,1 @@
-angular.module('gotr', ['ngRoute']);
+angular.module('gotr', ['ngRoute', 'ngAnimate']);
