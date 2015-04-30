@@ -20,7 +20,7 @@ http {
             index   index.html index.htm;
         }
 
-        location ~ ^/assets/([^.]+)\.(js|css)$ {
+        location ~ ^/assets/([^.]+)\.(js|css|svg)$ {
             # gzip_static on;
             expires max;
             root <%= "#{Dir.pwd}/build/final" %>;
