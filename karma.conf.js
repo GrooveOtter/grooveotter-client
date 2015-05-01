@@ -11,6 +11,7 @@ module.exports = function(config) {
             'build/final/' + manifest['angular-animate.min.js'],
             'build/final/' + manifest['restangular.min.js'],
             'build/final/' + manifest['jquery.min.js'],
+            'build/final/' + manifest['lodash.min.js'],
             'build/final/' + manifest['bundle.js'],
             'spec/**/*.js'
         ],

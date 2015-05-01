@@ -88,7 +88,8 @@ gulp.task('migration', function() {
         'build/components/angular-route/angular-route.min.js',
         'build/components/angular-animate/angular-animate.min.js',
         'build/components/restangular/dist/restangular.min.js',
-        'build/components/jquery/dist/jquery.min.js'
+        'build/components/jquery/dist/jquery.min.js',
+        'build/components/lodash/lodash.min.js'
     ];
 
     return gulp.src(sources)
