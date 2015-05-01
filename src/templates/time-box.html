@@ -1,23 +1,28 @@
-<div class="time-box">
+<div class="time-box" ng-click="$event.stopPropagation()">
     <form ng-submit="vm.done()">
-        <input type="number" ng-model="vm.choice">
+        <input
+            min="0"
+            max="60"
+            type="number"
+            ng-change="vm.choice = vm.input * 60 * 1000"
+            ng-model="vm.input">
     </form>
 
     <button
-        class="button info tiny radius"
-        ng-click="vm.choice = 15">
+        class="button info small radius"
+        ng-click="vm.choice = 15 * 60 * 1000">
         15
     </button>
 
     <button
-        class="button info tiny radius"
-        ng-click="vm.choice = 30">
+        class="button info small radius"
+        ng-click="vm.choice = 30 * 60 * 1000">
         30
     </button>
 
     <button
-        class="button info tiny radius"
-        ng-click="vm.choice = 45">
+        class="button info small radius"
+        ng-click="vm.choice = 45 * 60 * 1000">
         45
     </button>
 </div>

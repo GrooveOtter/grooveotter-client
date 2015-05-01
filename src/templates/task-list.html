@@ -1,0 +1,31 @@
+<div class="task-list">
+    <ul>
+        <li ng-repeat="task in vm.taskList | filter: vm.isUncompleted track by task.id">
+            <div class="left">
+                <input class="gotr-checkmark" type="checkbox" ng-model="task.completed">
+                <input type="text" ng-disabled="vm.isCurrent(task)" ng-model="task.title" />
+            </div>
+
+            <div class="right">
+                <button
+                    class="button tiny radius"
+                    ng-class="{secondary: !vm.isCurrent(task)}"
+                    ng-click="vm.start(task)">
+                    {{ vm.isCurrent(task) ? 'In Progress' : 'Start' }}
+                </button>
+
+                <span>
+                    <input
+                        type="number"
+                        ng-init="mins = task.limit / (60 * 1000)"
+                        ng-model="mins"
+                        ng-disabled="vm.isCurrent(task)"
+                        ng-change="task.limit = mins * 60 * 1000">
+                    mins
+                </span>
+
+                <a ng-click="vm.remove(task)">&times;</a>
+            </div>
+        </li>
+    </ul>
+</div>

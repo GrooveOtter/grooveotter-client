@@ -1,0 +1,21 @@
+<gotr-session-display task-list="vm.taskList"></gotr-session-display>
+
+<div class="row bottom-half">
+    <div class="left-part columns">
+        <ul class="tabs" data-tab>
+            <li class="tab-title active"><a href="#">Today</a></li>
+            <li class="tab-title"><a href="#">Blocker</a></li>
+            <li class="tab-title"><a href="#">Archive</a></li>
+        </ul>
+
+        <div class="tabs-content">
+            <div class="content active">
+                <gotr-task-list task-list="vm.taskList"></gotr-task-list>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-part columns">
+        <gotr-anltcs-graph></gotr-anltcs-graph>
+    </div>
+</div>

@@ -4,7 +4,7 @@ angular.module('gotr')
 Knob.$inject = [];
 function Knob() {
     var directive = {
-        restrit: 'EA',
+        restrict: 'EA',
         replace: true,
         templateUrl: 'knob.html',
         scope: {
@@ -29,6 +29,7 @@ function KnobController() {
     vm.bgLineWidth = vm.width / 2 * 0.24;
     vm.fgColor = '#74aa8b';
     vm.bgColor = '#ededed';
+    vm.describeShadow = describeShadow;
     vm.describeBg = describeBg;
     vm.describeFg = describeFg;
     vm.calcDivStyle = calcDivStyle;
@@ -37,12 +38,16 @@ function KnobController() {
     var center = vm.width / 2;
     var radius = center - vm.bgLineWidth / 2;
 
+    function describeShadow() {
+        return arc(0, 0, true);
+    }
+
     function describeBg() {
-        return arc(0, 0);
+        return arc(0, 0, false);
     }
 
     function describeFg() {
-        return arc(0, vm.value / vm.max  * 360);
+        return arc(0, bound(vm.value / vm.max  * 360), false);
     }
 
     function polarToCartesian(degrees) {
@@ -54,16 +59,20 @@ function KnobController() {
         };
     }
 
-    function arc(start, end) {
+    function arc(start, end, shadow) {
         var begin = polarToCartesian(start - 90);
         var final = polarToCartesian(end + 0.0001 - 90);
 
         var large = end - start <= 180 ? 1 : 0;
 
         return [
-            'M', begin.x, begin.y,
-            'A', radius, radius, 0, large, 0, final.x, final.y
+            'M', begin.x, begin.y + !shadow,
+            'A', radius, radius, 0, large, 0, final.x, final.y + !shadow
         ].join(' ');
+    }
+
+    function bound(x) {
+        return Math.min(360, Math.max(0, x));
     }
 }
 
@@ -89,7 +98,7 @@ function calcInputStyle(width) {
         verticalAlign: 'middle',
         border: '0px',
         background: 'none',
-        font: 'bold 34px Arial',
+        font: 'normal 36px proxima-nova',
         textAlign: 'center',
         color: '#4d4e5e',
         padding: '0px',

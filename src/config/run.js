@@ -7,7 +7,10 @@ function Run($route, $rootScope, tracker) {
     tracker.start();
 
     angular.element(window)
-        .on('unload', tracker.persist)
+        .on('unload', function() {
+            tracker.idle();
+            tracker.persist();
+        })
         .on('blur', tracker.stop)
         .on('mousemove mousedown focus', tracker.action);
 

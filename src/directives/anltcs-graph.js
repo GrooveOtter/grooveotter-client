@@ -4,7 +4,7 @@ angular.module('gotr')
 AnltcsGraph.$inject = [];
 function AnltcsGraph() {
     var directive = {
-        restrit: 'EA',
+        restrict: 'EA',
         replace: true,
         templateUrl: 'anltcs-graph.html',
         scope: {},
@@ -57,6 +57,12 @@ function AnltcsGraphController(tracker, sessionStore) {
 
     // TODO: clean this up
     function calcX() {
-        return Math.floor(sessionStore.get() / tracker.get() * 142);
+        var result = Math.floor(sessionStore.get() / tracker.get() * 135);
+
+        if (isNaN(result)) {
+            return 0;
+        } else {
+            return result;
+        }
     }
 }

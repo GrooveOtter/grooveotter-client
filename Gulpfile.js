@@ -43,7 +43,8 @@ gulp.task('compile', ['templates'], function() {
         'src/**/*.js',
         'build/templates.js',
         'build/components/foundation/js/foundation/foundation.js',
-        'build/components/foundation/js/foundation/foundation.topbar.js'
+        'build/components/foundation/js/foundation/foundation.topbar.js',
+        'build/components/foundation/js/foundation/foundation.tab.js'
     ];
 
     return gulp.src(sources)
@@ -85,6 +86,7 @@ gulp.task('migration', function() {
         'public/**',
         'build/components/angular/angular.min.js',
         'build/components/angular-route/angular-route.min.js',
+        'build/components/angular-animate/angular-animate.min.js',
         'build/components/jquery/dist/jquery.min.js'
     ];
 

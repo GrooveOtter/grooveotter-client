@@ -4,7 +4,7 @@ angular.module('gotr')
 TimeBox.$inject = [];
 function TimeBox() {
     var directive = {
-        restrit: 'EA',
+        restrict: 'EA',
         replace: true,
         templateUrl: 'time-box.html',
         scope: {
@@ -20,4 +20,8 @@ function TimeBox() {
 }
 
 TimeBoxController.$inject = [];
-function TimeBoxController() {}
+function TimeBoxController() {
+    var vm = this;
+
+    vm.input = vm.choice / (60 * 1000);
+}
