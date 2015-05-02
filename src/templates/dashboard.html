@@ -3,14 +3,20 @@
 <div class="row bottom-half">
     <div class="left-part columns">
         <ul class="tabs" data-tab>
-            <li class="tab-title active"><a href="#">Today</a></li>
-            <li class="tab-title"><a href="#">Blocker</a></li>
-            <li class="tab-title"><a href="#">Archive</a></li>
+            <li
+                ng-repeat="tab in vm.tabs"
+                class="tab-title"
+                ng-class="{active: tab.active}">
+                <a ng-click="vm.selectTab(tab)">{{tab.title}}</a>
+            </li>
         </ul>
 
         <div class="tabs-content">
-            <div class="content active">
-                <gotr-task-list task-list="vm.taskList"></gotr-task-list>
+            <div
+                ng-repeat="tab in vm.tabs"
+                class="content"
+                ng-class="{active: tab.active}">
+                <div ng-include="tab.content"></div>
             </div>
         </div>
     </div>
