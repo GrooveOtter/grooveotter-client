@@ -101,6 +101,10 @@ svg:hover .pencil {
                 opacity: 0;
             }
         }
+
+        &:disabled {
+            background: inherit;
+        }
     }
 }
 
@@ -231,12 +235,12 @@ svg:hover .pencil {
             }
 
             &.ng-leave, &.ng-leave.gotr-checkmark {
-                transition: 1s 0.1s ease all;
+                transition: 1s 100ms ease all;
             }
 
             &.ng-leave.ng-leave-active {
                 opacity: 0;
-                transform: translateX(100%);
+                transform: translate(5px, 5px);
             }
         }
     }
