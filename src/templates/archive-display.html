@@ -1,15 +1,23 @@
 <div class="gotr-archive-display">
     <button
-        class="tiny radius info"
+        class="small radius info"
         ng-disabled="!vm.isPrevWeek()"
-        ng-click="vm.prevWeek()">&lt;</button>
+        ng-click="vm.prevWeek()">
+        &lt;
+    </button>
 
     <button
-        class="tiny radius info"
+        class="small radius info"
         ng-disabled="!vm.isNextWeek()"
-        ng-click="vm.nextWeek()">&gt;</button>
+        ng-click="vm.nextWeek()">
+        &gt;
+    </button>
 
-    <button class="tiny radius info" ng-click="vm.currentWeekIndex = 0">{{ vm.weeks[vm.currentWeekIndex].date }}</button>
+    <button
+        class="small radius info"
+        ng-click="vm.currentWeekIndex = 0"
+        ng-bind="vm.weeks[vm.currentWeekIndex].date">
+    </button>
 
     <ul class="accordion">
         <li class="accordion-navigation" ng-repeat="day in vm.weeks[vm.currentWeekIndex].days">
