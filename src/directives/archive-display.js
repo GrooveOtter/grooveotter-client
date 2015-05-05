@@ -30,14 +30,9 @@ function ArchiveDisplayController($filter) {
 
     vm.weeks = _.chain(tasks)
         .groupBy(dayOf)
-        .map(function(tasks, day) {
-            return {
-                date: new Date(day),
-                tasks: tasks,
-                open: false
-            };
-        })
+        .map(toDayObj)
         .groupBy(weekOf)
+        .map(toWeekObj)
         .value();
 
     function dayOf(task) {
@@ -53,6 +48,21 @@ function ArchiveDisplayController($filter) {
         saturday.setDate(saturday.getDate() + 6);
 
         return format(sunday, 'MMM d') + ' - ' + format(saturday, 'MMM d');
+    }
+
+    function toDayObj(tasks, day) {
+        return {
+            date: new Date(day),
+            tasks: tasks,
+            open: false
+        };
+    }
+
+    function toWeekObj(days, week) {
+        return {
+            date: week,
+            days: days,
+        };
     }
 
     function mockTasks() {

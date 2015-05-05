@@ -1,13 +1,15 @@
-<ul class="accordion" ng-repeat="(week, days) in vm.weeks">
-    <span>{{ week }}</span>
+<div>
+    <ul class="accordion" ng-repeat="week in vm.weeks">
+        <span>{{ week.date }}</span>
 
-    <li class="accordion-navigation" ng-repeat="day in days">
-        <a ng-click="day.open = !day.open">{{ day.date | date: 'EEEE, MMMM d' }}</a>
+        <li class="accordion-navigation" ng-repeat="day in week.days">
+            <a ng-click="day.open = !day.open">{{ day.date | date: 'EEEE, MMMM d' }}</a>
 
-        <div class="content" ng-class="{active: day.open}">
-            <ul>
-                <li ng-repeat="task in day.tasks">{{ task.title }}</li>
-            </ul>
-        </div>
-    </li>
-</ul>
+            <div class="content" ng-class="{active: day.open}">
+                <ul>
+                    <li ng-repeat="task in day.tasks">{{ task.title }}</li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
