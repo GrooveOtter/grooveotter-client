@@ -265,3 +265,29 @@ svg:hover .pencil {
 .gotr-checkmark:hover {
     cursor: pointer;
 }
+
+.gotr-archive-display {
+    & button.tiny {
+        background: inherit;
+        border: 1px solid #ccc;
+        color: #989cad;
+    }
+
+    & ul.accordion {
+        margin: 0;
+
+        & > li > a {
+            background: inherit;
+        }
+
+        & > li, & .content.active {
+            border-top: 1px solid #ccc;
+            background: inherit;
+            color: #989cad;
+        }
+
+        & > li:last-child {
+            border-bottom: 1px solid #ccc;
+        }
+    }
+}
