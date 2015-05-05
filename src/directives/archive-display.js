@@ -73,22 +73,22 @@ function ArchiveDisplayController($filter) {
 
     function nextWeek() {
         if (isNextWeek()) {
-            vm.currentWeekIndex += 1;
+            vm.currentWeekIndex -= 1;
         }
     }
 
     function prevWeek() {
         if (isPrevWeek()) {
-            vm.currentWeekIndex -= 1;
+            vm.currentWeekIndex += 1;
         }
     }
 
     function isNextWeek() {
-        return vm.currentWeekIndex < vm.weeks.length - 1;
+        return vm.currentWeekIndex > 0;
     }
 
     function isPrevWeek() {
-        return vm.currentWeekIndex > 0;
+        return vm.currentWeekIndex < vm.weeks.length - 1;
     }
 
     function mockTasks() {
