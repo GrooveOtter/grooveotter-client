@@ -23,8 +23,14 @@ function ArchiveDisplayDirective() {
 ArchiveDisplayController.$inject = ['$filter'];
 function ArchiveDisplayController($filter) {
     var vm = this;
-
     var format = $filter('date');
+
+    vm.currentWeekIndex = 0;
+
+    vm.nextWeek = nextWeek;
+    vm.prevWeek = prevWeek;
+    vm.isNextWeek = isNextWeek;
+    vm.isPrevWeek = isPrevWeek;
 
     var tasks = mockTasks();
 
@@ -63,6 +69,26 @@ function ArchiveDisplayController($filter) {
             date: week,
             days: days,
         };
+    }
+
+    function nextWeek() {
+        if (isNextWeek()) {
+            vm.currentWeekIndex += 1;
+        }
+    }
+
+    function prevWeek() {
+        if (isPrevWeek()) {
+            vm.currentWeekIndex -= 1;
+        }
+    }
+
+    function isNextWeek() {
+        return vm.currentWeekIndex < vm.weeks.length - 1;
+    }
+
+    function isPrevWeek() {
+        return vm.currentWeekIndex > 0;
     }
 
     function mockTasks() {

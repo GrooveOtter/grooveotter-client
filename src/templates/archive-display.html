@@ -1,8 +1,18 @@
 <div>
-    <ul class="accordion" ng-repeat="week in vm.weeks">
-        <span>{{ week.date }}</span>
+    <button
+        class="tiny radius info"
+        ng-disabled="!vm.isPrevWeek()"
+        ng-click="vm.prevWeek()">&lt;</button>
 
-        <li class="accordion-navigation" ng-repeat="day in week.days">
+    <button
+        class="tiny radius info"
+        ng-disabled="!vm.isNextWeek()"
+        ng-click="vm.nextWeek()">&gt;</button>
+
+    <button class="tiny radius info" ng-click="vm.currentWeekIndex = 0">{{ vm.weeks[vm.currentWeekIndex].date }}</button>
+
+    <ul class="accordion">
+        <li class="accordion-navigation" ng-repeat="day in vm.weeks[vm.currentWeekIndex].days">
             <a ng-click="day.open = !day.open">{{ day.date | date: 'EEEE, MMMM d' }}</a>
 
             <div class="content" ng-class="{active: day.open}">
