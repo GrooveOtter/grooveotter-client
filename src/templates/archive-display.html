@@ -17,7 +17,11 @@
                 <span ng-bind="day.date | date: 'EEEE, MMMM d'"></span>
 
                 <div class="right">
-                    <span>{{ day.tasks.length }} task(s) complete</span>
+                    <ng-pluralize
+                        count="day.tasks.length"
+                        when="{'1': '1 task complete', 'other': '{} tasks complete'}">
+                    </ng-pluralize>
+
                     <span>{{ day.open ? '&darr;' : '&rarr;' }}</span>
                 </div>
             </a>
@@ -27,7 +31,7 @@
                     <span ng-bind="task.title"></span>
 
                     <div class="right">
-                        <span>{{ task.duration | date: 'm' }} min(s)</span>
+                        <span>{{ task.duration | date: 'm' }} mins</span>
                     </div>
                 </li>
             </div>
