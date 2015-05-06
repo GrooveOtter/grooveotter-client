@@ -1,38 +1,38 @@
 .gotr-nav-top {
-  height: 4.375em;
-  position: relative;
-  background: $gotr-primary;
+    height: 4.375em;
+    position: relative;
+    background: $gotr-primary;
 }
 
 .gotr-navbar {
-  left: 0;
-  position: relative;
-  width: auto;
+    left: 0;
+    position: relative;
+    width: auto;
 
-  & .gotr-navbar-left {
-    float: left;
-    padding: 15px 0 15px 35px;
-  }
-
-  & .gotr-navbar-right {
-    float: right;
-    padding: 26px 40px 26px 0;
-  }
-
-  & .gotr-navbar-item {
-    color: lighten($gotr-primary, 30%);
-    padding: 0 20px;
-
-    &:first-child {
-      padding-left: 0;
+    & .gotr-navbar-left {
+        float: left;
+        padding: 15px 0 15px 35px;
     }
 
-    &:last-child {
-      padding-right: 0;
+    & .gotr-navbar-right {
+        float: right;
+        padding: 26px 40px 26px 0;
     }
 
-    &:hover, &.gotr-navbar-item-active {
-      color: $gotr-white;
+    & .gotr-navbar-item {
+        color: lighten($gotr-primary, 30%);
+        padding: 0 20px;
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+
+        &:hover, &.gotr-navbar-item-active {
+            color: $gotr-white;
+        }
     }
-  }
 }

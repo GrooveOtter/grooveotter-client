@@ -1,36 +1,36 @@
 .gotr-hero {
-  background: $gotr-offwhite;
-  padding: 60px 0;
-  min-height: 200px; // TODO: Get rid of this
+    background: $gotr-offwhite;
+    padding: 60px 0;
+    min-height: 200px; // TODO: Get rid of this
 }
 
 .gotr-wing {
-  padding: 25px 0;
+    padding: 25px 0;
 }
 
 .gotr-row {
-  max-width: $gotr-row-width;
-  padding: 0 10px;
-  margin: 0 auto;
+    max-width: $gotr-row-width;
+    padding: 0 10px;
+    margin: 0 auto;
 
-  & .gotr-row-left-panel {
-    position: relative;
-    width: 100%;
-    max-width: $gotr-row-left-panel-width;
-    float: left;
-  }
-
-  & .gotr-row-right-panel {
-    position: relative;
-    width: 100%;
-    max-width: $gotr-row-right-panel-width;;
-    float: right;
-  }
-
-  @media screen and (max-width: $gotr-row-cutoff) {
-    & .gotr-row-left-panel, & .gotr-row-right-panel {
-      float: none;
+    & .gotr-row-left-panel {
+        position: relative;
+        width: 100%;
+        max-width: $gotr-row-left-panel-width;
+        float: left;
     }
-  }
+
+    & .gotr-row-right-panel {
+        position: relative;
+        width: 100%;
+        max-width: $gotr-row-right-panel-width;;
+        float: right;
+    }
+
+    @media screen and (max-width: $gotr-row-cutoff) {
+        & .gotr-row-left-panel, & .gotr-row-right-panel {
+            float: none;
+        }
+    }
 }
 

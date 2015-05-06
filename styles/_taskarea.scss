@@ -1,32 +1,32 @@
 .gotr-taskarea {
-  margin: 0 auto;
+    margin: 0 auto;
 
-  & .gotr-taskarea-box {
-    background: inherit;
-    border-bottom: 1px solid $gotr-subtle;
-    font-size: 2em;
-    font-weight: 200;
-    margin-bottom: 25px;
-    padding: 10px 0;
-    width: 100%;
+    & .gotr-taskarea-box {
+        background: inherit;
+        border-bottom: 1px solid $gotr-subtle;
+        font-size: 2em;
+        font-weight: 200;
+        margin-bottom: 25px;
+        padding: 10px 0;
+        width: 100%;
 
-    &:focus {
-      padding: 18px;
-      margin-bottom: 24px;
-      font-size: 1.25em;
-      font-weight: normal;
-      background: $gotr-white;
-      border-radius: 5px;
-      box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+        &:focus {
+            padding: 18px;
+            margin-bottom: 24px;
+            font-size: 1.25em;
+            font-weight: normal;
+            background: $gotr-white;
+            border-radius: 5px;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+        }
     }
-  }
 
-  & .gotr-button {
-    width: 195px;
-    padding: 1em 0;
+    & .gotr-button {
+        width: 195px;
+        padding: 1em 0;
 
-    &:first-of-type {
-      margin: 0 10px 10px 0;
+        &:first-of-type {
+            margin: 0 10px 10px 0;
+        }
     }
-  }
 }
