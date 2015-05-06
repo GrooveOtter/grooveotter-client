@@ -1,0 +1,90 @@
+.gotr-timer-area {
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+
+  &:hover {
+    background: $gotr-offoffwhite;
+
+    & .gotr-timer {
+      display: none;
+    }
+
+    & .gotr-selector {
+      display: block;
+    }
+  }
+}
+
+.gotr-timer {
+  & .gotr-timer-counter {
+    font-size: 2.5em;
+    font-weight: 200;
+    position: absolute;
+    text-align: center;
+    top: 80px; // TODO: get rid of this
+    width: 100%;
+  }
+
+  & .gotr-timer-graphic {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    position: relative;
+
+    & .gotr-timer-background, & .gotr-timer-shadow, & .gotr-timer-foreground {
+      fill: none;
+    }
+
+    & .gotr-timer-background, & .gotr-timer-shadow {
+      stroke-width: 24px;
+    }
+
+    & .gotr-timer-shadow {
+      stroke: rgba(0, 0, 0, 0.1);
+    }
+
+    & .gotr-timer-background {
+      stroke: $gotr-offoffwhite;
+    }
+
+    & .gotr-timer-foreground {
+      stroke: $gotr-secondary;
+      stroke-width: 3px;
+    }
+  }
+}
+
+.gotr-selector {
+  display: none;
+  max-width: 140px;
+  height: 100px;
+  margin: 50px auto;
+
+  & .gotr-selector-option {
+    border: 1px solid $gotr-subtle;
+    color: inherit;
+    height: 38px;
+    margin-right: 1px;
+    width: 41px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  & .gotr-selector-box {
+    background: #fff;
+    border-radius: 4px;
+    height: 25px;
+    margin-bottom: 10px;
+    max-width: 103px;
+    padding: 15px;
+    font-size: 1.125em;
+
+    & .gotr-selector-box-input {
+      width: 60px;
+    }
+  }
+}

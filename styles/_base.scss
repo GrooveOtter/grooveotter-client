@@ -1,0 +1,70 @@
+$gotr-background: #fdfdfd;
+$gotr-foreground: #4c4f5d;
+
+$gotr-white: #ffffff;
+$gotr-offwhite: #f5f6f6;
+$gotr-offoffwhite: #ededed;
+$gotr-subtle: #dbdcdc;
+$gotr-grey: #989cad;
+
+$gotr-primary: #5e809e;
+$gotr-secondary: #74aa8b;
+
+$gotr-row-width: 940px;
+$gotr-row-cutoff: $gotr-row-width + 20px;
+$gotr-row-left-panel-width: 700px;
+$gotr-row-right-panel-width: 200px;
+
+html {
+  font-family: proxima-nova, sans-serif;
+  background: $gotr-background;
+  color: $gotr-foreground;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+input, button {
+  background: none;
+  border: 0;
+  outline: 0;
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+}
+
+.gotr-button {
+  border-radius: 4px;
+  color: $gotr-white;
+  font-size: 1em;
+
+  &.gotr-button-primary {
+    background: $gotr-primary;
+  }
+
+  &.gotr-button-secondary {
+    background: $gotr-secondary;
+  }
+}
+
+.gotr-checkbox {
+  width: 24px;
+  height: 24px;
+  background: url(/images/unchecked.svg) no-repeat 0 0;
+  display: inline-block;
+}
+
+.gotr-checkbox.gotr-checkbox-checked, .gotr-checkbox:hover {
+    background: url(/images/checked.svg) no-repeat 0 0;
+}
+
+.gotr-checkbox:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,24 @@
+.gotr-tabs {
+  border-bottom: 1px solid $gotr-subtle;
+
+  & .gotr-tab-title {
+    box-sizing: border-box;
+    color: $gotr-grey;
+    display: inline-block;
+    padding: 10px 0;
+    margin: 0 20px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.gotr-tab-title-active {
+      color: $gotr-foreground;
+      border-bottom: 5px solid $gotr-primary;
+    }
+  }
+}
