@@ -6,20 +6,23 @@
     padding: 20px;
     position: relative;
 
-    .gotr-anltcs-count {
+    & .gotr-anltcs-count {
         text-align: center;
         font-size: 2em;
-        font-weight: 200;
         margin-bottom: 10px;
     }
 
-    .gotr-anltcs-desc {
+    & .gotr-anltcs-desc {
         text-align: center;
         color: $gotr-grey;
         margin-bottom: 15px;
     }
 
-    .gotr-anltcs-graphic {
+    & .gotr-anltcs-desc, & .gotr-anltcs-minutes {
+        font-weight: 600;
+    }
+
+    & .gotr-anltcs-graphic {
         position: absolute;
         left: 15px;
         width: 150px;
@@ -41,10 +44,10 @@
         }
     }
 
-    .gotr-anltcs-minutes {
+    & .gotr-anltcs-minutes {
         color: $gotr-grey;
 
-        .gotr-anltcs-minutes-working, .gotr-anltcs-minutes-organizing {
+        & .gotr-anltcs-minutes-working, & .gotr-anltcs-minutes-organizing {
             border-radius: 3px;
             display: inline-block;
             height: 10px;
@@ -52,12 +55,12 @@
             width: 10px;
         }
 
-        .gotr-anltcs-minutes-working {
+        & .gotr-anltcs-minutes-working {
             margin-top: 40px;
             background: $gotr-secondary;
         }
 
-        .gotr-anltcs-minutes-organizing {
+        & .gotr-anltcs-minutes-organizing {
             margin-top: 20px;
             background: $gotr-primary;
         }

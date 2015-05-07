@@ -19,6 +19,7 @@ html {
     font-family: proxima-nova, sans-serif;
     background: $gotr-background;
     color: $gotr-foreground;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -44,7 +45,7 @@ ul, ol {
 .gotr-button {
     border-radius: 4px;
     color: $gotr-white;
-    font-size: 1em;
+    font-weight: 700;
 
     &.gotr-button-primary {
         background: $gotr-primary;
