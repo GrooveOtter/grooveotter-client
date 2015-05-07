@@ -5,121 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
     <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
-    <nav class="gotr-nav-top">
-        <div class="gotr-navbar">
-            <div class="gotr-navbar-left">
-                <a href="#" class="gotr-navbar-item"><img src="images/logo.svg"></a>
-            </div>
-            <div class="gotr-navbar-right"><a href="#" class="gotr-navbar-item gotr-navbar-item-active">Timer</a>
-                <a
-                href="#" class="gotr-navbar-item">How To</a><a href="#" class="gotr-navbar-item">Login</a></div>
-        </div>
-    </nav>
-
-    <div class="gotr-hero">
-        <div class="gotr-row">
-            <div class="gotr-row-right-panel gotr-timer-area">
-                <div class="gotr-timer">
-                    <input type="text" value="20:00" class="gotr-timer-counter">
-                    <svg class="gotr-timer-graphic">
-                        <path d="M 100 12 A 88 88 0 1 0 100.00015358897419 12.000000000134037"
-                        class="gotr-timer-shadow"></path>
-                        <path d="M 100 13 A 88 88 0 1 0 100.00015358897419 13.000000000134037"
-                        class="gotr-timer-background"></path>
-                        <path d="M 100 13 A 88 88 0 1 0 100.00015358897419 13.000000000134037"
-                        class="gotr-timer-foreground"></path>
-                    </svg>
-                </div>
-                <div class="gotr-selector">
-                    <div class="gotr-selector-box">
-                        <input value="20" class="gotr-selector-box-input">mins</div>
-                    <button class="gotr-button gotr-selector-option">15</button>
-                    <button class="gotr-button gotr-selector-option">25</button>
-                    <button class="gotr-button gotr-selector-option">45</button>
-                </div>
-            </div>
-            <div class="gotr-row-left-panel gotr-taskarea">
-                <input type="text" placeholder="What are you working on?" class="gotr-taskarea-box">
-                <button class="gotr-button gotr-button-secondary">Start Task</button>
-                <button class="gotr-button gotr-button-primary">Add to list for later</button>
-            </div>
-        </div>
-    </div>
-    <div class="gotr-wing">
-        <div class="gotr-row">
-            <div class="gotr-row-right-panel">
-                <div class="gotr-anltcs">
-                    <div class="gotr-anltcs-count">45</div>
-                    <div class="gotr-anltcs-desc">minutes in Groove</div>
-                    <svg class="gotr-anltcs-graphic">
-                        <mask id="gotr-anltcs-bar">
-                            <line x1="10" y1="10" y2="10" x2="140"></line>
-                        </mask>
-                        <line x1="91" y1="10" x2="200" y2="10" class="gotr-anltcs-background"></line>
-                        <line x1="0" y1="10" y2="10" x2="90" class="gotr-anltcs-foreground"></line>
-                    </svg>
-                    <div class="gotr-anltcs-minutes"><span class="gotr-anltcs-minutes-working"></span>577 working</div>
-                    <div
-                    class="gotr-anltcs-minutes"><span class="gotr-anltcs-minutes-organizing"></span>62 organizing</div>
-            </div>
-        </div>
-        <div class="gotr-row-left-panel">
-            <div class="gotr-tabs">
-                <div class="gotr-tab-title gotr-tab-title-active">Today</div>
-                <div class="gotr-tab-title">Blocker</div>
-                <div class="gotr-tab-title">Archive</div>
-            </div>
-            <div class="gotr-task-list">
-                <div class="gotr-task">
-                    <div class="gotr-task-left">
-                        <div class="gotr-checkbox"></div>
-                        <input value="Start researching ideas for new project"
-                        class="gotr-task-text">
-                    </div>
-                    <div class="gotr-task-right">
-                        <button class="gotr-button gotr-task-button gotr-task-button-start">Start task</button>
-                        <input value="60" class="gotr-task-duration">
-                        <div class="gotr-task-mins">mins</div>
-                        <a href="#" class="gotr-task-kill"></a>
-                    </div>
-                </div>
-                <div class="gotr-task">
-                    <div class="gotr-task-left">
-                        <div class="gotr-checkbox"></div>
-                        <input value="Produce full set of wireframes" class="gotr-task-text">
-                    </div>
-                    <div class="gotr-task-right">
-                        <button class="gotr-button gotr-task-button gotr-task-button-start">Start task</button>
-                        <input value="60" class="gotr-task-duration">
-                        <div class="gotr-task-mins">mins</div>
-                        <a href="#" class="gotr-task-kill"></a>
-                    </div>
-                </div>
-                <div class="gotr-task">
-                    <div class="gotr-task-left">
-                        <div class="gotr-checkbox"></div>
-                        <input value="Post shot to dribbble" class="gotr-task-text">
-                    </div>
-                    <div class="gotr-task-right">
-                        <button class="gotr-button gotr-task-button gotr-task-button-start">Start task</button>
-                        <input value="60" class="gotr-task-duration">
-                        <div class="gotr-task-mins">mins</div>
-                        <a href="#" class="gotr-task-kill"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+    <div id="main"></div>
 
     <script src="scripts/bundle.js"></script>
     <script src="//use.typekit.net/tpg8qjl.js"></script>
-    <script>Typekit.load();</script>
+    <script>Typekit.load(); gotrMain()</script>
 </body>
 </html>
-

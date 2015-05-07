@@ -1,8 +1,8 @@
 .gotr-taskarea {
-    margin: 0 auto;
+    margin: 30px auto;
 
     & .gotr-taskarea-box {
-        background: inherit;
+        box-sizing: border-box;
         border-bottom: 1px solid $gotr-subtle;
         font-size: 2em;
         font-weight: 200;
@@ -18,12 +18,21 @@
             background: $gotr-white;
             border-radius: 5px;
             box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+
+            &::-webkit-input-placeholder {
+                color: transparent;
+            }
+        }
+
+        &::-webkit-input-placeholder {
+            color: inherit;
         }
     }
 
     & .gotr-button {
         width: 195px;
         padding: 1em 0;
+        color: $gotr-offwhite;
 
         &:first-of-type {
             margin: 0 10px 10px 0;

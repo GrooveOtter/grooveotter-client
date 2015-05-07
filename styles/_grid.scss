@@ -13,16 +13,17 @@
     padding: 0 10px;
     margin: 0 auto;
 
-    & .gotr-row-left-panel {
+    & .gotr-row-left-panel, & .gotr-row-right-panel {
         position: relative;
         width: 100%;
+    }
+
+    & .gotr-row-left-panel {
         max-width: $gotr-row-left-panel-width;
         float: left;
     }
 
     & .gotr-row-right-panel {
-        position: relative;
-        width: 100%;
         max-width: $gotr-row-right-panel-width;;
         float: right;
     }
@@ -30,6 +31,7 @@
     @media screen and (max-width: $gotr-row-cutoff) {
         & .gotr-row-left-panel, & .gotr-row-right-panel {
             float: none;
+            max-width: 100%;
         }
     }
 }

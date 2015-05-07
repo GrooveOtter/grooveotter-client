@@ -1,8 +1,6 @@
-var React = require('react');
+var React = window.React = require('react');
+var Main = require('./components/main');
 
-var Main = React.createClass({
-    render: function() {
-        return <div>
-        </div>;
-    }
-});
+window.gotrMain = function() {
+    React.render(<Main/>, document.getElementById('main'));
+};

@@ -18,7 +18,12 @@
 
         &.gotr-tab-title-active {
             color: $gotr-foreground;
+            font-weight: 600;
             border-bottom: 5px solid $gotr-primary;
+        }
+
+        &:hover {
+            cursor: pointer;
         }
     }
 }
