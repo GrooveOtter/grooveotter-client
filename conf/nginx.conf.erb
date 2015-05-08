@@ -1,0 +1,23 @@
+daemon           off;
+worker_processes <%= ENV['WEB_CONCURRENCY'] %>;
+events {
+    worker_connections  1024;
+}
+
+http {
+    include           mime.types;
+    default_type      application/octet-stream;
+    sendfile          on;
+    keepalive_timeout 65;
+    gzip              on;
+
+    server {
+        listen <%= ENV['PORT'] %>;
+        server_name localhost;
+
+        location / {
+            root <%= "#{Dir.pwd}/dist/build" %>;
+            index   index.html index.htm;
+        }
+    }
+}
