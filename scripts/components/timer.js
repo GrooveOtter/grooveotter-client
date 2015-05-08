@@ -79,13 +79,20 @@ var Timer = React.createClass({
     },
 
     componentDidMount: function() {
-        this.interval = setInterval(function() {
-            this.forceUpdate();
-        }.bind(this), 30);
+        this.continue = true;
+
+        var self = this;
+        requestAnimationFrame(function update() {
+            self.forceUpdate();
+
+            if (self.continue) {
+                requestAnimationFrame(update);
+            }
+        });
     },
 
     componentWillUnmount: function() {
-        clearInterval(this.interval);
+        this.continue = false;
     },
 
     render: function() {
