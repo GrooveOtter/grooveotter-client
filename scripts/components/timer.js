@@ -83,9 +83,8 @@ var Timer = React.createClass({
 
         var self = this;
         requestAnimationFrame(function update() {
-            self.forceUpdate();
-
             if (self.continue) {
+                self.forceUpdate();
                 requestAnimationFrame(update);
             }
         });
