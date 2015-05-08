@@ -31,6 +31,10 @@ var actions = module.exports = {
     },
 
     logSessionTime: function(time) {
-        // todo
+        this.dispatch(constants.LOG_SESSION_TIME, {time: time});
+    },
+
+    logSiteTime: function(time) {
+        this.dispatch(constants.LOG_SITE_TIME, {time: time});
     }
 };
