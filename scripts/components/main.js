@@ -1,4 +1,5 @@
 var React = require('react');
+var Fluxxor = require('fluxxor');
 var Nav = require('./navbar');
 var Grid = require('./grid');
 var Timer = require('./timer');
@@ -7,25 +8,12 @@ var Anltcs = require('./anltcs');
 var Tabs = require('./tabs');
 var TaskList = require('./task-list');
 
-var Main = module.exports = React.createClass({
-    render: function() {
-        var tasks = [{
-            id: 'asdf',
-            title: 'Start researching ideas for new project',
-            duration: 20 * 60 * 60 * 1000,
-            completed: false
-        }, {
-            id: 'fdsa',
-            title: 'Produce full set of wireframes',
-            duration: 30 * 60 * 60 * 1000,
-            completed: false
-        }, {
-            id: '123asdf',
-            title: 'Post shot to dribbble',
-            duration: 60 * 60 * 60 * 1000,
-            completed: false
-        }];
+var FluxMixin = Fluxxor.FluxMixin(React);
 
+var Main = module.exports = React.createClass({
+    mixins: [FluxMixin],
+
+    render: function() {
         return <div>
             <Nav>
                 <Nav.Left>
@@ -43,9 +31,13 @@ var Main = module.exports = React.createClass({
 
             <Grid.Hero>
                 <Grid.Row>
-                    <Grid.Right><Timer/></Grid.Right>
+                    <Grid.Right>
+                        <Timer/>
+                    </Grid.Right>
 
-                    <Grid.Left><TaskArea/></Grid.Left>
+                    <Grid.Left>
+                        <TaskArea/>
+                    </Grid.Left>
                 </Grid.Row>
             </Grid.Hero>
 
@@ -61,7 +53,7 @@ var Main = module.exports = React.createClass({
                             <Tabs.Title>Archive</Tabs.Title>
                         </Tabs>
 
-                        <TaskList tasks={tasks}/>
+                        <TaskList/>
                     </Grid.Left>
                 </Grid.Row>
             </Grid.Wing>

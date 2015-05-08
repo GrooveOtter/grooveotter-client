@@ -2,7 +2,7 @@ var React = require('react');
 
 var PrimaryButton = exports.PrimaryButton = React.createClass({
     render: function() {
-        return <button className="gotr-button gotr-button-primary">
+        return <button className="gotr-button gotr-button-primary" {...this.props}>
             {this.props.children}
         </button>;
     }
@@ -10,7 +10,7 @@ var PrimaryButton = exports.PrimaryButton = React.createClass({
 
 var SecondaryButton = exports.SecondaryButton = React.createClass({
     render: function() {
-        return <button className="gotr-button gotr-button-secondary">
+        return <button className="gotr-button gotr-button-secondary" {...this.props}>
             {this.props.children}
         </button>;
     }

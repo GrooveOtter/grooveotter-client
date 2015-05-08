@@ -22,6 +22,11 @@ var b = browserify({
     transform: [reactify]
 });
 
+// this is substack's fault:
+b.exclude('jquery');
+b.exclude('underscore');
+// ...all aboard the substack-hate-train
+
 function bundle() {
     return b.bundle()
         .on('error', function(err) {
