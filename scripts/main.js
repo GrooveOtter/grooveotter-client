@@ -9,3 +9,21 @@ var flux = window.flux = new Fluxxor.Flux(stores, actions);
 window.gotrMain = function() {
     React.render(<Main flux={flux}/>, document.getElementById('main'));
 };
+
+window.addEventListener('mousemove', function() {
+    flux.actions.userAction();
+});
+
+window.addEventListener('focus', function() {
+    flux.actions.userAction();
+});
+
+window.addEventListener('unload', function() {
+    flux.actions.userAction();
+    flux.actions.userLeave();
+});
+
+window.addEventListener('blur', function() {
+    flux.actions.userAction();
+    flux.actions.userLeave();
+});
