@@ -5,26 +5,53 @@ var constants = require('../constants');
 var AnltcsStore = module.exports = Fluxxor.createStore({
     initialize: function() {
         this.bindActions(
-            constants.LOG_SESSION_TIME, this.onLogSessionTime,
-            constants.LOG_SITE_TIME, this.onLogSiteTime
+            constants.COMPLETE_TASK, this.onCompleteTask
         );
     },
 
-    onLogSessionTime: function(payload) {
-        var time = payload.time;
-        var total = localStore.getItem('session-time') || 0;
+    onCompleteTask: function(payload) {
+        var task = payload.task;
+        var flux = this.flux;
+        var session = flux.store('SessionStore').getSession();
+        var sessionTask = session.get('task');
 
-        localStore.setItem('session-time', time + total);
+        if (task.id === sessionTask.id) {
+            var time = session.elapsedTime();
+            this.logSessionTime(time);
+        }
     },
 
-    onLogSiteTime: function(payload) {
-        var time = payload.time;
-        var total = localStore.getItem('site-time') || 0;
+    logSessionTime: function(time) {
+        var total = this.getSessionTime();
 
-        localStore.setItem('site-time', time + total);
+        localStorage.setItem('session-time', time + total);
+        this.emit('change');
     },
 
-    getSession: function() {
-        return this.session;
+    logSiteTime: function(time) {
+        var total = this.getSiteTime();
+
+        localStorage.setItem('site-time', time + total);
+        this.emit('change');
+    },
+
+    getSessionTime: function() {
+         var time = localStorage.getItem('session-time');
+
+         if (time == null) {
+             return 0;
+         } else {
+             return +time;
+         }
+    },
+
+    getSiteTime: function() {
+         var time = localStorage.getItem('site-time');
+
+         if (time == null) {
+             return 0;
+         } else {
+             return +time;
+         }
     }
 });

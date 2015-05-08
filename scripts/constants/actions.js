@@ -28,13 +28,5 @@ var actions = module.exports = {
 
     deleteTask: function(task) {
         this.dispatch(constants.DELETE_TASK, {task: task});
-    },
-
-    logSessionTime: function(time) {
-        this.dispatch(constants.LOG_SESSION_TIME, {time: time});
-    },
-
-    logSiteTime: function(time) {
-        this.dispatch(constants.LOG_SITE_TIME, {time: time});
     }
 };

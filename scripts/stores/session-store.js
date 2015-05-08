@@ -42,8 +42,6 @@ var SessionStore = module.exports = Fluxxor.createStore({
 
         if (task.id === activeTask.id) {
             this.complete();
-            this.resetSession();
-            this.emit('change');
         }
     },
 
@@ -52,7 +50,10 @@ var SessionStore = module.exports = Fluxxor.createStore({
         var session = this.session;
         var task = session.get('task');
 
-        flux.actions.logSessionTime(session.elapsedTime());
+        this.waitFor(['AnltcsStore'], function() {
+            this.resetSession();
+            this.emit('change');
+        });
     },
 
     onDeleteTask: function(payload) {
