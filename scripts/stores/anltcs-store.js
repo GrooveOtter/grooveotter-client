@@ -43,8 +43,9 @@ var AnltcsStore = module.exports = Fluxxor.createStore({
     onUserLeave: function() {
         var started = this.started;
         var lastAction = this.lastAction;
+        var session = this.flux.store('SessionStore').getSession();
 
-        if (started != null) {
+        if (started != null && !session.isStarted()) {
             this.logSiteTime(lastAction - started);
             this.started = null;
         }
