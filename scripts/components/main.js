@@ -7,6 +7,7 @@ var TaskArea = require('./taskarea');
 var Anltcs = require('./anltcs');
 var Tabs = require('./tabs');
 var TaskList = require('./task-list');
+var Archive = require('./archive');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 
@@ -31,9 +32,7 @@ var Main = module.exports = React.createClass({
         var tabs = [
             {title: 'Today', content: <TaskList/>},
             {title: 'Blocker', content: <div/>},
-            {title: 'Archive', content: <div>
-                <h1>Hi</h1>
-            </div>}
+            {title: 'Archive', content: <Archive/>}
         ];
 
         return <div>
