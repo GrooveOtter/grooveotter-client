@@ -2,6 +2,9 @@
   "name": "grooveotter-client",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "postinstall": "gulp"
+  },
   "devDependencies": {
     "browserify": "^10.1.0",
     "gulp": "^3.8.11",
