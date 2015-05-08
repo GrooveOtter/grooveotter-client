@@ -13,7 +13,29 @@ var FluxMixin = Fluxxor.FluxMixin(React);
 var Main = module.exports = React.createClass({
     mixins: [FluxMixin],
 
+    getInitialState: function() {
+        return {
+            activeTabIndex: 0
+        };
+    },
+
+    updateActiveTabIndex: function(index) {
+        this.setState({
+            activeTabIndex: index
+        });
+    },
+
     render: function() {
+        var activeTabIndex = this.state.activeTabIndex;
+
+        var tabs = [
+            {title: 'Today', content: <TaskList/>},
+            {title: 'Blocker', content: <div/>},
+            {title: 'Archive', content: <div>
+                <h1>Hi</h1>
+            </div>}
+        ];
+
         return <div>
             <Nav>
                 <Nav.Left>
@@ -46,14 +68,11 @@ var Main = module.exports = React.createClass({
                     <Grid.Right><Anltcs/></Grid.Right>
 
                     <Grid.Left>
-                        {/* TODO: clean this up */}
-                        <Tabs>
-                            <Tabs.Title active>Today</Tabs.Title>
-                            <Tabs.Title>Blocker</Tabs.Title>
-                            <Tabs.Title>Archive</Tabs.Title>
-                        </Tabs>
-
-                        <TaskList/>
+                        <Tabs
+                            active={activeTabIndex}
+                            tabs={tabs}
+                            onNewTabIndex={this.updateActiveTabIndex}
+                        />
                     </Grid.Left>
                 </Grid.Row>
             </Grid.Wing>
