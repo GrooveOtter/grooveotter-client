@@ -28,5 +28,13 @@ var actions = module.exports = {
 
     deleteTask: function(task) {
         this.dispatch(constants.DELETE_TASK, {task: task});
+    },
+
+    userAction: function() {
+        this.dispatch(constants.USER_ACTION);
+    },
+
+    userLeave: function() {
+        this.dispatch(constants.USER_LEAVE);
     }
 };

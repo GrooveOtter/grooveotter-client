@@ -5,7 +5,7 @@ var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
 var Anltcs = module.exports = exports = React.createClass({
-    mixins: [FluxMixin, StoreWatchMixin('TaskListStore')],
+    mixins: [FluxMixin, StoreWatchMixin('AnltcsStore')],
 
     getStateFromFlux: function() {
         var flux = this.getFlux();
@@ -24,6 +24,10 @@ var Anltcs = module.exports = exports = React.createClass({
         var cord = (sessionTime / siteTime) * 130;
         var working = Math.floor(sessionTime / (60 * 1000));
         var organizing = Math.floor(siteTime / (60 * 1000)) - working;
+
+        if (isNaN(cord)) {
+            cord = 0;
+        }
 
         // TODO: setup linguistics
 
