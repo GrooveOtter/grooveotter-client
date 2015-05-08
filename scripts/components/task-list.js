@@ -35,7 +35,15 @@ var TaskList = module.exports = React.createClass({
 });
 
 var Task = React.createClass({
-    mixins: [FluxMixin],
+    mixins: [FluxMixin, StoreWatchMixin('SessionStore')],
+
+    getStateFromFlux: function() {
+        var flux = this.getFlux();
+
+        return {
+            session: flux.store('SessionStore').getSession()
+        };
+    },
 
     startTask: function() {
         var flux = this.getFlux();
@@ -78,6 +86,8 @@ var Task = React.createClass({
     },
 
     render: function() {
+        var session = this.state.session;
+        var sessionTask = session.get('task');
         var task = this.props.task;
         var title = task.get('title');
         var duration = task.get('duration');
@@ -86,6 +96,19 @@ var Task = React.createClass({
         var checkboxClass = classNs('gotr-checkbox', {
             'gotr-checkbox-checked': completed
         });
+
+        if (sessionTask.id === task.id) {
+            var button = <button
+                className="gotr-button gotr-task-button gotr-task-button-progress">
+                In Progress
+            </button>;
+        } else {
+            var button = <button
+                className="gotr-button gotr-task-button gotr-task-button-start"
+                onClick={this.startTask}>
+                Start task
+            </button>;
+        }
 
         return <div className="gotr-task">
             <div className="gotr-task-left">
@@ -99,11 +122,7 @@ var Task = React.createClass({
             </div>
 
             <div className="gotr-task-right">
-                <button
-                    className="gotr-button gotr-task-button gotr-task-button-start"
-                    onClick={this.startTask}>
-                    Start task
-                </button>
+                {button}
 
                 <input
                     type="number"

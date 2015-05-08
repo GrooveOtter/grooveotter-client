@@ -36,6 +36,14 @@
             &.gotr-task-button-start {
                 background: $gotr-secondary;
             }
+
+            &.gotr-task-button-progress {
+                background: $gotr-primary;
+
+                &:hover {
+                    cursor: default;
+                }
+            }
         }
 
         & .gotr-task-duration {
