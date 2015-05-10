@@ -1,7 +1,7 @@
 .gotr-nav-top {
-    height: 4.375em;
-    position: relative;
     background: $gotr-primary;
+    min-height: 4.375em;
+    overflow: hidden;
 }
 
 .gotr-navbar {
