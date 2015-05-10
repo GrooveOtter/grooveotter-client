@@ -1,17 +1,24 @@
 .gotr-hero {
     background: $gotr-offwhite;
-    padding: 60px 0;
+    padding-top: 40px;
+    padding-bottom: 60px;
+
+    & .gotr-row-right-panel, & .gotr-row-left-panel {
+        padding-top: 20px;
+    }
 }
 
 .gotr-wing {
-    padding: 25px 0;
+    & .gotr-row-right-panel, & .gotr-row-left-panel {
+        padding-top: 40px;
+    }
 }
 
 .gotr-row {
     margin: 0 auto;
     max-width: $gotr-row-width;
     overflow: hidden;
-    padding: 0 10px;
+    padding: 0 $gotr-row-padding;
 
     & .gotr-row-left-panel, & .gotr-row-right-panel {
         position: relative;
