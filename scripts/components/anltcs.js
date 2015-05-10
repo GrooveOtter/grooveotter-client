@@ -21,9 +21,10 @@ var Anltcs = module.exports = exports = React.createClass({
         var sessionTime = this.state.sessionTime;
         var siteTime = this.state.siteTime;
 
-        var cord = (sessionTime / siteTime) * 130;
+        var cord = Math.floor(sessionTime / siteTime * 130);
+        var total = Math.floor(siteTime / (60 * 1000));
         var working = Math.floor(sessionTime / (60 * 1000));
-        var organizing = Math.floor(siteTime / (60 * 1000)) - working;
+        var organizing = total - working;
 
         if (isNaN(cord)) {
             cord = 0;
@@ -32,7 +33,7 @@ var Anltcs = module.exports = exports = React.createClass({
         // TODO: setup linguistics
 
         return <div className="gotr-anltcs">
-            <div className="gotr-anltcs-count">{working}</div>
+            <div className="gotr-anltcs-count">{total}</div>
             <div className="gotr-anltcs-desc">minutes in Groove</div>
             <svg className="gotr-anltcs-graphic">
                 <mask id="gotr-anltcs-bar">
