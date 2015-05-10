@@ -19,11 +19,9 @@ window.addEventListener('focus', function() {
 });
 
 window.addEventListener('unload', function() {
-    flux.actions.userAction();
     flux.actions.userLeave();
 });
 
 window.addEventListener('blur', function() {
-    flux.actions.userAction();
     flux.actions.userLeave();
 });

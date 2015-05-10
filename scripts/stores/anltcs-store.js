@@ -23,12 +23,17 @@ var AnltcsStore = module.exports = Fluxxor.createStore({
     onCompleteTask: function(payload) {
         var task = payload.task;
         var flux = this.flux;
+        var lastAction = this.lastAction;
+        var started = this.started;
         var session = flux.store('SessionStore').getSession();
         var sessionTask = session.get('task');
 
         if (task.id === sessionTask.id) {
             var time = session.elapsedTime();
             this.logSessionTime(time);
+            this.logSiteTime(lastAction - started);
+            this.started = Date.now();
+            this.emit('change');
         }
     },
 
@@ -48,6 +53,7 @@ var AnltcsStore = module.exports = Fluxxor.createStore({
         if (started != null && !session.isStarted()) {
             this.logSiteTime(lastAction - started);
             this.started = null;
+            this.emit('change');
         }
     },
 
@@ -55,14 +61,12 @@ var AnltcsStore = module.exports = Fluxxor.createStore({
         var total = this.getSessionTime();
 
         localStorage.setItem('session-time', time + total);
-        this.emit('change');
     },
 
     logSiteTime: function(time) {
         var total = this.getSiteTime();
 
         localStorage.setItem('site-time', time + total);
-        this.emit('change');
     },
 
     getSessionTime: function() {
