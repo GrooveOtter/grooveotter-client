@@ -2,9 +2,8 @@
     border-radius: 5px;
     border: 1px solid $gotr-subtle;
     margin: 0 auto;
-    max-width: 140px;
-    padding: 20px;
-    position: relative;
+    max-width: 180px;
+    padding: 20px 0;
 
     & .gotr-anltcs-count {
         text-align: center;
@@ -23,9 +22,7 @@
     }
 
     & .gotr-anltcs-graphic-container {
-        position: absolute;
-        left: 15px;
-        right: 15px;
+        margin: 0 15px;
         box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         padding: 5px 10px 5px 5px;
@@ -61,6 +58,8 @@
 
     & .gotr-anltcs-minutes {
         color: $gotr-grey;
+        margin-top: 20px;
+        margin-left: 20px;
 
         & .gotr-anltcs-minutes-working, & .gotr-anltcs-minutes-organizing {
             border-radius: 3px;
@@ -71,13 +70,22 @@
         }
 
         & .gotr-anltcs-minutes-working {
-            margin-top: 40px;
             background: $gotr-secondary;
         }
 
         & .gotr-anltcs-minutes-organizing {
-            margin-top: 20px;
             background: $gotr-primary;
+        }
+    }
+
+    @media screen and (max-width: $gotr-row-cutoff) {
+        max-width: 100%;
+
+        & .gotr-anltcs-count,
+        & .gotr-anltcs-desc,
+        & .gotr-anltcs-minutes {
+            display: inline-block;
+            margin-left: 15px;
         }
     }
 }
