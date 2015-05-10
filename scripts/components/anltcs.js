@@ -21,7 +21,7 @@ var Anltcs = module.exports = exports = React.createClass({
         var sessionTime = this.state.sessionTime;
         var siteTime = this.state.siteTime;
 
-        var cord = Math.floor(sessionTime / siteTime * 130);
+        var cord = Math.floor(sessionTime / siteTime * 100);
         var total = Math.floor(siteTime / (60 * 1000));
         var working = Math.floor(sessionTime / (60 * 1000));
         var organizing = total - working;
@@ -35,13 +35,17 @@ var Anltcs = module.exports = exports = React.createClass({
         return <div className="gotr-anltcs">
             <div className="gotr-anltcs-count">{total}</div>
             <div className="gotr-anltcs-desc">minutes in Groove</div>
-            <svg className="gotr-anltcs-graphic">
-                <mask id="gotr-anltcs-bar">
-                    <line x1="10" y1="10" y2="10" x2="140"/>
-                </mask>
-                <line x1={cord + 1} y1="10" x2="200" y2="10" className="gotr-anltcs-background"/>
-                <line x1="0" y1="10" y2="10" x2={cord} className="gotr-anltcs-foreground"/>
-            </svg>
+            <div className="gotr-anltcs-graphic-container">
+                <svg className="gotr-anltcs-graphic">
+                    <mask id="gotr-anltcs-bar">
+                        <line x1="5" y1="5" y2="5" x2="100%"/>
+                    </mask>
+
+                    <line x1="0" y1="5" x2="200%" y2="5" className="gotr-anltcs-background"/>
+                    <line x1="0" y1="5" y2="5" x2={cord + '%'} className="gotr-anltcs-foreground"/>
+                    <line x1={cord + '%'} y1="0" x2={cord + '%'} y2="10" className="gotr-anltcs-divider"/>
+                </svg>
+            </div>
 
             <div className="gotr-anltcs-minutes">
                 <span className="gotr-anltcs-minutes-working"/>
