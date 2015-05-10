@@ -39,4 +39,11 @@
             color: $gotr-white;
         }
     }
+
+    @media screen and (max-width: $gotr-row-cutoff) {
+        & .gotr-navbar-left, & .gotr-navbar-right {
+            padding-left: ($gotr-row-padding / 2);
+            padding-right: ($gotr-row-padding / 2);
+        }
+    }
 }
