@@ -79,8 +79,9 @@
             transition: 1s 100ms ease all;
 
             &.gotr-task-leave-active {
+                margin-top: -58px;
                 opacity: 0;
-                transform: translate(5px, 5px);
+                transform: translate(5px, 63px);
             }
         }
     }
