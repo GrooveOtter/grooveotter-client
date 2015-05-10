@@ -1,6 +1,4 @@
 .gotr-taskarea {
-    margin: 30px auto;
-
     & .gotr-taskarea-box {
         box-sizing: border-box;
         border-bottom: 1px solid $gotr-subtle;
@@ -36,5 +34,9 @@
         &:first-of-type {
             margin: 0 10px 10px 0;
         }
+    }
+
+    @media screen and (min-width: $gotr-row-cutoff) {
+        margin: 30px auto;
     }
 }
