@@ -102,7 +102,7 @@ var Timer = React.createClass({
 
 
         return <div className="gotr-timer">
-            <input readOnly type="text" value={text} className="gotr-timer-counter" />
+            <div className="gotr-timer-counter">{text}</div>
             <TimerGraphic ratio={timeRemaining / duration}/>
         </div>;
     }
