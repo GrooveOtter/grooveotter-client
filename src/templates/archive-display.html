@@ -1,0 +1,48 @@
+<div class="gotr-archive-display">
+    <button
+        class="small radius info"
+        ng-disabled="!vm.isPrevWeek()"
+        ng-click="vm.prevWeek()">
+        &lt;
+    </button>
+
+    <button
+        class="small radius info"
+        ng-disabled="!vm.isNextWeek()"
+        ng-click="vm.nextWeek()">
+        &gt;
+    </button>
+
+    <button
+        class="small radius info"
+        ng-click="vm.currentWeekIndex = 0"
+        ng-bind="vm.weeks[vm.currentWeekIndex].date">
+    </button>
+
+    <ul class="accordion">
+        <li class="accordion-navigation" ng-repeat="day in vm.weeks[vm.currentWeekIndex].days">
+            <a ng-click="day.open = !day.open">
+                <span ng-bind="day.date | date: 'EEEE, MMMM d'"></span>
+
+                <div class="right">
+                    <ng-pluralize
+                        count="day.tasks.length"
+                        when="{'1': '1 task complete', 'other': '{} tasks complete'}">
+                    </ng-pluralize>
+
+                    <span>{{ day.open ? '&darr;' : '&rarr;' }}</span>
+                </div>
+            </a>
+
+            <div class="content" ng-class="{active: day.open}">
+                <div ng-repeat="task in day.tasks">
+                    <span ng-bind="task.title"></span>
+
+                    <div class="right">
+                        <span>{{ task.duration | date: 'm' }} mins</span>
+                    </div>
+                </li>
+            </div>
+        </li>
+    </ul>
+</div>
