@@ -2,6 +2,7 @@
   "name": "grooveotter-client",
   "version": "0.0.1",
   "private": true,
+  "license": "BSD-3-Clause",
   "engines": {
       "node": "0.12.x"
   },

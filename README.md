@@ -7,3 +7,8 @@ npm install
 npm run build
 static build/final
 ```
+
+License
+-------
+
+See [`LICENSE`](LICENSE)
