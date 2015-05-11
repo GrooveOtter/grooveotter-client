@@ -7,7 +7,17 @@ var AnltcsStore = module.exports = Fluxxor.createStore({
     initialize: function() {
         var flux = this.flux;
 
-        this.lastAction = this.started = Date.now();
+        var now = new Date();
+
+        this.lastAction = this.started = +now;
+
+        var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        if (+localStorage.getItem('last-tracking-date') !== +today) {
+            localStorage.setItem('site-time', 0);
+            localStorage.setItem('session-time', 0);
+            localStorage.setItem('last-tracking-date', +today);
+        }
 
         this.triggerAction = lodash.debounce(function() {
             flux.actions.userLeave();
@@ -72,20 +82,12 @@ var AnltcsStore = module.exports = Fluxxor.createStore({
     getSessionTime: function() {
          var time = localStorage.getItem('session-time');
 
-         if (time == null) {
-             return 0;
-         } else {
-             return +time;
-         }
+         return +time;
     },
 
     getSiteTime: function() {
          var time = localStorage.getItem('site-time');
 
-         if (time == null) {
-             return 0;
-         } else {
-             return +time;
-         }
+         return +time;
     }
 });
