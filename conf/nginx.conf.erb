@@ -16,8 +16,14 @@ http {
         server_name localhost;
 
         location / {
-            root <%= "#{Dir.pwd}/dist/build" %>;
+            root <%= "#{Dir.pwd}/dist/final" %>;
             index   index.html index.htm;
+        }
+
+        location ~ ^/assets/([^.]+)\.(js|css|svg)$ {
+            # gzip_static on;
+            expires max;
+            root <%= "#{Dir.pwd}/dist/final" %>;
         }
     }
 }
