@@ -46,6 +46,12 @@ var TaskArea = module.exports = React.createClass({
         flux.actions.updateTaskTitle(task, title);
     },
 
+    resetTimer: function(event) {
+        var flux = this.getFlux();
+
+        flux.actions.newSession();
+    },
+
     render: function() {
         var session = this.state.session;
         var task = session.get('task');
@@ -57,7 +63,7 @@ var TaskArea = module.exports = React.createClass({
                     Complete task
                 </Base.SecondaryButton>
 
-                <Base.PrimaryButton onClick={this.startTask}> {/* shh */}
+                <Base.PrimaryButton onClick={this.resetTimer}>
                     Reset timer
                 </Base.PrimaryButton>
             </div>;
