@@ -50,15 +50,15 @@ var TimerPanel = module.exports = React.createClass({
         var mins = Math.floor(duration / (60 * 1000));
 
         if (selecting) {
-            return <div>
-                <div className="gotr-shadow" onClick={this.unselect}/>
-
-                <div className="gotr-timer-area">
+            return <div className="gotr-timer-area-container">
+                <div className="gotr-timer-area gotr-timer-area-selecting">
                     <Selector mins={mins} onChange={this.updateMins}/>
                 </div>
+
+                <div className="gotr-shadow" onClick={this.unselect}/>
             </div>;
         } else {
-            return <div>
+            return <div className="gotr-timer-area-container">
                 <div className="gotr-timer-area" onDoubleClick={this.select}>
                     <Timer/>
                 </div>

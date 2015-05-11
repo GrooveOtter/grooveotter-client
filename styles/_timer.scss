@@ -1,3 +1,7 @@
+.gotr-timer-area-container {
+    height: 200px;
+}
+
 .gotr-timer-area {
     margin: 0 auto;
     width: 200px;
@@ -5,7 +9,7 @@
     border-radius: 100px;
     background: $gotr-offwhite;
 
-    .gotr-shadow + & {
+    &.gotr-timer-area-selecting {
         position: absolute;
         z-index: 10;
     }
