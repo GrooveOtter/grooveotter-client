@@ -68,12 +68,12 @@ ul, ol {
 .gotr-checkbox {
     width: 24px;
     height: 24px;
-    background: url(/images/unchecked.svg) no-repeat 0 0;
+    background: url(/unchecked.svg) no-repeat 0 0;
     display: inline-block;
 }
 
 .gotr-checkbox.gotr-checkbox-checked, .gotr-checkbox:hover {
-    background: url(/images/checked.svg) no-repeat 0 0;
+    background: url(/checked.svg) no-repeat 0 0;
 }
 
 .gotr-checkbox:hover {

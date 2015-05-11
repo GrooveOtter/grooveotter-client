@@ -1,15 +1,21 @@
 /* global require, console, process, __dirname */
 
+var Rev = require('gulp-rev-all');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
+var cssmin = require('gulp-minify-css');
+var gfilter = require('gulp-filter');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var htmlmin = require('gulp-htmlmin');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
+var path = require('path');
 var reactify = require('reactify');
 var sass = require('gulp-sass');
 var smaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
+var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
 gulp.task('default', ['bundle', 'styles', 'migrate']);
@@ -34,7 +40,7 @@ function bundle() {
         })
         .pipe(source('bundle.js'))
         .pipe(buffer())
-        .pipe(gulp.dest('dist/build/scripts'));
+        .pipe(gulp.dest('dist/build'));
 }
 
 gulp.task('bundle', bundle);
@@ -65,5 +71,32 @@ gulp.task('styles', function() {
         .pipe(smaps.init())
         .pipe(sass().on('error', gutil.log.bind(gutil, 'Sass Error')))
         .pipe(smaps.write())
-        .pipe(gulp.dest('dist/build/styles'));
+        .pipe(gulp.dest('dist/build'));
+});
+
+gulp.task('final', ['default'], function() {
+    var onlyJavaScript = gfilter('**/*.js');
+    var onlyHtml = gfilter('**/*.html');
+    var onlyCss = gfilter('**/*.css');
+
+    var rev = new Rev({
+        transformFilename: function(file, hash) {
+            return 'assets/' + hash + path.extname(file.path);
+        },
+
+        dontRenameFile: [/^\/favicon.ico$/g, /^\/index.html/g]
+    });
+
+    return gulp.src('dist/build/**')
+        .pipe(onlyJavaScript)
+            .pipe(uglify())
+        .pipe(onlyJavaScript.restore())
+        .pipe(onlyHtml)
+            .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(onlyHtml.restore())
+        .pipe(onlyCss)
+            .pipe(cssmin())
+        .pipe(onlyCss.restore())
+        .pipe(rev.revision())
+        .pipe(gulp.dest('dist/final'));
 });
