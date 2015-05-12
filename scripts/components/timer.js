@@ -10,6 +10,7 @@ var TimerPanel = module.exports = React.createClass({
 
     getInitialState: function() {
         return {
+            mins: 20 * 60 * 1000,
             selecting: false
         };
     },
@@ -22,32 +23,42 @@ var TimerPanel = module.exports = React.createClass({
         };
     },
 
-    select: function() {
+    startSelecting: function() {
         var session = this.state.session;
+        var task = session.get('task');
+        var duration = task.get('timeDuration');
+        var mins = Math.floor(duration / (60 * 1000));
 
         if (!session.isStarted()) {
-            this.setState({selecting: true});
+            this.setState({
+                mins: mins,
+                selecting: true
+            });
         }
     },
 
-    unselect: function() {
-        this.setState({selecting: false});
-    },
-
-    updateMins: function(mins) {
+    stopSelecting: function() {
         var flux = this.getFlux();
         var session = this.state.session;
+        var mins = this.state.mins;
         var task = session.get('task');
         var duration = mins * 60 * 1000;
 
         flux.actions.updateTaskDuration(task, duration);
+        this.setState({selecting: false});
+    },
+
+    updateMins: function(mins) {
+        this.setState({
+            mins: mins
+        });
     },
 
     render: function() {
         var selecting = this.state.selecting;
         var session = this.state.session;
+        var mins = this.state.mins;
         var duration = session.get('task').get('timeDuration');
-        var mins = Math.floor(duration / (60 * 1000));
 
         if (selecting) {
             return <div className="gotr-timer-area-container">
@@ -55,11 +66,11 @@ var TimerPanel = module.exports = React.createClass({
                     <Selector mins={mins} onChange={this.updateMins}/>
                 </div>
 
-                <div className="gotr-shadow" onClick={this.unselect}/>
+                <div className="gotr-shadow" onClick={this.stopSelecting}/>
             </div>;
         } else {
             return <div className="gotr-timer-area-container">
-                <div className="gotr-timer-area" onDoubleClick={this.select}>
+                <div className="gotr-timer-area" onDoubleClick={this.startSelecting}>
                     <Timer/>
                 </div>
             </div>;
