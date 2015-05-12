@@ -53,8 +53,14 @@ var Archive = module.exports = React.createClass({
         var week = weeks[currentWeekIndex];
 
         return <div className="gotr-archive">
-            <NavButton disabled={!left} onClick={this.goLeft}>&lt;</NavButton>
-            <NavButton disabled={!right} onClick={this.goRight}>&gt;</NavButton>
+            <NavButton disabled={!left} onClick={this.goLeft}>
+                <div className="gotr-archive-left">&nbsp;</div>
+            </NavButton>
+
+            <NavButton disabled={!right} onClick={this.goRight}>
+                <div className="gotr-archive-right">&nbsp;</div>
+            </NavButton>
+
             <NavButton disabled>{week.date}</NavButton>
 
             <Week week={week}/>

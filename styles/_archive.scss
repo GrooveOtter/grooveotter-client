@@ -2,6 +2,8 @@
     margin-top: 30px;
 
     & .gotr-button-nav {
+        box-sizing: border-box;
+        max-height: 39px;
         margin-right: 10px;
         font-size: 0.875em;
         padding: 10px 15px;
@@ -74,5 +76,15 @@
         & + .gotr-archive-task {
             margin-top: 30px;
         }
+    }
+
+    & .gotr-archive-left {
+        width: 17px;
+        background: url(/left.svg) no-repeat 0 0;
+    }
+
+    & .gotr-archive-right {
+        width: 17px;
+        background: url(/right.svg) no-repeat 0 0;
     }
 }
