@@ -137,7 +137,7 @@ var Task = React.createClass({
             </div>
 
             <div className="gotr-archive-task-count">
-                {task.duration / (60 * 1000)} mins
+                {task.timeDuration / (60 * 1000)} mins
             </div>
         </li>;
     }

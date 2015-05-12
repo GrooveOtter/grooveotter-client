@@ -23,7 +23,7 @@ var actions = module.exports = {
     },
 
     updateTaskDuration: function(task, duration) {
-        this.dispatch(constants.UPDATE_TASK_DURATION, {task: task, duration: duration});
+        this.dispatch(constants.UPDATE_TASK_DURATION, {task: task, timeDuration: duration});
     },
 
     deleteTask: function(task) {

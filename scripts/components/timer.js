@@ -46,7 +46,7 @@ var TimerPanel = module.exports = React.createClass({
     render: function() {
         var selecting = this.state.selecting;
         var session = this.state.session;
-        var duration = session.get('task').get('duration');
+        var duration = session.get('task').get('timeDuration');
         var mins = Math.floor(duration / (60 * 1000));
 
         if (selecting) {
@@ -96,7 +96,7 @@ var Timer = React.createClass({
 
     render: function() {
         var session = this.state.session;
-        var duration = session.get('task').get('duration');
+        var duration = session.get('task').get('timeDuration');
         var timeRemaining = session.timeRemaining();
         var text = dateformat(timeRemaining, 'MM:ss');
 

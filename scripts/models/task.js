@@ -5,7 +5,7 @@ var Task = module.exports = Model.extend({
 
     defaults: {
         title: '',
-        duration: 20 * 60 * 1000,
+        timeDuration: 20 * 60 * 1000,
         completed: false
     },
 
@@ -13,7 +13,7 @@ var Task = module.exports = Model.extend({
         return {
             _id: resp._id,
             title: resp.title,
-            duration: resp.duration,
+            timeDuration: resp.timeDuration,
             completed: !!resp.completed,
             createdAt: new Date(resp.createdAt),
             updatedAt: new Date(resp.updatedAt)
