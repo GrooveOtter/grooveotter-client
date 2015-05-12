@@ -116,9 +116,9 @@ var Task = React.createClass({
                 <div className={checkboxClass} onClick={this.complete}/>
 
                 <input
-                    value={title}
+                    defaultValue={title}
                     className="gotr-task-text"
-                    onChange={this.updateTitle}
+                    onBlur={this.updateTitle}
                 />
             </div>
 
@@ -127,9 +127,9 @@ var Task = React.createClass({
 
                 <input
                     type="number"
-                    value={duration / (60 * 1000)}
+                    defaultValue={duration / (60 * 1000)}
                     className="gotr-task-duration"
-                    onChange={this.updateDuration}
+                    onBlur={this.updateDuration}
                 />
 
                 <div className="gotr-task-mins">mins</div>
