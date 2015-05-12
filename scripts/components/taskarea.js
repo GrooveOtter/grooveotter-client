@@ -8,51 +8,9 @@ var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 var TaskArea = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('SessionStore', 'TaskListStore')],
 
-    getStateFromFlux: function() {
-        var flux = this.getFlux();
-
-        return {
-            session: flux.store('SessionStore').getSession()
-        };
-    },
-
-    completeTask: function() {
-        var flux = this.getFlux();
-        var task = this.state.session.get('task');
-
-        flux.actions.completeTask(task);
-    },
-
-    startTask: function() {
-        var flux = this.getFlux();
-        var task = this.state.session.get('task');
-
-        flux.actions.startSessionFromTask(task);
-    },
-
-    addForLater: function() {
-        var flux = this.getFlux();
-        var task = this.state.session.get('task');
-
-        flux.actions.addTask(task);
-        flux.actions.newSession();
-    },
-
-    updateTitle: function(event) {
-        var flux = this.getFlux();
-        var task = this.state.session.get('task');
-        var title = event.target.value;
-
-        flux.actions.updateTaskTitle(task, title);
-    },
-
-    resetTimer: function(event) {
-        var flux = this.getFlux();
-
-        flux.actions.newSession();
-    },
-
     render: function() {
+        var editing = this.state.editing;
+        var tempTitle = this.state.tempTitle;
         var session = this.state.session;
         var task = session.get('task');
         var title = task.get('title');
@@ -84,11 +42,85 @@ var TaskArea = module.exports = React.createClass({
                 type="text"
                 placeholder="What are you working on?"
                 className="gotr-taskarea-box"
-                value={title}
-                onChange={this.updateTitle}
+                value={editing ? tempTitle : title}
+                onChange={this.updateTempTitle}
+                onFocus={this.startEditing}
+                onBlur={this.stopEditing}
             />
 
             {buttons}
         </div>;
+    },
+
+    getInitialState: function() {
+        return {
+            editing: false,
+            tempTitle: ''
+        };
+    },
+
+    getStateFromFlux: function() {
+        var flux = this.getFlux();
+
+        return {
+            session: flux.store('SessionStore').getSession()
+        };
+    },
+
+    completeTask: function() {
+        var flux = this.getFlux();
+        var task = this.state.session.get('task');
+
+        flux.actions.completeTask(task);
+    },
+
+    startTask: function() {
+        var flux = this.getFlux();
+        var task = this.state.session.get('task');
+
+        flux.actions.startSessionFromTask(task);
+    },
+
+    addForLater: function() {
+        var flux = this.getFlux();
+        var task = this.state.session.get('task');
+
+        flux.actions.addTask(task);
+        flux.actions.newSession();
+    },
+
+    updateTempTitle: function(event) {
+        this.setState({
+            tempTitle: event.target.value
+        });
+    },
+
+    resetTimer: function(event) {
+        var flux = this.getFlux();
+
+        flux.actions.newSession();
+    },
+
+    startEditing: function() {
+        var session = this.state.session;
+        var task = session.get('task');
+        var title = task.get('title');
+
+        this.setState({
+            editing: true,
+            tempTitle: title
+        });
+    },
+
+    stopEditing: function() {
+        var flux = this.getFlux();
+        var task = this.state.session.get('task');
+        var title = event.target.value;
+
+        this.setState({
+            editing: false
+        });
+
+        flux.actions.updateTaskTitle(task, title);
     }
 });

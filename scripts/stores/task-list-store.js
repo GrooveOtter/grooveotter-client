@@ -51,7 +51,7 @@ var SessionStore = module.exports = Fluxxor.createStore({
         var task = payload.task;
         var duration = payload.duration;
 
-        task.set({timeDuration: timeDuration});
+        task.set({timeDuration: duration});
     },
 
     onDeleteTask: function(payload) {
