@@ -31,7 +31,7 @@ var SessionStore = module.exports = Fluxxor.createStore({
     onAddTask: function(payload) {
         var task = payload.task;
 
-        if (task.get('title').trim() !== '' && false) {
+        if (task.get('title').trim() !== '') {
             this.taskList.create(task);
         }
     },
