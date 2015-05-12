@@ -99,12 +99,13 @@ var Task = React.createClass({
 
         if (sessionTask.id === task.id) {
             var button = <button
-                className="gotr-button gotr-task-button gotr-task-button-progress">
+                disabled
+                className="gotr-button gotr-button-primary gotr-task-button">
                 In Progress
             </button>;
         } else {
             var button = <button
-                className="gotr-button gotr-task-button gotr-task-button-start"
+                className="gotr-button gotr-button-secondary gotr-task-button"
                 onClick={this.startTask}>
                 Start task
             </button>;

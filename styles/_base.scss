@@ -58,10 +58,27 @@ ul, ol {
 
     &.gotr-button-primary {
         background: $gotr-primary;
+
+        &:hover:not(:disabled) {
+            background: darken($gotr-primary, 10%);
+        }
     }
 
     &.gotr-button-secondary {
         background: $gotr-secondary;
+
+        &:hover:not(:disabled) {
+            background: darken($gotr-secondary, 10%);
+        }
+    }
+
+    &.gotr-button-nav {
+        border: 1px solid $gotr-subtle;
+        color: $gotr-grey;
+
+        &:hover:not(:disabled) {
+            background: rgba(0, 0, 0, 0.025);
+        }
     }
 }
 

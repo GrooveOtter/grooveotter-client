@@ -28,10 +28,8 @@ var b = browserify({
     transform: [reactify]
 });
 
-// this is substack's fault:
-b.exclude('jquery');
-b.exclude('underscore');
-// ...all aboard the substack-hate-train
+b.require('./node_modules/browserify-zepto', {expose: 'jquery'});
+b.require('./node_modules/lodash', {expose: 'underscore'});
 
 function bundle() {
     return b.bundle()

@@ -4,13 +4,8 @@ var Session = module.exports = Model.extend({
     initialize: function() {
         var task = this.get('task');
 
-        // TODO:
-        // replace this by adding a handler for COMPLETE_TASK
-        // on session store
         this.listenTo(task, 'change', function() {
-            if (task.completed) {
-                this.complete();
-            }
+            this.trigger('change');
         });
     },
 

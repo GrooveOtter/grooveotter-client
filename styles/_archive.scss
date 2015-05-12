@@ -1,0 +1,78 @@
+.gotr-archive {
+    margin-top: 30px;
+
+    & .gotr-button-nav {
+        margin-right: 10px;
+        font-size: 0.875em;
+        padding: 10px 15px;
+        font-weight: 600;
+    }
+
+    & .gotr-archive-week {
+        margin-top: 30px;
+    }
+
+    & .gotr-archive-day {
+        border-top: 1px solid $gotr-subtle;
+
+        &:last-child {
+            border-bottom: 1px solid $gotr-subtle;
+        }
+
+        &.gotr-archive-day-open {
+            & .gotr-archive-day-tasks {
+                display: block;
+            }
+        }
+
+        & .gotr-archive-day-tasks {
+            border-top: 1px solid $gotr-subtle;
+            display: none;
+            padding: 30px 20px;
+            color: $gotr-grey;
+
+            & ol {
+                list-style: decimal;
+                margin: 0;
+                padding-left: 25px;
+            }
+        }
+
+        & .gotr-archive-day-title {
+            padding: 15px 10px;
+            overflow: hidden;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.025);
+                cursor: pointer;
+            }
+
+            & .gotr-archive-day-title-range {
+                font-size: 1.125em;
+                display: inline-block;
+                float: left;
+            }
+
+            & .gotr-archive-day-title-count {
+                display: inline-block;
+                float: right;
+            }
+        }
+    }
+
+    & .gotr-archive-task {
+        & .gotr-archive-task-title {
+            display: inline-block;
+            font-size: 1.125em;
+        }
+
+        & .gotr-archive-task-count {
+            display: inline-block;
+            float: right;
+        }
+
+        & + .gotr-archive-task {
+            margin-top: 30px;
+        }
+    }
+}

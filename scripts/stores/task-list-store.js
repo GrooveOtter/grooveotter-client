@@ -5,11 +5,13 @@ var constants = require('../constants');
 
 var SessionStore = module.exports = Fluxxor.createStore({
     initialize: function() {
-        this.taskList = new TaskList([
-            {title: 'Start researching ideas for new project'},
-            {title: 'Produce full set of wireframes'},
-            {title: 'Post shot to dribbble'}
-        ]);
+        this.taskList = new TaskList();
+
+        this.taskList.on('add remove change', function() {
+            this.emit('change');
+        }.bind(this));
+
+        this.taskList.fetch();
 
         this.bindActions(
             constants.COMPLETE_TASK, this.onCompleteTask,
@@ -23,18 +25,15 @@ var SessionStore = module.exports = Fluxxor.createStore({
     onCompleteTask: function(payload) {
         var task = payload.task;
 
-        task.set({completed: true});
-        this.emit('change');
+        task.save({completed: true});
     },
 
     onAddTask: function(payload) {
         var task = payload.task;
 
-        if (task.get('title').trim() !== '') {
-            this.taskList.add(task);
+        if (task.get('title').trim() !== '' && false) {
+            this.taskList.create(task);
         }
-
-        this.emit('change');
     },
 
     onUpdateTaskTitle: function(payload) {
@@ -42,7 +41,6 @@ var SessionStore = module.exports = Fluxxor.createStore({
         var title = payload.title;
 
         task.set({title: title});
-        this.emit('change');
     },
 
     onUpdateTaskDuration: function(payload) {
@@ -50,14 +48,12 @@ var SessionStore = module.exports = Fluxxor.createStore({
         var duration = payload.duration;
 
         task.set({duration: duration});
-        this.emit('change');
     },
 
     onDeleteTask: function(payload) {
         var task = payload.task;
 
-        this.taskList.remove(task);
-        this.emit('change');
+        task.destroy();
     },
 
     getTaskList: function() {

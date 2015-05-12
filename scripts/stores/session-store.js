@@ -20,6 +20,9 @@ var SessionStore = module.exports = Fluxxor.createStore({
         var task = new Task();
 
         this.session = new Session({flux: this.flux, task: task});
+        this.session.on('change', function() {
+            this.emit('change');
+        }.bind(this));
     },
 
     onStartSessionFromTask: function(payload) {
