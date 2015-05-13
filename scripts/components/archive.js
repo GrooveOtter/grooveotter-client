@@ -147,6 +147,7 @@ function archiveWeeks(tasks) {
     var weeks = lodash.chain(tasks)
         .groupBy(dayOf)
         .map(toDayObj)
+        .reverse()
         .groupBy(weekOf)
         .map(toWeekObj)
         .value();
