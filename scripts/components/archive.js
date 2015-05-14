@@ -145,9 +145,9 @@ var Task = React.createClass({
 
 function archiveWeeks(tasks) {
     var weeks = lodash.chain(tasks)
+        .reverse()
         .groupBy(dayOf)
         .map(toDayObj)
-        .reverse()
         .groupBy(weekOf)
         .map(toWeekObj)
         .value();
