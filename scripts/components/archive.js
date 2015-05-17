@@ -112,7 +112,8 @@ var Day = React.createClass({
                 </div>
 
                 <div className="gotr-archive-day-title-count">
-                    {day.tasks.length} tasks complete
+                    <span className="gotr-archive-day-checkmark"/>
+                    <span>{day.tasks.length} tasks complete</span>
                 </div>
             </div>
 
