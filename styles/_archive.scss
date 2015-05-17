@@ -71,6 +71,12 @@
         & .gotr-archive-task-count {
             display: inline-block;
             float: right;
+
+            & .gotr-archive-task-clock {
+                padding: 0 10px;
+                margin: 10px;
+                background: url(/clock.svg) no-repeat 0 0;
+            }
         }
 
         & + .gotr-archive-task {
