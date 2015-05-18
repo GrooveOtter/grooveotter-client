@@ -18,13 +18,13 @@ http {
         location / {
             root <%= "#{Dir.pwd}/dist/final" %>;
             index   index.html index.htm;
+            try_files $uri.html $uri $uri/ =404;
         }
 
         location ~ ^/assets/([^.]+)\.(js|css|svg)$ {
             # gzip_static on;
             expires max;
             root <%= "#{Dir.pwd}/dist/final" %>;
-            try_files $uri.html $uri $uri/ =404;
         }
     }
 }
