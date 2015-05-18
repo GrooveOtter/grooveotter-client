@@ -21,7 +21,7 @@ http {
             try_files $uri.html $uri $uri/ =404;
         }
 
-        location ~ ^/assets/([^.]+)\.(js|css|svg)$ {
+        location ~ ^/assets/([^.]+)\.(js|css|svg|jpg|jpeg|png)$ {
             # gzip_static on;
             expires max;
             root <%= "#{Dir.pwd}/dist/final" %>;
