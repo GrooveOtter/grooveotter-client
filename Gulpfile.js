@@ -65,7 +65,7 @@ gulp.task('migrate', function() {
 });
 
 gulp.task('styles', function() {
-    return gulp.src('styles/main.scss')
+    return gulp.src(['styles/main.scss', 'styles/landing.scss'])
         .pipe(smaps.init())
         .pipe(sass().on('error', gutil.log.bind(gutil, 'Sass Error')))
         .pipe(smaps.write())
@@ -82,7 +82,11 @@ gulp.task('final', ['default'], function() {
             return 'assets/' + hash + path.extname(file.path);
         },
 
-        dontRenameFile: [/^\/favicon.ico$/g, /^\/index.html/g]
+        dontRenameFile: [
+            /^\/favicon.ico$/g,
+            /\/index.html/g,
+            /^\/landing.html/g
+        ]
     });
 
     return gulp.src('dist/build/**')
