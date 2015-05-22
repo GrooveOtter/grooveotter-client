@@ -23,6 +23,8 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
+    "jquery": "^2.1.4",
+    "jquery.scrolling": "^0.1.20150317",
     "lodash": "^3.8.0",
     "react": "^0.13.2",
     "reactify": "^1.1.0",

@@ -60,8 +60,11 @@ gulp.task('startwatch', ['default'], function() {
 });
 
 gulp.task('migrate', function() {
-    return gulp.src('public/**/*')
-        .pipe(gulp.dest('dist/build'));
+    return gulp.src([
+        'public/**/*',
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/jquery.scrolling/jquery.scrolling.js'
+    ]).pipe(gulp.dest('dist/build'));
 });
 
 gulp.task('styles', function() {
