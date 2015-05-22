@@ -35,12 +35,12 @@
             </div>
 
             <div class="gotrl-top-pointer">
-                <img src="/chevron-down-white.svg"/>
+                <a href="#gotrl-panel-two"><img src="/chevron-down-white.svg"/></a>
             </div>
         </div>
     </div>
 
-    <div class="gotrl-panel gotrl-panel-two">
+    <div id="gotrl-panel-two" class="gotrl-panel">
         <div class="gotrl-panel-top">
             <img src="/connect-down.svg"/>
         </div>
@@ -57,7 +57,7 @@
         <img src="/apps.png"/>
     </div>
 
-    <div class="gotrl-panel gotrl-panel-three">
+    <div id="gotrl-panel-three" class="gotrl-panel">
         <div class="gotrl-panel-top"><img src="/connect-down.svg"/></div>
         <div class="gotrl-panel-bottom"><img src="/connect-up.svg"/></div>
 
@@ -79,7 +79,7 @@
         </div>
     </div>
 
-    <div class="gotrl-panel gotrl-panel-four">
+    <div id="gotrl-panel-four" class="gotrl-panel">
         <div class="gotrl-panel-top">
             <img src="/connect-down.svg"/>
         </div>
@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    <div class="gotrl-panel gotrl-panel-five">
+    <div id="gotrl-panel-five" class="gotrl-panel">
         <div class="gotrl-panel-top">
             <img src="/connect-down.svg"/>
         </div>
@@ -132,5 +132,56 @@
 
     <script src="/jquery.js"></script>
     <script src="/jquery.scrolling.js"></script>
+    <script>
+        $(function() {
+            var video = $('.gotrl-panel-three-right video').scrolling({
+                offsetLeft: 700,
+                offsetTop: -300
+            });
+
+            var anltcs = $('.gotrl-panel-four-left img').scrolling({
+                offsetLeft: -700,
+                offsetTop: -200
+            });
+
+            if (video.is(':scrollin')) {
+                slideInFromRight.call(video);
+            } else {
+                video.one('scrollin', slideInFromRight);
+            }
+
+            if (anltcs.is(':scrollin')) {
+                slideInFromLeft.call(anltcs);
+            } else {
+                anltcs.one('scrollin', slideInFromLeft);
+            }
+
+            $('a[href*=#]:not([href=#])').click(function() {
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+
+                    if (target.length) {
+                        $('html,body').animate({scrollTop: target.offset().top}, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+
+        function slideInFromRight() {
+            $(this).animate({
+                opacity: 1,
+                marginLeft: 0
+            }, 1000);
+        }
+
+        function slideInFromLeft() {
+            $(this).animate({
+                opacity: 1,
+                marginLeft: -40
+            }, 1000);
+        }
+    </script>
 </body>
 </html>

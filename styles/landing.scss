@@ -128,7 +128,7 @@
     }
 }
 
-.gotrl-panel-two {
+#gotrl-panel-two {
     background: $gotr-offoffwhite;
 
     & > * {
@@ -145,7 +145,7 @@
     }
 }
 
-.gotrl-panel-three {
+#gotrl-panel-three {
     background: $gotr-offwhite;
 
     .gotrl-panel-three-left {
@@ -158,6 +158,8 @@
         width: 0;
 
         video {
+            opacity: 0;
+            margin-left: 700px;
             max-width: 700px;
             border-radius: 4px;
             box-shadow: -2px 2px 10px 1px rgba(0, 0, 0, 0.1);
@@ -173,17 +175,19 @@
     }
 }
 
-.gotrl-panel-four {
+#gotrl-panel-four {
     background: $gotr-white;
 
     .gotrl-panel-four-left {
         float: left;
         margin-right: 110px;
         max-width: 330px;
+        width: 100%;
 
         img {
             display: block;
-            margin-left: -40px;
+            margin-left: -500px;
+            opacity: 0;
         }
 
         @media screen and (max-width: 1000px) {
@@ -204,7 +208,7 @@
     }
 }
 
-.gotrl-panel-five {
+#gotrl-panel-five {
     background: $gotr-primary;
 
     .gotrl-panel-content {
