@@ -17,6 +17,7 @@
 .gotrl-panel {
     position: relative;
     padding: 160px 0;
+    overflow: hidden;
 
     .gotrl-panel-top, .gotrl-panel-bottom {
         height: 80px;
@@ -41,7 +42,6 @@
     .gotrl-panel-content {
         max-width: 940px;
         margin: 0 auto;
-        overflow: hidden;
     }
 }
 
@@ -78,12 +78,12 @@
     h1 {
         margin-top: 15%;
         margin-bottom: 0;
-        font-size: 3.6em;
+        font-size: 3.75em;
     }
 
     h2 {
         margin-bottom: 50px;
-        font-size: 1.6em;
+        font-size: 1.625em;
     }
 }
 
@@ -149,6 +149,35 @@
 
     .gotrl-panel-three-left {
         float: left;
+        margin-right: 80px;
+    }
+
+    .gotrl-panel-three-right {
+        float: left;
+        width: 0;
+
+        video {
+            border-radius: 4px;
+            box-shadow: -2px 2px 10px 1px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+.gotrl-panel-four {
+    background: $gotr-white;
+
+    .gotrl-panel-four-left {
+        float: left;
+        margin-right: 110px;
+        width: 330px;
+
+        img {
+            margin-left: -40px;
+        }
+    }
+
+    .gotrl-panel-four-right {
+        float: left;
     }
 }
 
@@ -157,5 +186,45 @@
 
     .gotrl-panel-content {
         max-width: 800px;
+        text-align: center;
+    }
+
+    .gotrl-panel-five-icon {
+        display: block;
+        border: 3px solid $gotr-white;
+        box-sizing: border-box;
+        border-radius: 100%;
+        margin: 0 auto;
+        width: 80px;
+    }
+
+    .gotrl-panel-five-quote {
+        color: $gotr-white;
+        font-size: 24px;
+        line-height: 36px;
+    }
+
+    .gotrl-panel-five-name {
+        color: $gotr-white;
+    }
+
+    .gotrl-panel-five-dots {
+        margin: 2em auto 0 auto;
+    }
+
+    .gotrl-panel-five-dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background: $gotr-grey;
+
+        & + .gotrl-panel-five-dot {
+            margin-left: 10px;
+        }
+
+        &.gotrl-panel-five-dot-active {
+            background: $gotr-offoffwhite;
+        }
     }
 }
