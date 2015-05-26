@@ -265,6 +265,26 @@
     }
 }
 
+#gotrl-panel-six {
+    background: $gotr-offprimary;
+    color: $gotr-white;
+    text-align: center;
+
+    .gotrl-panel-six-calltoaction {
+        display: inline-block;
+        border-bottom: 1px solid $gotr-grey;
+        font-size: 40px;
+        font-weight: 200;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+    }
+
+    .gotrl-getstarted-button {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
 .gotrl-footer {
     background: $gotr-white;
 
