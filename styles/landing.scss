@@ -1,4 +1,5 @@
 @import 'normalize';
+@import '../node_modules/slick-carousel/slick/slick';
 @import 'base';
 
 .gotrl-top {
@@ -235,23 +236,31 @@
         color: $gotr-white;
     }
 
-    .gotrl-panel-five-dots {
+    ul.slick-dots {
         margin: 2em auto 0 auto;
-    }
 
-    .gotrl-panel-five-dot {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 100%;
-        background: $gotr-grey;
+        li {
+            background: $gotr-grey;
+            border-radius: 100%;
+            display: inline-block;
+            height: 10px;
+            width: 10px;
 
-        & + .gotrl-panel-five-dot {
-            margin-left: 10px;
-        }
+            & + li {
+                margin-left: 10px;
+            }
 
-        &.gotrl-panel-five-dot-active {
-            background: $gotr-offoffwhite;
+            &.slick-active {
+                background: $gotr-offoffwhite;
+            }
+
+            button {
+                display: none;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 }

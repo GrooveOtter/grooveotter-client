@@ -34,14 +34,25 @@ b.require('./node_modules/lodash', {expose: 'underscore'});
 function bundle() {
     return b.bundle()
         .on('error', function(err) {
-            gutil.log('Browserify: ', err.toString());
+            gutil.log('browserify: ', err.toString());
         })
         .pipe(source('bundle.js'))
         .pipe(buffer())
         .pipe(gulp.dest('dist/build'));
 }
 
-gulp.task('bundle', bundle);
+gulp.task('bundle', ['landing-bundle'], bundle);
+
+gulp.task('landing-bundle', function() {
+    return browserify('./scripts/landing', {debug: true})
+        .bundle()
+        .on('error', function(err) {
+            gutil.log('browserify: ', err.toString());
+        })
+        .pipe(source('landing.js'))
+        .pipe(buffer())
+        .pipe(gulp.dest('dist/build'));
+});
 
 gulp.task('watch', function() {
     b = watchify(b);
@@ -56,15 +67,12 @@ gulp.task('startwatch', ['default'], function() {
     });
 
     gulp.watch('styles/**/*', ['styles']);
+    gulp.watch('scripts/landing.js', ['landing-bundle']);
     gulp.watch('public/**/*', ['migrate']);
 });
 
 gulp.task('migrate', function() {
-    return gulp.src([
-        'public/**/*',
-        'node_modules/jquery/dist/jquery.js',
-        'node_modules/jquery.scrolling/jquery.scrolling.js'
-    ]).pipe(gulp.dest('dist/build'));
+    return gulp.src('public/**/*').pipe(gulp.dest('dist/build'));
 });
 
 gulp.task('styles', function() {

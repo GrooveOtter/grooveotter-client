@@ -26,8 +26,10 @@
     "jquery": "^2.1.4",
     "jquery.scrolling": "^0.1.20150317",
     "lodash": "^3.8.0",
+    "normalize-scss": "^3.0.1-a",
     "react": "^0.13.2",
     "reactify": "^1.1.0",
+    "slick-carousel": "^1.5.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.1"

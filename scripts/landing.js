@@ -1,3 +1,7 @@
+var $ = window.jQuery = require('jquery');
+require('jquery.scrolling/jquery.scrolling');
+require('slick-carousel');
+
 $(function() {
     var video = $('.gotrl-panel-three-right video').scrolling({
         offsetLeft: 700,
@@ -31,6 +35,14 @@ $(function() {
                 return false;
             }
         }
+    });
+
+    $('#gotrl-panel-five-carousel').slick({
+        infinite: true,
+        dots: true,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 5000
     });
 });
 
