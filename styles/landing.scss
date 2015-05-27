@@ -310,13 +310,15 @@
     .gotrl-footer-content {
         margin: 0 auto;
         max-width: 940px;
-        height: 45px;
         padding: 60px 30px;
+        text-align: center;
+        overflow: hidden;
 
         .gotrl-footer-item {
-            display: block;
-            float: left;
+            display: inline-block;
+            vertical-align: top;
             line-height: 48px;
+            height: 48px;
 
             & + .gotrl-footer-item {
                 padding-left: 30px;
@@ -329,6 +331,10 @@
                 &:hover {
                     text-decoration: underline;
                 }
+            }
+
+            img {
+                vertical-align: middle;
             }
         }
     }
