@@ -245,7 +245,7 @@
         width: 80px;
     }
 
-    .gotrl-panel-five-quote {
+    .gotrl-panel-five-text {
         color: $gotr-white;
         font-size: 24px;
         line-height: 36px;
@@ -256,10 +256,10 @@
     }
 
     ul.slick-dots {
-        margin: 2em auto 0 auto;
+        margin: 0 auto;
 
         li {
-            background: $gotr-grey;
+            background: $gotr-offoffgrey;
             border-radius: 100%;
             display: inline-block;
             height: 10px;
@@ -270,7 +270,7 @@
             }
 
             &.slick-active {
-                background: $gotr-offoffwhite;
+                background: $gotr-offoffoffgrey;
             }
 
             button {
