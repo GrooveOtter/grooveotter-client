@@ -5,12 +5,12 @@ require('slick-carousel');
 $(function() {
     var video = $('.gotrl-panel-three-right video').scrolling({
         offsetLeft: 700,
-        offsetTop: -300
+        offsetTop: -100
     });
 
     var anltcs = $('.gotrl-panel-four-left img').scrolling({
         offsetLeft: -700,
-        offsetTop: -200
+        offsetTop: -30
     });
 
     if (video.is(':scrollin')) {
@@ -50,12 +50,12 @@ function slideInFromRight() {
     $(this).animate({
         opacity: 1,
         marginLeft: 0
-    }, 1000);
+    }, 500);
 }
 
 function slideInFromLeft() {
     $(this).animate({
         opacity: 1,
         marginLeft: -40
-    }, 1000);
+    }, 500);
 }
