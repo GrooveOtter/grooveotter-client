@@ -149,6 +149,10 @@
 #gotrl-panel-three {
     background: $gotr-offwhite;
 
+    .gotrl-panel-bottom {
+        margin-left: 30%;
+    }
+
     .gotrl-panel-three-left {
         float: left;
         margin-right: 80px;
@@ -178,6 +182,10 @@
 
 #gotrl-panel-four {
     background: $gotr-white;
+
+    .gotrl-panel-top {
+        margin-left: 30%;
+    }
 
     .gotrl-panel-four-left {
         float: left;
