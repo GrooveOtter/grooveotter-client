@@ -3,16 +3,26 @@
 @import 'base';
 
 .gotrl-top {
-    height: 680px;
     background-image: url(/landing-background.jpg);
-    background-size: cover;
     background-position: center;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
 
-    .gotrl-top-container {
+    .gotrl-top-content {
         background: rgba(0, 0, 0, 0.4);
         height: 100%;
         position: relative;
     }
+}
+
+.gotrl-top-container {
+    height: 680px;
+    position: relative;
 }
 
 .gotrl-panel {
@@ -70,17 +80,36 @@
     }
 }
 
-.gotrl-navbar {
+#gotrl-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: $gotr-white;
+    box-shadow: 1px 0 1px 1px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+
+    .gotrl-navbar-content {
+        padding: 15px 40px;
+        overflow: hidden;
+
+        .gotrl-login-button {
+            background: $gotr-offsecondary;
+        }
+    }
+}
+
+.gotrl-top-navbar {
     padding: 25px 40px;
     overflow: hidden;
+}
 
-    .gotrl-navbar-left {
-        float: left;
-    }
+.gotrl-navbar-left {
+    float: left;
+}
 
-    .gotrl-navbar-right {
-        float: right;
-    }
+.gotrl-navbar-right {
+    float: right;
 }
 
 .gotrl-hero {
