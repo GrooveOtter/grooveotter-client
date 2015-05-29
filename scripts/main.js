@@ -1,3 +1,4 @@
+require('./ajax');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var Main = require('./components/main');
