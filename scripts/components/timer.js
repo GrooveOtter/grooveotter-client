@@ -89,16 +89,22 @@ var Timer = React.createClass({
         };
     },
 
-    componentDidMount: function() {
-        this.continue = true;
+    componentDidUpdate: function() {
+        var session = this.state.session;
 
-        var self = this;
-        requestAnimationFrame(function update() {
-            if (self.continue) {
-                self.forceUpdate();
-                requestAnimationFrame(update);
-            }
-        });
+        if (!session.isStarted()) {
+            this.continue = false;
+        } else if (!this.continue) {
+            this.continue = true;
+
+            var self = this;
+            requestAnimationFrame(function update() {
+                if (self.continue) {
+                    self.forceUpdate();
+                    requestAnimationFrame(update);
+                }
+            });
+        }
     },
 
     componentWillUnmount: function() {
@@ -110,7 +116,6 @@ var Timer = React.createClass({
         var duration = session.get('task').get('timeDuration');
         var timeRemaining = session.timeRemaining();
         var text = dateformat(timeRemaining, 'MM:ss');
-
 
         return <div className="gotr-timer">
             <div className="gotr-timer-counter">{text}</div>
