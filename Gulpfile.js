@@ -96,7 +96,8 @@ gulp.task('final', ['default'], function() {
         dontRenameFile: [
             /^\/favicon.ico$/g,
             /\/index.html/g,
-            /^\/landing.html/g
+            /^\/landing.html/g,
+            /^\/login.html/g,
         ]
     });
 
