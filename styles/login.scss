@@ -1,0 +1,57 @@
+@import 'normalize';
+@import 'base';
+
+html {
+    background: $gotr-offoffwhite;
+}
+
+.gotrl-login-box {
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.1);
+    margin: 180px auto;
+    max-width: 480px;
+    overflow: hidden;
+}
+
+.gotrl-login-logobox {
+    background: $gotr-primary;
+    padding: 20px 0;
+
+    .gotrl-login-logobox-logo {
+        display: block;
+        margin: 0 auto;
+        max-height: 60px;
+    }
+}
+
+.gotrl-login-content {
+    background: $gotr-white;
+    padding: 40px 80px 80px;
+    text-align: center;
+
+    & > * + * {
+        margin-top: 30px;
+    }
+}
+
+.gotrl-login-text {
+    font-size: 26px;
+}
+
+.gotrl-login-button {
+    border-radius: 4px;
+    color: $gotr-white;
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 1em 0;
+    width: 100%;
+}
+
+.gotrl-login-twitter {
+    background: #56adf6;
+}
+
+.gotrl-login-google {
+    background: #e21c00;
+}

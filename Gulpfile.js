@@ -76,7 +76,7 @@ gulp.task('migrate', function() {
 });
 
 gulp.task('styles', function() {
-    return gulp.src(['styles/main.scss', 'styles/landing.scss'])
+    return gulp.src('styles/*.scss')
         .pipe(smaps.init())
         .pipe(sass().on('error', gutil.log.bind(gutil, 'Sass Error')))
         .pipe(smaps.write())
