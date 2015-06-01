@@ -44,9 +44,8 @@ var Main = module.exports = React.createClass({
                 </Nav.Left>
 
                 <Nav.Right>
-                    <Nav.Item active><a href="">Timer</a></Nav.Item>
-                    <Nav.Item><a href="">How To</a></Nav.Item>
-                    <Nav.Item><a href="">Login</a></Nav.Item>
+                    <Nav.Item active><a href="#">Timer</a></Nav.Item>
+                    <Nav.Item><a href="#" onClick={this.logout}>Logout</a></Nav.Item>
                 </Nav.Right>
             </Nav>
 
@@ -76,5 +75,9 @@ var Main = module.exports = React.createClass({
                 </Grid.Row>
             </Grid.Wing>
         </div>;
+    },
+
+    logout: function() {
+        window.gotrUser.logout();
     }
 });

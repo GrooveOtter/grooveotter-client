@@ -11,11 +11,7 @@ var SessionStore = module.exports = Fluxxor.createStore({
             this.emit('change');
         }.bind(this));
 
-        this.taskList.fetch({
-            error: function() {
-                alert('API server is down, things are probably broken');
-            }
-        });
+        this.taskList.fetch();
 
         this.bindActions(
             constants.COMPLETE_TASK, this.onCompleteTask,
