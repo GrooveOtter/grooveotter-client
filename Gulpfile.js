@@ -30,7 +30,6 @@ var b = browserify({
     transform: [reactify, envify]
 });
 
-b.require('./node_modules/browserify-zepto', {expose: 'jquery'});
 b.require('./node_modules/lodash', {expose: 'underscore'});
 
 function bundle() {
@@ -43,18 +42,7 @@ function bundle() {
         .pipe(gulp.dest('dist/build'));
 }
 
-gulp.task('bundle', ['landing-bundle'], bundle);
-
-gulp.task('landing-bundle', function() {
-    return browserify('./scripts/landing', {debug: true})
-        .bundle()
-        .on('error', function(err) {
-            gutil.log('browserify: ', err.toString());
-        })
-        .pipe(source('landing.js'))
-        .pipe(buffer())
-        .pipe(gulp.dest('dist/build'));
-});
+gulp.task('bundle', bundle);
 
 gulp.task('watch', function() {
     b = watchify(b);
@@ -69,7 +57,6 @@ gulp.task('startwatch', ['default'], function() {
     });
 
     gulp.watch('styles/**/*', ['styles']);
-    gulp.watch('scripts/landing.js', ['landing-bundle']);
     gulp.watch('public/**/*', ['migrate']);
 });
 
@@ -104,7 +91,6 @@ gulp.task('final', ['default'], function() {
         dontRenameFile: [
             /^\/favicon.ico$/g,
             /\/index.html/g,
-            /^\/app.html/g,
             /^\/login.html/g,
             /^\/signup-twitter/g
         ]

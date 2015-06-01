@@ -20,13 +20,13 @@
         <div class="gotrl-login-content">
             <span class="gotrl-login-text">Login to GrooveOtter</span>
             <a
-                href="<%= env.TWITTER_HOST %>/auth/twitter?callback=<%= env.LOCATION %>/app&newCallback=<%= env.LOCATION %>/signup-twitter"
+                href="<%= env.TWITTER_HOST %>/auth/twitter?callback=<%= env.LOCATION %>&newCallback=<%= env.LOCATION %>/signup-twitter"
                 class="gotrl-login-button gotrl-login-twitter">
                 Login with Twitter
             </a>
 
             <a
-                href="<%= env.GOOGLE_HOST %>/auth/google?callback=<%= env.LOCATION %>/app"
+                href="<%= env.GOOGLE_HOST %>/auth/google?callback=<%= env.LOCATION %>"
                 class="gotrl-login-button gotrl-login-google">
                 Login with Google
             </a>

@@ -1,3 +1,4 @@
+require('./landing');
 require('./ajax');
 var React = require('react');
 var Fluxxor = require('fluxxor');
@@ -33,15 +34,5 @@ new User().fetch({
         window.gotrUser = user;
 
         gotrMain();
-    },
-
-    error: function(user, xhr) {
-        if (xhr.status === 401) {
-            window.location = '/login';
-        } else if (xhr.status === 503) {
-            alert('API server is down');
-        } else {
-            alert('API server is broken');
-        }
     }
 });
