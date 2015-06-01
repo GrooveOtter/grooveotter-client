@@ -7,7 +7,7 @@ var stores = require('./stores');
 var actions = require('./constants/actions');
 
 window.gotrMain = function() {
-    var flux = window.gotrFlux = new Fluxxor.Flux(stores, actions);
+    var flux = window.gotrFlux = new Fluxxor.Flux(stores.getStores(), actions);
 
     window.addEventListener('mousemove', function() {
         flux.actions.userAction();
