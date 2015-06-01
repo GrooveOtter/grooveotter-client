@@ -93,6 +93,10 @@
 
         .gotrl-login-button {
             background: $gotr-offsecondary;
+
+            &:hover {
+                background: $gotr-secondary;
+            }
         }
     }
 }
@@ -135,7 +139,12 @@
     font-weight: 700;
     padding: 0.6em;
     text-align: center;
+    transition: background-color 100ms ease;
     width: 140px;
+
+    &:hover {
+        background: $gotr-offsecondary;
+    }
 }
 
 .gotrl-getstarted-button {
@@ -148,7 +157,12 @@
     font-size: 1.25em;
     font-weight: 700;
     padding: 1em;
+    transition: background-color 100ms ease;
     width: 220px;
+
+    &:hover {
+        background: $gotr-secondary;
+    }
 }
 
 .gotrl-text-block {

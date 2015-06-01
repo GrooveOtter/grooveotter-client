@@ -50,8 +50,18 @@ html {
 
 .gotrl-login-twitter {
     background: #56adf6;
+    transition: background-color 100ms ease;
+
+    &:hover {
+        background: #4d9bdc;
+    }
 }
 
 .gotrl-login-google {
     background: #e21c00;
+    transition: background-color 100ms ease;
+
+    &:hover {
+        background: #ca1a00;
+    }
 }

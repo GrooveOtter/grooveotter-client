@@ -68,6 +68,7 @@ hr {
     border-radius: 4px;
     color: $gotr-white;
     font-weight: 700;
+    transition: background-color 100ms ease;
 
     &.gotr-button-primary {
         background: $gotr-primary;

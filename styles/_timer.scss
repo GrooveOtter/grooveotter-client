@@ -71,9 +71,19 @@
         height: 38px;
         margin-right: 5px;
         width: 41px;
+        transition:
+            border-color 100ms ease,
+            color 100ms ease,
+            background-color 100ms ease;
 
         &:last-child {
             margin-right: 0;
+        }
+
+        &:hover {
+            color: $gotr-white;
+            border-color: $gotr-secondary;
+            background: $gotr-secondary;
         }
     }
 
