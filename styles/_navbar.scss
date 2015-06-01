@@ -43,6 +43,7 @@
         }
 
         & .gotr-navbar-item-pic {
+            box-sizing: border-box;
             display: inline-block;
             height: 40px;
             border-radius: 100%;
