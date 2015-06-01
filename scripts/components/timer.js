@@ -91,24 +91,13 @@ var Timer = React.createClass({
 
     componentDidUpdate: function() {
         var session = this.state.session;
+        var self = this;
 
-        if (!session.isStarted()) {
-            this.continue = false;
-        } else if (!this.continue) {
-            this.continue = true;
-
-            var self = this;
-            requestAnimationFrame(function update() {
-                if (self.continue) {
-                    self.forceUpdate();
-                    requestAnimationFrame(update);
-                }
-            });
-        }
-    },
-
-    componentWillUnmount: function() {
-        this.continue = false;
+        requestAnimationFrame(function() {
+            if (session.isStarted() && self.isMounted()) {
+                self.forceUpdate();
+            }
+        });
     },
 
     render: function() {
