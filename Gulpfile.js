@@ -4,6 +4,7 @@ var Rev = require('gulp-rev-all');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var cssmin = require('gulp-minify-css');
+var ejs = require('gulp-ejs');
 var envify = require('envify');
 var gfilter = require('gulp-filter');
 var gulp = require('gulp');
@@ -73,7 +74,13 @@ gulp.task('startwatch', ['default'], function() {
 });
 
 gulp.task('migrate', function() {
-    return gulp.src('public/**/*').pipe(gulp.dest('dist/build'));
+    var onlyHtml = gfilter('**/*.html');
+
+    return gulp.src('public/**/*')
+        .pipe(onlyHtml)
+            .pipe(ejs({env: process.env}))
+        .pipe(onlyHtml.restore())
+        .pipe(gulp.dest('dist/build'));
 });
 
 gulp.task('styles', function() {
@@ -97,7 +104,7 @@ gulp.task('final', ['default'], function() {
         dontRenameFile: [
             /^\/favicon.ico$/g,
             /\/index.html/g,
-            /^\/landing.html/g,
+            /^\/app.html/g,
             /^\/login.html/g,
         ]
     });
