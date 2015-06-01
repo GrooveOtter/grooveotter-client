@@ -4,6 +4,7 @@ var Rev = require('gulp-rev-all');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var cssmin = require('gulp-minify-css');
+var envify = require('envify');
 var gfilter = require('gulp-filter');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
@@ -25,7 +26,7 @@ var b = browserify({
     packageCache: {},
     entries: './scripts/main.js',
     debug: true,
-    transform: [reactify]
+    transform: [reactify, envify]
 });
 
 b.require('./node_modules/browserify-zepto', {expose: 'jquery'});

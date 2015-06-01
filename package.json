@@ -10,6 +10,7 @@
     "browserify-zepto": "^1.1.4",
     "classnames": "^2.1.1",
     "dateformat": "^1.0.11",
+    "envify": "^3.4.0",
     "exoskeleton": "^0.7.0",
     "fluxxor": "^1.5.3",
     "gulp": "^3.8.11",
