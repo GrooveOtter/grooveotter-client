@@ -28,6 +28,7 @@ var Main = module.exports = React.createClass({
 
     render: function() {
         var activeTabIndex = this.state.activeTabIndex;
+        var pic = gotrUser.get('picture');
 
         var tabs = [
             {title: 'Today', content: <TaskList/>},
@@ -44,8 +45,12 @@ var Main = module.exports = React.createClass({
                 </Nav.Left>
 
                 <Nav.Right>
-                    <Nav.Item active><a href="#">Timer</a></Nav.Item>
-                    <Nav.Item><a href="#" onClick={this.logout}>Logout</a></Nav.Item>
+                    <Nav.Item>
+                        <a href="#">
+                            <img className="gotr-navbar-item-pic" src={pic} />
+                        </a>
+                    </Nav.Item>
+                    <Nav.Item><a className="gotr-navbar-item-logout" href="#" onClick={this.logout}>Logout</a></Nav.Item>
                 </Nav.Right>
             </Nav>
 
@@ -77,7 +82,9 @@ var Main = module.exports = React.createClass({
         </div>;
     },
 
-    logout: function() {
+    logout: function(event) {
+        event.preventDefault();
+
         window.gotrUser.logout();
     }
 });

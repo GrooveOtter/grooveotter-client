@@ -16,10 +16,12 @@
 
     & .gotr-navbar-right {
         float: right;
-        padding: 26px 40px 26px 0;
+        padding: 15px 35px 15px 0;
     }
 
     & .gotr-navbar-item {
+        vertical-align: middle;
+        display: inline-block;
         padding: 0 20px;
 
         &:first-child {
@@ -31,12 +33,25 @@
         }
 
         & a {
+            display: inline-block;
             color: lighten($gotr-primary, 30%);
             font-weight: 700;
         }
 
         &:hover a, &.gotr-navbar-item-active a {
             color: $gotr-white;
+        }
+
+        & .gotr-navbar-item-pic {
+            display: inline-block;
+            max-height: 40px;
+            border-radius: 100%;
+            border: 3px solid $gotr-white;
+        }
+
+        & .gotr-navbar-item-logout {
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
     }
 
