@@ -25,7 +25,6 @@ var Session = module.exports = Model.extend({
         var task = this.get('task');
         var duration = task.get('timeDuration');
         var started = this.get('started');
-        console.log(duration, started, Date.now() - started);
 
         return Math.min(duration, +started && Date.now() - started);
     },
