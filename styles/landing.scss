@@ -131,9 +131,12 @@
 .gotrl-login-button {
     border-radius: 4px;
     border: 1px solid $gotr-offsecondary;
+    box-sizing: border-box;
     color: $gotr-white;
+    display: inline-block;
     font-weight: 700;
     padding: 0.6em;
+    text-align: center;
     width: 140px;
 }
 
