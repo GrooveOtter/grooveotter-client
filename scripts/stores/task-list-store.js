@@ -54,12 +54,12 @@ var SessionStore = module.exports = Fluxxor.createStore({
 
     onUpdateTaskDuration: function(payload) {
         var task = payload.task;
-        var duration = payload.timeDuration;
+        var duration = payload.duration;
 
         if (task.isNew()) {
-            task.set({timeDuration: duration});
+            task.set({duration: duration});
         } else {
-            task.save({timeDuration: duration});
+            task.save({duration: duration});
         }
     },
 

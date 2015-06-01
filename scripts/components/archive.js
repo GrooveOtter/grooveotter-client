@@ -141,7 +141,7 @@ var Task = React.createClass({
 
             <div className="gotr-archive-task-count">
                 <span className="gotr-archive-task-clock"/>
-                <span>{task.timeDuration / (60 * 1000)} mins</span>
+                <span>{task.duration / (60 * 1000)} mins</span>
             </div>
         </li>;
     }
@@ -164,7 +164,7 @@ function archiveWeeks(tasks) {
 }
 
 function dayOf(task) {
-    var time = task.get('createdAt');
+    var time = task.get('created_at');
     return new Date(time.getFullYear(), time.getMonth(), time.getDate());
 }
 

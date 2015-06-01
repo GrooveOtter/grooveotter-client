@@ -90,7 +90,7 @@ var Task = React.createClass({
         var sessionTask = session.get('task');
         var task = this.props.task;
         var title = task.get('title');
-        var duration = task.get('timeDuration');
+        var duration = task.get('duration');
         var completed = task.get('completed');
 
         var checkboxClass = classNs('gotr-checkbox', {

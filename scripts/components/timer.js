@@ -26,7 +26,7 @@ var TimerPanel = module.exports = React.createClass({
     startSelecting: function() {
         var session = this.state.session;
         var task = session.get('task');
-        var duration = task.get('timeDuration');
+        var duration = task.get('duration');
         var mins = Math.floor(duration / (60 * 1000));
 
         if (!session.isStarted()) {
@@ -58,7 +58,7 @@ var TimerPanel = module.exports = React.createClass({
         var selecting = this.state.selecting;
         var session = this.state.session;
         var mins = this.state.mins;
-        var duration = session.get('task').get('timeDuration');
+        var duration = session.get('task').get('duration');
 
         if (selecting) {
             return <div className="gotr-timer-area-container">
@@ -102,9 +102,9 @@ var Timer = React.createClass({
 
     render: function() {
         var session = this.state.session;
-        var duration = session.get('task').get('timeDuration');
+        var duration = session.get('task').get('duration');
         var timeRemaining = session.timeRemaining();
-        var text = dateformat(timeRemaining, 'MM:ss');
+        var text = dateformat(new Date(timeRemaining), 'MM:ss');
 
         return <div className="gotr-timer">
             <div className="gotr-timer-counter">{text}</div>
