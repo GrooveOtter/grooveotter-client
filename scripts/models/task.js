@@ -1,22 +1,20 @@
 var Model = require('exoskeleton').Model;
 
 var Task = module.exports = Model.extend({
-    idAttribute: '_id',
-
     defaults: {
         title: '',
-        timeDuration: 20 * 60 * 1000,
+        duration: 20 * 60 * 1000,
         completed: false
     },
 
     parse: function(resp) {
         return {
-            _id: resp._id,
+            id: resp.id,
             title: resp.title,
-            timeDuration: resp.timeDuration,
-            completed: !!resp.completed,
-            createdAt: new Date(resp.createdAt),
-            updatedAt: new Date(resp.updatedAt)
+            duration: resp.duration,
+            completed: Boolean(resp.completed),
+            created_at: new Date(resp.created_at),
+            updated_at: new Date(resp.updated_at)
         };
     }
 });
