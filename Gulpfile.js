@@ -106,6 +106,7 @@ gulp.task('final', ['default'], function() {
             /\/index.html/g,
             /^\/app.html/g,
             /^\/login.html/g,
+            /^\/signup-twitter/g
         ]
     });
 
