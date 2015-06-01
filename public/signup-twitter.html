@@ -18,18 +18,13 @@
         </div>
 
         <div class="gotrl-login-content">
-            <span class="gotrl-login-text">Login to GrooveOtter</span>
-            <a
-                href="<%= env.TWITTER_HOST %>/auth/twitter?callback=<%= env.LOCATION %>/app&newCallback=<%= env.LOCATION %>/signup-twitter"
-                class="gotrl-login-button gotrl-login-twitter">
-                Login with Twitter
-            </a>
-
-            <a
-                href="<%= env.GOOGLE_HOST %>/auth/google?callback=<%= env.LOCATION %>/app"
-                class="gotrl-login-button gotrl-login-google">
-                Login with Google
-            </a>
+            <span class="gotrl-login-text">Provide your email address</span>
+            <p>Twitter doesn&rsquo;t allow us to access your email addres.</p>
+            <form
+                action="<%= env.TWITTER_HOST %>/auth/twitter/with-email"
+                method="POST">
+                <input autofocus type="email" name="email" />
+            </form>
         </div>
     </div>
 </body>
