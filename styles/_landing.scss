@@ -55,7 +55,7 @@
 }
 
 .gotrl-top-pointer {
-    bottom: 25px;
+    bottom: 30px;
     height: 35px;
     left: 0;
     position: absolute;
@@ -405,7 +405,7 @@
 @media screen and (max-width: 960px) {
     .gotrl-hero {
         position: absolute;
-        bottom: 55px;
+        bottom: 80px;
         left: 30px;
         right: 30px;
 
@@ -425,10 +425,6 @@
     .gotrl-top {
         background-size: 1400px;
         background-position: 47% 50%;
-
-        .gotrl-top-pointer {
-            bottom: 15px;
-        }
     }
 
     .gotrl-top-navbar, #gotrl-navbar .gotrl-navbar-content {
