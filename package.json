@@ -26,6 +26,7 @@
     "gulp-util": "^3.0.4",
     "jquery": "^2.1.4",
     "jquery.scrolling": "^0.1.20150317",
+    "js-cookie": "^1.5.1",
     "lodash": "^3.8.0",
     "normalize-scss": "^3.0.1-a",
     "react": "^0.13.2",

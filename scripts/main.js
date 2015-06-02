@@ -1,4 +1,3 @@
-require('./landing');
 require('./ajax');
 var React = require('react');
 var Fluxxor = require('fluxxor');
@@ -6,6 +5,7 @@ var Main = require('./components/main');
 var User = require('./models/user');
 var stores = require('./stores');
 var actions = require('./constants/actions');
+var cookies = require('js-cookie');
 
 window.gotrMain = function() {
     var flux = window.gotrFlux = new Fluxxor.Flux(stores.getStores(), actions);
@@ -32,7 +32,18 @@ window.gotrMain = function() {
 new User().fetch({
     success: function(user) {
         window.gotrUser = user;
+        cookies.set('loggedin', true);
 
         gotrMain();
+    },
+
+    error: function(user, xhr) {
+        cookies.remove('loggedin');
+
+        if (xhr.status === 401) {
+            window.location = '/login';
+        } else {
+            window.location = '/';
+        }
     }
 });

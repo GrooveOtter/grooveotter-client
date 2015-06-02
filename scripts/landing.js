@@ -1,6 +1,11 @@
 var $ = window.jQuery = require('jquery');
+var cookies = require('js-cookie');
 require('jquery.scrolling/jquery.scrolling');
 require('slick-carousel');
+
+if (cookies.get('loggedin')) {
+    window.location = '/app';
+}
 
 $(function() {
     var video = $('.gotrl-panel-three-right video').scrolling({

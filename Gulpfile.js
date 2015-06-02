@@ -42,7 +42,17 @@ function bundle() {
         .pipe(gulp.dest('dist/build'));
 }
 
-gulp.task('bundle', bundle);
+gulp.task('bundle', ['landing'], bundle);
+
+gulp.task('landing', function() {
+    return browserify({entries: './scripts/landing.js'}).bundle()
+        .on('error', function(err) {
+            gutil.log('browserify: ', err.toString());
+        })
+        .pipe(source('landing.js'))
+        .pipe(buffer())
+        .pipe(gulp.dest('dist/build'));
+});
 
 gulp.task('watch', function() {
     b = watchify(b);
@@ -91,6 +101,7 @@ gulp.task('final', ['default'], function() {
         dontRenameFile: [
             /^\/favicon.ico$/g,
             /\/index.html/g,
+            /\/app.html/g,
             /^\/login.html/g,
             /^\/signup-twitter/g
         ]
