@@ -105,7 +105,7 @@ var Task = React.createClass({
             var button = <button
                 disabled
                 className="gotr-button gotr-button-primary gotr-task-button">
-                In Progress
+                {session.hasEnded() ? 'Ended' : 'In Progress'}
             </button>;
         } else {
             var button = <button

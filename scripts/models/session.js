@@ -38,5 +38,9 @@ var Session = module.exports = Model.extend({
         } else {
             return duration;
         }
+    },
+
+    hasEnded: function() {
+        return this.timeRemaining() === 0;
     }
 });
