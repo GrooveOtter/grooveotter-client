@@ -52,7 +52,7 @@
             background: url(/delete.svg) no-repeat 0 0;
         }
 
-        &:hover {
+        &:hover, &.gotr-task-active {
             background: $gotr-white;
             border-color: $gotr-subtle;
             box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);

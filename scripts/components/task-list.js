@@ -97,6 +97,10 @@ var Task = React.createClass({
             'gotr-checkbox-checked': completed
         });
 
+        var taskClass = classNs('gotr-task', {
+            'gotr-task-active': sessionTask.id === task.id
+        });
+
         if (sessionTask.id === task.id) {
             var button = <button
                 disabled
@@ -111,7 +115,7 @@ var Task = React.createClass({
             </button>;
         }
 
-        return <div className="gotr-task">
+        return <div className={taskClass}>
             <div className="gotr-task-left">
                 <div className={checkboxClass} onClick={this.complete}/>
 
