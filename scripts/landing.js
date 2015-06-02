@@ -9,7 +9,7 @@ $(function() {
     });
 
     var anltcs = $('.gotrl-panel-four-left img').scrolling({
-        offsetLeft: -700,
+        offsetLeft: -400,
         offsetTop: -30
     });
 

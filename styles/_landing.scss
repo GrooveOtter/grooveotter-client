@@ -374,10 +374,7 @@
             vertical-align: top;
             line-height: 48px;
             height: 48px;
-
-            & + .gotrl-footer-item {
-                padding-left: 30px;
-            }
+            margin: 0 15px;
 
             a {
                 color: inherit;
@@ -402,5 +399,94 @@
 
     to {
         transform: translateY(-30px);
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .gotrl-hero {
+        position: absolute;
+        bottom: 55px;
+        left: 30px;
+        right: 30px;
+
+        h1 {
+            font-size: 2.25em;
+        }
+
+        h2 {
+            font-size: 1em;
+        }
+    }
+
+    .gotrl-top-container {
+        max-height: 600px;
+    }
+
+    .gotrl-top {
+        background-size: 1400px;
+        background-position: 47% 50%;
+
+        .gotrl-top-pointer {
+            bottom: 15px;
+        }
+    }
+
+    .gotrl-top-navbar, #gotrl-navbar .gotrl-navbar-content {
+        padding: 15px;
+
+        .gotrl-login-button {
+            width: 100%;
+            padding: 0.6em 1em;
+        }
+    }
+
+    #gotrl-panel-two {
+        p {
+            font-size: 22px;
+            line-height: 24px;
+        }
+    }
+
+    #gotrl-panel-three .gotrl-panel-three-left {
+        margin: 0;
+    }
+
+    .gotrl-text-block {
+        h1 {
+            font-size: 32px;
+            line-height: 36px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+
+    #gotrl-panel-four {
+        .gotrl-panel-content {
+            .gotrl-panel-left {
+                img {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    #gotrl-panel-five {
+        .gotrl-panel-five-text {
+            font-size: 18px;
+            line-height: 24px;
+        }
+
+        .gotrl-panel-five-name {
+            font-size: 14px;
+        }
+    }
+
+    #gotrl-panel-six {
+        .gotrl-panel-six-calltoaction {
+            font-size: 32px;
+        }
     }
 }
