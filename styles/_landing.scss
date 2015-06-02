@@ -91,6 +91,10 @@
         padding: 15px 40px;
         overflow: hidden;
 
+        img {
+            max-height: 40px;
+        }
+
         .gotrl-login-button {
             background: $gotr-offsecondary;
 
@@ -104,6 +108,10 @@
 .gotrl-top-navbar {
     padding: 25px 40px;
     overflow: hidden;
+
+    img {
+        max-height: 40px;
+    }
 }
 
 .gotrl-navbar-left {
