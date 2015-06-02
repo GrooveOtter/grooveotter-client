@@ -42,7 +42,9 @@ var TaskArea = module.exports = React.createClass({
                 type="text"
                 placeholder="What are you working on?"
                 className="gotr-taskarea-box"
+                ref="gotrTaskareaBox"
                 value={editing ? tempTitle : title}
+                onKeyDown={this.checkForEnter}
                 onChange={this.updateTempTitle}
                 onFocus={this.startEditing}
                 onBlur={this.stopEditing}
@@ -122,5 +124,12 @@ var TaskArea = module.exports = React.createClass({
         });
 
         flux.actions.updateTaskTitle(task, title);
+    },
+
+    checkForEnter: function(event) {
+        if (event.which === 13) {
+            this.refs.gotrTaskareaBox.getDOMNode().blur();
+            this.startTask();
+        }
     }
 });
