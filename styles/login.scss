@@ -6,10 +6,9 @@ html {
 }
 
 .gotrl-login-box {
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.1);
-    margin: 180px auto;
+    display: inline-block;
     max-width: 480px;
+    width: 100%;
     overflow: hidden;
 }
 
@@ -26,7 +25,7 @@ html {
 
 .gotrl-login-content {
     background: $gotr-white;
-    padding: 40px 80px 80px;
+    padding: 40px 30px 80px 30px;
     text-align: center;
 
     & > * + * {
@@ -63,5 +62,30 @@ html {
 
     &:hover {
         background: #ca1a00;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .gotrl-login-box-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        min-height: 100%;
+    }
+
+
+    .gotrl-login-box {
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.1);
+
+        .gotrl-login-box-content {
+            padding-left: 80px;
+            padding-right: 80px;
+        }
     }
 }

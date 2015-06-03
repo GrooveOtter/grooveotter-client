@@ -12,19 +12,21 @@
 </head>
 
 <body>
-    <div class="gotrl-login-box">
-        <div class="gotrl-login-logobox">
-            <a href="/"><img class="gotrl-login-logobox-logo" src="/logo-square.png"/></a>
-        </div>
+    <div class="gotrl-login-box-container">
+        <div class="gotrl-login-box">
+            <div class="gotrl-login-logobox">
+                <a href="/"><img class="gotrl-login-logobox-logo" src="/logo-square.png"/></a>
+            </div>
 
-        <div class="gotrl-login-content">
-            <span class="gotrl-login-text">Provide your email address</span>
-            <p>Twitter doesn&rsquo;t allow us to access your email addres.</p>
-            <form
-                action="<%= env.TWITTER_HOST %>/auth/twitter/with-email"
-                method="POST">
-                <input autofocus type="email" name="email" />
-            </form>
+            <div class="gotrl-login-content">
+                <span class="gotrl-login-text">Provide your email address</span>
+                <p>Twitter doesn&rsquo;t allow us to access your email addres.</p>
+                <form
+                    action="<%= env.TWITTER_HOST %>/auth/twitter/with-email"
+                    method="POST">
+                    <input autofocus type="email" name="email" />
+                </form>
+            </div>
         </div>
     </div>
 </body>
