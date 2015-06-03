@@ -45,6 +45,20 @@ var Task = React.createClass({
         };
     },
 
+    componentDidUpdate: function() {
+        var session = this.state.session;
+        var task = this.props.task;
+        var self = this;
+
+        requestAnimationFrame(function() {
+            var active = session.get('task').id === task.id;
+
+            if (active && session.isStarted() && self.isMounted()) {
+                self.forceUpdate();
+            }
+        });
+    },
+
     startTask: function() {
         var flux = this.getFlux();
         var task = this.props.task;
