@@ -12,14 +12,20 @@
     z-index: 10;
 
     .gotrl-top-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background: rgba(0, 0, 0, 0.4);
-        height: 100%;
-        position: relative;
+        bottom: 0;
+        left: 0;
+        position: absolute;;
+        right: 0;
+        top: 0;
     }
 }
 
 .gotrl-top-container {
-    height: 680px;
+    height: 100vh;
     position: relative;
 }
 
@@ -55,18 +61,21 @@
 }
 
 .gotrl-top-pointer {
-    bottom: 30px;
-    height: 35px;
+    bottom: 0;
+    height: 75px;
     left: 0;
+    line-height: 75px;
     position: absolute;
     right: 0;
+    text-align: center;
+    vertical-align: middle;
 
     img {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
+        display: inline-block;
         height: 20px;
         transition: transform 500ms ease-in-out;
+        vertical-align: middle;
+        width: 20px;
     }
 
     &:hover {
@@ -106,8 +115,12 @@
 }
 
 .gotrl-top-navbar {
-    padding: 25px 40px;
+    left: 0;
     overflow: hidden;
+    padding: 25px 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
 
     img {
         max-height: 40px;
@@ -123,18 +136,18 @@
 }
 
 .gotrl-hero {
+    display: inline-block;
     color: $gotr-white;
     text-align: center;
 
     h1 {
-        margin-top: 15%;
-        margin-bottom: 0;
-        font-size: 3.75em;
+        margin: 50px 0 0;
+        font-size: 60px;
     }
 
     h2 {
-        margin-bottom: 50px;
-        font-size: 1.625em;
+        margin: 30px 0 40px 0;
+        font-size: 26px;
     }
 }
 
@@ -404,10 +417,7 @@
 
 @media screen and (max-width: 960px) {
     .gotrl-hero {
-        position: absolute;
-        bottom: 80px;
-        left: 30px;
-        right: 30px;
+        margin: 0 30px;
 
         h1 {
             font-size: 2.25em;
@@ -416,15 +426,6 @@
         h2 {
             font-size: 1em;
         }
-    }
-
-    .gotrl-top-container {
-        max-height: 600px;
-    }
-
-    .gotrl-top {
-        background-size: 1400px;
-        background-position: 47% 50%;
     }
 
     .gotrl-top-navbar, #gotrl-navbar .gotrl-navbar-content {
@@ -443,8 +444,17 @@
         }
     }
 
-    #gotrl-panel-three .gotrl-panel-three-left {
-        margin: 0;
+    #gotrl-panel-three {
+        .gotrl-panel-three-left {
+            margin: 0;
+        }
+
+        .gotrl-panel-three-right {
+            video {
+                margin: 30px 0 0;
+                opacity: 1;
+            }
+        }
     }
 
     .gotrl-text-block {
@@ -461,9 +471,10 @@
 
     #gotrl-panel-four {
         .gotrl-panel-content {
-            .gotrl-panel-left {
+            .gotrl-panel-four-left {
                 img {
-                    margin: 0;
+                    margin: 0 0 30px 0;
+                    opacity: 1;
                 }
             }
         }

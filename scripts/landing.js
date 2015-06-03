@@ -8,26 +8,28 @@ if (cookies.get('loggedin')) {
 }
 
 $(function() {
-    var video = $('.gotrl-panel-three-right video').scrolling({
-        offsetLeft: 700,
-        offsetTop: -100
-    });
+    if ($(window).height() > 800) {
+        var video = $('.gotrl-panel-three-right video').scrolling({
+            offsetLeft: 700,
+            offsetTop: -100
+        });
 
-    var anltcs = $('.gotrl-panel-four-left img').scrolling({
-        offsetLeft: -400,
-        offsetTop: -30
-    });
+        var anltcs = $('.gotrl-panel-four-left img').scrolling({
+            offsetLeft: -700,
+            offsetTop: -30
+        });
 
-    if (video.is(':scrollin')) {
-        slideInFromRight.call(video);
-    } else {
-        video.one('scrollin', slideInFromRight);
-    }
+        if (video.is(':scrollin')) {
+            slideInFromRight.call(video);
+        } else {
+            video.one('scrollin', slideInFromRight);
+        }
 
-    if (anltcs.is(':scrollin')) {
-        slideInFromLeft.call(anltcs);
-    } else {
-        anltcs.one('scrollin', slideInFromLeft);
+        if (anltcs.is(':scrollin')) {
+            slideInFromLeft.call(anltcs);
+        } else {
+            anltcs.one('scrollin', slideInFromLeft);
+        }
     }
 
     $('a[href*=#]:not([href=#])').click(function() {
