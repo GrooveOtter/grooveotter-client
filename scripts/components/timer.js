@@ -70,7 +70,7 @@ var TimerPanel = module.exports = React.createClass({
             </div>;
         } else {
             return <div className="gotr-timer-area-container">
-                <div className="gotr-timer-area" onDoubleClick={this.startSelecting}>
+                <div className="gotr-timer-area" onClick={this.startSelecting}>
                     <Timer/>
                 </div>
             </div>;

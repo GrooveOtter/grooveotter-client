@@ -21,6 +21,10 @@
     height: 200px;
     position: relative;
 
+    &:hover {
+        cursor: pointer;
+    }
+
     & .gotr-timer-counter {
         font-size: 2.3em;
         vertical-align: middle;
