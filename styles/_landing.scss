@@ -10,6 +10,7 @@
     right: 0;
     top: 0;
     z-index: 10;
+    clip: rect(auto, auto, auto, auto);
 
     .gotrl-top-content {
         display: table;
@@ -119,8 +120,8 @@
 .gotrl-top-navbar {
     left: 0;
     overflow: hidden;
-    padding: 25px 40px;
-    position: absolute;
+    padding: 15px 40px;
+    position: fixed;
     right: 0;
     top: 0;
 
