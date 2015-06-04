@@ -29,7 +29,7 @@ var TaskList = module.exports = React.createClass({
         </div>;
 
         function renderTask(task) {
-            return <Task task={task} key={task.id}/>;
+            return <Task task={task} key={task.cid}/>;
         }
     }
 });
@@ -51,7 +51,7 @@ var Task = React.createClass({
         var self = this;
 
         requestAnimationFrame(function() {
-            var active = session.get('task').id === task.id;
+            var active = session.get('task').cid === task.cid;
 
             if (active && session.isStarted() && self.isMounted()) {
                 self.forceUpdate();
@@ -112,10 +112,10 @@ var Task = React.createClass({
         });
 
         var taskClass = classNs('gotr-task', {
-            'gotr-task-active': sessionTask.id === task.id
+            'gotr-task-active': sessionTask.cid === task.cid
         });
 
-        if (sessionTask.id === task.id) {
+        if (sessionTask.cid === task.cid) {
             var button = <button
                 disabled
                 className="gotr-button gotr-button-primary gotr-task-button">

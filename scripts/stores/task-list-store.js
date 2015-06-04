@@ -33,7 +33,7 @@ var SessionStore = module.exports = Fluxxor.createStore({
 
         if (task.get('title').trim() !== '') {
             task.collection = this.taskList;
-            this.taskList.create(task, {wait: true});
+            this.taskList.create(task);
         }
     },
 

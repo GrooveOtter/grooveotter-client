@@ -43,7 +43,7 @@ var SessionStore = module.exports = Fluxxor.createStore({
         var session = this.session;
         var activeTask = session.get('task');
 
-        if (task.id === activeTask.id) {
+        if (task.cid === activeTask.cid) {
             this.complete();
         }
     },
@@ -64,7 +64,7 @@ var SessionStore = module.exports = Fluxxor.createStore({
         var session = this.session;
         var activeTask = session.get('task');
 
-        if (task.id === activeTask.id) {
+        if (task.cid === activeTask.cid) {
             this.resetSession();
         }
 

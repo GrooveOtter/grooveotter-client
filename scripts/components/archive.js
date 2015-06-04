@@ -125,7 +125,7 @@ var Day = React.createClass({
         </div>;
 
         function renderTask(task) {
-            return <Task key={task.id} task={task.toJSON()}/>
+            return <Task key={task.cid} task={task.toJSON()}/>
         }
     }
 });

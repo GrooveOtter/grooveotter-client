@@ -38,7 +38,7 @@ var AnltcsStore = module.exports = Fluxxor.createStore({
         var session = flux.store('SessionStore').getSession();
         var sessionTask = session.get('task');
 
-        if (task.id === sessionTask.id) {
+        if (task.cid === sessionTask.cid) {
             var time = session.elapsedTime();
             this.logSessionTime(time);
             this.logSiteTime(lastAction - started);
