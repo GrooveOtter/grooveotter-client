@@ -1,6 +1,8 @@
 var React = require('react');
 var classNs = require('classnames');
 
+// ...and here. This is getting repetative.
+
 var Navbar = module.exports = exports = React.createClass({
     render: function() {
         return <div className="gotr-nav-top">

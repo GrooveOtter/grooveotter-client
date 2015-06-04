@@ -1,5 +1,7 @@
 var React = require('react');
 
+// TODO: reduce the code duplication seen here
+
 var PrimaryButton = exports.PrimaryButton = React.createClass({
     render: function() {
         return <button className="gotr-button gotr-button-primary" {...this.props}>

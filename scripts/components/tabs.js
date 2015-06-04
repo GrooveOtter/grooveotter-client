@@ -1,6 +1,15 @@
 var React = require('react');
 var classNs = require('classnames');
 
+// This is the logic behind the tab bar seen
+// below the task area.
+//
+// For example:
+//
+//     <Tabs tabs=[{title: 'Tab 1', content: <div>...</div>}, ...]/>;
+//
+// TODO: add propTypes
+
 var Tabs = module.exports = exports = React.createClass({
     render: function() {
         var active = this.props.active;

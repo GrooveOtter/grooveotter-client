@@ -8,6 +8,12 @@ var classNs = require('classnames');
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
+// This is the code for the 'archive' tab
+// in the dashboard. It uses the tasks from
+// the task list store and displays all
+// uncompleted tasks in a paginated-accordian
+// list.
+
 var Archive = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('TaskListStore')],
 
@@ -25,6 +31,8 @@ var Archive = module.exports = React.createClass({
         };
     },
 
+    // Decrement the `currentWeekIndex` (current page),
+    // effectively paging to the left.
     goLeft: function() {
         var currentWeekIndex = this.state.currentWeekIndex;
 
@@ -33,6 +41,8 @@ var Archive = module.exports = React.createClass({
         });
     },
 
+    // Increment the `currentWeekIndex` (current page),
+    // effectively paging to the right.
     goRight: function() {
         var currentWeekIndex = this.state.currentWeekIndex;
 
@@ -89,6 +99,10 @@ var Day = React.createClass({
         };
     },
 
+    // Toggle between open and closed states.
+    // This is held on a per-component basis,
+    // so the state is reset when the page
+    // changes.
     toggleOpen: function() {
         var open = this.state.open;
 
@@ -156,8 +170,11 @@ function archiveWeeks(tasks) {
         .map(toWeekObj)
         .value();
 
+    // Weeks should never be empty.
     if (weeks.length === 0) {
         weeks.push({date: 'This Week', days: []});
+    } else {
+        weeks[0].date = 'This Week';
     }
 
     return weeks;

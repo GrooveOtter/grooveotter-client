@@ -4,6 +4,11 @@ var Fluxxor = require('fluxxor');
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
+// This is the code for the analytics widget in
+// the bottom-right corner of the dashboard. It
+// uses SVG masks and lines for the graph, and
+// grabs data from the analytics store.
+
 var Anltcs = module.exports = exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('AnltcsStore')],
 
@@ -26,12 +31,13 @@ var Anltcs = module.exports = exports = React.createClass({
         var working = Math.floor(sessionTime / (60 * 1000));
         var organizing = total - working;
 
+        // this occurs on page-load,
+        // when sessionTime and siteTime are 0
         if (isNaN(cord)) {
             cord = 0;
         }
 
         // TODO: setup linguistics
-
         return <div className="gotr-anltcs">
             <div className="gotr-anltcs-count">{total}</div>
             <div className="gotr-anltcs-desc">minutes in Groove</div>

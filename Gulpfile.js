@@ -35,7 +35,8 @@ b.require('./node_modules/lodash', {expose: 'underscore'});
 function bundle() {
     return b.bundle()
         .on('error', function(err) {
-            gutil.log('browserify: ', err.toString());
+            err = new gutil.PluginError('browserify', err);
+            gutil.log(err.toString());
         })
         .pipe(source('bundle.js'))
         .pipe(buffer())
@@ -47,7 +48,8 @@ gulp.task('bundle', ['landing'], bundle);
 gulp.task('landing', function() {
     return browserify({entries: './scripts/landing.js'}).bundle()
         .on('error', function(err) {
-            gutil.log('browserify: ', err.toString());
+            err = new gutil.PluginError('browserify', err);
+            gutil.log(err.toString());
         })
         .pipe(source('landing.js'))
         .pipe(buffer())
@@ -60,7 +62,7 @@ gulp.task('watch', function() {
     return gulp.run('startwatch');
 });
 
-gulp.task('startwatch', ['default'], function() {
+gulp.task('watch', ['default'], function() {
     b.on('log', gutil.log);
     b.on('update', function() {
         gulp.run('bundle');
@@ -75,6 +77,7 @@ gulp.task('migrate', function() {
 
     return gulp.src('public/**/*')
         .pipe(onlyHtml)
+            // so our HTML files can access environment variables
             .pipe(ejs({env: process.env}))
         .pipe(onlyHtml.restore())
         .pipe(gulp.dest('dist/build'));
@@ -83,7 +86,9 @@ gulp.task('migrate', function() {
 gulp.task('styles', function() {
     return gulp.src('styles/*.scss')
         .pipe(smaps.init())
-        .pipe(sass().on('error', gutil.log.bind(gutil, 'Sass Error')))
+        .pipe(sass().on('error', function(err) {
+            gutil.log(err.toString());
+        }))
         .pipe(smaps.write())
         .pipe(gulp.dest('dist/build'));
 });
@@ -98,6 +103,11 @@ gulp.task('final', ['default'], function() {
             return 'assets/' + hash + path.extname(file.path);
         },
 
+        // This is a whitelist of files to not be renamed.
+        // It needs to be updated anytime we add a new HTML
+        // page.
+        //
+        // TODO: robots.txt
         dontRenameFile: [
             /^\/favicon.ico$/g,
             /\/index.html/g,

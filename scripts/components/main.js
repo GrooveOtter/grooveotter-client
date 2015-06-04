@@ -11,6 +11,15 @@ var Archive = require('./archive');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 
+// This is the code for the main component of the app.
+// It tries to be high-level and declarative. Though
+// we should probably extract the navbar part out.
+//
+// Most of the structure of this was dictated by the
+// existing structure of the Angular code, which is
+// why most of the elements used here are simplistic
+// wrappers around divs with classes.
+
 var Main = module.exports = React.createClass({
     mixins: [FluxMixin],
 
@@ -82,6 +91,7 @@ var Main = module.exports = React.createClass({
         </div>;
     },
 
+    // See User#logout
     logout: function(event) {
         event.preventDefault();
 

@@ -6,6 +6,8 @@ var TransitionGroup = require('react/addons').addons.CSSTransitionGroup;
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
+// The task list seen in the 'Today' tab.
+
 var TaskList = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('TaskListStore')],
 

@@ -1,5 +1,7 @@
 var React = require('react');
 
+// ...and here
+
 var Row = exports.Row = React.createClass({
     render: function() {
         return <div className="gotr-row">
