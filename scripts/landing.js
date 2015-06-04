@@ -8,7 +8,7 @@ if (cookies.get('loggedin')) {
 }
 
 $(function() {
-    if ($(window).height() > 800) {
+    if ($(window).width() > 800) {
         var video = $('.gotrl-panel-three-right video').scrolling({
             offsetLeft: 700,
             offsetTop: -100
