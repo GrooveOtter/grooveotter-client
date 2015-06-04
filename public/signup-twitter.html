@@ -15,7 +15,7 @@
     <div class="gotrl-login-box-container">
         <div class="gotrl-login-box">
             <div class="gotrl-login-logobox">
-                <a href="/"><img class="gotrl-login-logobox-logo" src="/logo-square.png"/></a>
+                <a href="/"><img class="gotrl-login-logobox-logo" src="/logo-square.svg"/></a>
             </div>
 
             <div class="gotrl-login-content">
@@ -24,7 +24,8 @@
                 <form
                     action="<%= env.TWITTER_HOST %>/auth/twitter/with-email"
                     method="POST">
-                    <input autofocus type="email" name="email" />
+                    <input class="gotrl-login-email" autofocus type="email" name="email" placeholder="Email Address" />
+                    <input class="gotr-button gotr-button-secondary gotrl-login-signup" type="submit" value="Signup" />
                 </form>
             </div>
         </div>
