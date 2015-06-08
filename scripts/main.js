@@ -40,10 +40,6 @@ new User().fetch({
     error: function(user, xhr) {
         cookies.remove('loggedin');
 
-        if (xhr.status === 401) {
-            window.location = '/login';
-        } else {
-            window.location = '/';
-        }
+        window.location = '/';
     }
 });
