@@ -62,7 +62,7 @@ gulp.task('watch', function() {
     return gulp.run('startwatch');
 });
 
-gulp.task('watch', ['default'], function() {
+gulp.task('startwatch', ['default'], function() {
     b.on('log', gutil.log);
     b.on('update', function() {
         gulp.run('bundle');
