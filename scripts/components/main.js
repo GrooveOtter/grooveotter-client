@@ -8,6 +8,7 @@ var Anltcs = require('./anltcs');
 var Tabs = require('./tabs');
 var TaskList = require('./task-list');
 var Archive = require('./archive');
+var Newsfeed = require('./newsfeed');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 
@@ -62,6 +63,8 @@ var Main = module.exports = React.createClass({
                     <Nav.Item><a className="gotr-navbar-item-logout" href="#" onClick={this.logout}>Logout</a></Nav.Item>
                 </Nav.Right>
             </Nav>
+
+            <Newsfeed/>
 
             <Grid.Hero>
                 <Grid.Row>

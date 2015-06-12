@@ -1,11 +1,9 @@
 .gotr-nav-top {
     background: $gotr-primary;
-    min-height: 4.375em;
     overflow: hidden;
 }
 
 .gotr-navbar {
-    left: 0;
     position: relative;
     width: auto;
 
@@ -20,9 +18,10 @@
     }
 
     & .gotr-navbar-item {
-        vertical-align: middle;
         display: inline-block;
+        max-height: 40px;
         padding: 0 20px;
+        vertical-align: middle;
 
         &:first-child {
             padding-left: 0;
