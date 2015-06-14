@@ -26,6 +26,10 @@ window.gotrMain = function() {
         flux.actions.userLeave();
     });
 
+    setInterval(function() {
+        flux.actions.cycleNewsfeed();
+    }, 15 * 1000);
+
     React.render(<Main flux={flux}/>, document.getElementById('main'));
 };
 

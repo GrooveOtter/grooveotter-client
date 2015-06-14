@@ -31,7 +31,7 @@
             font-weight: 600;
         }
 
-        & span, & img {
+        & .gotr-news-item-line, {
             vertical-align: middle;
         }
 
@@ -42,6 +42,7 @@
             display: inline-block;
             height: 40px;
             margin-right: 10px;
+            vertical-align: middle;
         }
 
         & .gotr-newsfeed-like {
@@ -52,6 +53,10 @@
             height: 40px;
             max-width: 70px;
             padding: 0 10px;
+
+            & img {
+                width: 20px;
+            }
         }
     }
 

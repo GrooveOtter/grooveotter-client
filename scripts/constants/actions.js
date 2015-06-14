@@ -36,5 +36,9 @@ var actions = module.exports = {
 
     userLeave: function() {
         this.dispatch(constants.USER_LEAVE);
+    },
+
+    cycleNewsfeed: function() {
+        this.dispatch(constants.CYCLE_NEWSFEED);
     }
 };
