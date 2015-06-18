@@ -15,6 +15,8 @@ var Task = module.exports = Model.extend({
             duration: resp.duration,
             completed: Boolean(resp.completed),
             user: new User(resp.user),
+            likes: Number(resp.likes),
+            liked: Boolean(resp.liked),
             created_at: new Date(resp.created_at),
             updated_at: new Date(resp.updated_at)
         };
