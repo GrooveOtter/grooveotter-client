@@ -22,6 +22,10 @@ var Task = module.exports = Model.extend({
         };
     },
 
+    like: function() {
+        this.save({liked: true});
+    },
+
     getDurationInMinutes: function() {
         return Math.floor(this.get('duration') / (1000 * 60));
     }

@@ -7,14 +7,15 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         this.currentItemIndex = 0;
         this.newsfeed = new Newsfeed();
 
-        this.newsfeed.on('add remove change', function() {
+        this.newsfeed.on('reset add remove change', function() {
             this.emit('change');
-        }.bind(this));
+        }, this);
 
-        this.newsfeed.fetch({fetch: true});
+        this.newsfeed.fetch({reset: true});
 
         this.bindActions(
-            constants.CYCLE_NEWSFEED, this.onCycleNewsfeed
+            constants.CYCLE_NEWSFEED, this.onCycleNewsfeed,
+            constants.LIKE_SHARED_ITEM, this.onLikeSharedItem
         );
     },
 
@@ -25,6 +26,12 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         this.currentItemIndex = (index + 1) % newsfeed.length;
 
         this.emit('change');
+    },
+
+    onLikeSharedItem: function(payload) {
+        var item = payload.item;
+
+        item.like();
     },
 
     getCurrentItem: function() {

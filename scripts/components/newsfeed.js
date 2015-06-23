@@ -50,13 +50,20 @@ var Newsfeed = module.exports = React.createClass({
 
                 <div className="gotr-newsfeed-right">
                     <div className="gotr-newsfeed-item">
-                        <button className="gotr-newsfeed-like">
-                            <img src="/thumbs-up.svg"/>
+                        <button className="gotr-newsfeed-like" onClick={this.handleLike}>
+                            <img src={liked ? '/thumbs-up-green.svg' : '/thumbs-up.svg'}/>
                             <span>&nbsp;{likes}</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>;
+    },
+
+    handleLike: function() {
+        var flux = this.getFlux();
+        var item = this.state.item;
+
+        flux.actions.likeSharedItem(item);
     }
 });
