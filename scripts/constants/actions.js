@@ -44,5 +44,9 @@ var actions = module.exports = {
 
     likeSharedItem: function(item) {
         this.dispatch(constants.LIKE_SHARED_ITEM, {item: item});
+    },
+
+    notifyLikedItem: function(itemId) {
+        this.dispatch(constants.NOTIFY_LIKED_ITEM, {itemId: itemId});
     }
 };

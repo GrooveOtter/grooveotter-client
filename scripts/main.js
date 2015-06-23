@@ -6,29 +6,44 @@ var User = require('./models/user');
 var stores = require('./stores');
 var actions = require('./constants/actions');
 var cookies = require('js-cookie');
+var $ = require('jquery');
 
 window.gotrMain = function() {
     var flux = window.gotrFlux = new Fluxxor.Flux(stores.getStores(), actions);
 
-    window.addEventListener('mousemove', function() {
+    $(window).on('mousemove', function() {
         flux.actions.userAction();
     });
 
-    window.addEventListener('focus', function() {
+    $(window).on('focus', function() {
         flux.actions.userAction();
     });
 
-    window.addEventListener('unload', function() {
+    $(window).on('unload', function() {
         flux.actions.userLeave();
     });
 
-    window.addEventListener('blur', function() {
+    $(window).on('blur', function() {
         flux.actions.userLeave();
     });
 
     setInterval(function() {
         flux.actions.cycleNewsfeed();
     }, 15 * 1000);
+
+    var source = window.gotrSource = new EventSource(process.env.GOTR_HOST + '/sse');
+
+    source.withCredentials = true;
+
+    $(source).on('message', function(jEvent) {
+        var event = jEvent.originalEvent; // for some reason jQuery doesn't like event sources
+        var data = event.data;
+        var message = JSON.parse(data);
+        var type = message.type;
+        var payload = message.payload;
+
+        flux.dispatchBinder.dispatch(type, payload);
+    });
 
     React.render(<Main flux={flux}/>, document.getElementById('main'));
 };
