@@ -63,7 +63,6 @@ var AnltcsStore = module.exports = Fluxxor.createStore({
         if (started != null && !session.isStarted()) {
             this.logSiteTime(lastAction - started);
             this.started = null;
-            this.emit('change');
         }
     },
 

@@ -33,6 +33,8 @@ var Newsfeed = module.exports = React.createClass({
         var item = this.state.item;
         var title = item.get('title');
         var mins = item.getDurationInMinutes();
+        var liked = item.get('liked');
+        var likes = item.get('likes');
         var user = item.get('user');
         var fullName = user.get('full_name');
         var pic = user.get('picture');
@@ -48,13 +50,20 @@ var Newsfeed = module.exports = React.createClass({
 
                 <div className="gotr-newsfeed-right">
                     <div className="gotr-newsfeed-item">
-                        <button className="gotr-newsfeed-like">
-                            <img src="/thumbs-up.svg"/>
-                            <span>&nbsp;36</span>
+                        <button className="gotr-newsfeed-like" onClick={this.handleLike}>
+                            <img src={liked ? '/thumbs-up-green.svg' : '/thumbs-up.svg'}/>
+                            <span>&nbsp;{likes}</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>;
+    },
+
+    handleLike: function() {
+        var flux = this.getFlux();
+        var item = this.state.item;
+
+        flux.actions.likeSharedItem(item);
     }
 });
