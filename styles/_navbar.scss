@@ -1,6 +1,7 @@
 .gotr-nav-top {
     background: $gotr-primary;
     overflow: hidden;
+    height: 60px;
 }
 
 .gotr-navbar {
@@ -9,12 +10,12 @@
 
     & .gotr-navbar-left {
         float: left;
-        padding: 15px 0 15px 35px;
+        padding: 10px 0 15px 35px;
     }
 
     & .gotr-navbar-right {
         float: right;
-        padding: 15px 35px 15px 0;
+        padding: 10px 35px 15px 0;
     }
 
     & .gotr-navbar-item {

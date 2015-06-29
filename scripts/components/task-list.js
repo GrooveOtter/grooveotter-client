@@ -21,7 +21,6 @@ var TaskList = module.exports = React.createClass({
 
     render: function() {
         var tasks = this.state.taskList.uncompletedTasks();
-
         return <div className="gotr-task-list">
             <TransitionGroup
                 transitionName="gotr-task"
