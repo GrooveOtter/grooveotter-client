@@ -36,7 +36,6 @@ var TimerPanel = module.exports = React.createClass({
             });
         }
     },
-
     stopSelecting: function() {
         var flux = this.getFlux();
         var session = this.state.session;
@@ -44,6 +43,7 @@ var TimerPanel = module.exports = React.createClass({
         var task = session.get('task');
         var duration = mins * 60 * 1000;
 
+        console.log('flux', flux);
         flux.actions.updateTaskDuration(task, duration);
         this.setState({selecting: false});
     },
@@ -54,6 +54,13 @@ var TimerPanel = module.exports = React.createClass({
         });
     },
 
+    checkForInput: function(e) {
+        var tabKey = 9;
+        if (e.which === tabKey) {
+            this.setState({selecting:false});
+        }
+    },
+
     render: function() {
         var selecting = this.state.selecting;
         var session = this.state.session;
@@ -62,8 +69,8 @@ var TimerPanel = module.exports = React.createClass({
 
         if (selecting) {
             return <div className="gotr-timer-area-container">
-                <div className="gotr-timer-area gotr-timer-area-selecting">
-                    <Selector mins={mins} onChange={this.updateMins}/>
+                <div onKeyDown={this.testFunction} className="gotr-timer-area gotr-timer-area-selecting">
+                    <Selector mins={mins} onChange={this.updateMins} />
                 </div>
 
                 <div className="gotr-shadow" onClick={this.stopSelecting}/>
@@ -94,7 +101,7 @@ var Timer = React.createClass({
         var self = this;
 
         requestAnimationFrame(function() {
-            if (session.isStarted() && self.isMounted()) {
+            if (session.is() && self.isMounted()) {
                 self.forceUpdate();
             }
         });
@@ -142,6 +149,7 @@ var TimerGraphic = React.createClass({
 });
 
 var Selector = React.createClass({
+
     updateMins: function(event) {
         this.props.onChange(event.target.value);
     },
