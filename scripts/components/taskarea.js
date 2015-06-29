@@ -44,7 +44,7 @@ var TaskArea = module.exports = React.createClass({
                 className="gotr-taskarea-box"
                 ref="gotrTaskareaBox"
                 value={editing ? tempTitle : title}
-                onKeyDown={this.checkForEnter}
+                onKeyDown={this.checkForInput}
                 onChange={this.updateTempTitle}
                 onFocus={this.startEditing}
                 onBlur={this.stopEditing}
@@ -126,10 +126,17 @@ var TaskArea = module.exports = React.createClass({
         flux.actions.updateTaskTitle(task, title);
     },
 
-    checkForEnter: function(event) {
+    checkForInput: function(event) {
         if (event.which === 13) {
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             this.startTask();
+        }
+        if (event.which === 9) {
+            this.refs.gotrTaskareaBox.getDOMNode().blur();
+            document.querySelector('.gotr-timer-area').click();
+            window.setInterval(function(){
+                document.querySelector('.gotr-selector-box-input').focus();
+            }, 500)
         }
     }
 });

@@ -40,7 +40,7 @@ var Anltcs = module.exports = exports = React.createClass({
         // TODO: setup linguistics
         return <div className="gotr-anltcs">
             <div className="gotr-anltcs-count">{total}</div>
-            <div className="gotr-anltcs-desc">minutes in Groove</div>
+            <div className="gotr-anltcs-desc">minutes in Groove Today</div>
             <div className="gotr-anltcs-graphic-container">
                 <svg className="gotr-anltcs-graphic">
                     <mask id="gotr-anltcs-bar">
