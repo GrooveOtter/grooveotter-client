@@ -135,7 +135,10 @@ var TaskArea = module.exports = React.createClass({
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             document.querySelector('.gotr-timer-area').click();
             window.setInterval(function(){
-                document.querySelector('.gotr-selector-box-input').focus();
+                var inputBox = document.querySelector('.gotr-selector-box-input');
+                if (inputBox) {
+                    inputBox.focus();
+                }
             }, 500)
         }
     }

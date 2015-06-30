@@ -151,7 +151,8 @@ var TimerGraphic = React.createClass({
 var Selector = React.createClass({
 
     updateMins: function(event) {
-        this.props.onChange(event.target.value);
+        var input = parseInt(event.target.value);
+        this.props.onChange(input);
     },
 
     render: function() {
@@ -161,8 +162,9 @@ var Selector = React.createClass({
 
         return <div className="gotr-selector">
             <div className="gotr-selector-box">
-                <input
+                <input type='number'
                     onChange={this.updateMins}
+                    onKeyDown={this.startTiming}
                     value={mins}
                     className="gotr-selector-box-input"
                 />
