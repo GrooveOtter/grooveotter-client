@@ -52,7 +52,6 @@ var SessionStore = module.exports = Fluxxor.createStore({
         var task = payload.task;
         var duration = payload.duration;
 
-        console.log("duration", duration)
         if (task.isNew()) {
             task.set({duration: duration});
         } else {
