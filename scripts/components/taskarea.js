@@ -127,19 +127,15 @@ var TaskArea = module.exports = React.createClass({
     },
 
     checkForInput: function(event) {
+        var flux = this.getFlux();
+
         if (event.which === 13) {
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             this.startTask();
         }
         if (event.which === 9) {
             this.refs.gotrTaskareaBox.getDOMNode().blur();
-            document.querySelector('.gotr-timer-area').click();
-            window.setInterval(function(){
-                var inputBox = document.querySelector('.gotr-selector-box-input');
-                if (inputBox) {
-                    inputBox.focus();
-                }
-            }, 500)
+            flux.actions.openTimer();
         }
     }
 });

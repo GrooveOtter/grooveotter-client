@@ -8,6 +8,18 @@ var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 var TimerPanel = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('SessionStore', 'TaskListStore')],
 
+    componentDidMount: function() {
+        var flux = this.getFlux();
+        var timerStore = flux.store('TimerStore');
+        timerStore.on('openTimer', this.startSelecting);
+    },
+
+    componentDidUnmount: function() {
+        var flux = this.getFlux();
+        var timerStore = flux.store('TimerStore');
+        timerStore.removeListener('openTimer', this.startSelecting);
+    },
+
     getInitialState: function() {
         return {
             mins: 20 * 60 * 1000,
@@ -28,6 +40,11 @@ var TimerPanel = module.exports = React.createClass({
         var task = session.get('task');
         var duration = task.get('duration');
         var mins = Math.floor(duration / (60 * 1000));
+        window.setTimeout(function() {
+            var input = document.querySelector('.gotr-selector-box-input');
+            input.focus();
+        }, 500);
+
 
         if (!session.isStarted()) {
             this.setState({
@@ -36,6 +53,7 @@ var TimerPanel = module.exports = React.createClass({
             });
         }
     },
+
     stopSelecting: function() {
         var flux = this.getFlux();
         var session = this.state.session;
@@ -86,12 +104,11 @@ var TimerPanel = module.exports = React.createClass({
 
 var Timer = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('SessionStore')],
-
     getStateFromFlux: function() {
         var flux = this.getFlux();
 
         return {
-            session: flux.store('SessionStore').getSession()
+            session: flux.store('SessionStore').getSession(),
         };
     },
 
@@ -100,7 +117,7 @@ var Timer = React.createClass({
         var self = this;
 
         requestAnimationFrame(function() {
-            if (session.is() && self.isMounted()) {
+            if (session.isStarted() && self.isMounted()) {
                 self.forceUpdate();
             }
         });

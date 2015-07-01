@@ -48,5 +48,9 @@ var actions = module.exports = {
 
     notifyLikedItem: function(itemId) {
         this.dispatch(constants.NOTIFY_LIKED_ITEM, {itemId: itemId});
+    },
+
+    openTimer: function() {
+        this.dispatch(constants.OPEN_TIMER);
     }
 };
