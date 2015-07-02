@@ -169,7 +169,6 @@ function archiveWeeks(tasks) {
         .reverse()
         .groupBy(weekOf)
         .map(toWeekObj)
-        .reverse()
         .value();
 
     // Weeks should never be empty.
