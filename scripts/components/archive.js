@@ -164,8 +164,9 @@ var Task = React.createClass({
 function archiveWeeks(tasks) {
     var weeks = lodash.chain(tasks)
         .reverse()
-        .groupBy(dayOf)
+        .groupBy(getDayOfTask)
         .map(toDayObj)
+        .sortBy(getDate)
         .groupBy(weekOf)
         .map(toWeekObj)
         .value();
@@ -180,9 +181,12 @@ function archiveWeeks(tasks) {
     return weeks;
 }
 
-function dayOf(task) {
-    var time = task.get('updated_at');
-    return new Date(time.getFullYear(), time.getMonth(), time.getDate());
+function getDayOfTask(task) {
+    return dayOf(task.get('updated_at'));
+}
+
+function dayOf(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
 function weekOf(day) {
@@ -192,7 +196,16 @@ function weekOf(day) {
     var saturday = new Date(sunday);
     saturday.setDate(saturday.getDate() + 6);
 
-    return formatDate(sunday) + ' - ' + formatDate(saturday);
+    var now = new Date();
+    if (+day === dayOf(now)) {
+        return formatDate(sunday) + ' - ' + formatDate(saturday);
+    } else {
+        return 'This Week';
+    }
+}
+
+function getDate(day) {
+    return day.date;
 }
 
 function toDayObj(tasks, day) {
