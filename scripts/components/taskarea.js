@@ -92,6 +92,7 @@ var TaskArea = module.exports = React.createClass({
     },
 
     updateTempTitle: function(event) {
+        debugger
         this.setState({
             tempTitle: event.target.value
         });
@@ -134,6 +135,7 @@ var TaskArea = module.exports = React.createClass({
             this.startTask();
         }
         if (event.which === 9) {
+            event.preventDefault();
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             flux.actions.openTimer();
         }

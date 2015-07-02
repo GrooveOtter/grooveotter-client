@@ -63,7 +63,7 @@ var Task = React.createClass({
     startTask: function() {
         var flux = this.getFlux();
         var task = this.props.task;
-
+        console.log('startTask');
         flux.actions.startSessionFromTask(task);
     },
 
@@ -87,9 +87,15 @@ var Task = React.createClass({
         var task = this.props.task;
         var mins = event.target.value;
         var duration = mins * 60 * 1000;
+        var taskInSession = this.state.session.get('started');
+        var selectedTask = task.cid;
+        var currentTask = this.state.session.get('task').cid;
 
-        if (!isNaN(duration)) {
-            flux.actions.updateTaskDuration(task, duration);
+        if (taskInSession == null & !isNaN(duration)) {
+            flux.actions.updateTaskDuration(task,duration);
+        }
+        if (taskInSession!= null & task.cid != this.state.session.get('task').cid) {
+            flux.actions.updateTaskDuration(task,duration);
         }
     },
 

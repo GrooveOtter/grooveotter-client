@@ -40,10 +40,6 @@ var TimerPanel = module.exports = React.createClass({
         var task = session.get('task');
         var duration = task.get('duration');
         var mins = Math.floor(duration / (60 * 1000));
-        window.setTimeout(function() {
-            var input = document.querySelector('.gotr-selector-box-input');
-            input.focus();
-        }, 500);
 
 
         if (!session.isStarted()) {
@@ -86,7 +82,7 @@ var TimerPanel = module.exports = React.createClass({
 
         if (selecting) {
             return <div className="gotr-timer-area-container">
-                <div onKeyDown={this.testFunction} className="gotr-timer-area gotr-timer-area-selecting">
+                <div className="gotr-timer-area gotr-timer-area-selecting">
                     <Selector mins={mins} onChange={this.updateMins} />
                 </div>
 
@@ -167,8 +163,14 @@ var TimerGraphic = React.createClass({
 var Selector = React.createClass({
 
     updateMins: function(event) {
+        event.preventDefault();
         var input = parseInt(event.target.value);
         this.props.onChange(input);
+    },
+    componentDidMount: function() {
+        setTimeout(function() {
+            document.querySelector(".gotr-selector-box-input").select();
+        },100);
     },
 
     render: function() {
@@ -178,11 +180,12 @@ var Selector = React.createClass({
 
         return <div className="gotr-selector">
             <div className="gotr-selector-box">
-                <input type='number'
+                <input type="number"
+                    ref="minsInput"
                     onChange={this.updateMins}
-                    onKeyDown={this.startTiming}
                     value={mins}
                     className="gotr-selector-box-input"
+                    autoFocus={focus}
                 />
 
                 mins
