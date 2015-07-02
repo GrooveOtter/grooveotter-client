@@ -52,7 +52,6 @@ new User().fetch({
     success: function(user) {
         window.gotrUser = user;
         cookies.set('loggedin', true);
-
         gotrMain();
     },
 

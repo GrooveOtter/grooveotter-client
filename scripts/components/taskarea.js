@@ -132,7 +132,8 @@ var TaskArea = module.exports = React.createClass({
         if (event.which === 13) {
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             this.startTask();
-        } else if (event.which === 9) {
+        }
+         else if (event.which === 9) {
             event.preventDefault();
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             flux.actions.openTimer();
