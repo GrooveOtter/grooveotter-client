@@ -40,11 +40,6 @@ var TimerPanel = module.exports = React.createClass({
         var task = session.get('task');
         var duration = task.get('duration');
         var mins = Math.floor(duration / (60 * 1000));
-        window.setTimeout(function() {
-            var input = document.querySelector('.gotr-selector-box-input');
-            input.focus();
-        }, 500);
-
 
         if (!session.isStarted()) {
             this.setState({
@@ -71,10 +66,11 @@ var TimerPanel = module.exports = React.createClass({
         });
     },
 
-    checkForInput: function(e) {
+    checkForTab: function(e) {
         var tabKey = 9;
+
         if (e.which === tabKey) {
-            this.setState({selecting:false});
+            this.stopSelecting();
         }
     },
 
@@ -86,7 +82,7 @@ var TimerPanel = module.exports = React.createClass({
 
         if (selecting) {
             return <div className="gotr-timer-area-container">
-                <div onKeyDown={this.testFunction} className="gotr-timer-area gotr-timer-area-selecting">
+                <div onKeyDown={this.checkForTab} className="gotr-timer-area gotr-timer-area-selecting">
                     <Selector mins={mins} onChange={this.updateMins} />
                 </div>
 
@@ -108,7 +104,7 @@ var Timer = React.createClass({
         var flux = this.getFlux();
 
         return {
-            session: flux.store('SessionStore').getSession(),
+            session: flux.store('SessionStore').getSession()
         };
     },
 
@@ -165,9 +161,13 @@ var TimerGraphic = React.createClass({
 });
 
 var Selector = React.createClass({
+    componentDidMount: function() {
+        this.refs.minsInput.getDOMNode().focus();
+    },
 
     updateMins: function(event) {
-        var input = parseInt(event.target.value);
+        var input = +event.target.value;
+
         this.props.onChange(input);
     },
 
@@ -178,7 +178,8 @@ var Selector = React.createClass({
 
         return <div className="gotr-selector">
             <div className="gotr-selector-box">
-                <input type='number'
+                <input type="number"
+                    ref="minsInput"
                     onChange={this.updateMins}
                     onKeyDown={this.startTiming}
                     value={mins}
