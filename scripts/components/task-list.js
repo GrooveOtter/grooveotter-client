@@ -63,7 +63,6 @@ var Task = React.createClass({
     startTask: function() {
         var flux = this.getFlux();
         var task = this.props.task;
-        console.log('startTask');
         flux.actions.startSessionFromTask(task);
     },
 
