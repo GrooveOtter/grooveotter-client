@@ -35,6 +35,14 @@ var TimerPanel = module.exports = React.createClass({
         };
     },
 
+    checkKey: function(event) {
+        if (event.which === 9 || event.which === 13) {
+            this.closeSelector();
+        } else if (event.which === 27) {
+            this.stopSelecting();
+        }
+    },
+
     startSelecting: function() {
         var session = this.state.session;
         var task = session.get('task');
@@ -50,14 +58,27 @@ var TimerPanel = module.exports = React.createClass({
         }
     },
 
-    stopSelecting: function() {
+    closeSelector: function() {
         var flux = this.getFlux();
         var session = this.state.session;
         var mins = this.state.mins;
         var task = session.get('task');
         var duration = mins * 60 * 1000;
 
-        flux.actions.updateTaskDuration(task, duration);
+        if (!isNaN(duration)) {
+            flux.actions.updateTaskDuration(task, duration);
+            this.stopSelecting();
+        }
+    },
+
+    checkForTab: function(e) {
+        var tabKey = 9;
+        if (e.which ==tabKey) {
+            this.stopSelecting();
+        }
+    },
+
+    stopSelecting: function() {
         this.setState({selecting: false});
     },
 
@@ -65,13 +86,6 @@ var TimerPanel = module.exports = React.createClass({
         this.setState({
             mins: mins
         });
-    },
-
-    checkForInput: function(e) {
-        var tabKey = 9;
-        if (e.which === tabKey) {
-            this.setState({selecting:false});
-        }
     },
 
     render: function() {
@@ -83,10 +97,10 @@ var TimerPanel = module.exports = React.createClass({
         if (selecting) {
             return <div className="gotr-timer-area-container">
                 <div className="gotr-timer-area gotr-timer-area-selecting">
-                    <Selector mins={mins} onChange={this.updateMins} />
+                    <Selector mins={mins} onChange={this.updateMins} onKeyDown={this.checkForTab}/>
                 </div>
 
-                <div className="gotr-shadow" onClick={this.stopSelecting}/>
+                <div className="gotr-shadow" onClick={this.closeSelector}/>
             </div>;
         } else {
             return <div className="gotr-timer-area-container">
@@ -104,7 +118,7 @@ var Timer = React.createClass({
         var flux = this.getFlux();
 
         return {
-            session: flux.store('SessionStore').getSession(),
+            session: flux.store('SessionStore').getSession()
         };
     },
 
@@ -161,24 +175,22 @@ var TimerGraphic = React.createClass({
 });
 
 var Selector = React.createClass({
+    componentDidMount: function() {
+        this.refs.minsInput.getDOMNode().select();
+    },
 
     updateMins: function(event) {
-        event.preventDefault();
-        var input = parseInt(event.target.value);
+        var input = +event.target.value;
         this.props.onChange(input);
-    },
-    componentDidMount: function() {
-        setTimeout(function() {
-            document.querySelector(".gotr-selector-box-input").select();
-        },100);
     },
 
     render: function() {
         var choices = [15, 25, 45];
-        var onChange = this.props.onChange;
+        var keyDown = this.props.onKeyDown;
+        var change = this.props.onChange;
         var mins = this.props.mins;
 
-        return <div className="gotr-selector">
+        return <div className="gotr-selector" onKeyDown={keyDown}>
             <div className="gotr-selector-box">
                 <input type="number"
                     ref="minsInput"
@@ -191,16 +203,16 @@ var Selector = React.createClass({
                 mins
             </div>
 
-            {choices.map(toOption.bind(this))}
+            {choices.map(toOption)}
         </div>;
 
         function toOption(choice) {
-            return <SelectorOption onClick={change} key={choice}>
+            return <SelectorOption onClick={choose} key={choice}>
                 {choice}
             </SelectorOption>;
 
-            function change() {
-                onChange(choice);
+            function choose() {
+                change(choice);
             }
         }
     }
