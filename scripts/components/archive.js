@@ -163,7 +163,6 @@ var Task = React.createClass({
 
 function archiveWeeks(tasks) {
     var weeks = lodash.chain(tasks)
-        .reverse()
         .groupBy(getDayOfTask)
         .map(toDayObj)
         .sortBy(getDate)
@@ -196,12 +195,7 @@ function weekOf(day) {
     var saturday = new Date(sunday);
     saturday.setDate(saturday.getDate() + 6);
 
-    var now = new Date();
-    if (+day === dayOf(now)) {
-        return formatDate(sunday) + ' - ' + formatDate(saturday);
-    } else {
-        return 'This Week';
-    }
+    return formatDate(sunday) + ' - ' + formatDate(saturday);
 }
 
 function getDate(day) {
