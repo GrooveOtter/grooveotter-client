@@ -56,8 +56,10 @@ var TimerPanel = module.exports = React.createClass({
         var task = session.get('task');
         var duration = mins * 60 * 1000;
 
-        flux.actions.updateTaskDuration(task, duration);
-        this.setState({selecting: false});
+        if (!isNaN(duration)) {
+            flux.actions.updateTaskDuration(task, duration);
+            this.setState({selecting: false});
+        }
     },
 
     updateMins: function(mins) {
