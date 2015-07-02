@@ -181,7 +181,7 @@ function archiveWeeks(tasks) {
 }
 
 function dayOf(task) {
-    var time = task.get('created_at');
+    var time = task.get('updated_at');
     return new Date(time.getFullYear(), time.getMonth(), time.getDate());
 }
 
