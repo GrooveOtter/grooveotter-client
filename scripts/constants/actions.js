@@ -26,6 +26,10 @@ var actions = module.exports = {
         this.dispatch(constants.UPDATE_TASK_DURATION, {task: task, duration: duration});
     },
 
+    toggleTaskShared: function(task) {
+        this.dispatch(constants.TOGGLE_TASK_SHARED, {task: task});
+    },
+
     deleteTask: function(task) {
         this.dispatch(constants.DELETE_TASK, {task: task});
     },

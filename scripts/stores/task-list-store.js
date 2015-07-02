@@ -18,6 +18,7 @@ var SessionStore = module.exports = Fluxxor.createStore({
             constants.ADD_TASK, this.onAddTask,
             constants.UPDATE_TASK_TITLE, this.onUpdateTaskTitle,
             constants.UPDATE_TASK_DURATION, this.onUpdateTaskDuration,
+            constants.TOGGLE_TASK_SHARED, this.onToggleTaskShared,
             constants.DELETE_TASK, this.onDeleteTask
         );
     },
@@ -56,6 +57,17 @@ var SessionStore = module.exports = Fluxxor.createStore({
             task.set({duration: duration});
         } else {
             task.save({duration: duration});
+        }
+    },
+
+    onToggleTaskShared: function(payload) {
+        var task = payload.task;
+        var shared = task.get('shared');
+
+        if (task.isNew()) {
+            task.set({shared: !shared});
+        } else {
+            task.save({shared: !shared});
         }
     },
 
