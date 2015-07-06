@@ -7,11 +7,11 @@
 }
 
 .gotr-newsfeed {
-    height: 60px;
+    min-height: 60px;
     margin: 0 auto;
     max-width: $gotr-row-width;
     overflow: hidden;
-    padding: 0 $gotr-row-padding;
+    // padding: 0 $gotr-row-padding;
     position: relative;
 
     & .gotr-newsfeed-left {
