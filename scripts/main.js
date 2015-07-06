@@ -1,3 +1,4 @@
+var $ = window.jQuery = require('jquery');
 require('./ajax');
 var React = require('react');
 var Fluxxor = require('fluxxor');
@@ -6,7 +7,6 @@ var User = require('./models/user');
 var stores = require('./stores');
 var actions = require('./constants/actions');
 var cookies = require('js-cookie');
-var $ = require('jquery');
 
 window.gotrMain = function() {
     var flux = window.gotrFlux = new Fluxxor.Flux(stores.getStores(), actions);

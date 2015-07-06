@@ -1,5 +1,6 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
+
 var Nav = require('./navbar');
 var Grid = require('./grid');
 var Timer = require('./timer');
@@ -9,6 +10,7 @@ var Tabs = require('./tabs');
 var TaskList = require('./task-list');
 var Archive = require('./archive');
 var Newsfeed = require('./newsfeed');
+var Toaster = require('./toaster');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 
@@ -91,6 +93,8 @@ var Main = module.exports = React.createClass({
                     </Grid.Left>
                 </Grid.Row>
             </Grid.Wing>
+
+            <Toaster/>
         </div>;
     },
 
