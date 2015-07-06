@@ -31,6 +31,16 @@ window.gotrMain = function() {
         flux.actions.cycleNewsfeed();
     }, 15 * 1000);
 
+    setInterval(function() {
+        var session = flux.store('SessionStore').getSession();
+
+        $('title').text(session.clockText() + ' — GrooveOtter');
+
+        if (session.hasEnded()) {
+            session.ring();
+        }
+    }, 100);
+
     var source = window.gotrSource = new EventSource(process.env.GOTR_HOST + '/sse');
 
     source.withCredentials = true;
