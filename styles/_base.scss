@@ -11,9 +11,10 @@ $gotr-offgrey: #8e92a2;
 $gotr-offoffgrey: #7e9ab4;
 $gotr-offoffoffgrey: #cfd9e3;
 
-$gotr-primary: #5e809e;
+$gotr-primary: #314D5E;
+$gotr-tab: #37B386;
 $gotr-offprimary: #4a657d;
-$gotr-secondary: #74aa8b;
+$gotr-secondary: #3ABF8D;
 $gotr-offsecondary: #9ecab0;
 
 $gotr-row-padding: 30px;
@@ -100,12 +101,13 @@ hr {
 .gotr-checkbox {
     width: 24px;
     height: 24px;
-    background: url(/unchecked.svg) no-repeat 0 0;
+    margin-left: 20px;
+    background: url(/rest.png) no-repeat 0 0;
     display: inline-block;
 }
 
 .gotr-checkbox.gotr-checkbox-checked, .gotr-checkbox:hover {
-    background: url(/checked.svg) no-repeat 0 0;
+    background: url(/checked.png) no-repeat 0 0;
 }
 
 .gotr-checkbox:hover {
