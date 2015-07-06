@@ -1,18 +1,19 @@
 .gotr-newsfeed-container {
     background: $gotr-white;
     box-shadow: 1px 0 1px 1px rgba(0, 0, 0, 0.1);
+    min-height: 60px;
     overflow: hidden;
     position: relative;
     z-index: 2;
 }
 
 .gotr-newsfeed {
-    min-height: 60px;
     margin: 0 auto;
     max-width: $gotr-row-width;
     overflow: hidden;
-    // padding: 0 $gotr-row-padding;
-    position: relative;
+    position: absolute;
+    left: 0;
+    right: 0;
 
     & .gotr-newsfeed-left {
         float: left;
@@ -71,6 +72,23 @@
         & .gotr-newsfeed-left, & .gotr-newsfeed-right {
             padding-left: ($gotr-row-padding / 2);
             padding-right: ($gotr-row-padding / 2);
+        }
+    }
+
+    &.gotr-newsfeed-enter {
+        margin-top: -60px;
+        transition: margin-top 1000ms linear;
+
+        &.gotr-newsfeed-enter-active {
+            margin-top: 0;
+        }
+    }
+
+    &.gotr-newsfeed-leave {
+        transition: transform 1000ms linear;
+
+        &.gotr-newsfeed-leave-active {
+            transform: translateY(100%);
         }
     }
 }

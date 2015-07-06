@@ -1,5 +1,6 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
+var tweenState = require('react-tween-state');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
@@ -10,20 +11,45 @@ var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 // grabs data from the analytics store.
 
 var Anltcs = module.exports = exports = React.createClass({
-    mixins: [FluxMixin, StoreWatchMixin('AnltcsStore')],
+    mixins: [FluxMixin, tweenState.Mixin],
 
-    getStateFromFlux: function() {
+    getInitialState: function() {
         var flux = this.getFlux();
-        var AnltcsStore = flux.store('AnltcsStore');
 
         return {
-            sessionTime: AnltcsStore.getSessionTime(),
-            siteTime: AnltcsStore.getSiteTime()
+            siteTime: flux.store('AnltcsStore').getSiteTime(),
+            sessionTime: 0
         };
     },
 
+    componentDidMount: function() {
+        var flux = this.getFlux();
+
+        this.setStateFromFlux();
+        flux.store('AnltcsStore').on('change', this.setStateFromFlux);
+    },
+
+    componentWillUmount: function() {
+        var flux = this.getFlux();
+
+        flux.store('AnltcsStore').removeListener('change', this.setStateFromFlux);
+    },
+
+    setStateFromFlux: function() {
+        var flux = this.getFlux();
+        var anltcsStore = flux.store('AnltcsStore');
+
+        this.setState({siteTime: anltcsStore.getSiteTime()});
+
+        this.tweenState('sessionTime', {
+            easing: tweenState.easingTypes.easeInOutQuad,
+            duration: 750,
+            endValue: anltcsStore.getSessionTime()
+        });
+    },
+
     render: function() {
-        var sessionTime = this.state.sessionTime;
+        var sessionTime = this.getTweeningValue('sessionTime');
         var siteTime = this.state.siteTime;
 
         var cord = Math.floor(sessionTime / siteTime * 100);

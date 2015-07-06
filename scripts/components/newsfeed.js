@@ -1,5 +1,6 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
+var TransitionGroup = require('react/addons').addons.CSSTransitionGroup;
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
@@ -17,16 +18,18 @@ var Newsfeed = module.exports = React.createClass({
 
     render: function() {
         var item = this.state.item;
+        var newsfeed = item == null ? this.renderNothing() : this.renderItem();
 
-        if (item == null) {
-            return this.renderNothing();
-        } else {
-            return this.renderItem();
-        }
+        return <TransitionGroup
+            component="div"
+            className="gotr-newsfeed-container"
+            transitionName="gotr-newsfeed">
+            {newsfeed}
+        </TransitionGroup>;
     },
 
     renderNothing: function() {
-        return <div/>;
+        return <div key="nothing" className="gotr-newsfeed"/>;
     },
 
     renderItem: function() {
@@ -39,22 +42,20 @@ var Newsfeed = module.exports = React.createClass({
         var fullName = user.get('full_name');
         var pic = user.get('picture');
 
-        return <div className="gotr-newsfeed-container">
-            <div className="gotr-newsfeed">
-                <div className="gotr-newsfeed-left">
-                    <div className="gotr-newsfeed-item">
-                        <img className="gotr-newsfeed-item-pic" src={pic}/>
-                        <span className="gotr-newsfeed-item-line">{fullName} completed <b>{title}</b> in <b>{mins} minutes</b></span>
-                    </div>
+        return <div key={item.id} className="gotr-newsfeed">
+            <div className="gotr-newsfeed-left">
+                <div className="gotr-newsfeed-item">
+                    <img className="gotr-newsfeed-item-pic" src={pic}/>
+                    <span className="gotr-newsfeed-item-line">{fullName} completed <b>{title}</b> in <b>{mins} minutes</b></span>
                 </div>
+            </div>
 
-                <div className="gotr-newsfeed-right">
-                    <div className="gotr-newsfeed-item">
-                        <button className="gotr-newsfeed-like" onClick={this.handleLike}>
-                            <img src={liked ? '/thumbs-up-green.svg' : '/thumbs-up.svg'}/>
-                            <span>&nbsp;{likes}</span>
-                        </button>
-                    </div>
+            <div className="gotr-newsfeed-right">
+                <div className="gotr-newsfeed-item">
+                    <button className="gotr-newsfeed-like" onClick={this.handleLike}>
+                        <img src={liked ? '/thumbs-up-green.svg' : '/thumbs-up.svg'}/>
+                        <span>&nbsp;{likes}</span>
+                    </button>
                 </div>
             </div>
         </div>;
