@@ -26,7 +26,11 @@ var SessionStore = module.exports = Fluxxor.createStore({
     onCompleteTask: function(payload) {
         var task = payload.task;
 
-        task.save({completed: true});
+        if (task.isNew()) {
+            task.set({completed: true});
+        } else {
+            task.save({completed: true});
+        }
     },
 
     onAddTask: function(payload) {

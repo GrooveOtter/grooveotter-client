@@ -140,7 +140,7 @@ var TaskArea = module.exports = React.createClass({
     stopEditing: function() {
         var flux = this.getFlux();
         var task = this.state.session.get('task');
-        var title = event.target.value;
+        var title = this.state.tempTitle;
 
         this.setState({
             editing: false

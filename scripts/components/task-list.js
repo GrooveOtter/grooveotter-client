@@ -153,6 +153,7 @@ var Task = React.createClass({
                     type="number"
                     defaultValue={duration / (60 * 1000)}
                     className="gotr-task-duration"
+                    disabled={sessionTask.cid === task.cid}
                     onBlur={this.updateDuration}
                 />
 

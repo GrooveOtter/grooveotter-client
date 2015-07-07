@@ -1,8 +1,10 @@
 var Model = require('exoskeleton').Model;
+var dateformat = require('dateformat');
 
 var Session = module.exports = Model.extend({
     initialize: function() {
         var task = this.get('task');
+        this.ringed = false;
 
         this.listenTo(task, 'change', function() {
             this.trigger('change');
@@ -40,7 +42,21 @@ var Session = module.exports = Model.extend({
         }
     },
 
+    clockText: function() {
+        return dateformat(new Date(this.timeRemaining()), 'MM:ss');
+    },
+
     hasEnded: function() {
         return this.timeRemaining() === 0;
+    },
+
+    ring: function() {
+        if (this.ringed) {
+            return;
+        }
+
+        this.ringed = true;
+
+        alert('Time is up');
     }
 });

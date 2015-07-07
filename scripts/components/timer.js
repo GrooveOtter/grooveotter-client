@@ -1,6 +1,5 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
-var dateformat = require('dateformat');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
@@ -137,7 +136,7 @@ var Timer = React.createClass({
         var session = this.state.session;
         var duration = session.get('task').get('duration');
         var timeRemaining = session.timeRemaining();
-        var text = dateformat(new Date(timeRemaining), 'MM:ss');
+        var text = session.clockText();
 
         return <div className="gotr-timer">
             <div className="gotr-timer-counter">{text}</div>
