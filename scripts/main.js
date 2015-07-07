@@ -28,7 +28,9 @@ window.gotrMain = function() {
     });
 
     setInterval(function() {
-        flux.actions.cycleNewsfeed();
+        if (!document.hidden) {
+            flux.actions.cycleNewsfeed();
+        }
     }, 15 * 1000);
 
     setInterval(function() {
