@@ -1,7 +1,7 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var classNs = require('classnames');
-var TransitionGroup = require('react/addons').addons.CSSTransitionGroup;
+var TransitionGroup = require('timeout-transition-group');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
@@ -23,6 +23,8 @@ var TaskList = module.exports = React.createClass({
         var tasks = this.state.taskList.uncompletedTasks();
         return <div className="gotr-task-list">
             <TransitionGroup
+                leaveTimeout={1000}
+                enterTimeout={1000}
                 transitionName="gotr-task"
                 transitionEnter={false}>
                 {tasks.map(renderTask)}

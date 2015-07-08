@@ -1,6 +1,6 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
-var TransitionGroup = require('react/addons').addons.CSSTransitionGroup;
+var TransitionGroup = require('timeout-transition-group');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
@@ -19,7 +19,12 @@ var Toaster = module.exports = React.createClass({
     render: function() {
         var toasts = this.state.notifications.map(renderToast);
 
-        return <TransitionGroup component="div" className="gotr-toaster" transitionName="gotr-toaster">
+        return <TransitionGroup
+            enterTimeout={200}
+            leaveTimeout={500}
+            component="div"
+            className="gotr-toaster"
+            transitionName="gotr-toaster">
             {toasts}
         </TransitionGroup>;
 

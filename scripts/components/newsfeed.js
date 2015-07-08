@@ -1,6 +1,6 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
-var TransitionGroup = require('react/addons').addons.CSSTransitionGroup;
+var TransitionGroup = require('timeout-transition-group');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
@@ -21,6 +21,8 @@ var Newsfeed = module.exports = React.createClass({
         var newsfeed = item == null ? this.renderNothing() : this.renderItem();
 
         return <TransitionGroup
+            enterTimeout={1000}
+            leaveTimeout={1000}
             component="div"
             className="gotr-newsfeed-container"
             transitionName="gotr-newsfeed">
