@@ -49,11 +49,10 @@ var Anltcs = module.exports = exports = React.createClass({
     },
 
     render: function() {
-        var sessionTime = this.getTweeningValue('sessionTime');
+        var sessionTime = this.getTweeningValue('sessionTime') / 60000;
         var siteTime = this.state.siteTime;
         var cord = Math.floor(sessionTime / siteTime * 100);
         var total = Math.floor(siteTime / (60 * 1000));
-
         // this occurs on page-load,
         // when sessionTime and siteTime are 0
         if (isNaN(cord)) {
