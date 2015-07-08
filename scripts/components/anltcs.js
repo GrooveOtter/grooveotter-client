@@ -51,7 +51,6 @@ var Anltcs = module.exports = exports = React.createClass({
     render: function() {
         var sessionTime = this.getTweeningValue('sessionTime');
         var siteTime = this.state.siteTime;
-
         var cord = Math.floor(sessionTime / siteTime * 100);
         var total = Math.floor(siteTime / (60 * 1000));
 
@@ -63,7 +62,7 @@ var Anltcs = module.exports = exports = React.createClass({
 
         // TODO: setup linguistics
         return <div className="gotr-anltcs">
-            <div className="gotr-anltcs-count">{total}</div>
+            <div className="gotr-anltcs-count">{sessionTime}</div>
             <div className="gotr-anltcs-desc">minutes in Groove Today</div>
 
         </div>;

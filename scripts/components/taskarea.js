@@ -1,7 +1,6 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var Base = require('./base');
-var classNs = require('classnames');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
@@ -15,16 +14,6 @@ var TaskArea = module.exports = React.createClass({
         var session = this.state.session;
         var task = session.get('task');
         var title = task.get('title');
-        var shared = task.get('shared');
-
-        var checkboxClass = classNs('gotr-checkbox', {
-            'gotr-checkbox-checked': shared
-        });
-
-        var shareBox = <span
-            className={checkboxClass}
-            onClick={this.toggleShared}
-        />;
 
         if (session.isStarted()) {
             var buttons = <div>
@@ -35,8 +24,6 @@ var TaskArea = module.exports = React.createClass({
                 <Base.PrimaryButton onClick={this.resetTimer}>
                     Reset timer
                 </Base.PrimaryButton>
-
-                {shareBox} Share this task
             </div>;
         } else {
             var buttons = <div>
@@ -45,10 +32,8 @@ var TaskArea = module.exports = React.createClass({
                 </Base.SecondaryButton>
 
                 <Base.PrimaryButton onClick={this.addForLater}>
-                    Add to list
+                    Add to list for later
                 </Base.PrimaryButton>
-
-                {shareBox} Share this task
             </div>;
         }
 
@@ -112,17 +97,8 @@ var TaskArea = module.exports = React.createClass({
         });
     },
 
-    toggleShared: function() {
-        var flux = this.getFlux();
-        var session = this.state.session;
-        var task = session.get('task');
-
-        flux.actions.toggleTaskShared(task);
-    },
-
     resetTimer: function(event) {
         var flux = this.getFlux();
-
         flux.actions.newSession();
     },
 
@@ -140,7 +116,7 @@ var TaskArea = module.exports = React.createClass({
     stopEditing: function() {
         var flux = this.getFlux();
         var task = this.state.session.get('task');
-        var title = this.state.tempTitle;
+        var title = event.target.value;
 
         this.setState({
             editing: false
@@ -155,7 +131,8 @@ var TaskArea = module.exports = React.createClass({
         if (event.which === 13) {
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             this.startTask();
-        } else if (event.which === 9) {
+        }
+         else if (event.which === 9) {
             event.preventDefault();
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             flux.actions.openTimer();
