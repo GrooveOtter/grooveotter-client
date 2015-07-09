@@ -22,9 +22,11 @@ var TaskArea = module.exports = React.createClass({
         });
 
         var shareBox = <span
-            className={checkboxClass}
-            onClick={this.toggleShared}
-        />;
+            className="gotr-taskarea-sharebox"
+            onClick={this.toggleShared}>
+            <span className={checkboxClass}/>
+            Share this task
+        </span>;
 
         if (session.isStarted()) {
             var buttons = <div>
@@ -36,7 +38,7 @@ var TaskArea = module.exports = React.createClass({
                     Reset timer
                 </Base.PrimaryButton>
 
-                {shareBox} Share this task
+                {shareBox}
             </div>;
         } else {
             var buttons = <div>
@@ -48,7 +50,7 @@ var TaskArea = module.exports = React.createClass({
                     Add to list
                 </Base.PrimaryButton>
 
-                {shareBox} Share this task
+                {shareBox}
             </div>;
         }
 

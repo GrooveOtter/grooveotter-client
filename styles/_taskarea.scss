@@ -40,6 +40,16 @@
         vertical-align: middle;
     }
 
+    & .gotr-taskarea-sharebox {
+        .gotr-checkbox {
+            margin-right: 7px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     @media screen and (max-width: $gotr-row-left-panel-cutoff) {
         margin: 0 0 25px;
 
