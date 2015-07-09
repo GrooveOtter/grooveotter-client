@@ -24,6 +24,7 @@ http {
         location ~ ^/assets/([^.]+)\.(js|css|svg|jpg|jpeg|png)$ {
             # gzip_static on;
             expires max;
+            add_header Cache-Control "public, max-age=315360000";
             root <%= "#{Dir.pwd}/dist/final" %>;
         }
     }
