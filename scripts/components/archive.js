@@ -139,23 +139,36 @@ var Day = React.createClass({
         </div>;
 
         function renderTask(task) {
-            return <Task key={task.cid} task={task.toJSON()}/>
+            return <Task key={task.cid} task={task}/>
         }
     }
 });
 
 var Task = React.createClass({
+    mixins: [FluxMixin],
+
+    deleteTask: function() {
+        var flux = this.getFlux();
+        var task = this.props.task;
+
+        flux.actions.deleteTask(task);
+    },
+
     render: function() {
         var task = this.props.task;
+        var title = task.get('title');
+        var duration = task.get('duration');
+        var mins = duration / (60 * 1000);
 
         return <li className="gotr-archive-task">
             <div className="gotr-archive-task-title">
-                {task.title}
+                {title}
             </div>
 
             <div className="gotr-archive-task-count">
                 <span className="gotr-archive-task-clock"/>
-                <span>{task.duration / (60 * 1000)} mins</span>
+                <span>{mins} mins</span>
+                <button onClick={this.deleteTask} className="gotr-task-kill"/>
             </div>
         </li>;
     }
