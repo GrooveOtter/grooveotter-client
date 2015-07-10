@@ -57,6 +57,6 @@ var Session = module.exports = Model.extend({
 
         this.ringed = true;
 
-        alert('Time is up');
+        new Audio('/alarm.mp3').play();
     }
 });
