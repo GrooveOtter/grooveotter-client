@@ -44,7 +44,6 @@ var Main = module.exports = React.createClass({
 
         var tabs = [
             {title: 'Today', content: <TaskList/>},
-            {title: 'Blocker', content: <div/>},
             {title: 'Archive', content: <Archive/>}
         ];
 
