@@ -37,9 +37,9 @@ window.gotrMain = function() {
         var session = flux.store('SessionStore').getSession();
 
         if (session.isStarted()) {
-            $('title').text(session.clockText() + ' — GrooveOtter');
+            document.title = session.clockText() + ' — GrooveOtter';
         } else {
-            $('title').text('GrooveOtter');
+            document.title = 'GrooveOtter';
         }
 
         if (session.hasEnded()) {
