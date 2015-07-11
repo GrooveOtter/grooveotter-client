@@ -36,7 +36,11 @@ window.gotrMain = function() {
     setInterval(function() {
         var session = flux.store('SessionStore').getSession();
 
-        $('title').text(session.clockText() + ' — GrooveOtter');
+        if (session.isStarted()) {
+            $('title').text(session.clockText() + ' — GrooveOtter');
+        } else {
+            $('title').text('GrooveOtter');
+        }
 
         if (session.hasEnded()) {
             session.ring();
