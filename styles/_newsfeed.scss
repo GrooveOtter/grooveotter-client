@@ -59,11 +59,17 @@
             box-sizing: border-box;
             font-weight: 600;
             height: 40px;
-            max-width: 70px;
+            width: 60px;
             padding: 0 10px;
+            text-align: left;
 
-            & img {
+            img {
                 width: 20px;
+            }
+
+            span, img {
+                display: inline-block;
+                vertical-align: middle;
             }
         }
     }
