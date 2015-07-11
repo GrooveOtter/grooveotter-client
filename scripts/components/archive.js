@@ -25,9 +25,12 @@ var Archive = module.exports = React.createClass({
 
     getStateFromFlux: function() {
         var flux = this.getFlux();
+        var taskList = flux.store('TaskListStore').getTaskList();
+        var tasks = taskList.completedTasks();
+        var weeks = archiveWeeks(tasks);
 
         return {
-            taskList: flux.store('TaskListStore').getTaskList()
+            weeks: weeks
         };
     },
 
@@ -53,9 +56,7 @@ var Archive = module.exports = React.createClass({
 
     render: function() {
         var currentWeekIndex = this.state.currentWeekIndex;
-        var tasks = this.state.taskList.completedTasks();
-
-        var weeks = archiveWeeks(tasks);
+        var weeks = this.state.weeks;
 
         var left = currentWeekIndex > 0;
         var right = currentWeekIndex < weeks.length - 1;
@@ -73,7 +74,7 @@ var Archive = module.exports = React.createClass({
 
             <NavButton disabled>{week.date}</NavButton>
 
-            <Week week={week}/>
+            <Week key={currentWeekIndex} week={week}/>
         </div>;
     }
 });
@@ -119,8 +120,8 @@ var Day = React.createClass({
             'gotr-archive-day-open': open
         });
 
-        return <div className={set} onClick={this.toggleOpen}>
-            <div className="gotr-archive-day-title">
+        return <div className={set}>
+            <div className="gotr-archive-day-title" onClick={this.toggleOpen}>
                 <div className="gotr-archive-day-title-range">
                     {formatDay(day.date)}
                 </div>
@@ -218,7 +219,7 @@ function getDate(day) {
 
 function toDayObj(tasks, day) {
     return {
-        date: new Date(day),
+        date: +new Date(day),
         tasks: tasks
     };
 }
