@@ -51,7 +51,7 @@ var Main = module.exports = React.createClass({
             <Nav>
                 <Nav.Left>
                     <Nav.Item>
-                        <a href=""><img src="logo2.png" /></a>
+                        <a href=""><img src="logo.svg" /></a>
                     </Nav.Item>
                 </Nav.Left>
 
