@@ -159,17 +159,21 @@ var TaskArea = module.exports = React.createClass({
         flux.actions.updateTaskTitle(task, title);
     },
 
+    startTaskFromEnter: function() {
+        var task = this.state.session.get('task');
+        var text = event.target.value;
+        task.set('title', text);
+        this.refs.gotrTaskareaBox.getDOMNode().blur();
+        this.addForLater();
+    }
+    ,
     checkForInput: function(event) {
         var flux = this.getFlux();
         var enter = 13;
         var tab = 9;
         if (event.which == enter) {
             event.preventDefault();
-            var task = this.state.session.get('task');
-            var text = event.target.value;
-            task.set('title', text);
-            this.refs.gotrTaskareaBox.getDOMNode().blur();
-            this.addForLater();
+            this.startTaskFromEnter(event);
 
         } else if (event.which === tab) {
             event.preventDefault();

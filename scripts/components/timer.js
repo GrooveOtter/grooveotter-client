@@ -69,12 +69,14 @@ var TimerPanel = module.exports = React.createClass({
         }
     },
 
-    checkForTab: function(e) {
+    checkForInput: function(e) {
         var tabKey = 9;
+        var enterKey = 13;
         var value = +e.target.value;
-        if (e.which ==tabKey) {
+        if (e.which ==tabKey || e.which == enterKey) {
             this.closeSelector();
         }
+
     },
 
     stopSelecting: function() {
@@ -96,7 +98,7 @@ var TimerPanel = module.exports = React.createClass({
         if (selecting) {
             return <div className="gotr-timer-area-container">
                 <div className="gotr-timer-area gotr-timer-area-selecting">
-                    <Selector mins={mins} onChange={this.updateMins} onKeyDown={this.checkForTab}/>
+                    <Selector mins={mins} onChange={this.updateMins} onKeyDown={this.checkForInput}/>
                 </div>
 
                 <div className="gotr-shadow" onClick={this.closeSelector}/>
@@ -199,12 +201,7 @@ var Selector = React.createClass({
         this.props.onChange(input);
     },
 
-    startTimer:function(event) {
-        if (event.which == 13) {
-            var flux = this.getFlux();
-            flux.actions.startTimer();
-        }
-    },
+
 
 
     render: function() {
@@ -219,7 +216,7 @@ var Selector = React.createClass({
                     ref="minsInput"
                     onChange={this.updateMins}
                     value={mins}
-                    onKeyDown={this.startTimer}
+                    onKeyDown={this.checkForInput}
                     className="gotr-selector-box-input"
                     autoFocus={focus}
                 />
