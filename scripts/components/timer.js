@@ -142,7 +142,7 @@ var Timer = React.createClass({
             return  <div className="gotr-timer">
             <div className="gotr-timer-counter">
             <span>{text}</span>
-            <img class="gotr-timer-pencil" src='/pencil.png'/>
+            <img className="gotr-timer-pencil" src='/pencil.png'/>
             </div>
             <TimerGraphic ratio={timeRemaining / duration}/>
             </div>;
