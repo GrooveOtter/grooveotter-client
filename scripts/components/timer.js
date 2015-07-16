@@ -63,7 +63,6 @@ var TimerPanel = module.exports = React.createClass({
         var mins = this.state.mins;
         var task = session.get('task');
         var duration = mins * 60 * 1000;
-
         if (!isNaN(duration)) {
             flux.actions.updateTaskDuration(task, duration);
             this.stopSelecting();
@@ -72,8 +71,9 @@ var TimerPanel = module.exports = React.createClass({
 
     checkForTab: function(e) {
         var tabKey = 9;
+        var value = +e.target.value;
         if (e.which ==tabKey) {
-            this.stopSelecting();
+            this.closeSelector();
         }
     },
 
@@ -138,10 +138,25 @@ var Timer = React.createClass({
         var timeRemaining = session.timeRemaining();
         var text = session.clockText();
 
-        return <div className="gotr-timer">
-            <div className="gotr-timer-counter">{text}</div>
+        if (session.get('started') == null) {
+            return  <div className="gotr-timer">
+            <div className="gotr-timer-counter">
+            <span>{text}</span>
+            <img class="gotr-timer-pencil" src='/pencil.png'/>
+            </div>
+            <TimerGraphic ratio={timeRemaining / duration}/>
+            </div>;
+        }
+        else {
+            return <div className="gotr-timer">
+            <div className="gotr-timer-counter">
+            <span>{text}</span>
+            </div>
             <TimerGraphic ratio={timeRemaining / duration}/>
         </div>;
+
+
+        }
     }
 });
 
@@ -174,6 +189,7 @@ var TimerGraphic = React.createClass({
 });
 
 var Selector = React.createClass({
+    mixins: [FluxMixin],
     componentDidMount: function() {
         this.refs.minsInput.getDOMNode().select();
     },
@@ -182,6 +198,14 @@ var Selector = React.createClass({
         var input = +event.target.value;
         this.props.onChange(input);
     },
+
+    startTimer:function(event) {
+        if (event.which == 13) {
+            var flux = this.getFlux();
+            flux.actions.startTimer();
+        }
+    },
+
 
     render: function() {
         var choices = [15, 25, 45];
@@ -195,6 +219,7 @@ var Selector = React.createClass({
                     ref="minsInput"
                     onChange={this.updateMins}
                     value={mins}
+                    onKeyDown={this.startTimer}
                     className="gotr-selector-box-input"
                     autoFocus={focus}
                 />
