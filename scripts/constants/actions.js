@@ -56,8 +56,5 @@ var actions = module.exports = {
 
     openTimer: function() {
         this.dispatch(constants.OPEN_TIMER);
-    },
-    startTimer:function() {
-        this.dispatch(constants.START_TIMER);
     }
 };

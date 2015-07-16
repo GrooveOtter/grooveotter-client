@@ -8,16 +8,6 @@ var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
 var TaskArea = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('SessionStore', 'TaskListStore')],
-    componentDidMount: function() {
-        var flux = this.getFlux();
-        var timerStore = flux.store('TimerStore');
-        timerStore.on('startTimer', this.startTask);
-    },
-    componentDidUnmount: function() {
-        var flux = this.getFlux();
-        var timerStore = flux.store('TimerStore');
-        timerStore.removeListener('startTimer', this.startTask);
-    },
     render: function() {
         var editing = this.state.editing;
         var tempTitle = this.state.tempTitle;
