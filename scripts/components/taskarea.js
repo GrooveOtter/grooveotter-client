@@ -52,7 +52,7 @@ var TaskArea = module.exports = React.createClass({
         } else {
             var buttons = <div>
                 <Base.SecondaryButton onClick={this.startTask}>
-                    Start Task
+                    Start task
                 </Base.SecondaryButton>
 
                 <Base.PrimaryButton onClick={this.addForLater}>
