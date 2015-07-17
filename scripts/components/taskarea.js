@@ -98,7 +98,7 @@ var TaskArea = module.exports = React.createClass({
         flux.actions.startSessionFromTask(task);
     },
 
-    addForLater: function(taskInput) {
+    addForLater: function() {
         var flux = this.getFlux();
         var task = this.state.session.get('task');
 
