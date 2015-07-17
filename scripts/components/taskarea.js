@@ -8,16 +8,6 @@ var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
 var TaskArea = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('SessionStore', 'TaskListStore')],
-    componentDidMount: function() {
-        var flux = this.getFlux();
-        var timerStore = flux.store('TimerStore');
-        timerStore.on('startTimer', this.startTask);
-    },
-    componentDidUnmount: function() {
-        var flux = this.getFlux();
-        var timerStore = flux.store('TimerStore');
-        timerStore.removeListener('startTimer', this.startTask);
-    },
     render: function() {
         var editing = this.state.editing;
         var tempTitle = this.state.tempTitle;
@@ -52,7 +42,7 @@ var TaskArea = module.exports = React.createClass({
         } else {
             var buttons = <div>
                 <Base.SecondaryButton onClick={this.startTask}>
-                    Start Task
+                    Start task
                 </Base.SecondaryButton>
 
                 <Base.PrimaryButton onClick={this.addForLater}>
@@ -108,7 +98,7 @@ var TaskArea = module.exports = React.createClass({
         flux.actions.startSessionFromTask(task);
     },
 
-    addForLater: function(taskInput) {
+    addForLater: function() {
         var flux = this.getFlux();
         var task = this.state.session.get('task');
 
@@ -159,17 +149,21 @@ var TaskArea = module.exports = React.createClass({
         flux.actions.updateTaskTitle(task, title);
     },
 
+    startTaskFromEnter: function() {
+        var task = this.state.session.get('task');
+        var text = event.target.value;
+        task.set('title', text);
+        this.refs.gotrTaskareaBox.getDOMNode().blur();
+        this.addForLater();
+    }
+    ,
     checkForInput: function(event) {
         var flux = this.getFlux();
         var enter = 13;
         var tab = 9;
         if (event.which == enter) {
             event.preventDefault();
-            var task = this.state.session.get('task');
-            var text = event.target.value;
-            task.set('title', text);
-            this.refs.gotrTaskareaBox.getDOMNode().blur();
-            this.addForLater();
+            this.startTaskFromEnter(event);
 
         } else if (event.which === tab) {
             event.preventDefault();
