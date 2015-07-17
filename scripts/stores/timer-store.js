@@ -6,8 +6,7 @@ var constants = require('../constants');
 var TimerStore = module.exports = Fluxxor.createStore({
   initialize: function() {
     this.bindActions(
-      constants.OPEN_TIMER, this.onOpenTimer,
-      constants.START_TIMER, this.onStartTimer
+      constants.OPEN_TIMER, this.onOpenTimer
     );
   },
   onOpenTimer: function() {

@@ -34,14 +34,6 @@ var TimerPanel = module.exports = React.createClass({
         };
     },
 
-    checkKey: function(event) {
-        if (event.which === 9 || event.which === 13) {
-            this.closeSelector();
-        } else if (event.which === 27) {
-            this.stopSelecting();
-        }
-    },
-
     startSelecting: function() {
         var session = this.state.session;
         var task = session.get('task');
@@ -200,7 +192,6 @@ var Selector = React.createClass({
         var input = +event.target.value;
         this.props.onChange(input);
     },
-
 
 
 
