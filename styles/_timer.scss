@@ -37,8 +37,10 @@
     }
 
     & .gotr-timer-pencil {
+        display: block;
+        margin: 0 auto;
         position: relative;
-        bottom: 150px;
+        bottom: 75px;
     }
     & .gotr-timer-graphic {
         width: 200px;
