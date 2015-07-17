@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node /scripts/app.js",
+    "start": "node /app/scripts/app.js",
     "postinstall": "gulp final"
   },
   "dependencies": {
