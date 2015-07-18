@@ -14,7 +14,7 @@ var TaskArea = module.exports = React.createClass({
         var session = this.state.session;
         var task = session.get('task');
         var title = task.get('title');
-        var shared = task.get('shared');
+        var shared = JSON.parse(localStorage.getItem('shared'));
 
         var checkboxClass = classNs('gotr-checkbox', {
             'gotr-checkbox-checked': shared
@@ -117,7 +117,17 @@ var TaskArea = module.exports = React.createClass({
         var session = this.state.session;
         var task = session.get('task');
 
+        this.storageToggleShared();
         flux.actions.toggleTaskShared(task);
+    },
+
+    storageToggleShared: function() {
+        if (localStorage.getItem('shared') === "true") {
+            localStorage.setItem('shared', false);
+        }
+        else {
+            localStorage.setItem('shared', true);
+        }
     },
 
     resetTimer: function(event) {
