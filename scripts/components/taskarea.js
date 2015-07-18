@@ -56,7 +56,7 @@ var TaskArea = module.exports = React.createClass({
         return <div className="gotr-taskarea">
             <input
                 type="text"
-                placeholder="What are you working on."
+                placeholder="What are you working on?"
                 className="gotr-taskarea-box"
                 ref="gotrTaskareaBox"
                 value={editing ? tempTitle : title}
