@@ -55,6 +55,7 @@ var Anltcs = module.exports = exports = React.createClass({
         var total = Math.floor(siteTime / (60 * 1000));
         // this occurs on page-load,
         // when sessionTime and siteTime are 0
+
         if (isNaN(cord)) {
             cord = 0;
         }
