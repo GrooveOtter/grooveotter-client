@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+erb conf/nginx.conf.erb > conf/nginx.conf
+mkdir -p logs
+touch logs/access.log logs/error.log
+(tail -qF -n 0 --pid=$$ logs/*.log &)
+exec nginx -p .
