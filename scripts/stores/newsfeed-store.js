@@ -1,7 +1,6 @@
 var Fluxxor = require('fluxxor');
 var Newsfeed = require('../models/newsfeed');
 var constants = require('../constants');
-var _ = require('lodash');
 
 var NewsfeedStore = module.exports = Fluxxor.createStore({
     initialize: function() {
