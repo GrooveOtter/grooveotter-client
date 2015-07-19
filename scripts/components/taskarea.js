@@ -160,6 +160,7 @@ var TaskArea = module.exports = React.createClass({
     },
 
     startTaskFromEnter: function(event) {
+        console.log(event)
         var task = this.state.session.get('task');
         var text = event.target.value;
         task.set('title', text);
