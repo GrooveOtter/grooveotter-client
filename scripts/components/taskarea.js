@@ -56,7 +56,7 @@ var TaskArea = module.exports = React.createClass({
         return <div className="gotr-taskarea">
             <input
                 type="text"
-                placeholder="What are you working on"
+                placeholder="What are you working on?"
                 className="gotr-taskarea-box"
                 ref="gotrTaskareaBox"
                 value={editing ? tempTitle : title}
@@ -159,7 +159,7 @@ var TaskArea = module.exports = React.createClass({
         flux.actions.updateTaskTitle(task, title);
     },
 
-    startTaskFromEnter: function() {
+    startTaskFromEnter: function(event) {
         var task = this.state.session.get('task');
         var text = event.target.value;
         task.set('title', text);
