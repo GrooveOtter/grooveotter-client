@@ -1,0 +1,19 @@
+{
+  "name": "grooveotter-client",
+  "scripts": {},
+  "env": {
+    "GOOGLE_HOST": {
+      "required": true
+    },
+    "GOTR_HOST": {
+      "required": true
+    },
+    "PATH": {
+      "required": true
+    },
+    "TWITTER_HOST": {
+      "required": true
+    }
+  },
+  "addons": []
+}
