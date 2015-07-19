@@ -8,7 +8,6 @@ var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
 var TaskArea = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('SessionStore', 'TaskListStore')],
-
     render: function() {
         var editing = this.state.editing;
         var tempTitle = this.state.tempTitle;
@@ -47,7 +46,7 @@ var TaskArea = module.exports = React.createClass({
                 </Base.SecondaryButton>
 
                 <Base.PrimaryButton onClick={this.addForLater}>
-                    Add to list
+                    Add to list for later
                 </Base.PrimaryButton>
 
                 {shareBox}
@@ -96,14 +95,12 @@ var TaskArea = module.exports = React.createClass({
     startTask: function() {
         var flux = this.getFlux();
         var task = this.state.session.get('task');
-
         flux.actions.startSessionFromTask(task);
     },
 
     addForLater: function() {
         var flux = this.getFlux();
         var task = this.state.session.get('task');
-
         flux.actions.addTask(task);
         flux.actions.newSession();
     },
@@ -151,13 +148,23 @@ var TaskArea = module.exports = React.createClass({
         flux.actions.updateTaskTitle(task, title);
     },
 
+    startTaskFromEnter: function(event) {
+        var task = this.state.session.get('task');
+        var text = event.target.value;
+        task.set('title', text);
+        this.refs.gotrTaskareaBox.getDOMNode().blur();
+        this.addForLater();
+    }
+    ,
     checkForInput: function(event) {
         var flux = this.getFlux();
+        var enter = 13;
+        var tab = 9;
+        if (event.which == enter) {
+            event.preventDefault();
+            this.startTaskFromEnter(event);
 
-        if (event.which === 13) {
-            this.refs.gotrTaskareaBox.getDOMNode().blur();
-            this.startTask();
-        } else if (event.which === 9) {
+        } else if (event.which === tab) {
             event.preventDefault();
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             flux.actions.openTimer();

@@ -34,14 +34,6 @@ var TimerPanel = module.exports = React.createClass({
         };
     },
 
-    checkKey: function(event) {
-        if (event.which === 9 || event.which === 13) {
-            this.closeSelector();
-        } else if (event.which === 27) {
-            this.stopSelecting();
-        }
-    },
-
     startSelecting: function() {
         var session = this.state.session;
         var task = session.get('task');
@@ -63,18 +55,20 @@ var TimerPanel = module.exports = React.createClass({
         var mins = this.state.mins;
         var task = session.get('task');
         var duration = mins * 60 * 1000;
-
         if (!isNaN(duration)) {
             flux.actions.updateTaskDuration(task, duration);
             this.stopSelecting();
         }
     },
 
-    checkForTab: function(e) {
+    checkForInput: function(e) {
         var tabKey = 9;
-        if (e.which ==tabKey) {
-            this.stopSelecting();
+        var enterKey = 13;
+        var value = +e.target.value;
+        if (e.which ==tabKey || e.which == enterKey) {
+            this.closeSelector();
         }
+
     },
 
     stopSelecting: function() {
@@ -96,7 +90,7 @@ var TimerPanel = module.exports = React.createClass({
         if (selecting) {
             return <div className="gotr-timer-area-container">
                 <div className="gotr-timer-area gotr-timer-area-selecting">
-                    <Selector mins={mins} onChange={this.updateMins} onKeyDown={this.checkForTab}/>
+                    <Selector mins={mins} onChange={this.updateMins} onKeyDown={this.checkForInput}/>
                 </div>
 
                 <div className="gotr-shadow" onClick={this.closeSelector}/>
@@ -138,10 +132,25 @@ var Timer = React.createClass({
         var timeRemaining = session.timeRemaining();
         var text = session.clockText();
 
-        return <div className="gotr-timer">
-            <div className="gotr-timer-counter">{text}</div>
+        if (session.get('started') == null) {
+            return  <div className="gotr-timer">
+            <div className="gotr-timer-counter">
+            <span>{text}</span>
+            <img className="gotr-timer-pencil" src='/pencil.png'/>
+            </div>
+            <TimerGraphic ratio={timeRemaining / duration}/>
+            </div>;
+        }
+        else {
+            return <div className="gotr-timer">
+            <div className="gotr-timer-counter">
+            <span>{text}</span>
+            </div>
             <TimerGraphic ratio={timeRemaining / duration}/>
         </div>;
+
+
+        }
     }
 });
 
@@ -174,6 +183,7 @@ var TimerGraphic = React.createClass({
 });
 
 var Selector = React.createClass({
+    mixins: [FluxMixin],
     componentDidMount: function() {
         this.refs.minsInput.getDOMNode().select();
     },
@@ -182,6 +192,8 @@ var Selector = React.createClass({
         var input = +event.target.value;
         this.props.onChange(input);
     },
+
+
 
     render: function() {
         var choices = [15, 25, 45];
@@ -195,6 +207,7 @@ var Selector = React.createClass({
                     ref="minsInput"
                     onChange={this.updateMins}
                     value={mins}
+                    onKeyDown={this.checkForInput}
                     className="gotr-selector-box-input"
                     autoFocus={focus}
                 />

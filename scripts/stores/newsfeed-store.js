@@ -1,6 +1,7 @@
 var Fluxxor = require('fluxxor');
 var Newsfeed = require('../models/newsfeed');
 var constants = require('../constants');
+var _ = require('lodash');
 
 var NewsfeedStore = module.exports = Fluxxor.createStore({
     initialize: function() {
@@ -10,9 +11,7 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         this.newsfeed.on('reset add remove change', function() {
             this.emit('change');
         }, this);
-
         this.newsfeed.fetch({reset: true});
-
         this.bindActions(
             constants.CYCLE_NEWSFEED, this.onCycleNewsfeed,
             constants.LIKE_SHARED_ITEM, this.onLikeSharedItem

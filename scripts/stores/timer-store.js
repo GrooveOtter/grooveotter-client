@@ -12,5 +12,4 @@ var TimerStore = module.exports = Fluxxor.createStore({
   onOpenTimer: function() {
     this.emit('openTimer');
   }
-
 });
