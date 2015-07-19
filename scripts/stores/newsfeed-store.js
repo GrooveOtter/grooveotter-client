@@ -24,6 +24,7 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
 
         this.currentItemIndex = (index + 1) % newsfeed.length;
 
+
         this.emit('change');
     },
 
