@@ -1,6 +1,7 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var tweenState = require('react-tween-state');
+var OnboardingStep = require('./onboarding-step');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
@@ -65,6 +66,15 @@ var Anltcs = module.exports = exports = React.createClass({
             <div className="gotr-anltcs-count">{sessionTime}</div>
             <div className="gotr-anltcs-desc">minutes in Groove Today</div>
 
+            <OnboardingStep stepName="analytics">
+                <div className="gotr-onboarding-title">
+                    Analytics
+                </div>
+
+                <div className="gotr-onboarding-text">
+                    See a breakdown of the time you’ve spent working focused today. It’s the first    step to understanding how you work.
+                </div>
+            </OnboardingStep>
         </div>;
     }
 });

@@ -30,8 +30,8 @@ var Tabs = module.exports = exports = React.createClass({
             return <Title
                 active={index === active}
                 onClick={click}
-                key={tab.title}>
-                {tab.title}
+                key={tab.title}
+                tab={tab}>
             </Title>;
 
             function click() {
@@ -53,12 +53,15 @@ var Tabs = module.exports = exports = React.createClass({
 
 var Title = React.createClass({
     render: function() {
-        var className = classNs('gotr-tab-title', {
-            'gotr-tab-title-active': this.props.active
+        var tab = this.props.tab;
+
+        var className = classNs('gotr-tab', {
+            'gotr-tab-active': this.props.active
         });
 
         return <div className={className} {...this.props}>
-            {this.props.children}
+            <span className="gotr-tab-title">{tab.title}</span>
+            {tab.extra}
         </div>;
     }
 });

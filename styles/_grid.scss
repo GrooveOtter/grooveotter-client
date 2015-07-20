@@ -19,8 +19,17 @@
 .gotr-row {
     margin: 0 auto;
     max-width: $gotr-row-width;
-    overflow: hidden;
     padding: 0 $gotr-row-padding;
+
+    &:after {
+        clear: both;
+    }
+
+    &::after, // weird hacky magic to avoid overflow: hidden
+    &::before {
+        content: "";
+        display: table;
+    }
 
     & .gotr-row-left-panel, & .gotr-row-right-panel {
         position: relative;

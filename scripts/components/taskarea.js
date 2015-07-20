@@ -2,12 +2,14 @@ var React = require('react');
 var Fluxxor = require('fluxxor');
 var Base = require('./base');
 var classNs = require('classnames');
+var OnboardingStep = require('./onboarding-step');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
 var TaskArea = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('SessionStore', 'TaskListStore')],
+
     render: function() {
         var editing = this.state.editing;
         var tempTitle = this.state.tempTitle;
@@ -25,6 +27,16 @@ var TaskArea = module.exports = React.createClass({
             onClick={this.toggleShared}>
             <span className={checkboxClass}/>
             Share this task
+
+            <OnboardingStep stepName="sharing">
+                <div className="gotr-onboarding-title">
+                    Share it
+                </div>
+
+                <div className="gotr-onboarding-text">
+                    You worked hard. Get some recognition for what you did.
+                </div>
+            </OnboardingStep>
         </span>;
 
         if (session.isStarted()) {
@@ -66,6 +78,16 @@ var TaskArea = module.exports = React.createClass({
                 onBlur={this.stopEditing}
             />
 
+            <OnboardingStep stepName="taskarea">
+                <div className="gotr-onboarding-title">
+                    Create a task
+                </div>
+
+                <div className="gotr-onboarding-text">
+                    Organize your thoughts, and stay on task by writing it down for now or later.
+                </div>
+            </OnboardingStep>
+
             {buttons}
         </div>;
     },
@@ -81,7 +103,8 @@ var TaskArea = module.exports = React.createClass({
         var flux = this.getFlux();
 
         return {
-            session: flux.store('SessionStore').getSession()
+            session: flux.store('SessionStore').getSession(),
+            currentStep: flux.store('OnboardingStore').getCurrentStep()
         };
     },
 
@@ -158,13 +181,11 @@ var TaskArea = module.exports = React.createClass({
     ,
     checkForInput: function(event) {
         var flux = this.getFlux();
-        var enter = 13;
-        var tab = 9;
-        if (event.which == enter) {
+
+        if (event.which === 13) { // enter
             event.preventDefault();
             this.startTaskFromEnter(event);
-
-        } else if (event.which === tab) {
+        } else if (event.which === 9) { // tab
             event.preventDefault();
             this.refs.gotrTaskareaBox.getDOMNode().blur();
             flux.actions.openTimer();

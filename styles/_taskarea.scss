@@ -37,17 +37,31 @@
         }
     }
 
-    & span {
+    span {
         vertical-align: middle;
     }
 
-    & .gotr-taskarea-sharebox {
+    .gotr-taskarea-sharebox {
+        position: relative;
+        display: inline-block;
+
         .gotr-checkbox {
             margin-right: 7px;
         }
 
         &:hover {
             cursor: pointer;
+        }
+
+        .gotr-onboarding-container {
+            left: -100px;
+            right: -100px;
+            margin-top: 5px;
+
+            @media screen and (max-width: 480px) {
+                left: 0;
+                right: 0;
+            }
         }
     }
 
@@ -58,5 +72,14 @@
             font-size: 1.25em;
             text-align: center;
         }
+    }
+
+    & > .gotr-onboarding-container {
+        width: 100%;
+        margin-top: -30px;
+    }
+
+    .gotr-onboarding-arrows-down {
+        display: none;
     }
 }

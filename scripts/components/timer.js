@@ -1,5 +1,6 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
+var OnboardingStep = require('./onboarding-step');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
@@ -61,14 +62,11 @@ var TimerPanel = module.exports = React.createClass({
         }
     },
 
-    checkForInput: function(e) {
-        var tabKey = 9;
-        var enterKey = 13;
-        var value = +e.target.value;
-        if (e.which ==tabKey || e.which == enterKey) {
+    checkForInput: function(event) {
+        // check for either enter, tab or esc
+        if (event.which === 9 || event.which === 13 || event.which === 27) {
             this.closeSelector();
         }
-
     },
 
     stopSelecting: function() {
@@ -93,7 +91,15 @@ var TimerPanel = module.exports = React.createClass({
                     <Selector mins={mins} onChange={this.updateMins} onKeyDown={this.checkForInput}/>
                 </div>
 
-                <div className="gotr-shadow" onClick={this.closeSelector}/>
+                <OnboardingStep stepName="timer">
+                    <div className="gotr-onboarding-title">
+                        Estimate your time
+                    </div>
+
+                    <div className="gotr-onboarding-text">
+                        How long does it usually take you? Estimate your time and work undistracted.
+                    </div>
+                </OnboardingStep>
             </div>;
         } else {
             return <div className="gotr-timer-area-container">
@@ -132,25 +138,14 @@ var Timer = React.createClass({
         var timeRemaining = session.timeRemaining();
         var text = session.clockText();
 
-        if (session.get('started') == null) {
-            return  <div className="gotr-timer">
+        return <div className="gotr-timer">
             <div className="gotr-timer-counter">
-            <span>{text}</span>
-            <img className="gotr-timer-pencil" src='/pencil.png'/>
+                <span>{text}</span>
+                {!session.isStarted() && <img className="gotr-timer-pencil" src='/pencil.png'/>}
             </div>
-            <TimerGraphic ratio={timeRemaining / duration}/>
-            </div>;
-        }
-        else {
-            return <div className="gotr-timer">
-            <div className="gotr-timer-counter">
-            <span>{text}</span>
-            </div>
+
             <TimerGraphic ratio={timeRemaining / duration}/>
         </div>;
-
-
-        }
     }
 });
 
@@ -193,8 +188,6 @@ var Selector = React.createClass({
         this.props.onChange(input);
     },
 
-
-
     render: function() {
         var choices = [15, 25, 45];
         var keyDown = this.props.onKeyDown;
@@ -215,7 +208,9 @@ var Selector = React.createClass({
                 mins
             </div>
 
-            {choices.map(toOption)}
+            <div>
+                {choices.map(toOption)}
+            </div>
         </div>;
 
         function toOption(choice) {

@@ -11,6 +11,7 @@ var TaskList = require('./task-list');
 var Archive = require('./archive');
 var Newsfeed = require('./newsfeed');
 var Toaster = require('./toaster');
+var OnboardingStep = require('./onboarding-step');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 
@@ -43,8 +44,24 @@ var Main = module.exports = React.createClass({
         var pic = gotrUser.get('picture');
 
         var tabs = [
-            {title: 'Today', content: <TaskList/>},
-            {title: 'Archive', content: <Archive/>}
+            {
+                title: 'Today',
+                content: <TaskList/>
+            },
+
+            {
+                title: 'Archive',
+                extra: <OnboardingStep stepName="archive">
+                    <div className="gotr-onboarding-title">
+                        Archive
+                    </div>
+
+                    <div className="gotr-onboarding-text">
+                        Take a look at everything you’ve accomplished over the past few weeks.  You’ll be surprised at how much you’ve done.
+                    </div>
+                </OnboardingStep>,
+                content: <Archive/>
+            }
         ];
 
         return <div>
