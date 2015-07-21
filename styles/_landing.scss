@@ -215,7 +215,7 @@
 }
 
 #gotrl-panel-two {
-    background: $gotr-white;
+    background: url(/panel2-background.png) no-repeat center / contain $gotr-white;
 
     & > * {
         display: block;
