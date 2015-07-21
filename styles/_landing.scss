@@ -220,13 +220,11 @@
     & > * {
         display: block;
         margin: 0 auto;
-        width: 100%;
-        max-width: 600px;
     }
 
     p {
-        color: $gotr-black;
-        font-size: 2em;
+        font-size: 48px;
+        line-height: 52px;
         text-align: center;
     }
 }
@@ -299,6 +297,25 @@
 
     .gotrl-panel-four-right {
         float: left;
+    }
+}
+
+#gotrl-panel-social {
+    background: $gotr-offwhite;
+
+    .gotrl-panel-social-left {
+        float: left;
+    }
+
+    .gotrl-panel-social-right {
+        float: left;
+        max-width: 430px;
+        width: 100%;
+
+        img {
+            display: block;
+            width: 100%;
+        }
     }
 }
 
