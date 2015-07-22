@@ -92,10 +92,11 @@
     }
 
     &.gotr-newsfeed-leave {
+        transform: translateY(0);
         transition: transform 1000ms linear;
 
         &.gotr-newsfeed-leave-active {
-            transform: translateY(100%);
+            transform: translateY(60px);
         }
     }
 }
