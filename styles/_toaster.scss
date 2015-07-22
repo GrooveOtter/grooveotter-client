@@ -7,9 +7,10 @@
 }
 
 .gotr-toaster-toast {
+    height: 90px;
     background: $gotr-white;
     box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    position: relative;
 
     &:hover {
         box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.3);
@@ -40,5 +41,26 @@
 
     & + & {
         margin-top: 6px;
+    }
+}
+
+.gotr-toaster-text {
+    padding: 20px 20px 15px 20px;
+    border-bottom: 5px solid $gotr-secondary;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.gotr-toaster-text-highlight {
+    color: $gotr-primary;
+}
+
+.gotr-toaster-pic {
+    position: absolute;
+    left: -90px;
+
+    img {
+        width: 90px;
+        height: 90px;
     }
 }
