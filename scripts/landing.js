@@ -19,6 +19,7 @@ $(function() {
             offsetTop: -30
         });
 
+
         if (video.is(':scrollin')) {
             slideInFromRight.call(video);
         } else {

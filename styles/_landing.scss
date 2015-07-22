@@ -228,6 +228,7 @@
         line-height: 52px;
         font-weight: 500;
         width: 30%;
+        min-width: 400px;
     }
 }
 
@@ -308,15 +309,19 @@
     .gotrl-panel-social-left {
         float: left;
     }
-
+    .gotrl-panel-content {
+        max-width: 1090px;
+    }
     .gotrl-panel-social-right {
         float: left;
         max-width: 430px;
         width: 100%;
+        margin-left: 160px;
 
         img {
             display: block;
             width: 100%;
+            margin: 0 auto;
         }
     }
 }
@@ -329,8 +334,7 @@
     }
 
     .gotrl-panel-content {
-        max-width: 800px;
-        text-align: center;
+        margin: 0 auto;
     }
 
     .gotrl-panel-five-icon {
@@ -346,15 +350,17 @@
         color: $gotr-white;
         font-size: 24px;
         line-height: 36px;
+        text-align: center;
     }
 
     .gotrl-panel-five-name {
         color: $gotr-white;
+        text-align: center;
     }
 
     ul.slick-dots {
         margin: 0 auto;
-
+        text-align: center;
         li {
             background: rgba(255, 255, 255, 0.5);
             border-radius: 100%;
@@ -512,10 +518,12 @@
         .gotrl-panel-five-text {
             font-size: 18px;
             line-height: 24px;
+            text-align: center;
         }
 
         .gotrl-panel-five-name {
             font-size: 14px;
+            text-align: center;
         }
     }
 
