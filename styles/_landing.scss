@@ -312,6 +312,7 @@
     .gotrl-panel-content {
         max-width: 1090px;
         width: 1267px;
+        padding-left: 120px;
     }
     .gotrl-panel-social-right {
         float: left;
@@ -525,6 +526,11 @@
         .gotrl-panel-five-name {
             font-size: 14px;
             text-align: center;
+        }
+    }
+    #gotrl-panel-social {
+        .gotrl-panel-content {
+            padding-left: 0px !important;
         }
     }
 
