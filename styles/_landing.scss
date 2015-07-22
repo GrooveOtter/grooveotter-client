@@ -313,7 +313,6 @@
         float: left;
         max-width: 430px;
         width: 100%;
-        margin-left: 20%;
 
         img {
             display: block;
@@ -469,6 +468,7 @@
         p {
             font-size: 22px;
             line-height: 24px;
+            min-width: 400px;
         }
     }
 
