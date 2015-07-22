@@ -49,7 +49,7 @@ $(function() {
         dots: true,
         arrows: false,
         autoplay: true,
-        autoplaySpeed: 3s000,
+        autoplaySpeed: 3000,
         pauseOnHover: false
     });
 });
