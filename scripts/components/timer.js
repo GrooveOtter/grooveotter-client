@@ -70,6 +70,7 @@ var TimerPanel = module.exports = React.createClass({
     },
 
     stopSelecting: function() {
+        console.log('selecting')
         this.setState({selecting: false});
     },
 
@@ -90,7 +91,7 @@ var TimerPanel = module.exports = React.createClass({
                 <div className="gotr-timer-area gotr-timer-area-selecting">
                     <Selector mins={mins} onChange={this.updateMins} onKeyDown={this.checkForInput}/>
                 </div>
-
+                <div className="gotr-shadow2" onClick={this.closeSelector}/>
                 <OnboardingStep stepName="timer">
                     <div className="gotr-onboarding-title">
                         Estimate your time
