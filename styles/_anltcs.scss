@@ -90,6 +90,20 @@
             margin-left: 15px;
         }
     }
+
+    .gotr-onboarding-container {
+        left: -100px;
+        right: -100px;
+
+        @media screen and (max-width: 480px) {
+            left: 0;
+            right: 0;
+        }
+    }
+
+    .gotr-onboarding-arrows-down {
+        display: none;
+    }
 }
 
 #gotr-anltcs-bar {

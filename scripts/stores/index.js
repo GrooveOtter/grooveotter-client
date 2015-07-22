@@ -4,6 +4,7 @@ var AnltcsStore = require('./anltcs-store');
 var NewsfeedStore = require('./newsfeed-store');
 var TimerStore = require('./timer-store');
 var NotificationsStore = require('./notifications-store');
+var OnboardingStore = require('./onboarding-store');
 
 var stores = module.exports = {
     getStores: getStores
@@ -16,6 +17,7 @@ function getStores() {
         AnltcsStore: new AnltcsStore(),
         NewsfeedStore: new NewsfeedStore(),
         TimerStore: new TimerStore(),
-        NotificationsStore: new NotificationsStore()
+        NotificationsStore: new NotificationsStore(),
+        OnboardingStore: new OnboardingStore()
     }
 }

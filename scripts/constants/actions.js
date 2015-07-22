@@ -56,5 +56,17 @@ var actions = module.exports = {
 
     openTimer: function() {
         this.dispatch(constants.OPEN_TIMER);
+    },
+
+    skipOnboarding: function() {
+        this.dispatch(constants.SKIP_ONBOARDING);
+    },
+
+    nextOnboarding: function() {
+        this.dispatch(constants.NEXT_ONBOARDING);
+    },
+
+    prevOnboarding: function() {
+        this.dispatch(constants.PREV_ONBOARDING);
     }
 };

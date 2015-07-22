@@ -1,5 +1,20 @@
 .gotr-timer-area-container {
     height: 200px;
+
+    .gotr-onboarding-container {
+        left: -100px;
+        right: -100px;
+        margin-top: 180px;
+
+        @media screen and (max-width: 480px) {
+            left: 0;
+            right: 0;
+        }
+    }
+
+    .gotr-onboarding-arrows-down {
+        display: none;
+    }
 }
 
 .gotr-timer-area {
@@ -10,10 +25,13 @@
     background: $gotr-offwhite;
 
     &.gotr-timer-area-selecting {
+        background-color: $gotr-white;
+        left: 0;
         position: absolute;
+        right: 0;
         z-index: 10;
-        background-color: white;
     }
+
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
