@@ -47,9 +47,9 @@ window.gotrMain = function() {
         }
     }, 100);
 
-    var source = window.gotrSource = new EventSource(process.env.GOTR_HOST + '/sse');
-
-    source.withCredentials = true;
+    var source = window.gotrSource = new EventSource(process.env.GOTR_HOST + '/sse', {
+        withCredentials: true
+    });
 
     $(source).on('message', function(jEvent) {
         var event = jEvent.originalEvent; // for some reason jQuery doesn't like event sources
