@@ -44,6 +44,10 @@ window.gotrMain = function() {
 
         if (session.hasEnded()) {
             session.ring();
+
+            if (Date.now() % 2000 > 1000) {
+                document.title = 'Time is up!';
+            }
         }
     }, 100);
 
