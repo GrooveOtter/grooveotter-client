@@ -15,3 +15,7 @@ var User = module.exports = Model.extend({
         });
     }
 });
+
+var CurrentUser = User.CurrentUser = User.extend({
+    url: process.env.GOTR_HOST + '/api/users/me'
+});
