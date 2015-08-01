@@ -100,7 +100,10 @@
         }
     }
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 700px) {
+    .gotr-newsfeed-right {
+        display: none;
+    }
     .gotr-newsfeed-item {
         font-size: 11px;
     }
