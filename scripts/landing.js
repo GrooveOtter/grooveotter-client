@@ -19,6 +19,11 @@ $(function() {
             offsetTop: -30
         });
 
+        var social = $('.gotrl-panel-social-right img').scrolling({
+            offsetLeft: 700,
+            offsetTop: -100
+        });
+
 
         if (video.is(':scrollin')) {
             slideInFromRight.call(video);
@@ -30,6 +35,12 @@ $(function() {
             slideInFromLeft.call(anltcs);
         } else {
             anltcs.one('scrollin', slideInFromLeft);
+        }
+
+        if (social.is(':scrollin')) {
+            slideInFromRight.call(social);
+        } else {
+            social.one('scrollin', slideInFromRight);
         }
     }
 
