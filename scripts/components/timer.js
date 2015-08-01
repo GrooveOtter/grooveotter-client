@@ -12,12 +12,14 @@ var TimerPanel = module.exports = React.createClass({
         var flux = this.getFlux();
         var timerStore = flux.store('TimerStore');
         timerStore.on('openTimer', this.startSelecting);
+        timerStore.on('closeTimer', this.stopSelecting);
     },
 
     componentDidUnmount: function() {
         var flux = this.getFlux();
         var timerStore = flux.store('TimerStore');
         timerStore.removeListener('openTimer', this.startSelecting);
+        timerStore.removeListener('closeTimer', this.stopSelecting);
     },
 
     getInitialState: function() {
@@ -56,6 +58,7 @@ var TimerPanel = module.exports = React.createClass({
         var mins = this.state.mins;
         var task = session.get('task');
         var duration = mins * 60 * 1000;
+
         if (!isNaN(duration)) {
             flux.actions.updateTaskDuration(task, duration);
             this.stopSelecting();

@@ -23,6 +23,7 @@ var OnboardingStep = React.createClass({
         var stepName = this.props.stepName;
         var direction = this.props.direction;
         var currentStep = this.state.currentStep;
+        var currentStepIndex = this.state.currentStepIndex;
         var steps = this.state.steps;
 
         var mainSet = classNs('gotr-onboarding-container', {
@@ -49,7 +50,7 @@ var OnboardingStep = React.createClass({
                         </div>
 
                         <div className="gotr-onboarding-buttons-next" onClick={this.nextStep}>
-                            Next
+                            {currentStepIndex === steps.length - 1 ? 'Finish' : 'Next'}
                         </div>
                     </div>
                 </div>

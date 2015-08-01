@@ -1,6 +1,7 @@
 var Fluxxor = require('fluxxor');
 var constants = require('../constants');
 
+var User = require('../models/user');
 var Notification = require('../models/notification');
 
 var NotificationsStore = module.exports = Fluxxor.createStore({
@@ -19,14 +20,21 @@ var NotificationsStore = module.exports = Fluxxor.createStore({
 
     onNotifyLikedItem: function(payload) {
         var flux = this.flux;
-        var taskList = flux.store('TaskListStore').getTaskList();
         var itemId = payload.itemId;
+        var userId = payload.userId;
+        var taskList = flux.store('TaskListStore').getTaskList();
         var item = taskList.get(itemId);
 
         if (item != null) {
-            this.notifications.add({
-                text: 'Someone liked that you finished “' + item.get('title') + '.”',
-                died: false
+            new User({id: userId}).fetch({
+                success: function(user) {
+                    this.notifications.add({
+                        // text: 'Someone liked that you finished “' + item.get('title') + '.”',
+                        item: item,
+                        user: user,
+                        died: false
+                    });
+                }.bind(this)
             });
         }
     },

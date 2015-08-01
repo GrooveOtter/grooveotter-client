@@ -44,12 +44,16 @@ window.gotrMain = function() {
 
         if (session.hasEnded()) {
             session.ring();
+
+            if (Date.now() % 2000 > 1000) {
+                document.title = 'Time is up!';
+            }
         }
     }, 100);
 
-    var source = window.gotrSource = new EventSource(process.env.GOTR_HOST + '/sse');
-
-    source.withCredentials = true;
+    var source = window.gotrSource = new EventSource(process.env.GOTR_HOST + '/sse', {
+        withCredentials: true
+    });
 
     $(source).on('message', function(jEvent) {
         var event = jEvent.originalEvent; // for some reason jQuery doesn't like event sources
@@ -64,7 +68,7 @@ window.gotrMain = function() {
     React.render(<Main flux={flux}/>, document.getElementById('main'));
 };
 
-new User().fetch({
+new User.CurrentUser().fetch({
     success: function(user) {
         window.gotrUser = user;
         cookies.set('loggedin', true);

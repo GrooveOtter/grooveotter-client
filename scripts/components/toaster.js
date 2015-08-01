@@ -37,8 +37,22 @@ var Toaster = module.exports = React.createClass({
 var Toast = React.createClass({
     render: function() {
         var notif = this.props.notification;
-        var text = notif.get('text');
+        var user = notif.get('user');
+        var item = notif.get('item');
+        var pic = user.get('picture');
+        var name = user.get('full_name');
+        var title = item.get('title');
 
-        return <div className="gotr-toaster-toast">{text}</div>;
+        return <div className="gotr-toaster-toast">
+            <div className="gotr-toaster-pic">
+                <img src={pic}/>
+            </div>
+
+            <div className="gotr-toaster-text">
+                <span className="gotr-toaster-text-highlight">{name}</span>
+                &nbsp;liked that you finished&nbsp;
+                <span className="gotr-toaster-text-highlight">&ldquo;{title}&rdquo;</span>
+            </div>
+        </div>;
     }
 });

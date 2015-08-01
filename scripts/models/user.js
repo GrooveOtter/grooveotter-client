@@ -3,7 +3,7 @@ var Model = Backbone.Model;
 
 // TODO
 var User = module.exports = Model.extend({
-    url: process.env.GOTR_HOST + '/api/users/me',
+    urlRoot: process.env.GOTR_HOST + '/api/users',
 
     logout: function() {
         var xhr = Backbone.ajax({
@@ -14,4 +14,8 @@ var User = module.exports = Model.extend({
             }
         });
     }
+});
+
+var CurrentUser = User.CurrentUser = User.extend({
+    url: process.env.GOTR_HOST + '/api/users/me'
 });

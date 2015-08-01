@@ -20,7 +20,8 @@ var TimerStore = module.exports = Fluxxor.createStore({
         this.waitFor(['OnboardingStore'], function(onboardingStore) {
             if (onboardingStore.getCurrentStep() === 'timer') {
                 this.emit('openTimer');
-            } else {
+            } else if (onboardingStore.getPreviousStep() === 'timer') {
+                this.emit('closeTimer');
             }
         });
     }

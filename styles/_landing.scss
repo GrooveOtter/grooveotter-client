@@ -318,12 +318,14 @@
         float: left;
         max-width: 430px;
         width: 100%;
-        margin-left: 160px;
+        margin-left: 70px;
 
         img {
             display: block;
-            width: 100%;
             margin: 0 auto;
+            margin-left: 700px;
+            opacity: 0;
+            width: 100%;
         }
     }
 }

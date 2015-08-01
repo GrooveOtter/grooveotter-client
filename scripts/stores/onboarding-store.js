@@ -56,6 +56,14 @@ var OnboardingStore = module.exports = Fluxxor.createStore({
         }
     },
 
+    getPreviousStep: function() {
+        if (gotrUser.get('introduced')) {
+            return null;
+        } else {
+            return this.steps[this.currentStepIndex - 1];
+        }
+    },
+
     stopOnboarding: function() {
         gotrUser.save({introduced: true});
     }
