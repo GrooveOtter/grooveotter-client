@@ -100,3 +100,21 @@
         }
     }
 }
+@media screen and (max-width: 700px) {
+    .gotr-newsfeed-right {
+        display: none;
+    }
+    .gotr-newsfeed {
+        height: 55px;
+    }
+    .gotr-selector-box-input {
+        width: 50%;
+    }
+
+    .gotr-newsfeed-item {
+        font-size: 10px;
+        overflow: hidden;
+    }
+
+
+}
