@@ -57,6 +57,9 @@ var Session = module.exports = Model.extend({
 
         this.ringed = true;
 
-        new Audio('/alarm.mp3').play();
+        var audio = new Audio();
+        audio.src = '/alarm.mp3';
+        audio.id = 'test';
+        audio.play();
     }
 });
