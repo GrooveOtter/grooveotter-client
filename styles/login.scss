@@ -25,14 +25,15 @@ html {
 
 .gotrl-login-box {
     display: inline-block;
-    max-width: 480px;
+    max-width: 460px;
     width: 100%;
     overflow: hidden;
 }
 
 .gotrl-login-logobox {
-    background: $gotr-primary;
-    padding: 20px 0;
+    background: white;
+    padding: 30px 0;
+    padding-bottom: 0px;
 
     .gotrl-login-logobox-logo {
         display: block;
@@ -47,7 +48,7 @@ html {
     text-align: center;
 
     & > * + * {
-        margin-top: 30px;
+        margin-top: 10px;
     }
 }
 
@@ -60,28 +61,52 @@ html {
     color: $gotr-white;
     display: block;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 400;
     padding: 1em 0;
     width: 100%;
 }
 
 .gotrl-login-twitter {
-    background: #56adf6;
+    background: #3AD3E8;
     transition: background-color 100ms ease;
 
     &:hover {
-        background: #4d9bdc;
+        background: #18b4c9;
     }
 }
 
+.login-text {
+    position: relative;
+    bottom: 7px;
+}
 .gotrl-login-google {
-    background: #e21c00;
+    background: #E95254;
     transition: background-color 100ms ease;
 
     &:hover {
-        background: #ca1a00;
+        background: #e5383b;
     }
 }
+
+.gotrl-login-button {
+    padding-bottom: 15px;
+}
+
+.gotrl-login-button p {
+    display: inline-block;
+    margin: 0px;
+}
+
+.gotrl-login-button img {
+    margin-left: -15px;
+    margin-right: 10px;
+}
+
+.gotrl-login-button span {
+    position: relative;
+    bottom: 7px;
+}
+
 
 @media screen and (min-width: 480px) {
     .gotrl-login-box-container {
@@ -94,6 +119,7 @@ html {
         right: 0;
         bottom: 0;
         min-height: 100%;
+        background-image: url("http://i.imgur.com/sCdFslL.jpg");
     }
 
 
