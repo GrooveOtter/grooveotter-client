@@ -6,31 +6,21 @@
 
 .gotr-navbar {
     position: relative;
-    width: auto;
+    overflow: hidden;
+    padding: 10px 15px;
 
     & .gotr-navbar-left {
         float: left;
-        padding: 10px 0 15px 35px;
     }
 
     & .gotr-navbar-right {
         float: right;
-        padding: 10px 35px 15px 0;
     }
 
     & .gotr-navbar-item {
         display: inline-block;
         max-height: 40px;
-        padding: 0 20px;
         vertical-align: middle;
-
-        &:first-child {
-            padding-left: 0;
-        }
-
-        &:last-child {
-            padding-right: 0;
-        }
 
         & a {
             display: inline-block;
@@ -40,6 +30,14 @@
 
         &:hover a, &.gotr-navbar-item-active a {
             color: $gotr-white;
+        }
+
+        .gotr-navbar-item-logo {
+            overflow: hidden;
+
+            @media screen and (max-width: 480px) {
+                width: 40px;
+            }
         }
 
         & .gotr-navbar-item-pic {
@@ -53,12 +51,9 @@
             padding-top: 10px;
             padding-bottom: 10px;
         }
-    }
 
-    @media screen and (max-width: $gotr-row-cutoff) {
-        & .gotr-navbar-left, & .gotr-navbar-right {
-            padding-left: ($gotr-row-padding / 2);
-            padding-right: ($gotr-row-padding / 2);
+        & + .gotr-navbar-item {
+            padding-left: 15px;
         }
     }
 }
