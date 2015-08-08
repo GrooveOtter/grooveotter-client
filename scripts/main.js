@@ -68,7 +68,7 @@ window.gotrMain = function() {
     React.render(<Main flux={flux}/>, document.getElementById('main'));
 };
 
-new User({id: 'me'}).fetch({
+new User.ActiveUser().fetch({
     success: function(user) {
         window.gotrUser = user;
         cookies.set('loggedin', true);

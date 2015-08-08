@@ -1,7 +1,6 @@
 var Backbone = require('exoskeleton');
 var Model = Backbone.Model;
 
-// TODO
 var User = module.exports = Model.extend({
     urlRoot: process.env.GOTR_HOST + '/api/users',
 
@@ -13,5 +12,11 @@ var User = module.exports = Model.extend({
                 window.location = '/';
             }
         });
+    }
+});
+
+User.ActiveUser = User.extend({
+    url: function() {
+        return this.urlRoot + '/me';
     }
 });
