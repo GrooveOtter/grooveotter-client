@@ -62,7 +62,6 @@
             & .gotr-archive-day-title-count {
                 display: inline-block;
                 float: right;
-                width: 200px;
 
                 & .gotr-archive-day-checkmark {
                     background: url(/checked.png) no-repeat 0 0;
@@ -77,6 +76,20 @@
                 float: right;
                 height: 20px;
                 width: 20px;
+            }
+
+            @media screen and (max-width: 480px) {
+                .gotr-archive-day-title-count {
+                    width: 50px;
+
+                    .gotr-archive-day-title-count-words {
+                        display: none;
+                    }
+                }
+
+                .gotr-archive-day-title-arrow {
+                    display: none;
+                }
             }
         }
     }
