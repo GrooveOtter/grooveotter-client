@@ -23,6 +23,7 @@ var Newsfeed = module.exports = React.createClass({
         return <TransitionGroup
             enterTimeout={1000}
             leaveTimeout={1000}
+            transitionLeave={false}
             component="div"
             className="gotr-newsfeed-container"
             transitionName="gotr-newsfeed">
