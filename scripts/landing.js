@@ -8,6 +8,10 @@ if (cookies.get('loggedin')) {
 }
 
 $(function() {
+    $('.gotrl-top').css({
+        backgroundImage: 'url(/landing-background.jpg)'
+    });
+
     if ($(window).width() > 800) {
         var video = $('.gotrl-panel-three-right video').scrolling({
             offsetLeft: 700,
