@@ -23,6 +23,7 @@ var Newsfeed = module.exports = React.createClass({
         return <TransitionGroup
             enterTimeout={1000}
             leaveTimeout={1000}
+            transitionLeave={false}
             component="div"
             className="gotr-newsfeed-container"
             transitionName="gotr-newsfeed">
@@ -45,20 +46,21 @@ var Newsfeed = module.exports = React.createClass({
         var pic = user.get('picture');
 
         return <div key={item.id} className="gotr-newsfeed">
-            <div className="gotr-newsfeed-left">
-                <div className="gotr-newsfeed-item">
-                    <img className="gotr-newsfeed-item-pic" src={pic}/>
-                    <span className="gotr-newsfeed-item-line">{fullName} completed <b>{title}</b> in <b>{mins} minutes</b></span>
+            <div className="gotr-newsfeed-item gotr-newsfeed-item-pic">
+                <img className="gotr-newsfeed-item-pic" src={pic}/>
+            </div>
+
+            <div className="gotr-newsfeed-item gotr-newsfeed-item-line">
+                <div className="gotr-newsfeed-item-line-text">
+                    {fullName} completed <b>{title}</b> in <b>{mins} minutes</b>
                 </div>
             </div>
 
-            <div className="gotr-newsfeed-right">
-                <div className="gotr-newsfeed-item">
-                    <button className="gotr-newsfeed-like" onClick={this.handleLike}>
-                        <img src={liked ? '/thumbs-up-green.svg' : '/thumbs-up.svg'}/>
-                        <span>&nbsp;{likes}</span>
-                    </button>
-                </div>
+            <div className="gotr-newsfeed-item gotr-newsfeed-item-right">
+                <button className="gotr-newsfeed-like" onClick={this.handleLike}>
+                    <img src={liked ? '/thumbs-up-green.svg' : '/thumbs-up.svg'}/>
+                    <span>&nbsp;{likes}</span>
+                </button>
             </div>
         </div>;
     },

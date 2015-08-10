@@ -41,25 +41,33 @@ var TaskArea = module.exports = React.createClass({
 
         if (session.isStarted()) {
             var buttons = <div>
-                <Base.SecondaryButton onClick={this.completeTask}>
-                    Complete task
-                </Base.SecondaryButton>
+                <div className="gotr-button-container">
+                    <Base.SecondaryButton onClick={this.completeTask}>
+                        Complete task
+                    </Base.SecondaryButton>
+                </div>
 
-                <Base.PrimaryButton onClick={this.resetTimer}>
-                    Reset timer
-                </Base.PrimaryButton>
+                <div className="gotr-button-container">
+                    <Base.PrimaryButton onClick={this.resetTimer}>
+                        Reset timer
+                    </Base.PrimaryButton>
+                </div>
 
                 {shareBox}
             </div>;
         } else {
             var buttons = <div>
-                <Base.SecondaryButton onClick={this.startTask}>
-                    Start task
-                </Base.SecondaryButton>
+                <div className="gotr-button-container">
+                    <Base.SecondaryButton onClick={this.startTask}>
+                        Start task
+                    </Base.SecondaryButton>
+                </div>
 
-                <Base.PrimaryButton onClick={this.addForLater}>
-                    Add to list for later
-                </Base.PrimaryButton>
+                <div className="gotr-button-container">
+                    <Base.PrimaryButton onClick={this.addForLater}>
+                        Add to list
+                    </Base.PrimaryButton>
+                </div>
 
                 {shareBox}
             </div>;

@@ -4,8 +4,8 @@
     & .gotr-task {
         border-radius: 5px;
         border: 1px solid rgba(0, 0, 0, 0);
-        height: 36px;
         padding: 10px;
+        overflow: hidden;
 
         & .gotr-task-left {
             float: left;
@@ -22,9 +22,14 @@
         }
 
         & .gotr-task-text {
+            display: inline-block;
             font-size: 1.125em; // 18px
-            width: 350px;
+            width: 320px;
             padding: 7px;
+
+            @media screen and (max-width: 480px) {
+                width: 180px;
+            }
         }
 
         & .gotr-task-button {
@@ -40,7 +45,6 @@
 
         & .gotr-task-mins {
             display: inline-block;
-            margin-right: 20px;
         }
 
         & .gotr-task-kill {
@@ -65,6 +69,12 @@
                 margin-top: -58px;
                 opacity: 0;
                 transform: translate(5px, 63px);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .gotr-task-button {
+                margin-right: 10px;
             }
         }
     }

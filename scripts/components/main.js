@@ -68,7 +68,7 @@ var Main = module.exports = React.createClass({
             <Nav>
                 <Nav.Left>
                     <Nav.Item>
-                        <span><img src="logo.svg" /></span>
+                        <div className="gotr-navbar-item-logo"><img src="logo.svg" /></div>
                     </Nav.Item>
                 </Nav.Left>
 
