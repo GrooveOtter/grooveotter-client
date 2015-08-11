@@ -101,11 +101,12 @@
     box-sizing: border-box;
     display: inline-block;
     font-size: 0.875em;
+    height: 35px;
+    line-height: 35px;
     margin: 0 5px;
     min-width: 80px;
-    line-height: 35px;
-    height: 35px;
     text-align: center;
+    vertical-align: middle;
 
     &:first-child {
         margin-left: 0;
