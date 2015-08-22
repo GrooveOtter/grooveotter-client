@@ -54,10 +54,12 @@ var Newsfeed = module.exports = React.createClass({
         var text = item.get('text');
 
         return <div key={item.id} className="gotr-newsfeed">
-            <div className="gotr-newsfeed-left">
-                <div className="gotr-newsfeed-item">
-                    <img className="gotr-newsfeed-item-pic" src={pic}/>
-                    <span className="gotr-newsfeed-item-line">{text}</span>
+            <div className="gotr-newsfeed-item gotr-newsfeed-item-pic">
+                <img className="gotr-newsfeed-item-pic" src={pic}/>
+            </div>
+            <div className="gotr-newsfeed-item gotr-newsfeed-item-line">
+                <div className="gotr-newsfeed-item-line-text">
+                    {text}
                 </div>
             </div>
         </div>;
