@@ -111,6 +111,9 @@ var TaskArea = module.exports = React.createClass({
     completeTask: function() {
         var flux = this.getFlux();
         var task = this.state.session.get('task');
+        var user = window.gotrUser;
+
+        // Fix the current model by adding this task to the list
 
         flux.actions.completeTask(task);
     },
@@ -177,8 +180,8 @@ var TaskArea = module.exports = React.createClass({
         task.set('title', text);
         this.refs.gotrTaskareaBox.getDOMNode().blur();
         this.addForLater();
-    }
-    ,
+    },
+
     checkForInput: function(event) {
         var flux = this.getFlux();
 

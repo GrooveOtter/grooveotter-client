@@ -5,7 +5,6 @@ var NewsfeedStore = require('./newsfeed-store');
 var TimerStore = require('./timer-store');
 var NotificationsStore = require('./notifications-store');
 var OnboardingStore = require('./onboarding-store');
-var NewsFeedNotificationStore = require('./newsfeednotification-store');
 var stores = module.exports = {
     getStores: getStores
 };

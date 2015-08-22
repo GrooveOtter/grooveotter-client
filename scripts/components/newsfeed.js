@@ -11,6 +11,7 @@ var Newsfeed = module.exports = React.createClass({
     getStateFromFlux: function() {
         var flux = this.getFlux();
 
+
         return {
             item: flux.store('NewsfeedStore').getCurrentItem()
         };
@@ -33,13 +34,41 @@ var Newsfeed = module.exports = React.createClass({
     renderNothing: function() {
         return <div key="nothing" className="gotr-newsfeed"/>;
     },
-
     renderItem: function() {
         var item = this.state.item;
-        var title = item.get('title');
-        var mins = item.getDurationInMinutes();
-        var liked = item.get('liked');
-        var likes = item.get('likes');
+        if (item.get('type') === 'first_task') {
+            return this.renderText();
+        } else if (item.get('type') === 'task') {
+            return this.renderTask();
+        } else if (item.get('type') === 'notification') {
+            return this.renderText();
+        }
+    },
+
+    renderText: function () {
+        var item = this.state.item;
+        var user = item.get('user');
+        var fullName = user.get('full_name');
+        var pic = user.get('picture');
+        var text = item.get('text');
+
+        return <div key={item.id} className="gotr-newsfeed">
+            <div className="gotr-newsfeed-left">
+                <div className="gotr-newsfeed-item">
+                    <img className="gotr-newsfeed-item-pic" src={pic}/>
+                    <span className="gotr-newsfeed-item-line">{text}</span>
+                </div>
+            </div>
+        </div>;
+    },
+
+    renderTask: function () {
+        var item = this.state.item;
+        var task = item.get('task');
+        var title = task.get('title');
+        var mins = task.getDurationInMinutes();
+        var liked = task.get('liked');
+        var likes = task.get('likes');
         var user = item.get('user');
         var fullName = user.get('full_name');
         var pic = user.get('picture');

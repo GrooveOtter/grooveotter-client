@@ -28,7 +28,6 @@ var Anltcs = module.exports = exports = React.createClass({
 
         this.setStateFromFlux();
         flux.store('AnltcsStore').on('change', this.setStateFromFlux);
-        console.log('this', this.getTweeningValue('sessionTime'));
     },
 
     componentWillUmount: function() {
