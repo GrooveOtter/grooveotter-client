@@ -32,9 +32,35 @@ input[type=number] {-moz-appearance: textfield;}
         padding: 1em 0;
         color: $gotr-offwhite;
         font-weight: 400;
+    }
 
-        &:first-of-type {
-            margin: 0 10px 10px 0;
+    & .gotr-button-container {
+        display: inline-block;
+
+        @media screen and (min-width: 481px) {
+            &:first-of-type {
+                .gotr-button {
+                    margin: 0 10px 10px 0;
+                }
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            width: 50%;
+            box-sizing: border-box;
+            padding: 0 5px;
+
+            &:first-of-type {
+                padding-left: 0;
+            }
+
+            &:last-of-type {
+                padding-right: 0;
+            }
+
+            .gotr-button {
+                width: 100%;
+            }
         }
     }
 
@@ -43,8 +69,10 @@ input[type=number] {-moz-appearance: textfield;}
     }
 
     .gotr-taskarea-sharebox {
+        margin: 10px 0;
         position: relative;
         display: inline-block;
+
 
         .gotr-checkbox {
             margin-right: 7px;
@@ -70,8 +98,25 @@ input[type=number] {-moz-appearance: textfield;}
         margin: 0 0 25px;
 
         & .gotr-taskarea-box {
-            font-size: 1.25em;
             text-align: center;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        & .gotr-taskarea-box {
+            font-size: 26px;
+        }
+    }
+
+    @media screen and (max-width: 380px) {
+        & .gotr-taskarea-box {
+            font-size: 22px;
+        }
+    }
+
+    @media screen and (max-width: 320px) {
+        & .gotr-taskarea-box {
+            font-size: 20px;
         }
     }
 
