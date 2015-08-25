@@ -28,5 +28,7 @@ var Task = module.exports = Model.extend({
 
     getDurationInMinutes: function() {
         return Math.floor(this.get('duration') / (1000 * 60));
-    }
+    },
+
+     urlRoot: process.env.GOTR_HOST + '/api/tasks',
 });
