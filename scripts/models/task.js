@@ -4,7 +4,7 @@ var User = require('./user');
 var Task = module.exports = Model.extend({
     defaults: {
         title: '',
-        duration: 20 * 60 * 1000,
+        duration: 25 * 60 * 1000,
         completed: false
     },
 

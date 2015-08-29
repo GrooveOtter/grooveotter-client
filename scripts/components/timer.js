@@ -24,7 +24,7 @@ var TimerPanel = module.exports = React.createClass({
 
     getInitialState: function() {
         return {
-            mins: 20 * 60 * 1000,
+            mins: 25 * 60 * 1000,
             selecting: false
         };
     },
