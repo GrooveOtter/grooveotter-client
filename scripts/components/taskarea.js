@@ -65,7 +65,7 @@ var TaskArea = module.exports = React.createClass({
 
                 <div className="gotr-button-container">
                     <Base.PrimaryButton onClick={this.addForLater}>
-                        Add to list
+                        Add to list for later
                     </Base.PrimaryButton>
                 </div>
 
@@ -76,7 +76,7 @@ var TaskArea = module.exports = React.createClass({
         return <div className="gotr-taskarea">
             <input
                 type="text"
-                placeholder="What are you working on?"
+                placeholder="What do you want to work on?"
                 className="gotr-taskarea-box"
                 ref="gotrTaskareaBox"
                 value={editing ? tempTitle : title}
@@ -120,9 +120,11 @@ var TaskArea = module.exports = React.createClass({
         var flux = this.getFlux();
         var task = this.state.session.get('task');
         var user = window.gotrUser;
+        var session = flux.store('SessionStore').getSession();
 
         // Fix the current model by adding this task to the list
 
+        session.endTimer();
         flux.actions.completeTask(task);
     },
 
@@ -155,7 +157,9 @@ var TaskArea = module.exports = React.createClass({
 
     resetTimer: function(event) {
         var flux = this.getFlux();
+        var session = flux.store('SessionStore').getSession();
 
+        session.endTimer();
         flux.actions.newSession();
     },
 

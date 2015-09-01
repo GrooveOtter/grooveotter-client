@@ -4,11 +4,14 @@ var dateformat = require('dateformat');
 var Session = module.exports = Model.extend({
     initialize: function() {
         var task = this.get('task');
+        audio = new Audio();
         this.ringed = false;
 
         this.listenTo(task, 'change', function() {
             this.trigger('change');
         });
+        audio.src = '/alarm.mp3';
+        audio.id = 'test';
     },
 
     defaults: {
@@ -50,6 +53,12 @@ var Session = module.exports = Model.extend({
         return this.timeRemaining() === 0;
     },
 
+    endTimer: function () {
+        console.log(audio);
+        audio.pause();
+        audio.currentTime = 0;
+    },
+
     ring: function() {
         if (this.ringed) {
             return;
@@ -57,9 +66,6 @@ var Session = module.exports = Model.extend({
 
         this.ringed = true;
 
-        var audio = new Audio();
-        audio.src = '/alarm.mp3';
-        audio.id = 'test';
         audio.play();
     }
 });

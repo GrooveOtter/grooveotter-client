@@ -4,7 +4,7 @@ var lodash = require('lodash');
 var dateformat = require('dateformat');
 var NavButton = require('./base').NavButton;
 var classNs = require('classnames');
-
+var lodash = require('lodash');
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
@@ -57,11 +57,19 @@ var Archive = module.exports = React.createClass({
     render: function() {
         var currentWeekIndex = this.state.currentWeekIndex;
         var weeks = this.state.weeks;
-
         var left = currentWeekIndex > 0;
         var right = currentWeekIndex < weeks.length - 1;
-
         var week = weeks[currentWeekIndex];
+        var weeklyTotal = function (currentWeek) {
+            var Total = 0;
+            lodash.each(currentWeek, function (obj) {
+                debugger;
+                Total += +obj.tasks.length;
+            });
+            debugger;
+            return Total;
+
+        };
 
         return <div className="gotr-archive">
             <NavButton disabled={!left} onClick={this.goLeft}>
@@ -73,9 +81,11 @@ var Archive = module.exports = React.createClass({
             </NavButton>
 
             <NavButton disabled>{week.date}</NavButton>
-
+            <div className="gotr-float-right">
+            <NavButton disabled>Weekly Total: {weeklyTotal(week.days)}</NavButton>
+            </div>
             <Week key={currentWeekIndex} week={week}/>
-        </div>;
+            </div>;
     }
 });
 
@@ -90,6 +100,8 @@ var Week = React.createClass({
         function renderDay(day) {
             return <Day key={day.date} day={day}/>;
         }
+
+
     }
 });
 

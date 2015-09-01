@@ -127,3 +127,9 @@
         background: url(/chevron-right.svg) no-repeat 0 0;
     }
 }
+
+    @media screen and (max-width: 450px) {
+        .gotr-float-right {
+            display: none;
+        }
+    }
