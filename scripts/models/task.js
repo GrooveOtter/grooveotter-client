@@ -23,7 +23,9 @@ var Task = module.exports = Model.extend({
     },
 
     like: function() {
-        this.save({liked: true});
+        this.save({liked: true}, {
+            url: process.env.GOTR_HOST + '/api/newsfeed/' + this.get('id')
+        });
     },
 
     getDurationInMinutes: function() {

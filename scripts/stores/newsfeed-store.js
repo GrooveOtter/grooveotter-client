@@ -14,6 +14,7 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         }, this);
         this.newsfeed.fetch({reset: true});
         this.bindActions(
+            constants.NOTIFY_LIKED_ITEM, this.onNotifyLikedItem,
             constants.CYCLE_NEWSFEED, this.onCycleNewsfeed,
             constants.LIKE_SHARED_ITEM, this.onLikeSharedItem,
             constants.COMPLETE_TASK, this.onCompleteTask
@@ -33,11 +34,19 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
     onLikeSharedItem: function(payload) {
         var item = payload.item;
 
-        item.like();
+        item.get('task').like();
+        this.emit('change');
     },
 
     getCurrentItem: function() {
         return this.newsfeed.at(this.currentItemIndex);
+    },
+
+    onNotifyLikedItem: function(payload) {
+        var item = payload.itemId
+        var task = this.newsfeed.findWhere({task_id: item}).get('task')
+        task.fetch()
+        this.emit('change')
     },
 
     onCompleteTask: function() {
