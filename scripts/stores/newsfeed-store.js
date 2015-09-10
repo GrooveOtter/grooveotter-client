@@ -47,10 +47,11 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         var text = userName + ' finished their first task of the day';
         if (!taskDay || taskDay != currentDay) {
             var notification = new Notification({'text': text, user: gotrUser, 'user_id': gotrUser.id, type: 'first_task'});
-            notification.save();
+            notification.save({}, function(model, response) {
+                this.newsfeed.add(model, {at: this.currentItemIndex + 1});
+                this.emit('change')
+            }.bind(this));
             localStorage.setItem('taskDay', currentDay);
-            this.newsfeed.add(notification, {at: this.currentItemIndex + 1});
-            this.emit('change')
         }
     }
 
