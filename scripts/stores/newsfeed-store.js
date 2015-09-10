@@ -45,11 +45,12 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         var currentDay = new Date().getDate();
         var userName = gotrUser.get('full_name');
         var text = userName + ' finished their first task of the day';
-        var randomInt = Math.floor(Math.random() * 5);
-        if (taskDay != currentDay && randomInt === 4) {
-            var notification = new Notification({'text': text,'user_id': gotrUser.id, type: 'first_task'});
+        if (!taskDay || taskDay != currentDay) {
+            var notification = new Notification({'text': text, 'user_id': gotrUser.id, type: 'first_task'});
             notification.save();
             localStorage.setItem('taskDay', currentDay);
+            this.newsfeed.add(notification, {at: this.currentItemIndex + 1});
+            this.emit('change')
         }
     }
 
