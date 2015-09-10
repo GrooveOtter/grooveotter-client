@@ -7,6 +7,7 @@ var _ = require('lodash');
 var NewsfeedStore = module.exports = Fluxxor.createStore({
     initialize: function() {
         this.currentItemIndex = 0;
+        this.lockCycle = false
         this.newsfeed = new Newsfeed();
 
         this.newsfeed.on('reset add remove change', function() {
@@ -16,11 +17,26 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         this.bindActions(
             constants.CYCLE_NEWSFEED, this.onCycleNewsfeed,
             constants.LIKE_SHARED_ITEM, this.onLikeSharedItem,
-            constants.COMPLETE_TASK, this.onCompleteTask
+            constants.COMPLETE_TASK, this.onCompleteTask,
+            constants.LOCK_CYCLE, this.stopCycle,
+            constants.UNLOCK_CYCLE, this.startCycle
         );
     },
 
+    stopCycle: function() {
+        this.lockCycle = true
+        this.emit('change')
+    },
+
+    startCycle: function() {
+        this.lockCycle = false
+        this.emit('change')
+    },
+
     onCycleNewsfeed: function() {
+        if (this.lockCycle) {
+            return
+        }
         var index = this.currentItemIndex;
         var newsfeed = this.newsfeed;
 

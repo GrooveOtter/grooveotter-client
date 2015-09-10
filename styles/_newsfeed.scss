@@ -13,6 +13,10 @@
     overflow: hidden;
     padding: 10px 15px;
 
+    &.gotr-newsfeed-locked {
+        opacity: .5;
+    }
+
     & .gotr-newsfeed-item {
         max-height: 40px;
         float: left;
