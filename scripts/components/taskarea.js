@@ -160,6 +160,7 @@ var TaskArea = module.exports = React.createClass({
         var session = flux.store('SessionStore').getSession();
 
         session.endTimer();
+        flux.actions.resetTimer();
         flux.actions.newSession();
     },
 

@@ -7,6 +7,10 @@ var actions = module.exports = {
         this.dispatch(constants.START_SESSION_FROM_TASK, {task: task});
     },
 
+    resetTimer: function() {
+        this.dispatch(constants.UNLOCK_CYCLE);
+    },
+
     newSession: function() {
         this.dispatch(constants.NEW_SESSION);
     },
