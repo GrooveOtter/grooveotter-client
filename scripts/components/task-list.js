@@ -29,6 +29,7 @@ var TaskList = module.exports = React.createClass({
                 transitionEnter={false}>
                 {tasks.map(renderTask)}
             </TransitionGroup>
+            <CompletedItems/>
         </div>;
 
         function renderTask(task) {
@@ -37,6 +38,66 @@ var TaskList = module.exports = React.createClass({
     }
 });
 
+var CompletedItems = React.createClass({
+    mixins: [FluxMixin, StoreWatchMixin('SessionStore')],
+    getStateFromFlux: function() {
+        var flux = this.getFlux();
+
+        return {
+            session: flux.store('SessionStore').getSession(),
+            taskList: flux.store('TaskListStore').getTaskList()
+        };
+    },
+
+    getInitialState: function() {
+        return {
+            toggleCompleted: false
+        }
+    },
+
+    render: function() {
+        var toggleCompleted = this.state.toggleCompleted;
+        var state = this.state;
+        if (toggleCompleted) {
+            return this.renderCompletedTasks(state);
+        }
+        else {
+            return (
+                <div onClick ={this.toggleCompleted}> Completed</div>
+            );
+        }
+    },
+    renderCompletedTasks: function(state) {
+        var tasks = state.taskList.completedTasks()
+        var todayTasks = [];
+        var today = new Date().toString().slice(0,10);
+        tasks.map(function(key) {
+            var parsedTask = key.get('updated_at').toString().slice(0,10);
+            if (parsedTask === today) {
+                todayTasks.push(key);
+          }
+        });
+
+        return (<div><div onClick ={this.toggleCompleted}> Completed</div><div>{todayTasks.map(renderTask)}</div> </div>);
+
+        function renderTask(task) {
+            // Unpack tasks
+                // Go over How Archive Does it
+            // Include Complete Button
+            // CSS
+            return <div> Test </div>
+        }
+    },
+
+    toggleCompleted: function() {
+        var toggleState = !this.state.toggleCompleted;
+        this.setState({
+            toggleCompleted: toggleState
+        });
+    }
+
+
+});
 var Task = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('SessionStore')],
 
