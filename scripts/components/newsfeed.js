@@ -52,6 +52,9 @@ var Newsfeed = module.exports = React.createClass({
         var fullName = user.get('full_name');
         var pic = user.get('picture');
         var text = item.get('text');
+        var task = item.get('task');
+        var liked = task.get('liked');
+        var likes = task.get('likes');
 
         return <div key={item.id} className="gotr-newsfeed">
             <div className="gotr-newsfeed-item gotr-newsfeed-item-pic">
@@ -61,6 +64,12 @@ var Newsfeed = module.exports = React.createClass({
                 <div className="gotr-newsfeed-item-line-text">
                     {text}
                 </div>
+            </div>
+            <div className="gotr-newsfeed-item gotr-newsfeed-item-right">
+                <button className="gotr-newsfeed-like" onClick={this.handleLike}>
+                    <img src={liked ? '/thumbs-up-green.svg' : '/thumbs-up.svg'}/>
+                    <span>&nbsp;{likes}</span>
+                </button>
             </div>
         </div>;
     },
