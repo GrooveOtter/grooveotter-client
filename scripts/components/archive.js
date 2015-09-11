@@ -63,12 +63,9 @@ var Archive = module.exports = React.createClass({
         var weeklyTotal = function (currentWeek) {
             var Total = 0;
             lodash.each(currentWeek, function (obj) {
-                debugger;
                 Total += +obj.tasks.length;
             });
-            debugger;
             return Total;
-
         };
 
         return <div className="gotr-archive">
