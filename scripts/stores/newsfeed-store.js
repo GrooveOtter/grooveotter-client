@@ -25,14 +25,14 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
     },
 
     stopCycle: function() {
-        if (this.flux.store('SessionStore').session.isStarted()) {
-            return
-        }
         this.lockCycle = true
         this.emit('change')
     },
 
     startCycle: function() {
+        if (this.flux.store('SessionStore').session.isStarted()) {
+            return
+        }
         this.lockCycle = false
         this.emit('change')
     },
