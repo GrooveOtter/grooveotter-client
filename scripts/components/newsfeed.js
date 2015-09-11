@@ -12,6 +12,9 @@ var Newsfeed = module.exports = React.createClass({
     getStateFromFlux: function() {
         var flux = this.getFlux();
 
+        if (this.state && this.state.item && this.state.item.get('id') == flux.store('NewsfeedStore').getCurrentItem().get('id')) {
+            return {}
+        }
         setTimeout(this.setItem.bind(this, flux.store('NewsfeedStore').getCurrentItem()), 200)
         return {
             inToggle: true
