@@ -13,7 +13,8 @@ var Newsfeed = module.exports = React.createClass({
 
 
         return {
-            item: flux.store('NewsfeedStore').getCurrentItem()
+            item: flux.store('NewsfeedStore').getCurrentItem(),
+            locked: flux.store('NewsfeedStore').lockCycle
         };
     },
 
@@ -56,7 +57,7 @@ var Newsfeed = module.exports = React.createClass({
         var liked = task.get('liked');
         var likes = task.get('likes');
 
-        return <div key={item.id} className="gotr-newsfeed">
+        return <div key={item.id} className={"gotr-newsfeed " + (this.state.locked ? 'gotr-newsfeed-locked' : '')}>
             <div className="gotr-newsfeed-item gotr-newsfeed-item-pic">
                 <img className="gotr-newsfeed-item-pic" src={pic}/>
             </div>
@@ -85,7 +86,7 @@ var Newsfeed = module.exports = React.createClass({
         var fullName = user.get('full_name');
         var pic = user.get('picture');
 
-        return <div key={item.id} className="gotr-newsfeed">
+        return <div key={item.id} className={"gotr-newsfeed " + (this.state.locked ? 'gotr-newsfeed-locked' : '')}>
             <div className="gotr-newsfeed-item gotr-newsfeed-item-pic">
                 <img className="gotr-newsfeed-item-pic" src={pic}/>
             </div>

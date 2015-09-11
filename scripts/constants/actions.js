@@ -3,7 +3,12 @@ var constants = require('./');
 var actions = module.exports = {
     startSessionFromTask: function(task) {
         this.dispatch(constants.ADD_TASK, {task: task});
+        this.dispatch(constants.LOCK_CYCLE);
         this.dispatch(constants.START_SESSION_FROM_TASK, {task: task});
+    },
+
+    resetTimer: function() {
+        this.dispatch(constants.UNLOCK_CYCLE);
     },
 
     newSession: function() {
@@ -12,6 +17,7 @@ var actions = module.exports = {
 
     completeTask: function(task) {
         this.dispatch(constants.COMPLETE_TASK, {task: task});
+        this.dispatch(constants.UNLOCK_CYCLE);
     },
 
     addTask: function(task) {
@@ -32,6 +38,7 @@ var actions = module.exports = {
 
     deleteTask: function(task) {
         this.dispatch(constants.DELETE_TASK, {task: task});
+        this.dispatch(constants.UNLOCK_CYCLE);
     },
 
     userAction: function() {
