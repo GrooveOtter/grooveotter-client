@@ -38,6 +38,7 @@ var actions = module.exports = {
 
     deleteTask: function(task) {
         this.dispatch(constants.DELETE_TASK, {task: task});
+        this.dispatch(constants.UNLOCK_CYCLE);
     },
 
     userAction: function() {
