@@ -63,7 +63,7 @@ var CompletedItems = React.createClass({
         }
         else {
             return (
-                <div onClick ={this.toggleCompleted}> Completed</div>
+                <button className="gotr-button gotr-button-nav gotr-button-completed" onClick ={this.toggleCompleted}> Completed</button>
             );
         }
     },
@@ -71,6 +71,7 @@ var CompletedItems = React.createClass({
         var tasks = state.taskList.completedTasks()
         var todayTasks = [];
         var today = new Date().toString().slice(0,10);
+        var taskCount = 0;
         tasks.map(function(key) {
             var parsedTask = key.get('updated_at').toString().slice(0,10);
             if (parsedTask === today) {
@@ -78,14 +79,12 @@ var CompletedItems = React.createClass({
           }
         });
 
-        return (<div><div onClick ={this.toggleCompleted}> Completed</div><div>{todayTasks.map(renderTask)}</div> </div>);
+        return (<div><button onClick ={this.toggleCompleted} className="gotr-button gotr-button-nav gotr-button-completed"> Completed</button><ol type="1">{todayTasks.map(renderTask)}</ol> </div>);
 
         function renderTask(task) {
-            // Unpack tasks
-                // Go over How Archive Does it
-            // Include Complete Button
-            // CSS
-            return <div> Test </div>
+            taskCount++
+            var task = task.get("title");
+            return <li className="gotr-completed-task">{{taskCount}} {{ task}} </li>
         }
     },
 

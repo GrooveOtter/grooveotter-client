@@ -119,7 +119,6 @@ var Day = React.createClass({
         this.setState({
             open: !open
         });
-        debugger;
     },
 
     render: function() {
