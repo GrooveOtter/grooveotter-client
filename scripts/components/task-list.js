@@ -62,9 +62,7 @@ var CompletedItems = React.createClass({
             return this.renderCompletedTasks(state);
         }
         else {
-            return (
-                <button className="gotr-button gotr-button-nav gotr-button-completed" onClick ={this.toggleCompleted}> Completed</button>
-            );
+            return <div> </div>;
         }
     },
     renderCompletedTasks: function(state) {
@@ -79,12 +77,12 @@ var CompletedItems = React.createClass({
           }
         });
 
-        return (<div><button onClick ={this.toggleCompleted} className="gotr-button gotr-button-nav gotr-button-completed"> Completed</button><ol type="1">{todayTasks.map(renderTask)}</ol> </div>);
+        return (<div><button onClick ={this.toggleCompleted} className="gotr-button gotr-button-nav gotr-button-completed"> Completed</button><ol>{todayTasks.map(renderTask)}</ol> </div>);
 
         function renderTask(task) {
             taskCount++
             var task = task.get("title");
-            return <li className="gotr-completed-task">{{taskCount}} {{ task}} </li>
+            return <li className="gotr-completed-task">{{taskCount}}. {{ task}} </li>
         }
     },
 

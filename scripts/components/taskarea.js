@@ -18,6 +18,7 @@ var TaskArea = module.exports = React.createClass({
         var title = task.get('title');
         var shared = task.get('shared');
 
+
         var checkboxClass = classNs('gotr-checkbox', {
             'gotr-checkbox-checked': shared
         });
