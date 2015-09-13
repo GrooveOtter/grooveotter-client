@@ -15,22 +15,39 @@ var TaskList = module.exports = React.createClass({
         var flux = this.getFlux();
 
         return {
-            taskList: flux.store('TaskListStore').getTaskList()
+            taskList: flux.store('TaskListStore').getTaskList(),
+            task: flux.store('TaskListStore')
         };
     },
 
     render: function() {
         var tasks = this.state.taskList.uncompletedTasks();
-        return <div className="gotr-task-list">
-            <TransitionGroup
-                leaveTimeout={1000}
-                enterTimeout={1000}
-                transitionName="gotr-task"
-                transitionEnter={false}>
-                {tasks.map(renderTask)}
-            </TransitionGroup>
-            <CompletedItems/>
-        </div>;
+        var state = this.state;
+        var tasksEmpty = this.state.task.checkTodaysTasks(state)
+
+        if (tasksEmpty) {
+            return <div className="gotr-task-list">
+                <TransitionGroup
+                    leaveTimeout={1000}
+                    enterTimeout={1000}
+                    transitionName="gotr-task"
+                    transitionEnter={false}>
+                    {tasks.map(renderTask)}
+                </TransitionGroup>
+                <CompletedItems/>
+                </div>;
+        }
+        else {
+            return <div className="gotr-task-list">
+                <TransitionGroup
+                  leaveTimeout={1000}
+                  enterTimeout={1000}
+                  transitionName="gotr-task"
+                  transitionEnter={false}>
+                 {tasks.map(renderTask)}
+                </TransitionGroup>
+            </div>
+        }
 
         function renderTask(task) {
             return <Task task={task} key={task.cid}/>;
@@ -45,7 +62,8 @@ var CompletedItems = React.createClass({
 
         return {
             session: flux.store('SessionStore').getSession(),
-            taskList: flux.store('TaskListStore').getTaskList()
+            taskList: flux.store('TaskListStore').getTaskList(),
+            task: flux.store('TaskListStore')
         };
     },
 
@@ -62,20 +80,15 @@ var CompletedItems = React.createClass({
             return this.renderCompletedTasks(state);
         }
         else {
-            return <div> </div>;
+            return <button onClick ={this.toggleCompleted} className="gotr-button gotr-button-nav gotr-button-completed"> Completed</button>;
         }
     },
-    renderCompletedTasks: function(state) {
-        var tasks = state.taskList.completedTasks()
-        var todayTasks = [];
-        var today = new Date().toString().slice(0,10);
+
+    renderCompletedTasks: function() {
+        var state = this.state;
+        var tasks = state.taskList.completedTasks();
+        var todayTasks = this.state.task.checkTodaysTasks(state);
         var taskCount = 0;
-        tasks.map(function(key) {
-            var parsedTask = key.get('updated_at').toString().slice(0,10);
-            if (parsedTask === today) {
-                todayTasks.push(key);
-          }
-        });
 
         return (<div><button onClick ={this.toggleCompleted} className="gotr-button gotr-button-nav gotr-button-completed"> Completed</button><ol>{todayTasks.map(renderTask)}</ol> </div>);
 
