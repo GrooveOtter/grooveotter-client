@@ -19,8 +19,13 @@ var Notification = module.exports = exports = Backbone.Model.extend({
         }
 
         return attrs;
-    }
+    },
 
+    like: function() {
+        if (this.has('task')) {
+            return this.get('task').like();
+        }
+    }
 });
 
 var NotificatoinCollection = exports.Collection = Backbone.Collection.extend({
