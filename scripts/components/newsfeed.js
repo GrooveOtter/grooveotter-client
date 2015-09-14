@@ -87,7 +87,8 @@ var Newsfeed = module.exports = React.createClass({
         var fullName = user.get('full_name');
         var pic = user.get('picture');
 
-        console.log(fullName)
+        console.log('fullName', fullName)
+        debugger;
         return <div key={item.id} className={"gotr-newsfeed " + (this.state.locked ? 'gotr-newsfeed-locked' : '')}>
             <div className="gotr-newsfeed-item gotr-newsfeed-item-pic">
                 <img className="gotr-newsfeed-item-pic" src={pic}/>
