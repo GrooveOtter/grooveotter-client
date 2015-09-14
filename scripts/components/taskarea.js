@@ -161,6 +161,7 @@ var TaskArea = module.exports = React.createClass({
 
         session.endTimer();
         flux.actions.newSession();
+        flux.actions.resetTimer();
     },
 
     startEditing: function() {
