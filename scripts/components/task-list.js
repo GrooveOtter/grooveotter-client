@@ -23,21 +23,21 @@ var TaskList = module.exports = React.createClass({
     render: function() {
         var tasks = this.state.taskList.uncompletedTasks();
         var state = this.state;
-        var tasksEmpty = this.state.task.checkTodaysTasks(state)
+        // var tasksEmpty = this.state.task.checkTodaysTasks(state)
 
-        if (tasksEmpty) {
-            return <div className="gotr-task-list">
-                <TransitionGroup
-                    leaveTimeout={1000}
-                    enterTimeout={1000}
-                    transitionName="gotr-task"
-                    transitionEnter={false}>
-                    {tasks.map(renderTask)}
-                </TransitionGroup>
-                <CompletedItems/>
-                </div>;
-        }
-        else {
+        // if (tasksEmpty) {
+        //     return <div className="gotr-task-list">
+        //         <TransitionGroup
+        //             leaveTimeout={1000}
+        //             enterTimeout={1000}
+        //             transitionName="gotr-task"
+        //             transitionEnter={false}>
+        //             {tasks.map(renderTask)}
+        //         </TransitionGroup>
+        //         <CompletedItems/>
+        //         </div>;
+        // }
+        // else {
             return <div className="gotr-task-list">
                 <TransitionGroup
                   leaveTimeout={1000}
@@ -47,7 +47,7 @@ var TaskList = module.exports = React.createClass({
                  {tasks.map(renderTask)}
                 </TransitionGroup>
             </div>
-        }
+        // }
 
         function renderTask(task) {
             return <Task task={task} key={task.cid}/>;
