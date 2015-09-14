@@ -95,7 +95,7 @@ var CompletedItems = React.createClass({
         function renderTask(task) {
             taskCount++
             var task = task.get("title");
-            return <li className="gotr-completed-task">{{taskCount}}. {{ task}} </li>
+            return <li className="gotr-completed-task">{taskCount}. { task} </li>
         }
     },
 
