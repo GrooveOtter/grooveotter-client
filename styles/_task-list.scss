@@ -87,3 +87,16 @@
     float: right;
     background: url(/delete.svg) no-repeat 0 0;
 }
+
+.gotr-completed-task {
+    padding: 10px 20px;
+    color: #989cad;
+    display: block;
+    font-size: 1.125em;
+}
+
+.gotr-button-completed {
+    margin-top: 20px;
+    padding: 8px;
+    font-weight: 100px;
+}
