@@ -64,6 +64,7 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
     onNotifyLikedItem: function(payload) {
         var item = payload.itemId
         var notification = this.newsfeed.findWhere({task_id: item})
+
         notification.fetch({
             success: function() {
                 this.emit('change')
