@@ -50,10 +50,22 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
             this.currentItemIndex = currentItemIndex
         } else {
             var currentItem = this.newsfeed.at(currentItemIndex)
-            if (currentItem.get('user').get('full_name') == this.previousItem.get('user').get('full_name')) {
-                this.newsfeed.reset(this.newsfeed.shuffle())
-                this.currentItemIndex = 0
-                this.onCycleNewsfeed()
+            if (currentItem.get('user_id') == this.previousItem.get('user_id') && currentItemIndex < newsfeed.length - 2) {
+                var canGo = false
+                this.newsfeed.each(function(notification, index) {
+                    if (index > currentItemIndex && notification.get('user_id') != this.previousItem.get('user_id')) {
+                        canGo = true
+                    }
+                }.bind(this))
+                if (canGo) {
+                    this.newsfeed.remove(currentItem)
+                    this.newsfeed.add(currentItem, {at: this.newsfeed.length - 1})
+                    this.onCycleNewsfeed()
+                } else {
+                    this.currentItemIndex = 0
+                    this.previousItem = null
+                    this.onCycleNewsfeed()
+                }
                 return
             }
             this.currentItemIndex = currentItemIndex
