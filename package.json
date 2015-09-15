@@ -5,6 +5,9 @@
   "scripts": {
     "postinstall": "gulp final"
   },
+"engines": {
+      "node": "0.12.x"
+  },
   "dependencies": {
     "browserify": "^10.1.0",
     "classnames": "^2.1.3",
