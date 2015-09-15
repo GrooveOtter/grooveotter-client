@@ -31,7 +31,7 @@ window.gotrMain = function() {
         if (!document.hidden) {
             flux.actions.cycleNewsfeed();
         }
-    }, 30 * 1000);
+    }, 3 * 1000);
 
     setInterval(function() {
         var session = flux.store('SessionStore').getSession();
