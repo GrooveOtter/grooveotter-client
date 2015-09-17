@@ -57,8 +57,19 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
                 }
             }.bind(this))
             if (canGo) {
-                this.newsfeed.remove(currentItem)
-                this.newsfeed.add(currentItem, {at: this.newsfeed.length - 1})
+                var newPosition = this.newsfeed.length - 1;
+                for (var i = index+1; i < this.newsfeed.length - 2; i++) {
+                    if (this.newsfeed.at(i).get('user_id') != currentItem.get('user_id')) {
+                        newPosition = i+1;
+                        break;
+                    } else {
+                        var moveable = this.newsfeed.at(i);
+                        this.newsfeed.remove(moveable);
+                        this.newsfeed.add(currentItem, {at: i});
+                        currentItem = moveable;
+                    }
+                }
+                this.newsfeed.add(currentItem, {at: newPosition})
                 this.onCycleNewsfeed()
             } else {
                 this.currentItemIndex = 0
