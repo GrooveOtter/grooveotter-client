@@ -43,9 +43,44 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         }
         var index = this.currentItemIndex;
         var newsfeed = this.newsfeed;
+        var currentItemIndex = (index + 1) % newsfeed.length;
 
-        this.currentItemIndex = (index + 1) % newsfeed.length;
-
+        if (!this.previousItem) {
+            this.previousItem = this.newsfeed.at(0)
+        }
+        var currentItem = this.newsfeed.at(currentItemIndex)
+        if (currentItem.get('user_id') == this.previousItem.get('user_id') && currentItemIndex < newsfeed.length - 2) {
+            var canGo = false
+            this.newsfeed.each(function(notification, index) {
+                if (index > currentItemIndex && notification.get('user_id') != this.previousItem.get('user_id')) {
+                    canGo = true
+                }
+            }.bind(this))
+            if (canGo) {
+                this.newsfeed.remove(currentItem)
+                var newPosition = this.newsfeed.length - 1;
+                for (var i = index+1; i < this.newsfeed.length - 2; i++) {
+                    if (this.newsfeed.at(i).get('user_id') != currentItem.get('user_id')) {
+                        newPosition = i+1;
+                        break;
+                    } else {
+                        var moveable = this.newsfeed.at(i);
+                        this.newsfeed.remove(moveable);
+                        this.newsfeed.add(currentItem, {at: i});
+                        currentItem = moveable;
+                    }
+                }
+                this.newsfeed.add(currentItem, {at: newPosition})
+                this.onCycleNewsfeed()
+            } else {
+                this.currentItemIndex = 0
+                this.previousItem = null
+                this.onCycleNewsfeed()
+            }
+            return
+        }
+        this.currentItemIndex = currentItemIndex
+        this.previousItem = currentItem
 
         this.emit('change');
     },
