@@ -20,6 +20,10 @@ var actions = module.exports = {
         this.dispatch(constants.UNLOCK_CYCLE);
     },
 
+    completeTaskNotify: function(task) {
+        this.dispatch(constants.COMPLETE_TASK_NOTIFY, {task: task})
+    },
+
     addTask: function(task) {
         this.dispatch(constants.ADD_TASK, {task: task});
     },

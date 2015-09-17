@@ -18,7 +18,7 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
             constants.NOTIFY_LIKED_ITEM, this.onNotifyLikedItem,
             constants.CYCLE_NEWSFEED, this.onCycleNewsfeed,
             constants.LIKE_SHARED_ITEM, this.onLikeSharedItem,
-            constants.COMPLETE_TASK, this.onCompleteTask,
+            constants.COMPLETE_TASK_NOTIFY, this.onCompleteTask,
             constants.LOCK_CYCLE, this.stopCycle,
             constants.UNLOCK_CYCLE, this.startCycle
         );
