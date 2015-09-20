@@ -4,6 +4,7 @@ var TransitionGroup = require('timeout-transition-group');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
+var classNs = require('classnames');
 
 var Newsfeed = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('NewsfeedStore')],
@@ -11,26 +12,33 @@ var Newsfeed = module.exports = React.createClass({
     getStateFromFlux: function() {
         var flux = this.getFlux();
 
-
+        if (this.state && this.state.item && this.state.item.get('id') == flux.store('NewsfeedStore').getCurrentItem().get('id')) {
+            return {}
+        }
+        setTimeout(this.setItem.bind(this, flux.store('NewsfeedStore').getCurrentItem()), 200)
         return {
-            item: flux.store('NewsfeedStore').getCurrentItem(),
+            inToggle: true,
             locked: flux.store('NewsfeedStore').lockCycle
         };
+    },
+
+    setItem: function(item) {
+        this.setState({
+            item: item,
+            inToggle: false
+        })
     },
 
     render: function() {
         var item = this.state.item;
         var newsfeed = item == null ? this.renderNothing() : this.renderItem();
+        var containerClassSet = classNs('gotr-newsfeed-container', {
+            'gotr-newsfeed-hide': this.state.inToggle
+        })
 
-        return <TransitionGroup
-            enterTimeout={1000}
-            leaveTimeout={1000}
-            transitionLeave={false}
-            component="div"
-            className="gotr-newsfeed-container"
-            transitionName="gotr-newsfeed">
+        return <div className={containerClassSet}>
             {newsfeed}
-        </TransitionGroup>;
+        </div>;
     },
 
     renderNothing: function() {

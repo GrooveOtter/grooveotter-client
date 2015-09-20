@@ -50,7 +50,7 @@ var Main = module.exports = React.createClass({
             },
 
             {
-                title: 'Archive',
+                title: 'Completed',
                 extra: <OnboardingStep stepName="archive">
                     <div className="gotr-onboarding-title">
                         Archive

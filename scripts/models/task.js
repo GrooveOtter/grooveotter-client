@@ -5,7 +5,8 @@ var Task = module.exports = Model.extend({
     defaults: {
         title: '',
         duration: 25 * 60 * 1000,
-        completed: false
+        completed: false,
+        shared: true
     },
 
     parse: function(resp) {
