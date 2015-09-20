@@ -18,7 +18,7 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
             constants.NOTIFY_LIKED_ITEM, this.onNotifyLikedItem,
             constants.CYCLE_NEWSFEED, this.onCycleNewsfeed,
             constants.LIKE_SHARED_ITEM, this.onLikeSharedItem,
-            constants.COMPLETE_TASK, this.onCompleteTask,
+            constants.COMPLETE_TASK_NOTIFY, this.onCompleteTask,
             constants.LOCK_CYCLE, this.stopCycle,
             constants.UNLOCK_CYCLE, this.startCycle
         );
@@ -88,7 +88,7 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
     onLikeSharedItem: function(payload) {
         var item = payload.item;
 
-        item.get('task').like();
+        item.like();
         this.emit('change');
     },
 
@@ -97,30 +97,22 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
     },
 
     onNotifyLikedItem: function(payload) {
-        var item = payload.itemId
-        var notification = this.newsfeed.findWhere({task_id: item})
+        var itemId = payload.itemId
+        var notification = this.newsfeed.get(itemId);
 
-        notification.fetch({
-            success: function() {
-                this.emit('change')
-            }.bind(this)
-        })
+        notification.fetch()
     },
 
-    onCompleteTask: function() {
+    onCompleteTask: function(payload) {
         var taskDay = localStorage.getItem('taskDay');
         var currentDay = new Date().getDate();
         var userName = gotrUser.get('full_name');
         var text = userName + ' finished their first task of the day';
         var randomInt = Math.floor(Math.random() * 10);
 
-
-        if (taskDay != currentDay && userName != '' && userName != undefined && userName  != '') {
+        if (userName != '' && randomInt === 4 && currentDay != taskDay) {
             var notification = new Notification({'text': text, user: gotrUser, 'user_id': gotrUser.id, type: 'first_task'});
-            notification.save({}, function(model, response) {
-                this.newsfeed.add(model, {at: this.currentItemIndex + 1});
-                this.emit('change')
-            }.bind(this));
+            this.newsfeed.create(notification, {at: this.currentItemIndex + 1});
             localStorage.setItem('taskDay', currentDay);
         }
     }

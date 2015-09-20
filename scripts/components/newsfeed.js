@@ -36,6 +36,8 @@ var Newsfeed = module.exports = React.createClass({
             'gotr-newsfeed-hide': this.state.inToggle
         })
 
+        debugger;
+
         return <div className={containerClassSet}>
             {newsfeed}
         </div>;
@@ -61,9 +63,11 @@ var Newsfeed = module.exports = React.createClass({
         var fullName = user.get('full_name');
         var pic = user.get('picture');
         var text = item.get('text');
-        var task = item.get('task');
-        var liked = task.get('liked');
-        var likes = task.get('likes');
+        var liked = item.get('liked');
+        var likes = item.get('likes');
+//        var task = item.get('task');
+//        var liked = task.get('liked');
+//        var likes = task.get('likes');
 
         return <div key={item.id} className={"gotr-newsfeed " + (this.state.locked ? 'gotr-newsfeed-locked' : '')}>
             <div className="gotr-newsfeed-item gotr-newsfeed-item-pic">
@@ -88,8 +92,8 @@ var Newsfeed = module.exports = React.createClass({
         var task = item.get('task');
         var title = task.get('title');
         var mins = task.getDurationInMinutes();
-        var liked = task.get('liked');
-        var likes = task.get('likes');
+        var liked = item.get('liked');
+        var likes = item.get('likes');
         var user = item.get('user');
         var fullName = user.get('full_name');
         var pic = user.get('picture');

@@ -29,7 +29,11 @@ var SessionStore = module.exports = Fluxxor.createStore({
         if (task.isNew()) {
             task.set({completed: true});
         } else {
-            task.save({completed: true});
+            task.save({completed: true}, {
+                success: function() {
+                    this.flux.actions.completeTaskNotify(task)
+                }.bind(this)
+            });
         }
     },
 
