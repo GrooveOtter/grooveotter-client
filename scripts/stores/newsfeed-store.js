@@ -114,7 +114,8 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         var text = userName + ' finished their first task of the day';
         var randomInt = Math.floor(Math.random() * 10);
 
-        if (taskDay != currentDay && randomInt === 4 && userName != '' && userName != undefined && userName  != '') {
+
+        if (taskDay != currentDay && userName != '' && userName != undefined && userName  != '') {
             var notification = new Notification({'text': text, user: gotrUser, 'user_id': gotrUser.id, type: 'first_task'});
             notification.save({}, function(model, response) {
                 this.newsfeed.add(model, {at: this.currentItemIndex + 1});
