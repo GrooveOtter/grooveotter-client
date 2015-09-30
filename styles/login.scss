@@ -109,19 +109,23 @@ html {
 
 
 @media screen and (min-width: 480px) {
-    .gotrl-login-box-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        min-height: 100%;
+    .gotrl-login {
         background-image: url("http://i.imgur.com/sCdFslL.jpg");
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        display: table;
     }
 
+    .gotrl-login-box-container {
+        display: table-cell;
+        vertical-align: middle;
+    }
 
     .gotrl-login-box {
         border-radius: 5px;
