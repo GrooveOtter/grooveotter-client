@@ -8,8 +8,10 @@ if (cookies.get('loggedin')) {
 }
 
 $(function() {
-    $('.gotrl-top').css({
-        backgroundImage: 'url(/landing-background.jpg)'
+    $('<img/>').attr('src', '/landing-background.jpg').load(function() {
+        $('.gotrl-top').css({
+            backgroundImage: 'url(/landing-background.jpg)'
+        });
     });
 
     if ($(window).width() > 800) {
