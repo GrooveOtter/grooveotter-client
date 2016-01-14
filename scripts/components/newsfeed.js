@@ -36,8 +36,6 @@ var Newsfeed = module.exports = React.createClass({
             'gotr-newsfeed-hide': this.state.inToggle
         })
 
-        debugger;
-
         return <div className={containerClassSet}>
             {newsfeed}
         </div>;
