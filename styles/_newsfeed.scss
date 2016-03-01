@@ -5,12 +5,6 @@
     overflow: hidden;
     position: relative;
     z-index: 2;
-    opacity: 1;
-    transition: opacity .2s ease-in-out;
-
-    &.gotr-newsfeed-hide {
-        opacity: 0;
-    }
 }
 
 .gotr-newsfeed {
@@ -18,11 +12,6 @@
     max-width: $gotr-row-width;
     overflow: hidden;
     padding: 10px 15px;
-    transition: opacity .5s ease-in-out;
-
-    &.gotr-newsfeed-locked {
-        opacity: .5;
-    }
 
     & .gotr-newsfeed-item {
         max-height: 40px;

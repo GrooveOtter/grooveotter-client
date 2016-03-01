@@ -19,13 +19,7 @@ var Notification = module.exports = exports = Backbone.Model.extend({
         }
 
         return attrs;
-    },
-
-    like: function() {
-        this.save({liked: true}, {
-            url: process.env.GOTR_HOST + '/api/newsfeed/' + this.get('id')
-        });
-    },
+    }
 
 });
 

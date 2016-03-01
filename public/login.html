@@ -13,35 +13,33 @@
 </head>
 
 <body>
-    <div class="gotrl-login">
-        <div class="gotrl-login-box-container">
-            <div class="gotrl-login-box">
-                <div class="gotrl-login-logobox">
-                    <img class="gotrl-login-logobox-logo" src="/GrooveOtter1.png"/>
-                </div>
+    <div class="gotrl-login-box-container">
+        <div class="gotrl-login-box">
+            <div class="gotrl-login-logobox">
+                <img class="gotrl-login-logobox-logo" src="/GrooveOtter1.png"/>
+            </div>
 
-                <div class="gotrl-login-content">
-                    <a
-                        id="gotrl-twitter-login-button"
-                        href="<%= env.TWITTER_HOST %>/auth/twitter?callback=ORIGIN/app&newCallback=ORIGIN/signup-twitter"
-                        class="gotrl-login-button gotrl-login-twitter">
-                        <div>
-                        <p><img src="/twitter-logo.png"></p> <span class='login-text'>
-                        Login with Twitter
-                        </span>
-                        </div>
-                    </a>
+            <div class="gotrl-login-content">
+                <a
+                    id="gotrl-twitter-login-button"
+                    href="<%= env.TWITTER_HOST %>/auth/twitter?callback=ORIGIN/app&newCallback=ORIGIN/signup-twitter"
+                    class="gotrl-login-button gotrl-login-twitter">
+                    <div>
+                    <p><img src="/twitter-logo.png"></p> <span class='login-text'>
+                    Login with Twitter
+                    </span>
+                    </div>
+                </a>
 
-                    <a
-                        id="gotrl-google-login-button"
-                        href="<%= env.GOOGLE_HOST %>/auth/google?callback=ORIGIN/app"
-                        class="gotrl-login-button gotrl-login-google">
-                        <div>
-                        <p><img src="/googleplus.png"></p> <span class='login-text'>
-                        Login with Google </span>
-                        </div>
-                    </a>
-                </div>
+                <a
+                    id="gotrl-google-login-button"
+                    href="<%= env.GOOGLE_HOST %>/auth/google?callback=ORIGIN/app"
+                    class="gotrl-login-button gotrl-login-google">
+                    <div>
+                    <p><img src="/googleplus.png"></p> <span class='login-text'>
+                    Login with Google </span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

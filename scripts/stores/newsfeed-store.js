@@ -7,7 +7,6 @@ var _ = require('lodash');
 var NewsfeedStore = module.exports = Fluxxor.createStore({
     initialize: function() {
         this.currentItemIndex = 0;
-        this.lockCycle = false
         this.newsfeed = new Newsfeed();
 
         this.newsfeed.on('reset add remove change', function() {
@@ -15,104 +14,41 @@ var NewsfeedStore = module.exports = Fluxxor.createStore({
         }, this);
         this.newsfeed.fetch({reset: true});
         this.bindActions(
-            constants.NOTIFY_LIKED_ITEM, this.onNotifyLikedItem,
             constants.CYCLE_NEWSFEED, this.onCycleNewsfeed,
             constants.LIKE_SHARED_ITEM, this.onLikeSharedItem,
-            constants.COMPLETE_TASK_NOTIFY, this.onCompleteTask,
-            constants.LOCK_CYCLE, this.stopCycle,
-            constants.UNLOCK_CYCLE, this.startCycle
+            constants.COMPLETE_TASK, this.onCompleteTask
         );
     },
 
-    stopCycle: function() {
-        this.lockCycle = true
-        this.emit('change')
-    },
-
-    startCycle: function() {
-        if (this.flux.store('SessionStore').session.isStarted()) {
-            return
-        }
-        this.lockCycle = false
-        this.emit('change')
-    },
-
     onCycleNewsfeed: function() {
-        if (this.lockCycle) {
-            return
-        }
         var index = this.currentItemIndex;
         var newsfeed = this.newsfeed;
-        var currentItemIndex = (index + 1) % newsfeed.length;
 
-        if (!this.previousItem) {
-            this.previousItem = this.newsfeed.at(0)
-        }
-        var currentItem = this.newsfeed.at(currentItemIndex)
-        if (currentItem.get('user_id') == this.previousItem.get('user_id') && currentItemIndex < newsfeed.length - 2) {
-            var canGo = false
-            this.newsfeed.each(function(notification, index) {
-                if (index > currentItemIndex && notification.get('user_id') != this.previousItem.get('user_id')) {
-                    canGo = true
-                }
-            }.bind(this))
-            if (canGo) {
-                this.newsfeed.remove(currentItem)
-                var newPosition = this.newsfeed.length - 1;
-                for (var i = index+1; i < this.newsfeed.length - 2; i++) {
-                    if (this.newsfeed.at(i).get('user_id') != currentItem.get('user_id')) {
-                        newPosition = i+1;
-                        break;
-                    } else {
-                        var moveable = this.newsfeed.at(i);
-                        this.newsfeed.remove(moveable);
-                        this.newsfeed.add(currentItem, {at: i});
-                        currentItem = moveable;
-                    }
-                }
-                this.newsfeed.add(currentItem, {at: newPosition})
-                this.onCycleNewsfeed()
-            } else {
-                this.currentItemIndex = 0
-                this.previousItem = null
-                this.onCycleNewsfeed()
-            }
-            return
-        }
-        this.currentItemIndex = currentItemIndex
-        this.previousItem = currentItem
+        this.currentItemIndex = (index + 1) % newsfeed.length;
+
 
         this.emit('change');
     },
 
     onLikeSharedItem: function(payload) {
         var item = payload.item;
-
+        console.log(payload);
         item.like();
-        this.emit('change');
     },
 
     getCurrentItem: function() {
         return this.newsfeed.at(this.currentItemIndex);
     },
 
-    onNotifyLikedItem: function(payload) {
-        var itemId = payload.itemId
-        var notification = this.newsfeed.get(itemId);
-
-        notification.fetch()
-    },
-
-    onCompleteTask: function(payload) {
+    onCompleteTask: function() {
         var taskDay = localStorage.getItem('taskDay');
         var currentDay = new Date().getDate();
         var userName = gotrUser.get('full_name');
         var text = userName + ' finished their first task of the day';
-        var randomInt = Math.floor(Math.random() * 10);
-
-        if (userName != '' && randomInt === 4 && currentDay != taskDay) {
-            var notification = new Notification({'text': text, user: gotrUser, 'user_id': gotrUser.id, type: 'first_task'});
-            this.newsfeed.create(notification, {at: this.currentItemIndex + 1});
+        var randomInt = Math.floor(Math.random() * 5);
+        if (taskDay != currentDay && randomInt === 4) {
+            var notification = new Notification({'text': text,'user_id': gotrUser.id, type: 'first_task'});
+            notification.save();
             localStorage.setItem('taskDay', currentDay);
         }
     }

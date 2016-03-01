@@ -29,11 +29,7 @@ var SessionStore = module.exports = Fluxxor.createStore({
         if (task.isNew()) {
             task.set({completed: true});
         } else {
-            task.save({completed: true}, {
-                success: function() {
-                    this.flux.actions.completeTaskNotify(task)
-                }.bind(this)
-            });
+            task.save({completed: true});
         }
     },
 
@@ -87,25 +83,5 @@ var SessionStore = module.exports = Fluxxor.createStore({
 
     getTaskList: function() {
         return this.taskList;
-    },
-    checkTodaysTasks: function(state) {
-
-        var tasks = state.taskList.completedTasks()
-        var todayTasks = [];
-        var today = new Date().toString().slice(0,10);
-        var taskCount = 0;
-        tasks.map(function(key) {
-            var parsedTask = key.get('updated_at').toString().slice(0,10);
-            if (parsedTask === today) {
-                todayTasks.push(key);
-          }
-        });
-        if (todayTasks.length == 0) {
-            return false;
-        }
-        else {
-            return todayTasks;
-        }
     }
-
 });

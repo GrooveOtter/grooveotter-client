@@ -4,7 +4,6 @@ var TransitionGroup = require('timeout-transition-group');
 
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
-var classNs = require('classnames');
 
 var Newsfeed = module.exports = React.createClass({
     mixins: [FluxMixin, StoreWatchMixin('NewsfeedStore')],
@@ -12,33 +11,25 @@ var Newsfeed = module.exports = React.createClass({
     getStateFromFlux: function() {
         var flux = this.getFlux();
 
-        if (this.state && this.state.item && this.state.item.get('id') == flux.store('NewsfeedStore').getCurrentItem().get('id')) {
-            return {}
-        }
-        setTimeout(this.setItem.bind(this, flux.store('NewsfeedStore').getCurrentItem()), 200)
-        return {
-            inToggle: true,
-            locked: flux.store('NewsfeedStore').lockCycle
-        };
-    },
 
-    setItem: function(item) {
-        this.setState({
-            item: item,
-            inToggle: false
-        })
+        return {
+            item: flux.store('NewsfeedStore').getCurrentItem()
+        };
     },
 
     render: function() {
         var item = this.state.item;
         var newsfeed = item == null ? this.renderNothing() : this.renderItem();
-        var containerClassSet = classNs('gotr-newsfeed-container', {
-            'gotr-newsfeed-hide': this.state.inToggle
-        })
 
-        return <div className={containerClassSet}>
+        return <TransitionGroup
+            enterTimeout={1000}
+            leaveTimeout={1000}
+            transitionLeave={false}
+            component="div"
+            className="gotr-newsfeed-container"
+            transitionName="gotr-newsfeed">
             {newsfeed}
-        </div>;
+        </TransitionGroup>;
     },
 
     renderNothing: function() {
@@ -61,13 +52,8 @@ var Newsfeed = module.exports = React.createClass({
         var fullName = user.get('full_name');
         var pic = user.get('picture');
         var text = item.get('text');
-        var liked = item.get('liked');
-        var likes = item.get('likes');
-//        var task = item.get('task');
-//        var liked = task.get('liked');
-//        var likes = task.get('likes');
 
-        return <div key={item.id} className={"gotr-newsfeed " + (this.state.locked ? 'gotr-newsfeed-locked' : '')}>
+        return <div key={item.id} className="gotr-newsfeed">
             <div className="gotr-newsfeed-item gotr-newsfeed-item-pic">
                 <img className="gotr-newsfeed-item-pic" src={pic}/>
             </div>
@@ -75,12 +61,6 @@ var Newsfeed = module.exports = React.createClass({
                 <div className="gotr-newsfeed-item-line-text">
                     {text}
                 </div>
-            </div>
-            <div className="gotr-newsfeed-item gotr-newsfeed-item-right">
-                <button className="gotr-newsfeed-like" onClick={this.handleLike}>
-                    <img src={liked ? '/thumbs-up-green.svg' : '/thumbs-up.svg'}/>
-                    <span>&nbsp;{likes}</span>
-                </button>
             </div>
         </div>;
     },
@@ -90,13 +70,13 @@ var Newsfeed = module.exports = React.createClass({
         var task = item.get('task');
         var title = task.get('title');
         var mins = task.getDurationInMinutes();
-        var liked = item.get('liked');
-        var likes = item.get('likes');
+        var liked = task.get('liked');
+        var likes = task.get('likes');
         var user = item.get('user');
         var fullName = user.get('full_name');
         var pic = user.get('picture');
 
-        return <div key={item.id} className={"gotr-newsfeed " + (this.state.locked ? 'gotr-newsfeed-locked' : '')}>
+        return <div key={item.id} className="gotr-newsfeed">
             <div className="gotr-newsfeed-item gotr-newsfeed-item-pic">
                 <img className="gotr-newsfeed-item-pic" src={pic}/>
             </div>

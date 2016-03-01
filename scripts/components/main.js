@@ -50,7 +50,7 @@ var Main = module.exports = React.createClass({
             },
 
             {
-                title: 'Completed',
+                title: 'Archive',
                 extra: <OnboardingStep stepName="archive">
                     <div className="gotr-onboarding-title">
                         Archive
@@ -68,7 +68,7 @@ var Main = module.exports = React.createClass({
             <Nav>
                 <Nav.Left>
                     <Nav.Item>
-                        <div className="gotr-navbar-item-logo"><img src="logo.png" /></div>
+                        <div className="gotr-navbar-item-logo"><img src="logo.svg" /></div>
                     </Nav.Item>
                 </Nav.Left>
 

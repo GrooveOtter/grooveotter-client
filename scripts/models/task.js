@@ -5,8 +5,7 @@ var Task = module.exports = Model.extend({
     defaults: {
         title: '',
         duration: 25 * 60 * 1000,
-        completed: false,
-        shared: true
+        completed: false
     },
 
     parse: function(resp) {
@@ -24,9 +23,7 @@ var Task = module.exports = Model.extend({
     },
 
     like: function() {
-        this.save({liked: true}, {
-            url: process.env.GOTR_HOST + '/api/newsfeed/' + this.get('id')
-        });
+        this.save({liked: true});
     },
 
     getDurationInMinutes: function() {

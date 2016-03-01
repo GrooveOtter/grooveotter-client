@@ -10,8 +10,7 @@ var Session = module.exports = Model.extend({
         this.listenTo(task, 'change', function() {
             this.trigger('change');
         });
-        audio.src = '/alarm.wav';
-        audio.type="audio/mpeg";
+        audio.src = '/alarm.mp3';
         audio.id = 'test';
     },
 
@@ -34,7 +33,6 @@ var Session = module.exports = Model.extend({
 
         return Math.min(duration, +started && Date.now() - started);
     },
-
     timeRemaining: function() {
         var task = this.get('task');
         var duration = task.get('duration');
@@ -55,7 +53,7 @@ var Session = module.exports = Model.extend({
     },
 
     endTimer: function () {
-        console.log()
+        console.log(audio);
         audio.pause();
         audio.currentTime = 0;
     },

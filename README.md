@@ -6,7 +6,5 @@ To Run Locally:
 
 2. gulp watch 
 
-3. Set Variables in App.json 
-
-4. Open http://localhost:8000/
+3. Open http://localhost:8000/
 
