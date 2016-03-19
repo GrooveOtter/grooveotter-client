@@ -1,43 +1,52 @@
 <!doctype html>
 <html>
-<head>
-    <title>GrooveOtter &mdash; Login</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="/login.css">
 
-    <script src="//use.typekit.net/tpg8qjl.js"></script>
-    <script>Typekit.load();</script>
-</head>
+    <head>
+        <title>GrooveOtter &mdash; Login</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="/login.css">
 
-<body>
-    <div class="gotrl-login-box-container">
-        <div class="gotrl-login-box">
-            <div class="gotrl-login-logobox">
-                <img class="gotrl-login-logobox-logo" src="/logo-square.svg"/>
-            </div>
+        <script src="//use.typekit.net/tpg8qjl.js"></script>
+        <script>
+            Typekit.load();
+        </script>
+    </head>
 
-            <div class="gotrl-login-content">
-                <span class="gotrl-login-text">Please provide your email address</span>
-                <p>(We promise we won't spam you)</p>
-                <form
-                    action="<%= env.TWITTER_HOST %>/auth/twitter/with-email"
-                    method="POST">
-                    <input class="gotrl-login-email" autofocus type="email" name="email" placeholder="Email Address" required/>
-                    <input class="gotr-button gotr-button-secondary gotrl-login-signup" type="submit" value="Signup" />
-                </form>
+    <body>
+        <div class="gotrl-login-box-container">
+            <div class="gotrl-login-box">
+                <div class="gotrl-login-logobox">
+                    <img class="gotrl-login-logobox-logo" src="/logo-square.svg" />
+                </div>
+
+                <div class="gotrl-login-content">
+                    <span class="gotrl-login-text">Please provide your email address</span>
+                    <p>(We promise we won't spam you)</p>
+                    <form action="<%= env.TWITTER_HOST %>/auth/twitter/with-email" method="POST">
+                        <input class="gotrl-login-email" autofocus type="email" name="email" placeholder="Email Address" required/>
+                        <input class="gotr-button gotr-button-secondary gotrl-login-signup" type="submit" value="Signup" />
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-      ga('create', 'UA-4710282-5', 'auto');
-      ga('send', 'pageview');
-    </script>
-</body>
+            ga('create', 'UA-4710282-5', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+
 </html>
