@@ -1,69 +1,75 @@
 <!doctype html>
 <html>
-<head>
-    <title>GrooveOtter &mdash; Login</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="/login.css">
 
-    <script src="//use.typekit.net/tpg8qjl.js"></script>
-    <script>Typekit.load();</script>
-    <script type="text/javascript" defer="defer" src="//script.opentracker.net/?site=grooveotter-demo.herokuapp.com"></script>
-</head>
+    <head>
+        <title>GrooveOtter &mdash; Login</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="/login.css">
 
-<body>
-    <div class="gotrl-login">
-        <div class="gotrl-login-box-container">
-            <div class="gotrl-login-box">
-                <div class="gotrl-login-logobox">
-                    <img class="gotrl-login-logobox-logo" src="/GrooveOtter1.png"/>
-                </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://use.typekit.net/oxt4kxo.js"></script>
+        <script>
+            try {
+                Typekit.load({
+                    async: true
+                });
+            } catch (e) {}
+        </script>
+        <script type="text/javascript" defer="defer" src="//script.opentracker.net/?site=grooveotter-demo.herokuapp.com"></script>
+    </head>
 
-                <div class="gotrl-login-content">
-                    <a
-                        id="gotrl-twitter-login-button"
-                        href="<%= env.TWITTER_HOST %>/auth/twitter?callback=ORIGIN/app&newCallback=ORIGIN/signup-twitter"
-                        class="gotrl-login-button gotrl-login-twitter">
-                        <div>
-                        <p><img src="/twitter-logo.png"></p> <span class='login-text'>
-                        Login with Twitter
-                        </span>
-                        </div>
-                    </a>
+    <body>
 
-                    <a
-                        id="gotrl-google-login-button"
-                        href="<%= env.GOOGLE_HOST %>/auth/google?callback=ORIGIN/app"
-                        class="gotrl-login-button gotrl-login-google">
-                        <div>
-                        <p><img src="/googleplus.png"></p> <span class='login-text'>
-                        Login with Google </span>
-                        </div>
-                    </a>
-                </div>
+        <header class="login-header">
+            <div class="logo_container">
+                <a href="index.html">
+                    <img src="/GO_logo.png" class="logo_centered" alt="logo">
+                </a>
             </div>
-        </div>
-    </div>
+            <div class="social_log_btns">
+                <a id="gotrl-twitter-login-button" href="<%= env.TWITTER_HOST %>/auth/twitter?callback=ORIGIN/app&newCallback=ORIGIN/signup-twitter">
+                    <button class="twitter"><img src="/twitter.png" alt="twitter_icon" class="btn-icon">Login with Twitter</button>
+                </a>
+                <a id="gotrl-google-login-button" href="<%= env.GOOGLE_HOST %>/auth/google?callback=ORIGIN/app">
+                    <button class="google"><img src="/google-plus.png" alt="google_icon" class="btn-icon2">Login with Google</button>
+                </a>
+            </div>
+            <img src="/cloud.png" class="cloud3" alt="cloud">
+            <img src="/cloud.png" class="cloud4" alt="cloud">
+            <img src="/cloud.png" class="cloud5" alt="cloud">
+            <img src="/birds.png" class="birds2" alt="birds">
+            <img src="/boat.png" class="boat2" alt="boat">
+            <img src="/water.png" class="water2" alt="water">
+        </header>
 
-    <script>
-        replaceWithOrigin(document.getElementById('gotrl-twitter-login-button'));
-        replaceWithOrigin(document.getElementById('gotrl-google-login-button'));
+        <script>
+            replaceWithOrigin(document.getElementById('gotrl-twitter-login-button'));
+            replaceWithOrigin(document.getElementById('gotrl-google-login-button'));
 
-        function replaceWithOrigin(el) {
-            var url = el.href.replace(/ORIGIN/g, window.location.origin);
-            el.href = url;
-        }
-    </script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            function replaceWithOrigin(el) {
+                var url = el.href.replace(/ORIGIN/g, window.location.origin);
+                el.href = url;
+            }
+        </script>
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-      ga('create', 'UA-4710282-5', 'auto');
-      ga('send', 'pageview');
-    </script>
+            ga('create', 'UA-4710282-5', 'auto');
+            ga('send', 'pageview');
+        </script>
 
-</body>
+    </body>
+
 </html>
