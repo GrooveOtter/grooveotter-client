@@ -1,3 +1,143 @@
+@import 'normalize';
+@import 'base';
+
+html {
+    background: $gotr-offoffwhite;
+}
+
+.gotrl-login-email {
+    border-radius: 4px;
+    border: 1px solid $gotr-secondary;
+    padding: 0.5em 0.75em;
+    max-width: 100%;
+
+    &:invalid {
+        border-color: $gotr-error;
+    }
+}
+
+.gotrl-login-signup {
+    border-radius: 4px;
+    border: 1px solid $gotr-secondary;
+    padding: 0.5em 0.75em;
+    font-weight: 700;
+}
+
+.gotrl-login-box {
+    display: inline-block;
+    max-width: 460px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.gotrl-login-logobox {
+    background: white;
+    padding: 30px 0;
+    padding-bottom: 0px;
+
+    .gotrl-login-logobox-logo {
+        display: block;
+        margin: 0 auto;
+        max-height: 60px;
+    }
+}
+
+.gotrl-login-content {
+    background: $gotr-white;
+    padding: 40px 30px 80px 30px;
+    text-align: center;
+
+    & > * + * {
+        margin-top: 10px;
+    }
+}
+
+.gotrl-login-text {
+    font-size: 26px;
+}
+
+.gotrl-login-button {
+    border-radius: 4px;
+    color: $gotr-white;
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 1em 0;
+    width: 100%;
+}
+
+.gotrl-login-twitter {
+    background: #3AD3E8;
+    transition: background-color 100ms ease;
+
+    &:hover {
+        background: #18b4c9;
+    }
+}
+
+.login-text {
+    position: relative;
+    bottom: 7px;
+}
+.gotrl-login-google {
+    background: #E95254;
+    transition: background-color 100ms ease;
+
+    &:hover {
+        background: #e5383b;
+    }
+}
+
+.gotrl-login-button {
+    padding-bottom: 15px;
+}
+
+.gotrl-login-button p {
+    display: inline-block;
+    margin: 0px;
+}
+
+.gotrl-login-button img {
+    margin-left: -15px;
+    margin-right: 10px;
+}
+
+.gotrl-login-button span {
+    position: relative;
+    bottom: 7px;
+}
+
+
+@media screen and (min-width: 480px) {
+    .gotrl-login {
+        background-image: url("http://i.imgur.com/sCdFslL.jpg");
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        display: table;
+    }
+
+    .gotrl-login-box-container {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .gotrl-login-box {
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.1);
+
+        .gotrl-login-content {
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+    }
+}
+
 html, body {
   margin: 0;
   padding: 0;
