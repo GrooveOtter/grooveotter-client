@@ -71,7 +71,7 @@ button:focus {
 header {
   width: 100%;
   text-align: center;
-  height: 450px;
+  height: 445px;
   display: block;
 }
 
@@ -160,7 +160,7 @@ header {
 .cloud2 {
   position: absolute;
   display: inline-block;
-  top: 487px;
+  top: 475px;
   left: 290px;
   width: 73px;
 }
@@ -209,7 +209,7 @@ header {
 .boat {
   position: absolute;
   display: inline-block;
-  top: 600px;
+  top: 588px;
   left: 125px;
   width: 40px;
 }
@@ -225,7 +225,7 @@ header {
 .water {
   position: absolute;
   display: inline-block;
-  top: 622px;
+  top: 610px;
   width: 2563px;
   left: 0;
 }
@@ -287,10 +287,11 @@ footer {
 }
 
 .land_messaging {
-  margin-top: 215px;
+  margin-top: 200px;
 }
 
 .get_started_btn {
+  cursor: pointer;
   width: 144px;
   height: 45px;
   background-color: #3db685;
@@ -308,6 +309,7 @@ footer {
 }
 
 .login_btn {
+  cursor: pointer;
   width: 144px;
   height: 45px;
   background-color: #3db685;
@@ -387,6 +389,7 @@ footer {
 
 
 .user {
+  cursor: pointer;
   display: inline-block;
   border-radius: 90px;
   height: 56px;
@@ -513,6 +516,11 @@ footer {
   color: #393533;
   padding-left: 5px;
   text-decoration: none;
+  transition: .3s;
+}
+
+.benefits:hover {
+  color: #3db685 !important;
 }
 
 .processtab {
@@ -564,6 +572,7 @@ footer {
 }
 
 .tab2btn {
+  cursor: pointer;
   font-family: "azo-sans-web", Helvetica, sans-serif;
   width: 125px;
   height: 45px;
@@ -743,11 +752,12 @@ footer {
   }
 
   .otter_illo {
+    overflow-x: hidden;
     margin: 45px auto;
   }
 
   .water {
-    top: 530px;
+    top: 520px;
   }
 
   .quote1 {
