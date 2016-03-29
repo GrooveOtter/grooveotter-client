@@ -226,16 +226,24 @@ header {
   position: absolute;
   display: inline-block;
   top: 610px;
-  width: 2563px;
+  width: 100%;
+  height: 65px;
   left: 0;
+  background-image: url("/water.png");
+  background-size: 180%;
+  background-repeat: no-repeat;
 }
 
 .water2 {
   position: absolute;
   display: inline-block;
   bottom: 0px;
-  width: 2563px;
+  width: 100%;
+  height: 47px;
   left: 0;
+  background-image: url("/water.png");
+  background-repeat: no-repeat;
+  background-size: 2570px;
 }
 
 footer {
@@ -530,6 +538,12 @@ footer {
   color: #393533;
   padding-right: 5px;
   text-decoration: none;
+  transition: .3s;
+}
+
+.processtab:hover {
+  color: #3db685;
+  cursor: pointer;
 }
 
 .features {
@@ -608,6 +622,20 @@ footer {
   border-bottom: 1px solid #3db685;
 }
 
+.support_twitter {
+  color: #8A98A7;
+}
+
+.support {
+  color: #8A98A7;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.support:hover {
+  color:white;
+}
+
 @media (max-width: 1220px) {
 
   .cloud1 {
@@ -632,6 +660,11 @@ footer {
 
   .card1, .card2, .card3, .card4, .card5, .card6 {
     width: 28vw;
+  }
+
+  .water {
+    top: 615px;
+    background-size: 200%;
   }
 
 }
@@ -697,6 +730,10 @@ footer {
     height: 250px;
   }
 
+  .water {
+    background-size: 250%;
+  }
+
 }
 
 @media (max-width: 780px) {
@@ -757,7 +794,8 @@ footer {
   }
 
   .water {
-    top: 520px;
+    top: 521px;
+    background-size: 2100px;
   }
 
   .quote1 {
@@ -813,6 +851,11 @@ footer {
 @media (max-width: 400px) {
   .left {
     padding-left: 35px;
+  }
+
+  .water {
+    top: 525px;
+    background-size: 500%;
   }
 }
 
