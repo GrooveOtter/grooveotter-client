@@ -65,6 +65,7 @@ window.gotrMain = function() {
         flux.dispatchBinder.dispatch(type, payload);
     });
 
+    React.initializeTouchEvents(true);
     React.render(<Main flux={flux}/>, document.getElementById('main'));
 };
 
